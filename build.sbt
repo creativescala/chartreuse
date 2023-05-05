@@ -47,6 +47,7 @@ commands += Command.command("build") { state =>
     "scalafixAll" ::
     "scalafmtAll" ::
     "headerCreateAll" ::
+    "docs/tlSite" ::
     state
 }
 
@@ -80,6 +81,15 @@ lazy val docs = project
     commonSettings,
     mdocIn := sourceDirectory.value / "pages",
     mdocOut := target.value / "pages",
+    laikaConfig := laikaConfig.value.withConfigValue(
+      LinkConfig(apiLinks =
+        Seq(
+          ApiLinks(baseUri =
+            "https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/"
+          )
+        )
+      )
+    ),
     Laika / sourceDirectories := Seq(
       mdocOut.value,
       sourceDirectory.value / "templates",
@@ -107,9 +117,18 @@ lazy val docs = project
       cmd1 !
 
       cmd2 !
-    }
+    },
+    tlSite := Def
+      .sequential(
+        (examples / Compile / fastLinkJS),
+        mdoc.toTask(""),
+        css,
+        laikaSite
+      )
+      .value
   )
-  .enablePlugins(MdocPlugin, LaikaPlugin)
+  .enablePlugins(TypelevelSitePlugin)
+  .dependsOn(core.jvm)
 
 lazy val unidocs = project
   .in(file("unidocs"))
