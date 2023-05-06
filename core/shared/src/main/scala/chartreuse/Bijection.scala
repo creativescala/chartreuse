@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package chartreuse.examples
+package chartreuse
 
-import scala.scalajs.js.annotation.JSExport
-import scala.scalajs.js.annotation.JSExportTopLevel
-
-@JSExportTopLevel("ChartreuseExamples")
-object Examples {
-  @JSExport
-  def go(): Unit = println("Hello")
+/** A bijection is an invertible function. That is, one that can map A to B, and
+  * also do the inverse from B to A.
+  */
+final case class Bijection[A, B](to: A => B, from: B => A)
+    extends Function[A, B] {
+  def apply(a: A): B = to(a)
+  def invert(b: B): A = from(b)
 }

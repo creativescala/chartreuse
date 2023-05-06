@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package chartreuse
+package chartreuse.layout
 
 import doodle.algebra.Algebra
 import doodle.algebra.Picture
@@ -73,8 +73,11 @@ object Glyph {
 
     def noStroke: Simple[A] =
       Style(this, picture => picture.noStroke)
+
+    def strokeWidth(width: Double): Simple[A] =
+      Style(this, picture => picture.strokeWidth(width))
   }
 
   val circle: Simple[Double] =
-    Simple.Shape(radius => doodle.syntax.shape.circle[Basic](radius * 2))
+    Simple.Shape(diameter => doodle.syntax.shape.circle[Basic](diameter))
 }

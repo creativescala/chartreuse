@@ -61,7 +61,7 @@ lazy val commonSettings = Seq(
   )
 )
 
-lazy val root = tlCrossRootProject.aggregate(core)
+lazy val root = tlCrossRootProject.aggregate(core, examples)
 
 lazy val core = crossProject(JSPlatform, JVMPlatform)
   .in(file("core"))
@@ -102,7 +102,7 @@ lazy val docs = project
       laika.parse.code.SyntaxHighlighting,
       CreativeScalaDirectives
     ),
-    laikaSite / target := target.value / "creative-scala",
+    laikaSite / target := target.value / "chartreuse",
     laikaIncludeEPUB := false,
     laikaIncludePDF := false,
     laikaTheme := Theme.empty,
@@ -145,5 +145,6 @@ lazy val unidocs = project
 
 lazy val examples = project
   .in(file("examples"))
-  .settings(commonSettings)
+  .settings(commonSettings, libraryDependencies += Dependencies.doodleSvg.value)
+  .dependsOn(core.js)
   .enablePlugins(ScalaJSPlugin)

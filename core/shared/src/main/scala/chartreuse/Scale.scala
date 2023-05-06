@@ -16,41 +16,52 @@
 
 package chartreuse
 
+import doodle.core.BoundingBox
 import doodle.core.Point
 
-/** A Scale is a bijection (invertible function) from data coordinates to plot
-  * coordinates and back.
+/** The scale determines how data coordinates are mapped to screen coordinates.
   */
-final case class Scale(dataToPlot: Point => Point, plotToData: Point => Point)
+trait Scale {
+  def build(
+      extent: BoundingBox,
+      width: Int,
+      height: Int
+  ): Bijection[Point, Point]
+}
 object Scale {
-  def linear(
-      dataMinX: Double,
-      dataMaxX: Double,
-      dataMinY: Double,
-      dataMaxY: Double,
-      plotWidth: Int,
-      plotHeight: Int
-  ): Scale = {
-    val dataWidth = dataMaxX - dataMinX
-    val dataHeight = dataMaxY - dataMinY
+  def linear: Scale =
+    new Scale {
+      def build(
+          extent: BoundingBox,
+          width: Int,
+          height: Int
+      ): Bijection[Point, Point] = {
+        val dataMinX: Double = extent.left
+        val dataMaxX: Double = extent.right
+        val dataMinY: Double = extent.bottom
+        val dataMaxY: Double = extent.top
 
-    val xOffset = -plotWidth / 2.0
-    val yOffset = -plotHeight / 2.0
+        val dataWidth = dataMaxX - dataMinX
+        val dataHeight = dataMaxY - dataMinY
 
-    val xScale = plotWidth.toDouble / dataWidth
-    val yScale = plotHeight.toDouble / dataHeight
+        val xOffset = -width / 2.0
+        val yOffset = -height / 2.0
 
-    Scale(
-      dataToPlot = pt =>
-        Point(
-          (pt.x - dataMinX) * xScale + xOffset,
-          (pt.y - dataMinY) * yScale + yOffset
-        ),
-      plotToData = pt =>
-        Point(
-          ((pt.x - xOffset) / xScale) + dataMinX,
-          ((pt.y - yOffset) / yScale) + dataMinY
+        val xScale = width.toDouble / dataWidth
+        val yScale = height.toDouble / dataHeight
+
+        Bijection(
+          to = pt =>
+            Point(
+              (pt.x - dataMinX) * xScale + xOffset,
+              (pt.y - dataMinY) * yScale + yOffset
+            ),
+          from = pt =>
+            Point(
+              ((pt.x - xOffset) / xScale) + dataMinX,
+              ((pt.y - yOffset) / yScale) + dataMinY
+            )
         )
-    )
-  }
+      }
+    }
 }
