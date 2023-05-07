@@ -3183,7 +3183,7 @@ function $h_Lchartreuse_examples_ScatterPlotExample$() {
 $h_Lchartreuse_examples_ScatterPlotExample$.prototype = $c_Lchartreuse_examples_ScatterPlotExample$.prototype;
 $c_Lchartreuse_examples_ScatterPlotExample$.prototype.draw__T__V = (function(id) {
   var this$1 = $m_Ldoodle_syntax_package$all$();
-  var picture = $n(this.Lchartreuse_examples_ScatterPlotExample$__f_layer).render__I__I__Ldoodle_algebra_Picture(640, 480);
+  var picture = $n(this.Lchartreuse_examples_ScatterPlotExample$__f_layer).draw__I__I__Ldoodle_algebra_Picture(640, 480);
   new $c_Ldoodle_syntax_AbstractRendererSyntax$RendererPictureOps(this$1, picture).drawWithFrame__O__Ldoodle_effect_Renderer__Lcats_effect_unsafe_IORuntime__V($n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Frame).apply__T__Ldoodle_svg_effect_Frame(id), $m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_svgRenderer, $m_Lcats_effect_unsafe_implicits$().Lcats_effect_unsafe_implicits$__f_global)
 });
 $c_Lchartreuse_examples_ScatterPlotExample$.prototype.draw = (function(arg) {
@@ -27575,10 +27575,10 @@ $c_Lchartreuse_Layer.prototype.productElement__I__O = (function(n) {
     }
   }
 });
-$c_Lchartreuse_Layer.prototype.render__I__I__Ldoodle_algebra_Picture = (function(width, height) {
+$c_Lchartreuse_Layer.prototype.draw__I__I__Ldoodle_algebra_Picture = (function(width, height) {
   var bb = $n(this.Lchartreuse_Layer__f_data).boundingBox__F1__Ldoodle_core_BoundingBox(this.Lchartreuse_Layer__f_toPoint);
   var s = $n(this.Lchartreuse_Layer__f_scale).build__Ldoodle_core_BoundingBox__I__I__Lchartreuse_Bijection(bb, width, height);
-  return $n(this.Lchartreuse_Layer__f_layout).render__Lchartreuse_Data__F1__F1__Ldoodle_algebra_Picture(this.Lchartreuse_Layer__f_data, this.Lchartreuse_Layer__f_toPoint, s)
+  return $n(this.Lchartreuse_Layer__f_layout).draw__Lchartreuse_Data__F1__F1__Ldoodle_algebra_Picture(this.Lchartreuse_Layer__f_data, this.Lchartreuse_Layer__f_toPoint, s)
 });
 function $as_Lchartreuse_Layer(obj) {
   return (((obj instanceof $c_Lchartreuse_Layer) || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.Layer"))
@@ -35286,12 +35286,12 @@ $c_Lchartreuse_layout_ScatterPlot.prototype.productElement__I__O = (function(n) 
   };
   throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
 });
-$c_Lchartreuse_layout_ScatterPlot.prototype.render__Lchartreuse_Data__F1__F1__Ldoodle_algebra_Picture = (function(data, toPoint, scale) {
+$c_Lchartreuse_layout_ScatterPlot.prototype.draw__Lchartreuse_Data__F1__F1__Ldoodle_algebra_Picture = (function(data, toPoint, scale) {
   return $as_Ldoodle_algebra_Picture($n(data).foldLeft__O__F2__O(new $c_Ldoodle_syntax_ShapeSyntax$$anon$5(), new $c_sjsr_AnonFunction2(((plot, a) => {
     var plot$1 = $as_Ldoodle_algebra_Picture(plot);
     var this$5 = $m_Ldoodle_syntax_package$all$();
     var this$3 = $m_Ldoodle_syntax_package$all$();
-    var picture = $n(this.Lchartreuse_layout_ScatterPlot__f_glyph).render__O__Ldoodle_algebra_Picture($n(this.Lchartreuse_layout_ScatterPlot__f_toSize).apply__O__O(a));
+    var picture = $n(this.Lchartreuse_layout_ScatterPlot__f_glyph).draw__O__Ldoodle_algebra_Picture($n(this.Lchartreuse_layout_ScatterPlot__f_toSize).apply__O__O(a));
     var this$4 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$3, picture);
     var offset = $as_Ldoodle_core_Point($n(scale).apply__O__O($n(toPoint).apply__O__O(a)));
     var picture$1 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$10(offset, this$4);
@@ -45272,12 +45272,12 @@ $h_Lchartreuse_layout_Glyph$Simple.prototype = $c_Lchartreuse_layout_Glyph$Simpl
 $c_Lchartreuse_layout_Glyph$Simple.prototype.productIterator__sc_Iterator = (function() {
   return new $c_s_Product$$anon$1(this)
 });
-$c_Lchartreuse_layout_Glyph$Simple.prototype.render__O__Ldoodle_algebra_Picture = (function(data) {
+$c_Lchartreuse_layout_Glyph$Simple.prototype.draw__O__Ldoodle_algebra_Picture = (function(data) {
   if (false) {
     var x$1 = $as_Lchartreuse_layout_Glyph$Simple$Contramap(this);
     var x11 = $n(x$1)._1__Lchartreuse_layout_Glyph$Simple();
     var x12 = $n(x$1)._2__F1();
-    return $n(x11).render__O__Ldoodle_algebra_Picture($n(x12).apply__O__O(data))
+    return $n(x11).draw__O__Ldoodle_algebra_Picture($n(x12).apply__O__O(data))
   };
   if ((this instanceof $c_Lchartreuse_layout_Glyph$Simple$Shape)) {
     var x$1$1 = $as_Lchartreuse_layout_Glyph$Simple$Shape(this);
@@ -45291,7 +45291,7 @@ $c_Lchartreuse_layout_Glyph$Simple.prototype.render__O__Ldoodle_algebra_Picture 
     var x4 = this$5.Lchartreuse_layout_Glyph$Simple$Style__f_source;
     var this$6 = $n(x$1$2);
     var x5 = this$6.Lchartreuse_layout_Glyph$Simple$Style__f_style;
-    return $as_Ldoodle_algebra_Picture($n(x5).apply__O__O($n(x4).render__O__Ldoodle_algebra_Picture(data)))
+    return $as_Ldoodle_algebra_Picture($n(x5).apply__O__O($n(x4).draw__O__Ldoodle_algebra_Picture(data)))
   };
   throw new $c_s_MatchError(this)
 });
