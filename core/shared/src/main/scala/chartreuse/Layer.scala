@@ -22,7 +22,7 @@ import doodle.algebra.Shape
 import doodle.core.Point
 
 /** A `Layer` combines data with layout and other properties required to produce
-  * a graph..
+  * a plot.
   */
 final case class Layer[A, Alg <: Algebra](
     data: Data[A],
@@ -30,11 +30,11 @@ final case class Layer[A, Alg <: Algebra](
     scale: Scale,
     layout: Layout[A, Alg]
 ) {
-  def render(width: Int, height: Int): Picture[Alg, Unit] = {
+  def draw(width: Int, height: Int): Picture[Alg, Unit] = {
     val bb = data.boundingBox(toPoint)
     val s = scale.build(bb, width, height)
 
-    layout.render(data, toPoint, s)
+    layout.draw(data, toPoint, s)
   }
 
   // Builder methods -----------------------------------------------------------

@@ -38,5 +38,5 @@ object ScatterPlotExample {
 
   @JSExport
   def draw(id: String): Unit =
-    layer.render(640, 480).drawWithFrame(Frame(id))
+    layer.draw(640, 480).drawWithFrame(Frame(id))
 }

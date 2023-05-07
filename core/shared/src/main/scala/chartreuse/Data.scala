@@ -20,8 +20,7 @@ import cats.Traverse
 import doodle.core.BoundingBox
 import doodle.core.Point
 
-/** Represent a data set with elements of type `A` that can be rendered in a
-  * graph.
+/** Represent a data set with elements of type `A` that can be drawn in a graph.
   */
 enum Data[+A] {
   case FromIterable(data: Iterable[A])

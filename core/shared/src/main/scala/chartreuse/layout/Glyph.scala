@@ -37,7 +37,7 @@ import doodle.syntax.all.*
 trait Glyph[-A, Alg <: Algebra] {
 
   /** Given a data point, turn it into a glyph */
-  def render(data: A): Picture[Alg, Unit]
+  def draw(data: A): Picture[Alg, Unit]
 }
 object Glyph {
 
@@ -55,11 +55,11 @@ object Glyph {
     def contramap[B](f: B => A): Simple[B] =
       Contramap(this, f)
 
-    def render(data: A): Picture[Basic, Unit] =
+    def draw(data: A): Picture[Basic, Unit] =
       this match {
-        case Contramap(source, f) => source.render(f(data))
+        case Contramap(source, f) => source.draw(f(data))
         case Shape(glyph)         => glyph(data)
-        case Style(source, style) => style(source.render(data))
+        case Style(source, style) => style(source.draw(data))
       }
 
     def fillColor(color: Color): Simple[A] =

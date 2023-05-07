@@ -30,13 +30,13 @@ final case class ScatterPlot[
     glyph: Glyph[Double, Alg],
     toSize: A => Double
 ) extends Layout[A, Alg] {
-  def render(
+  def draw(
       data: Data[A],
       toPoint: A => Point,
       scale: Point => Point
   ): Picture[Alg, Unit] = {
     data.foldLeft(empty[Alg]) { (plot, a) =>
-      glyph.render(toSize(a)).at(scale(toPoint(a))).on(plot)
+      glyph.draw(toSize(a)).at(scale(toPoint(a))).on(plot)
     }
   }
 }

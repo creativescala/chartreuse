@@ -26,7 +26,7 @@ trait Layout[A, -Alg <: Algebra] {
   /** Plot the given data, using the scale to convert from data coordinates to
     * screen coordinates.
     */
-  def render(
+  def draw(
       data: Data[A],
       toPoint: A => Point,
       scale: Point => Point
@@ -35,7 +35,7 @@ trait Layout[A, -Alg <: Algebra] {
 object Layout {
   def empty[A]: Layout[A, Shape] =
     new Layout[A, Shape] {
-      def render(
+      def draw(
           data: Data[A],
           toPoint: A => Point,
           scale: Point => Point
