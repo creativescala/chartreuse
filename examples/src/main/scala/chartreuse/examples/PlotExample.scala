@@ -17,14 +17,14 @@
 package chartreuse.examples
 
 import cats.effect.unsafe.implicits.global
+import chartreuse.Plot
 import chartreuse.*
 import chartreuse.layout.ScatterPlot
 import doodle.core.Point
-import doodle.svg.*
-import doodle.syntax.all.*
 import doodle.java2d.*
 import doodle.language.Basic
-import chartreuse.Plot
+import doodle.svg.*
+import doodle.syntax.all.*
 
 import scala.util.Random
 

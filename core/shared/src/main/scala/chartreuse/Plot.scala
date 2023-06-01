@@ -21,19 +21,19 @@ import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
 
-/** A `Plot` is a collection of layers along
- * with a title, legend, axes, and grid.
- */
+/** A `Plot` is a collection of layers along with a title, legend, axes, and
+  * grid.
+  */
 final case class Plot[
-  A,
-  Alg <: Layout & Shape
+    A,
+    Alg <: Layout & Shape
 ](
-   layers: List[Layer[A, Alg]],
-   plotTitle: String = "Plot Title",
-   xTitle: String = "X data",
-   yTitle: String = "Y data",
-   grid: Boolean = true
- ) {
+    layers: List[Layer[A, Alg]],
+    plotTitle: String = "Plot Title",
+    xTitle: String = "X data",
+    yTitle: String = "Y data",
+    grid: Boolean = true
+) {
   def addLayer(layer: Layer[A, Alg]): Plot[A, Alg] = {
     copy(layers = layer :: layers)
   }
@@ -52,7 +52,8 @@ final case class Plot[
 
   //  TODO: handle axes and grid layout
   def draw(width: Int, height: Int): Picture[
-    Alg & Text & doodle.algebra.Transform & Debug, Unit
+    Alg & Text & doodle.algebra.Transform & Debug,
+    Unit
   ] = {
     val plot =
       layers
