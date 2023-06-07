@@ -145,12 +145,6 @@ lazy val unidocs = project
 
 lazy val examples = project
   .in(file("examples"))
-  .settings(
-    commonSettings,
-    libraryDependencies ++= Seq(
-      Dependencies.doodleSvg.value,
-      Dependencies.doodleJava2D.value
-    )
-  )
+  .settings(commonSettings, libraryDependencies += Dependencies.doodleSvg.value)
   .dependsOn(core.js)
   .enablePlugins(ScalaJSPlugin)

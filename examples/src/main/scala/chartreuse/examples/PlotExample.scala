@@ -21,29 +21,30 @@ import chartreuse.Plot
 import chartreuse.*
 import chartreuse.layout.ScatterPlot
 import doodle.core.Point
-import doodle.java2d.*
 import doodle.language.Basic
 import doodle.svg.*
 import doodle.syntax.all.*
 
+import scala.scalajs.js.annotation.JSExport
+import scala.scalajs.js.annotation.JSExportTopLevel
 import scala.util.Random
 
-//  TODO: rewrite to SVG
+@JSExportTopLevel("PlotExample")
 object PlotExample {
-  @main def run(): Unit = {
-    def randomLayer: Layer[Point, Basic] = {
-      val points =
-        List.fill(100)(Point(Random.nextGaussian(), Random.nextGaussian()))
+  def randomLayer: Layer[Point, Basic] = {
+    val points =
+      List.fill(100)(Point(Random.nextGaussian(), Random.nextGaussian()))
 
-      val data = Data(points)
-      val layout = ScatterPlot.default[Point]
-      Layer(data, layout)(pt => pt)
-    }
-
-    val plot = Plot(
-      List.fill(20)(randomLayer)
-    )
-
-    plot.draw(640, 480).draw()
+    val data = Data(points)
+    val layout = ScatterPlot.default[Point]
+    Layer(data, layout)(pt => pt)
   }
+
+  val plot: Plot[Point, Basic] = Plot(
+    List.fill(20)(randomLayer)
+  )
+
+  @JSExport
+  def draw(id: String): Unit =
+    plot.draw(640, 480).drawWithFrame(Frame(id))
 }
