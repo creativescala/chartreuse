@@ -38,15 +38,15 @@ final case class Plot[
     copy(layers = layer :: layers)
   }
 
-  def setPlotTitle(newPlotTitle: String): Plot[A, Alg] = {
+  def withPlotTitle(newPlotTitle: String): Plot[A, Alg] = {
     copy(plotTitle = newPlotTitle)
   }
 
-  def setXTitle(newXTitle: String): Plot[A, Alg] = {
+  def withXTitle(newXTitle: String): Plot[A, Alg] = {
     copy(xTitle = newXTitle)
   }
 
-  def setYTitle(newYTitle: String): Plot[A, Alg] = {
+  def withYTitle(newYTitle: String): Plot[A, Alg] = {
     copy(yTitle = newYTitle)
   }
 
@@ -64,6 +64,7 @@ final case class Plot[
         .margin(5)
 
     val plotTitle = text(this.plotTitle)
+      .scale(2, 2)
     val xTitle = text(this.xTitle)
     val yTitle = text(this.yTitle)
       .rotate(Angle(1.5708))
