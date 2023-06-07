@@ -1,4 +1,4 @@
-let ScatterPlotExample,ChartreuseExamples;
+let ScatterPlotExample,ChartreuseExamples,PlotExample;
 (function(){
 'use strict';
 var $linkingInfo = Object.freeze({
@@ -3142,6 +3142,75 @@ function $m_Lchartreuse_examples_Examples$() {
   return $n_Lchartreuse_examples_Examples$
 }
 /** @constructor */
+function $c_Lchartreuse_examples_PlotExample$() {
+  this.Lchartreuse_examples_PlotExample$__f_plot = null;
+  $n_Lchartreuse_examples_PlotExample$ = this;
+  $n($m_s_package$().s_package$__f_List);
+  var b = new $c_scm_ListBuffer();
+  var i = 0;
+  while ((i < 20)) {
+    var elem = this.randomLayer__Lchartreuse_Layer();
+    b.addOne__O__scm_ListBuffer(elem);
+    i = ((1 + i) | 0)
+  };
+  var layers = b.toList__sci_List();
+  this.Lchartreuse_examples_PlotExample$__f_plot = new $c_Lchartreuse_Plot(layers, "Plot Title", "X data", "Y data", true)
+}
+$c_Lchartreuse_examples_PlotExample$.prototype = new $h_O();
+$c_Lchartreuse_examples_PlotExample$.prototype.constructor = $c_Lchartreuse_examples_PlotExample$;
+/** @constructor */
+function $h_Lchartreuse_examples_PlotExample$() {
+  /*<skip>*/
+}
+$h_Lchartreuse_examples_PlotExample$.prototype = $c_Lchartreuse_examples_PlotExample$.prototype;
+$c_Lchartreuse_examples_PlotExample$.prototype.randomLayer__Lchartreuse_Layer = (function() {
+  $n($m_s_package$().s_package$__f_List);
+  var b = new $c_scm_ListBuffer();
+  var i = 0;
+  while ((i < 100)) {
+    $m_Ldoodle_core_Point$();
+    var this$2 = $m_s_util_Random$();
+    var x = $n(this$2.s_util_Random__f_self).nextGaussian__D();
+    var this$3 = $m_s_util_Random$();
+    var y = $n(this$3.s_util_Random__f_self).nextGaussian__D();
+    var elem = new $c_Ldoodle_core_Point$Cartesian(x, y);
+    b.addOne__O__scm_ListBuffer(elem);
+    i = ((1 + i) | 0)
+  };
+  var points = b.toList__sci_List();
+  var data = new $c_Lchartreuse_Data$FromIterable(points);
+  var layout = $m_Lchartreuse_layout_ScatterPlot$().default__Lchartreuse_layout_ScatterPlot();
+  var toPoint = new $c_sjsr_AnonFunction1(((pt) => {
+    var pt$1 = $as_Ldoodle_core_Point(pt);
+    return pt$1
+  }));
+  var scale = new $c_Lchartreuse_Scale$$anon$1();
+  return new $c_Lchartreuse_Layer(data, toPoint, scale, layout)
+});
+$c_Lchartreuse_examples_PlotExample$.prototype.draw__T__V = (function(id) {
+  var this$1 = $m_Ldoodle_syntax_package$all$();
+  var picture = $n(this.Lchartreuse_examples_PlotExample$__f_plot).draw__I__I__Ldoodle_algebra_Picture(640, 480);
+  new $c_Ldoodle_syntax_AbstractRendererSyntax$RendererPictureOps(this$1, picture).drawWithFrame__O__Ldoodle_effect_Renderer__Lcats_effect_unsafe_IORuntime__V($n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Frame).apply__T__Ldoodle_svg_effect_Frame(id), $m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_svgRenderer, $m_Lcats_effect_unsafe_implicits$().Lcats_effect_unsafe_implicits$__f_global)
+});
+$c_Lchartreuse_examples_PlotExample$.prototype.draw = (function(arg) {
+  var prep0 = $as_T(arg);
+  this.draw__T__V(prep0)
+});
+var $d_Lchartreuse_examples_PlotExample$ = new $TypeData().initClass({
+  Lchartreuse_examples_PlotExample$: 0
+}, false, "chartreuse.examples.PlotExample$", {
+  Lchartreuse_examples_PlotExample$: 1,
+  O: 1
+});
+$c_Lchartreuse_examples_PlotExample$.prototype.$classData = $d_Lchartreuse_examples_PlotExample$;
+var $n_Lchartreuse_examples_PlotExample$;
+function $m_Lchartreuse_examples_PlotExample$() {
+  if ((!$n_Lchartreuse_examples_PlotExample$)) {
+    $n_Lchartreuse_examples_PlotExample$ = new $c_Lchartreuse_examples_PlotExample$()
+  };
+  return $n_Lchartreuse_examples_PlotExample$
+}
+/** @constructor */
 function $c_Lchartreuse_examples_ScatterPlotExample$() {
   this.Lchartreuse_examples_ScatterPlotExample$__f_points = null;
   this.Lchartreuse_examples_ScatterPlotExample$__f_data = null;
@@ -3302,6 +3371,22 @@ $c_Ldoodle_algebra_generic_package$Finalized$.prototype.contextTransform__F1__Lc
     })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval)
   })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval)
 });
+$c_Ldoodle_algebra_generic_package$Finalized$.prototype.transform__Ldoodle_core_Transform__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT = (function(transform, child) {
+  return $n(child).map__F1__Lcats_Functor__Lcats_data_IndexedStateT(new $c_sjsr_AnonFunction1(((x$1) => {
+    var x$1$1 = $as_T2(x$1);
+    if ((x$1$1 !== null)) {
+      var bb = $as_Ldoodle_core_BoundingBox($n(x$1$1).T2__f__1);
+      var rdr = $as_Lcats_data_IndexedStateT($n(x$1$1).T2__f__2);
+      var _1 = $n(bb).transform__Ldoodle_core_Transform__Ldoodle_core_BoundingBox(transform);
+      var _2 = $n(rdr).contramap__F1__Lcats_Functor__Lcats_data_IndexedStateT(new $c_sjsr_AnonFunction1(((tx) => {
+        var tx$1 = $as_Ldoodle_core_Transform(tx);
+        return $n(transform).andThen__Ldoodle_core_Transform__Ldoodle_core_Transform(tx$1)
+      })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval);
+      return new $c_T2(_1, _2)
+    };
+    throw new $c_s_MatchError(x$1$1)
+  })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval)
+});
 var $d_Ldoodle_algebra_generic_package$Finalized$ = new $TypeData().initClass({
   Ldoodle_algebra_generic_package$Finalized$: 0
 }, false, "doodle.algebra.generic.package$Finalized$", {
@@ -3327,6 +3412,23 @@ function $h_Ldoodle_algebra_generic_package$Renderable$() {
   /*<skip>*/
 }
 $h_Ldoodle_algebra_generic_package$Renderable$.prototype = $c_Ldoodle_algebra_generic_package$Renderable$.prototype;
+$c_Ldoodle_algebra_generic_package$Renderable$.prototype.parallel__Ldoodle_core_Transform__Ldoodle_core_Transform__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT__Lcats_Apply__Lcats_kernel_Semigroup__Lcats_data_IndexedStateT = (function(txLeft, txRight, left, right, evidence$1, evidence$2) {
+  var this$7 = $m_Lcats_data_IndexedStateT$();
+  var f = new $c_sjsr_AnonFunction1(((tx) => {
+    var tx$1 = $as_Ldoodle_core_Transform(tx);
+    var l = $as_Lcats_Eval($n(left).runA__O__Lcats_FlatMap__O($n(txLeft).andThen__Ldoodle_core_Transform__Ldoodle_core_Transform(tx$1), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval));
+    var r = $as_Lcats_Eval($n(right).runA__O__Lcats_FlatMap__O($n(txRight).andThen__Ldoodle_core_Transform__Ldoodle_core_Transform(tx$1), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval));
+    $m_Lcats_implicits$();
+    var t2 = new $c_T2(l, r);
+    return $as_Lcats_Eval(new $c_Lcats_syntax_Tuple2SemigroupalOps(t2).mapN__F2__Lcats_Functor__Lcats_Semigroupal__O(new $c_sjsr_AnonFunction2(((fx, fy) => {
+      $m_Lcats_implicits$();
+      var t2$1 = new $c_T2(fx, fy);
+      return new $c_Lcats_syntax_Tuple2SemigroupalOps(t2$1).mapN__F2__Lcats_Functor__Lcats_Semigroupal__O(new $c_sjsr_AnonFunction2(((a, b) => ($m_Lcats_implicits$(), new $c_Lcats_syntax_SemigroupOps(a, evidence$2)).$bar$plus$bar__O__O(b))), evidence$1, evidence$1)
+    })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval, $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval))
+  }));
+  var F = $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval;
+  return $f_Lcats_data_CommonStateTConstructors__inspectF__F1__Lcats_Applicative__Lcats_data_IndexedStateT(this$7, f, F)
+});
 $c_Ldoodle_algebra_generic_package$Renderable$.prototype.transform__Ldoodle_core_Transform__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT = (function(transform, child) {
   return $n(child).contramap__F1__Lcats_Functor__Lcats_data_IndexedStateT(new $c_sjsr_AnonFunction1(((tx) => {
     var tx$1 = $as_Ldoodle_core_Transform(tx);
@@ -3932,6 +4034,18 @@ function $isArrayOf_Ldoodle_svg_Base(obj, depth) {
 function $asArrayOf_Ldoodle_svg_Base(obj, depth) {
   return (($isArrayOf_Ldoodle_svg_Base(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ldoodle.svg.Base;", depth))
 }
+function $is_Ldoodle_svg_algebra_HasTextBoundingBox(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ldoodle_svg_algebra_HasTextBoundingBox)))
+}
+function $as_Ldoodle_svg_algebra_HasTextBoundingBox(obj) {
+  return (($is_Ldoodle_svg_algebra_HasTextBoundingBox(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "doodle.svg.algebra.HasTextBoundingBox"))
+}
+function $isArrayOf_Ldoodle_svg_algebra_HasTextBoundingBox(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ldoodle_svg_algebra_HasTextBoundingBox)))
+}
+function $asArrayOf_Ldoodle_svg_algebra_HasTextBoundingBox(obj, depth) {
+  return (($isArrayOf_Ldoodle_svg_algebra_HasTextBoundingBox(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ldoodle.svg.algebra.HasTextBoundingBox;", depth))
+}
 /** @constructor */
 function $c_Ldoodle_svg_algebra_SvgModule$Svg$(outer) {
   this.Ldoodle_svg_algebra_SvgModule$Svg$__f_svgResultApplicative = null;
@@ -4085,6 +4199,70 @@ $c_Ldoodle_svg_algebra_SvgModule$Svg$.prototype.svgTag__Ldoodle_core_BoundingBox
     return this$11.apply__sci_Seq__Lscalatags_JsDom$TypedTag(xs$1)
   };
   throw new $c_s_MatchError(x38)
+});
+$c_Ldoodle_svg_algebra_SvgModule$Svg$.prototype.textTag__T__Ldoodle_core_font_Font__Lscalatags_generic_TypedTag = (function(text, font) {
+  matchResult9: {
+    var fontFamily;
+    var x46 = $n(font).Ldoodle_core_font_Font__f_family;
+    var x = $m_Ldoodle_core_font_FontFamily$Serif$();
+    if ((x === x46)) {
+      var fontFamily = "serif";
+      break matchResult9
+    };
+    var x$3 = $m_Ldoodle_core_font_FontFamily$SansSerif$();
+    if ((x$3 === x46)) {
+      var fontFamily = "sans-serif";
+      break matchResult9
+    };
+    var x$5 = $m_Ldoodle_core_font_FontFamily$Monospaced$();
+    if ((x$5 === x46)) {
+      var fontFamily = "monospaced";
+      break matchResult9
+    };
+    if (false) {
+      var x$1 = $as_Ldoodle_core_font_FontFamily$Named(x46);
+      var x49 = $n(x$1)._1__T();
+      var fontFamily = x49;
+      break matchResult9
+    };
+    throw new $c_s_MatchError(x46)
+  };
+  matchResult10: {
+    var fontStyle;
+    var x50 = $n(font).Ldoodle_core_font_Font__f_style;
+    var x$7 = $m_Ldoodle_core_font_FontStyle$Italic$();
+    if ((x$7 === x50)) {
+      var fontStyle = "italic";
+      break matchResult10
+    };
+    var x$9 = $m_Ldoodle_core_font_FontStyle$Normal$();
+    if ((x$9 === x50)) {
+      var fontStyle = "normal";
+      break matchResult10
+    };
+    throw new $c_s_MatchError(x50)
+  };
+  matchResult11: {
+    var fontWeight;
+    var x51 = $n(font).Ldoodle_core_font_Font__f_weight;
+    var x$11 = $m_Ldoodle_core_font_FontWeight$Bold$();
+    if ((x$11 === x51)) {
+      var fontWeight = "bold";
+      break matchResult11
+    };
+    var x$13 = $m_Ldoodle_core_font_FontWeight$Normal$();
+    if ((x$13 === x51)) {
+      var fontWeight = "normal";
+      break matchResult11
+    };
+    throw new $c_s_MatchError(x51)
+  };
+  $m_sc_StringOps$();
+  var x$2 = (((((("\n        |font-family: " + fontFamily) + ";\n        |font-style: ") + fontStyle) + ";\n        |font-weight: ") + fontWeight) + ";\n        ");
+  var style = $m_sc_StringOps$().stripMargin$extension__T__C__T(x$2, 124);
+  var this$5 = $n($n(this.Ldoodle_svg_algebra_SvgModule$Svg$__f_svg).text__Lscalatags_generic_TypedTag());
+  var xs = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($n(this.Ldoodle_svg_algebra_SvgModule$Svg$__f_svgAttrs).style__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair(style, $n($as_Lscalatags_generic_Aggregate(this.Ldoodle_svg_algebra_SvgModule$Svg$__f_implicits)).stringAttr__Lscalatags_generic_AttrValue()), ($n($as_Lscalatags_generic_Aggregate(this.Ldoodle_svg_algebra_SvgModule$Svg$__f_implicits)), new $c_Lscalatags_JsDom$StringFrag(text))]));
+  return this$5.apply__sci_Seq__Lscalatags_JsDom$TypedTag(xs)
 });
 $c_Ldoodle_svg_algebra_SvgModule$Svg$.prototype.inverseClientTransform__Ldoodle_core_BoundingBox__Ldoodle_svg_effect_Size__Ldoodle_core_Transform = (function(bb, size) {
   if ((size instanceof $c_Ldoodle_svg_effect_Size$FitToPicture)) {
@@ -4609,6 +4787,28 @@ var $d_Ldoodle_syntax_AngleSyntax$AngleIntOps = new $TypeData().initClass({
 });
 $c_Ldoodle_syntax_AngleSyntax$AngleIntOps.prototype.$classData = $d_Ldoodle_syntax_AngleSyntax$AngleIntOps;
 /** @constructor */
+function $c_Ldoodle_syntax_DebugSyntax$DebugPictureOps(outer, picture) {
+  this.Ldoodle_syntax_DebugSyntax$DebugPictureOps__f_doodle$syntax$DebugSyntax$DebugPictureOps$$picture = null;
+  this.Ldoodle_syntax_DebugSyntax$DebugPictureOps__f_doodle$syntax$DebugSyntax$DebugPictureOps$$picture = picture;
+  if ((outer === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  }
+}
+$c_Ldoodle_syntax_DebugSyntax$DebugPictureOps.prototype = new $h_O();
+$c_Ldoodle_syntax_DebugSyntax$DebugPictureOps.prototype.constructor = $c_Ldoodle_syntax_DebugSyntax$DebugPictureOps;
+/** @constructor */
+function $h_Ldoodle_syntax_DebugSyntax$DebugPictureOps() {
+  /*<skip>*/
+}
+$h_Ldoodle_syntax_DebugSyntax$DebugPictureOps.prototype = $c_Ldoodle_syntax_DebugSyntax$DebugPictureOps.prototype;
+var $d_Ldoodle_syntax_DebugSyntax$DebugPictureOps = new $TypeData().initClass({
+  Ldoodle_syntax_DebugSyntax$DebugPictureOps: 0
+}, false, "doodle.syntax.DebugSyntax$DebugPictureOps", {
+  Ldoodle_syntax_DebugSyntax$DebugPictureOps: 1,
+  O: 1
+});
+$c_Ldoodle_syntax_DebugSyntax$DebugPictureOps.prototype.$classData = $d_Ldoodle_syntax_DebugSyntax$DebugPictureOps;
+/** @constructor */
 function $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(outer, picture) {
   this.Ldoodle_syntax_LayoutSyntax$LayoutPictureOps__f_doodle$syntax$LayoutSyntax$LayoutPictureOps$$picture = null;
   this.Ldoodle_syntax_LayoutSyntax$LayoutPictureOps__f_doodle$syntax$LayoutSyntax$LayoutPictureOps$$picture = picture;
@@ -4674,6 +4874,28 @@ var $d_Ldoodle_syntax_StyleSyntax$StylePictureOps = new $TypeData().initClass({
   O: 1
 });
 $c_Ldoodle_syntax_StyleSyntax$StylePictureOps.prototype.$classData = $d_Ldoodle_syntax_StyleSyntax$StylePictureOps;
+/** @constructor */
+function $c_Ldoodle_syntax_TransformSyntax$TransformPictureOps(outer, picture) {
+  this.Ldoodle_syntax_TransformSyntax$TransformPictureOps__f_doodle$syntax$TransformSyntax$TransformPictureOps$$picture = null;
+  this.Ldoodle_syntax_TransformSyntax$TransformPictureOps__f_doodle$syntax$TransformSyntax$TransformPictureOps$$picture = picture;
+  if ((outer === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  }
+}
+$c_Ldoodle_syntax_TransformSyntax$TransformPictureOps.prototype = new $h_O();
+$c_Ldoodle_syntax_TransformSyntax$TransformPictureOps.prototype.constructor = $c_Ldoodle_syntax_TransformSyntax$TransformPictureOps;
+/** @constructor */
+function $h_Ldoodle_syntax_TransformSyntax$TransformPictureOps() {
+  /*<skip>*/
+}
+$h_Ldoodle_syntax_TransformSyntax$TransformPictureOps.prototype = $c_Ldoodle_syntax_TransformSyntax$TransformPictureOps.prototype;
+var $d_Ldoodle_syntax_TransformSyntax$TransformPictureOps = new $TypeData().initClass({
+  Ldoodle_syntax_TransformSyntax$TransformPictureOps: 0
+}, false, "doodle.syntax.TransformSyntax$TransformPictureOps", {
+  Ldoodle_syntax_TransformSyntax$TransformPictureOps: 1,
+  O: 1
+});
+$c_Ldoodle_syntax_TransformSyntax$TransformPictureOps.prototype.$classData = $d_Ldoodle_syntax_TransformSyntax$TransformPictureOps;
 /** @constructor */
 function $c_Ldoodle_syntax_UnsignedByteSyntax$ToUnsignedByteOps(outer, value) {
   this.Ldoodle_syntax_UnsignedByteSyntax$ToUnsignedByteOps__f_value = 0;
@@ -10219,6 +10441,12 @@ function $isArrayOf_F1(obj, depth) {
 function $asArrayOf_F1(obj, depth) {
   return (($isArrayOf_F1(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscala.Function1;", depth))
 }
+var $d_F1 = new $TypeData().initClass({
+  F1: 0
+}, true, "scala.Function1", {
+  F1: 1,
+  O: 1
+});
 function $f_F2__tupled__F1($thiz) {
   return new $c_sjsr_AnonFunction1(((x0$1$2) => {
     var x0$1 = $as_T2(x0$1$2);
@@ -10660,6 +10888,52 @@ $c_sc_StringOps$.prototype.stripSuffix$extension__T__T__T = (function(this$, suf
   } else {
     return this$
   }
+});
+$c_sc_StringOps$.prototype.stripMargin$extension__T__C__T = (function(this$, marginChar) {
+  var this$1 = $n(this$);
+  var sb = $ct_jl_StringBuilder__I__(new $c_jl_StringBuilder(), this$1.length);
+  $m_sc_StringOps$();
+  $m_sc_StringOps$();
+  var this$4 = new $c_sc_StringOps$$anon$1(this$, false);
+  while ((this$4.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index < this$4.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$len)) {
+    var arg1 = this$4.next__T();
+    var this$5 = $n(arg1);
+    var len = this$5.length;
+    var index = 0;
+    while (true) {
+      if ((index < len)) {
+        var this$6 = $n(arg1);
+        var index$1 = index;
+        var $$x1 = ($charAt(this$6, index$1) <= 32)
+      } else {
+        var $$x1 = false
+      };
+      if ($$x1) {
+        index = ((1 + index) | 0)
+      } else {
+        break
+      }
+    };
+    if ((index < len)) {
+      var this$7 = $n(arg1);
+      var index$2 = index;
+      var $$x2 = ($charAt(this$7, index$2) === marginChar)
+    } else {
+      var $$x2 = false
+    };
+    if ($$x2) {
+      var this$8 = $n(arg1);
+      var beginIndex = ((1 + index) | 0);
+      if (((beginIndex < 0) || (beginIndex > this$8.length))) {
+        $charAt(this$8, beginIndex)
+      };
+      var stripped = $as_T(this$8.substring(beginIndex))
+    } else {
+      var stripped = arg1
+    };
+    sb.jl_StringBuilder__f_java$lang$StringBuilder$$content = (("" + sb.jl_StringBuilder__f_java$lang$StringBuilder$$content) + stripped)
+  };
+  return sb.jl_StringBuilder__f_java$lang$StringBuilder$$content
 });
 $c_sc_StringOps$.prototype.toBooleanImpl$extension__T__T__Z = (function(this$, s) {
   if ((s === null)) {
@@ -16516,6 +16790,18 @@ var $d_Lchartreuse_Scale$$anon$1 = new $TypeData().initClass({
   Lchartreuse_Scale: 1
 });
 $c_Lchartreuse_Scale$$anon$1.prototype.$classData = $d_Lchartreuse_Scale$$anon$1;
+function $is_Ldoodle_algebra_Debug(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ldoodle_algebra_Debug)))
+}
+function $as_Ldoodle_algebra_Debug(obj) {
+  return (($is_Ldoodle_algebra_Debug(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "doodle.algebra.Debug"))
+}
+function $isArrayOf_Ldoodle_algebra_Debug(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ldoodle_algebra_Debug)))
+}
+function $asArrayOf_Ldoodle_algebra_Debug(obj, depth) {
+  return (($isArrayOf_Ldoodle_algebra_Debug(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ldoodle.algebra.Debug;", depth))
+}
 function $f_Ldoodle_algebra_Layout__at__O__D__D__O($thiz, img, x, y) {
   var landmark = $m_Ldoodle_core_Landmark$().point__D__D__Ldoodle_core_Landmark(x, y);
   var img$1 = $as_Lcats_data_IndexedStateT(img);
@@ -16557,6 +16843,40 @@ function $isArrayOf_Ldoodle_algebra_Style(obj, depth) {
 function $asArrayOf_Ldoodle_algebra_Style(obj, depth) {
   return (($isArrayOf_Ldoodle_algebra_Style(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ldoodle.algebra.Style;", depth))
 }
+function $is_Ldoodle_algebra_Text(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ldoodle_algebra_Text)))
+}
+function $as_Ldoodle_algebra_Text(obj) {
+  return (($is_Ldoodle_algebra_Text(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "doodle.algebra.Text"))
+}
+function $isArrayOf_Ldoodle_algebra_Text(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ldoodle_algebra_Text)))
+}
+function $asArrayOf_Ldoodle_algebra_Text(obj, depth) {
+  return (($isArrayOf_Ldoodle_algebra_Text(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ldoodle.algebra.Text;", depth))
+}
+function $f_Ldoodle_algebra_Transform__scale__O__D__D__O($thiz, img, x, y) {
+  var tx = $m_Ldoodle_core_Transform$().scale__D__D__Ldoodle_core_Transform(x, y);
+  var img$1 = $as_Lcats_data_IndexedStateT(img);
+  return $m_Ldoodle_algebra_generic_package$Finalized$().transform__Ldoodle_core_Transform__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT(tx, img$1)
+}
+function $f_Ldoodle_algebra_Transform__rotate__O__Ldoodle_core_Angle__O($thiz, img, angle) {
+  var tx = $m_Ldoodle_core_Transform$().rotate__Ldoodle_core_Angle__Ldoodle_core_Transform(angle);
+  var img$1 = $as_Lcats_data_IndexedStateT(img);
+  return $m_Ldoodle_algebra_generic_package$Finalized$().transform__Ldoodle_core_Transform__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT(tx, img$1)
+}
+function $is_Ldoodle_algebra_Transform(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ldoodle_algebra_Transform)))
+}
+function $as_Ldoodle_algebra_Transform(obj) {
+  return (($is_Ldoodle_algebra_Transform(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "doodle.algebra.Transform"))
+}
+function $isArrayOf_Ldoodle_algebra_Transform(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ldoodle_algebra_Transform)))
+}
+function $asArrayOf_Ldoodle_algebra_Transform(obj, depth) {
+  return (($isArrayOf_Ldoodle_algebra_Transform(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ldoodle.algebra.Transform;", depth))
+}
 /** @constructor */
 function $c_Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$(outer) {
   this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b = null;
@@ -16574,6 +16894,16 @@ function $h_Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$() {
   /*<skip>*/
 }
 $h_Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$.prototype = $c_Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$.prototype;
+$c_Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$.prototype.rectangle__Ldoodle_core_Transform__s_Option__s_Option__D__D__T3 = (function(tx, fill, stroke, width, height) {
+  var x = (-(width / 2.0));
+  var y = (-(height / 2.0));
+  var set = $as_scm_Set($m_scm_Set$().empty__O());
+  var style = $n($n($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_$outer).Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_$outer).Svg__Ldoodle_svg_algebra_SvgModule$Svg$()).toStyle__s_Option__s_Option__scm_Set__T(stroke, fill, set);
+  var this$14 = $n(($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b), $m_Lscalatags_JsDom$svgTags$()).rect__Lscalatags_generic_TypedTag());
+  var xs = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n(($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b), $m_Lscalatags_JsDom$svgAttrs$()).transform__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair($n($n($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_$outer).Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_$outer).Svg__Ldoodle_svg_algebra_SvgModule$Svg$()).toSvgTransform__Ldoodle_core_Transform__T(tx), ($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b), $m_Lscalatags_JsDom$implicits$()).Lscalatags_JsDom$implicits$__f_stringAttr), $n(($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b), $m_Lscalatags_JsDom$svgAttrs$()).style__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair(style, ($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b), $m_Lscalatags_JsDom$implicits$()).Lscalatags_JsDom$implicits$__f_stringAttr), $n(($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b), $m_Lscalatags_JsDom$svgAttrs$()).x__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair(x, ($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b), $m_Lscalatags_JsDom$implicits$()).Lscalatags_JsDom$implicits$__f_doubleAttr), $n(($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b), $m_Lscalatags_JsDom$svgAttrs$()).y__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair(y, ($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b), $m_Lscalatags_JsDom$implicits$()).Lscalatags_JsDom$implicits$__f_doubleAttr), $n(($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b), $m_Lscalatags_JsDom$svgAttrs$()).width__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair(width, ($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b), $m_Lscalatags_JsDom$implicits$()).Lscalatags_JsDom$implicits$__f_doubleAttr), $n(($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b), $m_Lscalatags_JsDom$svgAttrs$()).height__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair(height, ($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_b), $m_Lscalatags_JsDom$implicits$()).Lscalatags_JsDom$implicits$__f_doubleAttr)]));
+  var elt = this$14.apply__sci_Seq__Lscalatags_JsDom$TypedTag(xs);
+  return new $c_T3(elt, set, (void 0))
+});
 $c_Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$.prototype.circle__Ldoodle_core_Transform__s_Option__s_Option__D__T3 = (function(tx, fill, stroke, diameter) {
   var set = $as_scm_Set($m_scm_Set$().empty__O());
   var style = $n($n($n(this.Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$__f_$outer).Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_$outer).Svg__Ldoodle_svg_algebra_SvgModule$Svg$()).toStyle__s_Option__s_Option__scm_Set__T(stroke, fill, set);
@@ -16599,9 +16929,11 @@ var $d_Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$ = new $TypeData().initCla
 $c_Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$.prototype.$classData = $d_Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$;
 /** @constructor */
 function $c_Ldoodle_svg_algebra_TextModule$$anon$1(outer) {
+  this.Ldoodle_svg_algebra_TextModule$$anon$1__f_$outer = null;
   if ((outer === null)) {
     throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
-  }
+  };
+  this.Ldoodle_svg_algebra_TextModule$$anon$1__f_$outer = outer
 }
 $c_Ldoodle_svg_algebra_TextModule$$anon$1.prototype = new $h_O();
 $c_Ldoodle_svg_algebra_TextModule$$anon$1.prototype.constructor = $c_Ldoodle_svg_algebra_TextModule$$anon$1;
@@ -16610,6 +16942,18 @@ function $h_Ldoodle_svg_algebra_TextModule$$anon$1() {
   /*<skip>*/
 }
 $h_Ldoodle_svg_algebra_TextModule$$anon$1.prototype = $c_Ldoodle_svg_algebra_TextModule$$anon$1.prototype;
+$c_Ldoodle_svg_algebra_TextModule$$anon$1.prototype.textBoundingBox__T__Ldoodle_core_font_Font__T2 = (function(text, font) {
+  var this$1 = $n($as_Ldoodle_svg_algebra_HasTextBoundingBox(this.Ldoodle_svg_algebra_TextModule$$anon$1__f_$outer));
+  return $n(this$1.Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_canvas).textBoundingBox__T__Ldoodle_core_font_Font__T2(text, font)
+});
+$c_Ldoodle_svg_algebra_TextModule$$anon$1.prototype.text__Ldoodle_core_Transform__s_Option__s_Option__Ldoodle_core_font_Font__T__Lorg_scalajs_dom_SVGRect__T3 = (function(tx, fill, stroke, font, text, bounds) {
+  var set = $as_scm_Set($m_scm_Set$().empty__O());
+  var style = $n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Svg).toStyle__s_Option__s_Option__scm_Set__T(stroke, fill, set);
+  var this$4 = $n($n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Svg).textTag__T__Ldoodle_core_font_Font__Lscalatags_generic_TypedTag(text, font));
+  var xs = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_JsDom$svgAttrs$().x__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair(((-($uD(bounds.x) + $uD(bounds.width))) / 2.0), ($n($n($n(this.Ldoodle_svg_algebra_TextModule$$anon$1__f_$outer).Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_$outer).Ldoodle_svg_package$$anon$1__f_bundle), $m_Lscalatags_JsDom$implicits$()).Lscalatags_JsDom$implicits$__f_doubleAttr), $n($m_Lscalatags_JsDom$svgAttrs$().y__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair((($uD(bounds.y) + $uD(bounds.height)) / 2.0), ($n($n($n(this.Ldoodle_svg_algebra_TextModule$$anon$1__f_$outer).Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_$outer).Ldoodle_svg_package$$anon$1__f_bundle), $m_Lscalatags_JsDom$implicits$()).Lscalatags_JsDom$implicits$__f_doubleAttr), $n($m_Lscalatags_JsDom$svgAttrs$().style__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair(style, ($n($n($n(this.Ldoodle_svg_algebra_TextModule$$anon$1__f_$outer).Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_$outer).Ldoodle_svg_package$$anon$1__f_bundle), $m_Lscalatags_JsDom$implicits$()).Lscalatags_JsDom$implicits$__f_stringAttr)]));
+  var elt = this$4.apply__sci_Seq__Lscalatags_JsDom$TypedTag(xs);
+  return new $c_T3(elt, set, (void 0))
+});
 var $d_Ldoodle_svg_algebra_TextModule$$anon$1 = new $TypeData().initClass({
   Ldoodle_svg_algebra_TextModule$$anon$1: 0
 }, false, "doodle.svg.algebra.TextModule$$anon$1", {
@@ -16644,6 +16988,41 @@ function $m_Ldoodle_svg_effect_SvgRenderer$() {
   };
   return $n_Ldoodle_svg_effect_SvgRenderer$
 }
+/** @constructor */
+function $c_Ldoodle_syntax_DebugSyntax$$anon$1(color$2, outer) {
+  this.Ldoodle_syntax_DebugSyntax$$anon$1__f_color$1 = null;
+  this.Ldoodle_syntax_DebugSyntax$$anon$1__f_$outer = null;
+  this.Ldoodle_syntax_DebugSyntax$$anon$1__f_color$1 = color$2;
+  if ((outer === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  };
+  this.Ldoodle_syntax_DebugSyntax$$anon$1__f_$outer = outer
+}
+$c_Ldoodle_syntax_DebugSyntax$$anon$1.prototype = new $h_O();
+$c_Ldoodle_syntax_DebugSyntax$$anon$1.prototype.constructor = $c_Ldoodle_syntax_DebugSyntax$$anon$1;
+/** @constructor */
+function $h_Ldoodle_syntax_DebugSyntax$$anon$1() {
+  /*<skip>*/
+}
+$h_Ldoodle_syntax_DebugSyntax$$anon$1.prototype = $c_Ldoodle_syntax_DebugSyntax$$anon$1.prototype;
+$c_Ldoodle_syntax_DebugSyntax$$anon$1.prototype.apply__Ldoodle_algebra_Debug__O = (function(algebra) {
+  var this$1 = $n(algebra);
+  var picture = $n($n(this.Ldoodle_syntax_DebugSyntax$$anon$1__f_$outer).Ldoodle_syntax_DebugSyntax$DebugPictureOps__f_doodle$syntax$DebugSyntax$DebugPictureOps$$picture).apply__Ldoodle_algebra_Algebra__O(algebra);
+  var color = this.Ldoodle_syntax_DebugSyntax$$anon$1__f_color$1;
+  var picture$1 = $as_Lcats_data_IndexedStateT(picture);
+  return $f_Ldoodle_algebra_generic_GenericDebug__debug__Lcats_data_IndexedStateT__Ldoodle_core_Color__Lcats_data_IndexedStateT(this$1, picture$1, color)
+});
+$c_Ldoodle_syntax_DebugSyntax$$anon$1.prototype.apply__Ldoodle_algebra_Algebra__O = (function(algebra) {
+  return this.apply__Ldoodle_algebra_Debug__O($as_Ldoodle_algebra_Debug(algebra))
+});
+var $d_Ldoodle_syntax_DebugSyntax$$anon$1 = new $TypeData().initClass({
+  Ldoodle_syntax_DebugSyntax$$anon$1: 0
+}, false, "doodle.syntax.DebugSyntax$$anon$1", {
+  Ldoodle_syntax_DebugSyntax$$anon$1: 1,
+  O: 1,
+  Ldoodle_algebra_Picture: 1
+});
+$c_Ldoodle_syntax_DebugSyntax$$anon$1.prototype.$classData = $d_Ldoodle_syntax_DebugSyntax$$anon$1;
 /** @constructor */
 function $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$6, s$6, outer) {
   this.Ldoodle_syntax_LayoutSyntax$$anon$1__f_that$1 = null;
@@ -16719,6 +17098,158 @@ var $d_Ldoodle_syntax_LayoutSyntax$$anon$10 = new $TypeData().initClass({
   Ldoodle_algebra_Picture: 1
 });
 $c_Ldoodle_syntax_LayoutSyntax$$anon$10.prototype.$classData = $d_Ldoodle_syntax_LayoutSyntax$$anon$10;
+/** @constructor */
+function $c_Ldoodle_syntax_LayoutSyntax$$anon$18(width$4, outer) {
+  this.Ldoodle_syntax_LayoutSyntax$$anon$18__f_width$2 = 0.0;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$18__f_$outer = null;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$18__f_width$2 = width$4;
+  if ((outer === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  };
+  this.Ldoodle_syntax_LayoutSyntax$$anon$18__f_$outer = outer
+}
+$c_Ldoodle_syntax_LayoutSyntax$$anon$18.prototype = new $h_O();
+$c_Ldoodle_syntax_LayoutSyntax$$anon$18.prototype.constructor = $c_Ldoodle_syntax_LayoutSyntax$$anon$18;
+/** @constructor */
+function $h_Ldoodle_syntax_LayoutSyntax$$anon$18() {
+  /*<skip>*/
+}
+$h_Ldoodle_syntax_LayoutSyntax$$anon$18.prototype = $c_Ldoodle_syntax_LayoutSyntax$$anon$18.prototype;
+$c_Ldoodle_syntax_LayoutSyntax$$anon$18.prototype.apply__Ldoodle_algebra_Layout__O = (function(algebra) {
+  var this$1 = $n(algebra);
+  var img = $n($n(this.Ldoodle_syntax_LayoutSyntax$$anon$18__f_$outer).Ldoodle_syntax_LayoutSyntax$LayoutPictureOps__f_doodle$syntax$LayoutSyntax$LayoutPictureOps$$picture).apply__Ldoodle_algebra_Algebra__O(algebra);
+  var width = this.Ldoodle_syntax_LayoutSyntax$$anon$18__f_width$2;
+  var img$1 = $as_Lcats_data_IndexedStateT(img);
+  return $f_Ldoodle_algebra_generic_GenericLayout__margin__Lcats_data_IndexedStateT__D__D__D__D__Lcats_data_IndexedStateT(this$1, img$1, width, width, width, width)
+});
+$c_Ldoodle_syntax_LayoutSyntax$$anon$18.prototype.apply__Ldoodle_algebra_Algebra__O = (function(algebra) {
+  return this.apply__Ldoodle_algebra_Layout__O($as_Ldoodle_algebra_Layout(algebra))
+});
+var $d_Ldoodle_syntax_LayoutSyntax$$anon$18 = new $TypeData().initClass({
+  Ldoodle_syntax_LayoutSyntax$$anon$18: 0
+}, false, "doodle.syntax.LayoutSyntax$$anon$18", {
+  Ldoodle_syntax_LayoutSyntax$$anon$18: 1,
+  O: 1,
+  Ldoodle_algebra_Picture: 1
+});
+$c_Ldoodle_syntax_LayoutSyntax$$anon$18.prototype.$classData = $d_Ldoodle_syntax_LayoutSyntax$$anon$18;
+/** @constructor */
+function $c_Ldoodle_syntax_LayoutSyntax$$anon$2(that$7, s$7, outer) {
+  this.Ldoodle_syntax_LayoutSyntax$$anon$2__f_that$2 = null;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$2__f_s$2 = null;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$2__f_$outer = null;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$2__f_that$2 = that$7;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$2__f_s$2 = s$7;
+  if ((outer === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  };
+  this.Ldoodle_syntax_LayoutSyntax$$anon$2__f_$outer = outer
+}
+$c_Ldoodle_syntax_LayoutSyntax$$anon$2.prototype = new $h_O();
+$c_Ldoodle_syntax_LayoutSyntax$$anon$2.prototype.constructor = $c_Ldoodle_syntax_LayoutSyntax$$anon$2;
+/** @constructor */
+function $h_Ldoodle_syntax_LayoutSyntax$$anon$2() {
+  /*<skip>*/
+}
+$h_Ldoodle_syntax_LayoutSyntax$$anon$2.prototype = $c_Ldoodle_syntax_LayoutSyntax$$anon$2.prototype;
+$c_Ldoodle_syntax_LayoutSyntax$$anon$2.prototype.apply__Ldoodle_algebra_Layout__O = (function(algebra) {
+  var this$1 = $n(algebra);
+  var left = $n($n(this.Ldoodle_syntax_LayoutSyntax$$anon$2__f_$outer).Ldoodle_syntax_LayoutSyntax$LayoutPictureOps__f_doodle$syntax$LayoutSyntax$LayoutPictureOps$$picture).apply__Ldoodle_algebra_Algebra__O(algebra);
+  var right = $n(this.Ldoodle_syntax_LayoutSyntax$$anon$2__f_that$2).apply__Ldoodle_algebra_Algebra__O(algebra);
+  var s = this.Ldoodle_syntax_LayoutSyntax$$anon$2__f_s$2;
+  var left$1 = $as_Lcats_data_IndexedStateT(left);
+  var right$1 = $as_Lcats_data_IndexedStateT(right);
+  return $f_Ldoodle_algebra_generic_GenericLayout__beside__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT__Lcats_kernel_Semigroup__Lcats_data_IndexedStateT(this$1, left$1, right$1, s)
+});
+$c_Ldoodle_syntax_LayoutSyntax$$anon$2.prototype.apply__Ldoodle_algebra_Algebra__O = (function(algebra) {
+  return this.apply__Ldoodle_algebra_Layout__O($as_Ldoodle_algebra_Layout(algebra))
+});
+var $d_Ldoodle_syntax_LayoutSyntax$$anon$2 = new $TypeData().initClass({
+  Ldoodle_syntax_LayoutSyntax$$anon$2: 0
+}, false, "doodle.syntax.LayoutSyntax$$anon$2", {
+  Ldoodle_syntax_LayoutSyntax$$anon$2: 1,
+  O: 1,
+  Ldoodle_algebra_Picture: 1
+});
+$c_Ldoodle_syntax_LayoutSyntax$$anon$2.prototype.$classData = $d_Ldoodle_syntax_LayoutSyntax$$anon$2;
+/** @constructor */
+function $c_Ldoodle_syntax_LayoutSyntax$$anon$3(that$8, s$8, outer) {
+  this.Ldoodle_syntax_LayoutSyntax$$anon$3__f_that$3 = null;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$3__f_s$3 = null;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$3__f_$outer = null;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$3__f_that$3 = that$8;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$3__f_s$3 = s$8;
+  if ((outer === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  };
+  this.Ldoodle_syntax_LayoutSyntax$$anon$3__f_$outer = outer
+}
+$c_Ldoodle_syntax_LayoutSyntax$$anon$3.prototype = new $h_O();
+$c_Ldoodle_syntax_LayoutSyntax$$anon$3.prototype.constructor = $c_Ldoodle_syntax_LayoutSyntax$$anon$3;
+/** @constructor */
+function $h_Ldoodle_syntax_LayoutSyntax$$anon$3() {
+  /*<skip>*/
+}
+$h_Ldoodle_syntax_LayoutSyntax$$anon$3.prototype = $c_Ldoodle_syntax_LayoutSyntax$$anon$3.prototype;
+$c_Ldoodle_syntax_LayoutSyntax$$anon$3.prototype.apply__Ldoodle_algebra_Layout__O = (function(algebra) {
+  var this$1 = $n(algebra);
+  var top = $n($n(this.Ldoodle_syntax_LayoutSyntax$$anon$3__f_$outer).Ldoodle_syntax_LayoutSyntax$LayoutPictureOps__f_doodle$syntax$LayoutSyntax$LayoutPictureOps$$picture).apply__Ldoodle_algebra_Algebra__O(algebra);
+  var bottom = $n(this.Ldoodle_syntax_LayoutSyntax$$anon$3__f_that$3).apply__Ldoodle_algebra_Algebra__O(algebra);
+  var s = this.Ldoodle_syntax_LayoutSyntax$$anon$3__f_s$3;
+  var top$1 = $as_Lcats_data_IndexedStateT(top);
+  var bottom$1 = $as_Lcats_data_IndexedStateT(bottom);
+  return $f_Ldoodle_algebra_generic_GenericLayout__above__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT__Lcats_kernel_Semigroup__Lcats_data_IndexedStateT(this$1, top$1, bottom$1, s)
+});
+$c_Ldoodle_syntax_LayoutSyntax$$anon$3.prototype.apply__Ldoodle_algebra_Algebra__O = (function(algebra) {
+  return this.apply__Ldoodle_algebra_Layout__O($as_Ldoodle_algebra_Layout(algebra))
+});
+var $d_Ldoodle_syntax_LayoutSyntax$$anon$3 = new $TypeData().initClass({
+  Ldoodle_syntax_LayoutSyntax$$anon$3: 0
+}, false, "doodle.syntax.LayoutSyntax$$anon$3", {
+  Ldoodle_syntax_LayoutSyntax$$anon$3: 1,
+  O: 1,
+  Ldoodle_algebra_Picture: 1
+});
+$c_Ldoodle_syntax_LayoutSyntax$$anon$3.prototype.$classData = $d_Ldoodle_syntax_LayoutSyntax$$anon$3;
+/** @constructor */
+function $c_Ldoodle_syntax_LayoutSyntax$$anon$5(that$10, s$10, outer) {
+  this.Ldoodle_syntax_LayoutSyntax$$anon$5__f_that$5 = null;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$5__f_s$5 = null;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$5__f_$outer = null;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$5__f_that$5 = that$10;
+  this.Ldoodle_syntax_LayoutSyntax$$anon$5__f_s$5 = s$10;
+  if ((outer === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  };
+  this.Ldoodle_syntax_LayoutSyntax$$anon$5__f_$outer = outer
+}
+$c_Ldoodle_syntax_LayoutSyntax$$anon$5.prototype = new $h_O();
+$c_Ldoodle_syntax_LayoutSyntax$$anon$5.prototype.constructor = $c_Ldoodle_syntax_LayoutSyntax$$anon$5;
+/** @constructor */
+function $h_Ldoodle_syntax_LayoutSyntax$$anon$5() {
+  /*<skip>*/
+}
+$h_Ldoodle_syntax_LayoutSyntax$$anon$5.prototype = $c_Ldoodle_syntax_LayoutSyntax$$anon$5.prototype;
+$c_Ldoodle_syntax_LayoutSyntax$$anon$5.prototype.apply__Ldoodle_algebra_Layout__O = (function(algebra) {
+  var this$1 = $n(algebra);
+  var bottom = $n($n(this.Ldoodle_syntax_LayoutSyntax$$anon$5__f_$outer).Ldoodle_syntax_LayoutSyntax$LayoutPictureOps__f_doodle$syntax$LayoutSyntax$LayoutPictureOps$$picture).apply__Ldoodle_algebra_Algebra__O(algebra);
+  var top = $n(this.Ldoodle_syntax_LayoutSyntax$$anon$5__f_that$5).apply__Ldoodle_algebra_Algebra__O(algebra);
+  var s = this.Ldoodle_syntax_LayoutSyntax$$anon$5__f_s$5;
+  var top$1 = $as_Lcats_data_IndexedStateT(top);
+  var bottom$1 = $as_Lcats_data_IndexedStateT(bottom);
+  return $f_Ldoodle_algebra_generic_GenericLayout__above__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT__Lcats_kernel_Semigroup__Lcats_data_IndexedStateT(this$1, top$1, bottom$1, s)
+});
+$c_Ldoodle_syntax_LayoutSyntax$$anon$5.prototype.apply__Ldoodle_algebra_Algebra__O = (function(algebra) {
+  return this.apply__Ldoodle_algebra_Layout__O($as_Ldoodle_algebra_Layout(algebra))
+});
+var $d_Ldoodle_syntax_LayoutSyntax$$anon$5 = new $TypeData().initClass({
+  Ldoodle_syntax_LayoutSyntax$$anon$5: 0
+}, false, "doodle.syntax.LayoutSyntax$$anon$5", {
+  Ldoodle_syntax_LayoutSyntax$$anon$5: 1,
+  O: 1,
+  Ldoodle_algebra_Picture: 1
+});
+$c_Ldoodle_syntax_LayoutSyntax$$anon$5.prototype.$classData = $d_Ldoodle_syntax_LayoutSyntax$$anon$5;
 function $f_Ldoodle_syntax_RendererSyntax__runIO__Lcats_effect_IO__Lcats_effect_unsafe_IORuntime__V($thiz, io, runtime) {
   $n(io).unsafeRunAsync__F1__Lcats_effect_unsafe_IORuntime__V(new $c_sjsr_AnonFunction1(((x$1) => {
     var x$1$1 = $as_s_util_Either(x$1);
@@ -16825,6 +17356,105 @@ var $d_Ldoodle_syntax_StyleSyntax$$anon$1 = new $TypeData().initClass({
   Ldoodle_algebra_Picture: 1
 });
 $c_Ldoodle_syntax_StyleSyntax$$anon$1.prototype.$classData = $d_Ldoodle_syntax_StyleSyntax$$anon$1;
+/** @constructor */
+function $c_Ldoodle_syntax_TextSyntax$$anon$2(text$2) {
+  this.Ldoodle_syntax_TextSyntax$$anon$2__f_text$1 = null;
+  this.Ldoodle_syntax_TextSyntax$$anon$2__f_text$1 = text$2
+}
+$c_Ldoodle_syntax_TextSyntax$$anon$2.prototype = new $h_O();
+$c_Ldoodle_syntax_TextSyntax$$anon$2.prototype.constructor = $c_Ldoodle_syntax_TextSyntax$$anon$2;
+/** @constructor */
+function $h_Ldoodle_syntax_TextSyntax$$anon$2() {
+  /*<skip>*/
+}
+$h_Ldoodle_syntax_TextSyntax$$anon$2.prototype = $c_Ldoodle_syntax_TextSyntax$$anon$2.prototype;
+$c_Ldoodle_syntax_TextSyntax$$anon$2.prototype.apply__Ldoodle_algebra_Text__O = (function(algebra) {
+  var this$1 = $n(algebra);
+  var text = this.Ldoodle_syntax_TextSyntax$$anon$2__f_text$1;
+  return $f_Ldoodle_algebra_generic_GenericText__text__T__Lcats_data_IndexedStateT(this$1, text)
+});
+$c_Ldoodle_syntax_TextSyntax$$anon$2.prototype.apply__Ldoodle_algebra_Algebra__O = (function(algebra) {
+  return this.apply__Ldoodle_algebra_Text__O($as_Ldoodle_algebra_Text(algebra))
+});
+var $d_Ldoodle_syntax_TextSyntax$$anon$2 = new $TypeData().initClass({
+  Ldoodle_syntax_TextSyntax$$anon$2: 0
+}, false, "doodle.syntax.TextSyntax$$anon$2", {
+  Ldoodle_syntax_TextSyntax$$anon$2: 1,
+  O: 1,
+  Ldoodle_algebra_Picture: 1
+});
+$c_Ldoodle_syntax_TextSyntax$$anon$2.prototype.$classData = $d_Ldoodle_syntax_TextSyntax$$anon$2;
+/** @constructor */
+function $c_Ldoodle_syntax_TransformSyntax$$anon$2(x$3, y$3, outer) {
+  this.Ldoodle_syntax_TransformSyntax$$anon$2__f_x$1 = 0.0;
+  this.Ldoodle_syntax_TransformSyntax$$anon$2__f_y$1 = 0.0;
+  this.Ldoodle_syntax_TransformSyntax$$anon$2__f_$outer = null;
+  this.Ldoodle_syntax_TransformSyntax$$anon$2__f_x$1 = x$3;
+  this.Ldoodle_syntax_TransformSyntax$$anon$2__f_y$1 = y$3;
+  if ((outer === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  };
+  this.Ldoodle_syntax_TransformSyntax$$anon$2__f_$outer = outer
+}
+$c_Ldoodle_syntax_TransformSyntax$$anon$2.prototype = new $h_O();
+$c_Ldoodle_syntax_TransformSyntax$$anon$2.prototype.constructor = $c_Ldoodle_syntax_TransformSyntax$$anon$2;
+/** @constructor */
+function $h_Ldoodle_syntax_TransformSyntax$$anon$2() {
+  /*<skip>*/
+}
+$h_Ldoodle_syntax_TransformSyntax$$anon$2.prototype = $c_Ldoodle_syntax_TransformSyntax$$anon$2.prototype;
+$c_Ldoodle_syntax_TransformSyntax$$anon$2.prototype.apply__Ldoodle_algebra_Transform__O = (function(algebra) {
+  var this$1 = $n(algebra);
+  var img = $n($n(this.Ldoodle_syntax_TransformSyntax$$anon$2__f_$outer).Ldoodle_syntax_TransformSyntax$TransformPictureOps__f_doodle$syntax$TransformSyntax$TransformPictureOps$$picture).apply__Ldoodle_algebra_Algebra__O(algebra);
+  var x = this.Ldoodle_syntax_TransformSyntax$$anon$2__f_x$1;
+  var y = this.Ldoodle_syntax_TransformSyntax$$anon$2__f_y$1;
+  return $f_Ldoodle_algebra_Transform__scale__O__D__D__O(this$1, img, x, y)
+});
+$c_Ldoodle_syntax_TransformSyntax$$anon$2.prototype.apply__Ldoodle_algebra_Algebra__O = (function(algebra) {
+  return this.apply__Ldoodle_algebra_Transform__O($as_Ldoodle_algebra_Transform(algebra))
+});
+var $d_Ldoodle_syntax_TransformSyntax$$anon$2 = new $TypeData().initClass({
+  Ldoodle_syntax_TransformSyntax$$anon$2: 0
+}, false, "doodle.syntax.TransformSyntax$$anon$2", {
+  Ldoodle_syntax_TransformSyntax$$anon$2: 1,
+  O: 1,
+  Ldoodle_algebra_Picture: 1
+});
+$c_Ldoodle_syntax_TransformSyntax$$anon$2.prototype.$classData = $d_Ldoodle_syntax_TransformSyntax$$anon$2;
+/** @constructor */
+function $c_Ldoodle_syntax_TransformSyntax$$anon$3(angle$2, outer) {
+  this.Ldoodle_syntax_TransformSyntax$$anon$3__f_angle$1 = null;
+  this.Ldoodle_syntax_TransformSyntax$$anon$3__f_$outer = null;
+  this.Ldoodle_syntax_TransformSyntax$$anon$3__f_angle$1 = angle$2;
+  if ((outer === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  };
+  this.Ldoodle_syntax_TransformSyntax$$anon$3__f_$outer = outer
+}
+$c_Ldoodle_syntax_TransformSyntax$$anon$3.prototype = new $h_O();
+$c_Ldoodle_syntax_TransformSyntax$$anon$3.prototype.constructor = $c_Ldoodle_syntax_TransformSyntax$$anon$3;
+/** @constructor */
+function $h_Ldoodle_syntax_TransformSyntax$$anon$3() {
+  /*<skip>*/
+}
+$h_Ldoodle_syntax_TransformSyntax$$anon$3.prototype = $c_Ldoodle_syntax_TransformSyntax$$anon$3.prototype;
+$c_Ldoodle_syntax_TransformSyntax$$anon$3.prototype.apply__Ldoodle_algebra_Transform__O = (function(algebra) {
+  var this$1 = $n(algebra);
+  var img = $n($n(this.Ldoodle_syntax_TransformSyntax$$anon$3__f_$outer).Ldoodle_syntax_TransformSyntax$TransformPictureOps__f_doodle$syntax$TransformSyntax$TransformPictureOps$$picture).apply__Ldoodle_algebra_Algebra__O(algebra);
+  var angle = this.Ldoodle_syntax_TransformSyntax$$anon$3__f_angle$1;
+  return $f_Ldoodle_algebra_Transform__rotate__O__Ldoodle_core_Angle__O(this$1, img, angle)
+});
+$c_Ldoodle_syntax_TransformSyntax$$anon$3.prototype.apply__Ldoodle_algebra_Algebra__O = (function(algebra) {
+  return this.apply__Ldoodle_algebra_Transform__O($as_Ldoodle_algebra_Transform(algebra))
+});
+var $d_Ldoodle_syntax_TransformSyntax$$anon$3 = new $TypeData().initClass({
+  Ldoodle_syntax_TransformSyntax$$anon$3: 0
+}, false, "doodle.syntax.TransformSyntax$$anon$3", {
+  Ldoodle_syntax_TransformSyntax$$anon$3: 1,
+  O: 1,
+  Ldoodle_algebra_Picture: 1
+});
+$c_Ldoodle_syntax_TransformSyntax$$anon$3.prototype.$classData = $d_Ldoodle_syntax_TransformSyntax$$anon$3;
 /** @constructor */
 function $c_Ldoodle_syntax_package$angle$() {
   /*<skip>*/
@@ -22330,6 +22960,73 @@ function $m_Ldoodle_algebra_generic_DrawingContext$() {
   };
   return $n_Ldoodle_algebra_generic_DrawingContext$
 }
+function $f_Ldoodle_algebra_generic_GenericDebug__debug__Lcats_data_IndexedStateT__Ldoodle_core_Color__Lcats_data_IndexedStateT($thiz, picture, color) {
+  var f$1 = new $c_sjsr_AnonFunction1(((ctxTxs) => {
+    var ctxTxs$1 = $as_sci_List(ctxTxs);
+    return $as_T2($n($n($as_Lcats_Eval($n(picture).runA__O__Lcats_FlatMap__O(ctxTxs$1, $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval))).flatMap__F1__Lcats_Eval(new $c_sjsr_AnonFunction1(((x$1) => {
+      var x$1$1 = $as_T2(x$1);
+      if ((x$1$1 !== null)) {
+        var bb = $as_Ldoodle_core_BoundingBox($n(x$1$1).T2__f__1);
+        var rdr = $as_Lcats_data_IndexedStateT($n(x$1$1).T2__f__2);
+        var xOffset = ($n(bb).Ldoodle_core_BoundingBox__f_right - ($n(bb).width__D() / 2.0));
+        var yOffset = ($n(bb).Ldoodle_core_BoundingBox__f_top - ($n(bb).height__D() / 2.0));
+        var this$3 = $n($as_Ldoodle_algebra_Layout($thiz));
+        var this$2 = $n($as_Ldoodle_algebra_Shape($as_Ldoodle_algebra_Layout($thiz)));
+        var width = $n(bb).width__D();
+        var height = $n(bb).height__D();
+        var img = $f_Ldoodle_algebra_generic_GenericShape__rectangle__D__D__Lcats_data_IndexedStateT(this$2, width, height);
+        var bbOutline = $as_Lcats_data_IndexedStateT($f_Ldoodle_algebra_Layout__at__O__D__D__O(this$3, img, xOffset, yOffset));
+        var this$4 = $n($as_Ldoodle_algebra_Shape($as_Ldoodle_algebra_Layout($thiz)));
+        var bbOrigin = $f_Ldoodle_algebra_generic_GenericShape__circle__D__Lcats_data_IndexedStateT(this$4, 5.0);
+        var this$5 = $n($as_Ldoodle_algebra_Layout($thiz));
+        var s = $m_Lcats_implicits$().Lcats_implicits$__f_catsKernelStdAlgebraForUnit;
+        var bbPicture = $f_Ldoodle_algebra_generic_GenericLayout__on__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT__Lcats_kernel_Semigroup__Lcats_data_IndexedStateT(this$5, bbOrigin, bbOutline, s);
+        $n($m_s_package$().s_package$__f_List);
+        var elems = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_F1.getArrayOf().constr)([new $c_sjsr_AnonFunction1(((dc) => {
+          var dc$1 = $as_Ldoodle_algebra_generic_DrawingContext(dc);
+          var this$6 = $n(dc$1);
+          var blendMode = this$6.Ldoodle_algebra_generic_DrawingContext__f_blendMode;
+          var strokeWidth = this$6.Ldoodle_algebra_generic_DrawingContext__f_strokeWidth;
+          var strokeCap = this$6.Ldoodle_algebra_generic_DrawingContext__f_strokeCap;
+          var strokeJoin = this$6.Ldoodle_algebra_generic_DrawingContext__f_strokeJoin;
+          var strokeDash = this$6.Ldoodle_algebra_generic_DrawingContext__f_strokeDash;
+          var fill = this$6.Ldoodle_algebra_generic_DrawingContext__f_fill;
+          var font = this$6.Ldoodle_algebra_generic_DrawingContext__f_font;
+          return $n(new $c_Ldoodle_algebra_generic_DrawingContext(blendMode, color, strokeWidth, strokeCap, strokeJoin, strokeDash, fill, font).strokeWidth__D__Ldoodle_algebra_generic_DrawingContext(1.0)).noFill__Ldoodle_algebra_generic_DrawingContext()
+        }))]));
+        return $n($as_Lcats_Eval($n(bbPicture).runA__O__Lcats_FlatMap__O($m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval))).map__F1__Lcats_Eval(new $c_sjsr_AnonFunction1(((x$1$2) => {
+          var x$1$3 = $as_T2(x$1$2);
+          if ((x$1$3 !== null)) {
+            var rdrDebug = $as_Lcats_data_IndexedStateT($n(x$1$3).T2__f__2);
+            var f = new $c_sjsr_AnonFunction1(((tx) => {
+              var tx$1 = $as_Ldoodle_core_Transform(tx);
+              $m_Lcats_implicits$();
+              var _1 = $n(rdr).runA__O__Lcats_FlatMap__O(tx$1, $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval);
+              var _2 = $n(rdrDebug).runA__O__Lcats_FlatMap__O(tx$1, $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval);
+              var t2 = new $c_T2(_1, _2);
+              return $as_Lcats_Eval(new $c_Lcats_syntax_Tuple2SemigroupalOps(t2).mapN__F2__Lcats_Functor__Lcats_Semigroupal__O(new $c_sjsr_AnonFunction2(((ga, gdbg) => {
+                $m_Lcats_implicits$();
+                var t2$1 = new $c_T2(ga, gdbg);
+                return new $c_Lcats_syntax_Tuple2SemigroupalOps(t2$1).mapN__F2__Lcats_Functor__Lcats_Semigroupal__O(new $c_sjsr_AnonFunction2(((a, _$2) => {
+                  $as_jl_Void(_$2);
+                  return a
+                })), $n($as_Ldoodle_algebra_generic_GivenApply($as_Ldoodle_algebra_Layout($thiz))).Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_applyDrawing, $n($as_Ldoodle_algebra_generic_GivenApply($as_Ldoodle_algebra_Layout($thiz))).Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_applyDrawing)
+              })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval, $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval))
+            }));
+            var this$13 = $m_Lcats_data_IndexedStateT$();
+            var F = $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval;
+            var fullRdr = $f_Lcats_data_CommonStateTConstructors__inspectF__F1__Lcats_Applicative__Lcats_data_IndexedStateT(this$13, f, F);
+            var _2$1 = new $c_T2(bb, fullRdr);
+            return new $c_T2(ctxTxs$1, _2$1)
+          };
+          throw new $c_s_MatchError(x$1$3)
+        })))
+      };
+      throw new $c_s_MatchError(x$1$1)
+    })))).value__O())
+  }));
+  return $m_Lcats_data_package$State$().apply__F1__Lcats_data_IndexedStateT(f$1)
+}
 function $f_Ldoodle_algebra_generic_GenericLayout__on__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT__Lcats_kernel_Semigroup__Lcats_data_IndexedStateT($thiz, top, bottom, s) {
   return $m_Lcats_data_IndexedStateT$().apply__F1__Lcats_Applicative__Lcats_data_IndexedStateT(new $c_sjsr_AnonFunction1(((ctxTxs) => {
     var ctxTxs$1 = $as_sci_List(ctxTxs);
@@ -22378,6 +23075,100 @@ function $f_Ldoodle_algebra_generic_GenericLayout__on__Lcats_data_IndexedStateT_
     })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval, $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval))
   })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval)
 }
+function $f_Ldoodle_algebra_generic_GenericLayout__beside__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT__Lcats_kernel_Semigroup__Lcats_data_IndexedStateT($thiz, left, right, s) {
+  return $m_Lcats_data_IndexedStateT$().apply__F1__Lcats_Applicative__Lcats_data_IndexedStateT(new $c_sjsr_AnonFunction1(((ctxTxs) => {
+    var ctxTxs$1 = $as_sci_List(ctxTxs);
+    var l = $as_Lcats_Eval($n(left).runA__O__Lcats_FlatMap__O(ctxTxs$1, $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval));
+    var r = $as_Lcats_Eval($n(right).runA__O__Lcats_FlatMap__O(ctxTxs$1, $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval));
+    $m_Lcats_implicits$();
+    var t2 = new $c_T2(l, r);
+    return $as_Lcats_Eval(new $c_Lcats_syntax_Tuple2SemigroupalOps(t2).mapN__F2__Lcats_Functor__Lcats_Semigroupal__O(new $c_sjsr_AnonFunction2(((l$2, r$2) => {
+      var l$1 = $as_T2(l$2);
+      var r$1 = $as_T2(r$2);
+      matchResult3: {
+        var \u03b43$___1;
+        var \u03b43$___2;
+        if ((l$1 !== null)) {
+          var bbL = $as_Ldoodle_core_BoundingBox($n(l$1).T2__f__1);
+          var rdrL = $as_Lcats_data_IndexedStateT($n(l$1).T2__f__2);
+          var \u03b43$___1 = bbL;
+          var \u03b43$___2 = rdrL;
+          break matchResult3
+        };
+        throw new $c_s_MatchError(l$1)
+      };
+      var bbL$2 = $as_Ldoodle_core_BoundingBox(\u03b43$___1);
+      var rdrL$2 = $as_Lcats_data_IndexedStateT(\u03b43$___2);
+      matchResult4: {
+        var \u03b44$___1;
+        var \u03b44$___2;
+        if ((r$1 !== null)) {
+          var bbR = $as_Ldoodle_core_BoundingBox($n(r$1).T2__f__1);
+          var rdrR = $as_Lcats_data_IndexedStateT($n(r$1).T2__f__2);
+          var \u03b44$___1 = bbR;
+          var \u03b44$___2 = rdrR;
+          break matchResult4
+        };
+        throw new $c_s_MatchError(r$1)
+      };
+      var bbR$2 = $as_Ldoodle_core_BoundingBox(\u03b44$___1);
+      var rdrR$2 = $as_Lcats_data_IndexedStateT(\u03b44$___2);
+      var bb = $n(bbL$2).beside__Ldoodle_core_BoundingBox__Ldoodle_core_BoundingBox(bbR$2);
+      var txLeft = $m_Ldoodle_core_Transform$().translate__D__D__Ldoodle_core_Transform(($n(bb).Ldoodle_core_BoundingBox__f_left - $n(bbL$2).Ldoodle_core_BoundingBox__f_left), 0.0);
+      var txRight = $m_Ldoodle_core_Transform$().translate__D__D__Ldoodle_core_Transform(($n(bb).Ldoodle_core_BoundingBox__f_right - $n(bbR$2).Ldoodle_core_BoundingBox__f_right), 0.0);
+      var rdr = $m_Ldoodle_algebra_generic_package$Renderable$().parallel__Ldoodle_core_Transform__Ldoodle_core_Transform__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT__Lcats_Apply__Lcats_kernel_Semigroup__Lcats_data_IndexedStateT(txLeft, txRight, rdrL$2, rdrR$2, $n($as_Ldoodle_algebra_generic_GivenApply($thiz)).Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_applyDrawing, s);
+      var _2 = new $c_T2(bb, rdr);
+      return new $c_T2(ctxTxs$1, _2)
+    })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval, $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval))
+  })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval)
+}
+function $f_Ldoodle_algebra_generic_GenericLayout__above__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT__Lcats_kernel_Semigroup__Lcats_data_IndexedStateT($thiz, top, bottom, s) {
+  return $m_Lcats_data_IndexedStateT$().apply__F1__Lcats_Applicative__Lcats_data_IndexedStateT(new $c_sjsr_AnonFunction1(((ctxTxs) => {
+    var ctxTxs$1 = $as_sci_List(ctxTxs);
+    var t = $as_Lcats_Eval($n(top).runA__O__Lcats_FlatMap__O(ctxTxs$1, $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval));
+    var b = $as_Lcats_Eval($n(bottom).runA__O__Lcats_FlatMap__O(ctxTxs$1, $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval));
+    $m_Lcats_implicits$();
+    var t2 = new $c_T2(t, b);
+    return $as_Lcats_Eval(new $c_Lcats_syntax_Tuple2SemigroupalOps(t2).mapN__F2__Lcats_Functor__Lcats_Semigroupal__O(new $c_sjsr_AnonFunction2(((t$2, b$2) => {
+      var t$1 = $as_T2(t$2);
+      var b$1 = $as_T2(b$2);
+      matchResult5: {
+        var \u03b45$___1;
+        var \u03b45$___2;
+        if ((t$1 !== null)) {
+          var bbT = $as_Ldoodle_core_BoundingBox($n(t$1).T2__f__1);
+          var rdrT = $as_Lcats_data_IndexedStateT($n(t$1).T2__f__2);
+          var \u03b45$___1 = bbT;
+          var \u03b45$___2 = rdrT;
+          break matchResult5
+        };
+        throw new $c_s_MatchError(t$1)
+      };
+      var bbT$2 = $as_Ldoodle_core_BoundingBox(\u03b45$___1);
+      var rdrT$2 = $as_Lcats_data_IndexedStateT(\u03b45$___2);
+      matchResult6: {
+        var \u03b46$___1;
+        var \u03b46$___2;
+        if ((b$1 !== null)) {
+          var bbB = $as_Ldoodle_core_BoundingBox($n(b$1).T2__f__1);
+          var rdrB = $as_Lcats_data_IndexedStateT($n(b$1).T2__f__2);
+          var \u03b46$___1 = bbB;
+          var \u03b46$___2 = rdrB;
+          break matchResult6
+        };
+        throw new $c_s_MatchError(b$1)
+      };
+      var bbB$2 = $as_Ldoodle_core_BoundingBox(\u03b46$___1);
+      var rdrB$2 = $as_Lcats_data_IndexedStateT(\u03b46$___2);
+      var bb = $n(bbT$2).above__Ldoodle_core_BoundingBox__Ldoodle_core_BoundingBox(bbB$2);
+      var txTop = $m_Ldoodle_core_Transform$().translate__D__D__Ldoodle_core_Transform(0.0, ($n(bb).Ldoodle_core_BoundingBox__f_top - $n(bbT$2).Ldoodle_core_BoundingBox__f_top));
+      var txBottom = $m_Ldoodle_core_Transform$().translate__D__D__Ldoodle_core_Transform(0.0, ($n(bb).Ldoodle_core_BoundingBox__f_bottom - $n(bbB$2).Ldoodle_core_BoundingBox__f_bottom));
+      var rdr = $m_Ldoodle_algebra_generic_package$Renderable$().parallel__Ldoodle_core_Transform__Ldoodle_core_Transform__Lcats_data_IndexedStateT__Lcats_data_IndexedStateT__Lcats_Apply__Lcats_kernel_Semigroup__Lcats_data_IndexedStateT(txTop, txBottom, rdrT$2, rdrB$2, $n($as_Ldoodle_algebra_generic_GivenApply($thiz)).Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_applyDrawing, s);
+      var _2 = new $c_T2(bb, rdr);
+      return new $c_T2(ctxTxs$1, _2)
+    })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval, $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval))
+  })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval)
+}
 function $f_Ldoodle_algebra_generic_GenericLayout__at__Lcats_data_IndexedStateT__Ldoodle_core_Landmark__Lcats_data_IndexedStateT($thiz, img, landmark) {
   return $n(img).map__F1__Lcats_Functor__Lcats_data_IndexedStateT(new $c_sjsr_AnonFunction1(((x$1) => {
     var x$1$1 = $as_T2(x$1);
@@ -22391,6 +23182,39 @@ function $f_Ldoodle_algebra_generic_GenericLayout__at__Lcats_data_IndexedStateT_
     };
     throw new $c_s_MatchError(x$1$1)
   })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval)
+}
+function $f_Ldoodle_algebra_generic_GenericLayout__margin__Lcats_data_IndexedStateT__D__D__D__D__Lcats_data_IndexedStateT($thiz, img, top, right, bottom, left) {
+  return $n(img).map__F1__Lcats_Functor__Lcats_data_IndexedStateT(new $c_sjsr_AnonFunction1(((x$1) => {
+    var x$1$1 = $as_T2(x$1);
+    if ((x$1$1 !== null)) {
+      var bb = $as_Ldoodle_core_BoundingBox($n(x$1$1).T2__f__1);
+      var rdr = $as_Lcats_data_IndexedStateT($n(x$1$1).T2__f__2);
+      $n(bb);
+      var left$1 = ($n(bb).Ldoodle_core_BoundingBox__f_left - left);
+      var top$1 = ($n(bb).Ldoodle_core_BoundingBox__f_top + top);
+      var right$1 = ($n(bb).Ldoodle_core_BoundingBox__f_right + right);
+      var bottom$1 = ($n(bb).Ldoodle_core_BoundingBox__f_bottom - bottom);
+      var newBb = new $c_Ldoodle_core_BoundingBox(left$1, top$1, right$1, bottom$1);
+      return new $c_T2(newBb, rdr)
+    };
+    throw new $c_s_MatchError(x$1$1)
+  })), $m_Lcats_Eval$().Lcats_EvalInstances__f_catsBimonadForEval)
+}
+function $f_Ldoodle_algebra_generic_GenericShape__rectangle__D__D__Lcats_data_IndexedStateT($thiz, width, height) {
+  return $m_Ldoodle_algebra_generic_package$Finalized$().leaf__F1__Lcats_data_IndexedStateT(new $c_sjsr_AnonFunction1(((dc) => {
+    var dc$1 = $as_Ldoodle_algebra_generic_DrawingContext(dc);
+    var this$2 = $n($n(dc$1).Ldoodle_algebra_generic_DrawingContext__f_strokeWidth);
+    var strokeWidth = $uD((this$2.isEmpty__Z() ? 0.0 : this$2.get__O()));
+    var bb = $m_Ldoodle_core_BoundingBox$().centered__D__D__Ldoodle_core_BoundingBox((strokeWidth + width), (strokeWidth + height));
+    var _2 = $m_Lcats_data_package$State$().inspect__F1__Lcats_data_IndexedStateT(new $c_sjsr_AnonFunction1(((tx) => {
+      var tx$1 = $as_Ldoodle_core_Transform(tx);
+      var this$3 = $n($thiz.ShapeApi__Ldoodle_svg_algebra_ShapeModule$Shape$ShapeApi$());
+      var fill = $n(dc$1).Ldoodle_algebra_generic_DrawingContext__f_fill;
+      var stroke = $n(dc$1).stroke__s_Option();
+      return this$3.rectangle__Ldoodle_core_Transform__s_Option__s_Option__D__D__T3(tx$1, fill, stroke, width, height)
+    })));
+    return new $c_T2(bb, _2)
+  })))
 }
 function $f_Ldoodle_algebra_generic_GenericShape__circle__D__Lcats_data_IndexedStateT($thiz, diameter) {
   return $m_Ldoodle_algebra_generic_package$Finalized$().leaf__F1__Lcats_data_IndexedStateT(new $c_sjsr_AnonFunction1(((dc) => {
@@ -22423,6 +23247,36 @@ function $f_Ldoodle_algebra_generic_GenericStyle__fillColor__Lcats_data_IndexedS
     var _$2$1 = $as_Ldoodle_algebra_generic_DrawingContext(_$2);
     return $n(_$2$1).fillColor__Ldoodle_core_Color__Ldoodle_algebra_generic_DrawingContext(fillColor)
   })), image)
+}
+function $f_Ldoodle_algebra_generic_GenericText__text__T__Lcats_data_IndexedStateT($thiz, text) {
+  var api = $thiz.Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_TextApi;
+  return $m_Ldoodle_algebra_generic_package$Finalized$().leaf__F1__Lcats_data_IndexedStateT(new $c_sjsr_AnonFunction1(((dc) => {
+    var dc$1 = $as_Ldoodle_algebra_generic_DrawingContext(dc);
+    matchResult1: {
+      var \u03b41$___1;
+      var \u03b41$___2;
+      var x1 = $n(api).textBoundingBox__T__Ldoodle_core_font_Font__T2(text, $n(dc$1).Ldoodle_algebra_generic_DrawingContext__f_font);
+      if ((x1 !== null)) {
+        var bb = $as_Ldoodle_core_BoundingBox($n(x1).T2__f__1);
+        var bounds = $n(x1).T2__f__2;
+        var \u03b41$___1 = bb;
+        var \u03b41$___2 = bounds;
+        break matchResult1
+      };
+      throw new $c_s_MatchError(x1)
+    };
+    var bb$2 = $as_Ldoodle_core_BoundingBox(\u03b41$___1);
+    var bounds$2 = \u03b41$___2;
+    var _2 = $m_Lcats_data_package$State$().inspect__F1__Lcats_data_IndexedStateT(new $c_sjsr_AnonFunction1(((tx) => {
+      var tx$1 = $as_Ldoodle_core_Transform(tx);
+      var this$2 = $n(api);
+      var fill = $n(dc$1).Ldoodle_algebra_generic_DrawingContext__f_fill;
+      var stroke = $n(dc$1).stroke__s_Option();
+      var font = $n(dc$1).Ldoodle_algebra_generic_DrawingContext__f_font;
+      return this$2.text__Ldoodle_core_Transform__s_Option__s_Option__Ldoodle_core_font_Font__T__Lorg_scalajs_dom_SVGRect__T3(tx$1, fill, stroke, font, text, bounds$2)
+    })));
+    return new $c_T2(bb$2, _2)
+  })))
 }
 /** @constructor */
 function $c_Ldoodle_algebra_generic_package$Renderable$$anon$1(evidence$3$2, evidence$4$2) {
@@ -22717,6 +23571,22 @@ $c_Ldoodle_core_Transform$.prototype.toString__T = (function() {
 $c_Ldoodle_core_Transform$.prototype.scale__D__D__Ldoodle_core_Transform = (function(x, y) {
   $m_Ldoodle_core_Transform$();
   var elements = new $ac_D(new Float64Array([x, 0.0, 0.0, 0.0, y, 0.0, 0.0, 0.0, 1.0]));
+  return new $c_Ldoodle_core_Transform(elements)
+});
+$c_Ldoodle_core_Transform$.prototype.rotate__Ldoodle_core_Angle__Ldoodle_core_Transform = (function(angle) {
+  $m_Ldoodle_core_Transform$();
+  var this$1 = $n(angle);
+  var x = this$1.Ldoodle_core_Angle__f_toRadians;
+  var $$x3 = $uD(Math.cos(x));
+  var this$4 = $n(angle);
+  var x$1 = this$4.Ldoodle_core_Angle__f_toRadians;
+  var $$x2 = $uD(Math.sin(x$1));
+  var this$7 = $n(angle);
+  var x$2 = this$7.Ldoodle_core_Angle__f_toRadians;
+  var $$x1 = $uD(Math.sin(x$2));
+  var this$10 = $n(angle);
+  var x$3 = this$10.Ldoodle_core_Angle__f_toRadians;
+  var elements = new $ac_D(new Float64Array([$$x3, (-$$x2), 0.0, $$x1, $uD(Math.cos(x$3)), 0.0, 0.0, 0.0, 1.0]));
   return new $c_Ldoodle_core_Transform(elements)
 });
 $c_Ldoodle_core_Transform$.prototype.translate__D__D__Ldoodle_core_Transform = (function(x, y) {
@@ -25398,7 +26268,7 @@ function $asArrayOf_Lscalatags_generic_TypedTag(obj, depth) {
   return (($isArrayOf_Lscalatags_generic_TypedTag(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscalatags.generic.TypedTag;", depth))
 }
 function $f_Lscalatags_jsdom_Frag__applyTo__Lorg_scalajs_dom_Element__V($thiz, b) {
-  b.appendChild($thiz.render__Lorg_scalajs_dom_Element())
+  b.appendChild($thiz.render__Lorg_scalajs_dom_Node())
 }
 function $f_Lscalatags_jsdom_TagFactory__typedTag__T__Z__Lscalatags_generic_Namespace__Lscalatags_generic_TypedTag($thiz, s, void$1, ns) {
   if ((!$m_Lscalatags_Escaping$().validTag__T__Z(s))) {
@@ -27600,6 +28470,206 @@ var $d_Lchartreuse_Layer = new $TypeData().initClass({
 });
 $c_Lchartreuse_Layer.prototype.$classData = $d_Lchartreuse_Layer;
 /** @constructor */
+function $c_Lchartreuse_Plot(layers, plotTitle, xTitle, yTitle, grid) {
+  this.Lchartreuse_Plot__f_layers = null;
+  this.Lchartreuse_Plot__f_plotTitle = null;
+  this.Lchartreuse_Plot__f_xTitle = null;
+  this.Lchartreuse_Plot__f_yTitle = null;
+  this.Lchartreuse_Plot__f_grid = false;
+  this.Lchartreuse_Plot__f_layers = layers;
+  this.Lchartreuse_Plot__f_plotTitle = plotTitle;
+  this.Lchartreuse_Plot__f_xTitle = xTitle;
+  this.Lchartreuse_Plot__f_yTitle = yTitle;
+  this.Lchartreuse_Plot__f_grid = grid
+}
+$c_Lchartreuse_Plot.prototype = new $h_O();
+$c_Lchartreuse_Plot.prototype.constructor = $c_Lchartreuse_Plot;
+/** @constructor */
+function $h_Lchartreuse_Plot() {
+  /*<skip>*/
+}
+$h_Lchartreuse_Plot.prototype = $c_Lchartreuse_Plot.prototype;
+$c_Lchartreuse_Plot.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_s_Product$$anon$1(this)
+});
+$c_Lchartreuse_Plot.prototype.hashCode__I = (function() {
+  var acc = (-889275714);
+  var hash = acc;
+  var data = $f_T__hashCode__I("Plot");
+  acc = $m_sr_Statics$().mix__I__I__I(hash, data);
+  var hash$1 = acc;
+  var x = this.Lchartreuse_Plot__f_layers;
+  var data$1 = $m_sr_Statics$().anyHash__O__I(x);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$1, data$1);
+  var hash$2 = acc;
+  var x$1 = this.Lchartreuse_Plot__f_plotTitle;
+  var data$2 = $m_sr_Statics$().anyHash__O__I(x$1);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$2, data$2);
+  var hash$3 = acc;
+  var x$2 = this.Lchartreuse_Plot__f_xTitle;
+  var data$3 = $m_sr_Statics$().anyHash__O__I(x$2);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$3, data$3);
+  var hash$4 = acc;
+  var x$3 = this.Lchartreuse_Plot__f_yTitle;
+  var data$4 = $m_sr_Statics$().anyHash__O__I(x$3);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$4, data$4);
+  var hash$5 = acc;
+  var data$5 = (this.Lchartreuse_Plot__f_grid ? 1231 : 1237);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$5, data$5);
+  var hash$6 = acc;
+  return $m_sr_Statics$().finalizeHash__I__I__I(hash$6, 5)
+});
+$c_Lchartreuse_Plot.prototype.equals__O__Z = (function(x$0) {
+  if ((this === x$0)) {
+    return true
+  } else if ((x$0 instanceof $c_Lchartreuse_Plot)) {
+    var x$0$2 = $as_Lchartreuse_Plot(x$0);
+    if ((this.Lchartreuse_Plot__f_grid === $n(x$0$2).Lchartreuse_Plot__f_grid)) {
+      var x = this.Lchartreuse_Plot__f_layers;
+      var x$2 = $n(x$0$2).Lchartreuse_Plot__f_layers;
+      var $$x1 = ((x === null) ? (x$2 === null) : $n(x).equals__O__Z(x$2))
+    } else {
+      var $$x1 = false
+    };
+    if ((($$x1 && (this.Lchartreuse_Plot__f_plotTitle === $n(x$0$2).Lchartreuse_Plot__f_plotTitle)) && (this.Lchartreuse_Plot__f_xTitle === $n(x$0$2).Lchartreuse_Plot__f_xTitle))) {
+      return (this.Lchartreuse_Plot__f_yTitle === $n(x$0$2).Lchartreuse_Plot__f_yTitle)
+    } else {
+      return false
+    }
+  } else {
+    return false
+  }
+});
+$c_Lchartreuse_Plot.prototype.toString__T = (function() {
+  return $m_sr_ScalaRunTime$()._toString__s_Product__T(this)
+});
+$c_Lchartreuse_Plot.prototype.productArity__I = (function() {
+  return 5
+});
+$c_Lchartreuse_Plot.prototype.productPrefix__T = (function() {
+  return "Plot"
+});
+$c_Lchartreuse_Plot.prototype.productElement__I__O = (function(n) {
+  switch (n) {
+    case 0: {
+      return this.Lchartreuse_Plot__f_layers;
+      break
+    }
+    case 1: {
+      return this.Lchartreuse_Plot__f_plotTitle;
+      break
+    }
+    case 2: {
+      return this.Lchartreuse_Plot__f_xTitle;
+      break
+    }
+    case 3: {
+      return this.Lchartreuse_Plot__f_yTitle;
+      break
+    }
+    case 4: {
+      return this.Lchartreuse_Plot__f_grid;
+      break
+    }
+    default: {
+      throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
+    }
+  }
+});
+$c_Lchartreuse_Plot.prototype.draw__I__I__Ldoodle_algebra_Picture = (function(width, height) {
+  var this$11 = $m_Ldoodle_syntax_package$all$();
+  var this$9 = $m_Ldoodle_syntax_package$all$();
+  var this$7 = $m_Ldoodle_syntax_package$all$();
+  var this$1 = $n(this.Lchartreuse_Plot__f_layers);
+  var f = ((_$1) => {
+    var _$1$1 = $as_Lchartreuse_Layer(_$1);
+    return $n(_$1$1).draw__I__I__Ldoodle_algebra_Picture(width, height)
+  });
+  if ((this$1 === $m_sci_Nil$())) {
+    var $$x1 = $m_sci_Nil$()
+  } else {
+    var arg1 = this$1.head__O();
+    var h = new $c_sci_$colon$colon(f(arg1), $m_sci_Nil$());
+    var t = h;
+    var rest = $as_sci_List(this$1.tail__O());
+    while ((rest !== $m_sci_Nil$())) {
+      var arg1$1 = $n(rest).head__O();
+      var nx = new $c_sci_$colon$colon(f(arg1$1), $m_sci_Nil$());
+      $n(t).sci_$colon$colon__f_next = nx;
+      t = nx;
+      rest = $as_sci_List($n(rest).tail__O())
+    };
+    var $$x1 = h
+  };
+  var this$3 = $n($$x1);
+  var z = new $c_Ldoodle_syntax_ShapeSyntax$$anon$5();
+  var acc = z;
+  var these = this$3;
+  while ((!$n(these).isEmpty__Z())) {
+    var arg1$2 = acc;
+    var arg2 = $n(these).head__O();
+    var _$2 = $as_Ldoodle_algebra_Picture(arg1$2);
+    var _$3 = $as_Ldoodle_algebra_Picture(arg2);
+    var this$4 = $m_Ldoodle_syntax_package$all$();
+    var this$6 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$4, _$2);
+    var s = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
+    acc = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(_$3, s, this$6);
+    these = $as_sc_LinearSeq($n(these).tail__O())
+  };
+  var picture = $as_Ldoodle_algebra_Picture(acc);
+  var this$8 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$7, picture);
+  var picture$1 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$18(20.0, this$8);
+  var this$10 = new $c_Ldoodle_syntax_DebugSyntax$DebugPictureOps(this$9, picture$1);
+  var color = $m_Ldoodle_core_Color$().Ldoodle_core_Color$__f_black;
+  var picture$2 = new $c_Ldoodle_syntax_DebugSyntax$$anon$1(color, this$10);
+  var this$12 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$11, picture$2);
+  var plot = new $c_Ldoodle_syntax_LayoutSyntax$$anon$18(5.0, this$12);
+  var this$14 = $m_Ldoodle_syntax_package$all$();
+  var text = this.Lchartreuse_Plot__f_plotTitle;
+  var picture$3 = new $c_Ldoodle_syntax_TextSyntax$$anon$2(text);
+  var this$15 = new $c_Ldoodle_syntax_TransformSyntax$TransformPictureOps(this$14, picture$3);
+  var plotTitle = new $c_Ldoodle_syntax_TransformSyntax$$anon$2(2.0, 2.0, this$15);
+  var text$1 = this.Lchartreuse_Plot__f_xTitle;
+  var xTitle = new $c_Ldoodle_syntax_TextSyntax$$anon$2(text$1);
+  var this$18 = $m_Ldoodle_syntax_package$all$();
+  var text$2 = this.Lchartreuse_Plot__f_yTitle;
+  var picture$4 = new $c_Ldoodle_syntax_TextSyntax$$anon$2(text$2);
+  var this$19 = new $c_Ldoodle_syntax_TransformSyntax$TransformPictureOps(this$18, picture$4);
+  var angle = $m_Ldoodle_core_Angle$().apply__D__Ldoodle_core_Angle(1.5708);
+  var yTitle = new $c_Ldoodle_syntax_TransformSyntax$$anon$3(angle, this$19);
+  var this$20 = $m_Ldoodle_syntax_package$all$();
+  var this$28 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$20, yTitle);
+  var this$24 = $m_Ldoodle_syntax_package$all$();
+  var this$21 = $m_Ldoodle_syntax_package$all$();
+  var this$23 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$21, plot);
+  var s$1 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
+  var picture$5 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$5(plotTitle, s$1, this$23);
+  var this$26 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$24, picture$5);
+  var s$2 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
+  var that = new $c_Ldoodle_syntax_LayoutSyntax$$anon$3(xTitle, s$2, this$26);
+  var s$3 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
+  return new $c_Ldoodle_syntax_LayoutSyntax$$anon$2(that, s$3, this$28)
+});
+function $as_Lchartreuse_Plot(obj) {
+  return (((obj instanceof $c_Lchartreuse_Plot) || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.Plot"))
+}
+function $isArrayOf_Lchartreuse_Plot(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lchartreuse_Plot)))
+}
+function $asArrayOf_Lchartreuse_Plot(obj, depth) {
+  return (($isArrayOf_Lchartreuse_Plot(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lchartreuse.Plot;", depth))
+}
+var $d_Lchartreuse_Plot = new $TypeData().initClass({
+  Lchartreuse_Plot: 0
+}, false, "chartreuse.Plot", {
+  Lchartreuse_Plot: 1,
+  O: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lchartreuse_Plot.prototype.$classData = $d_Lchartreuse_Plot;
+/** @constructor */
 function $c_Ldoodle_algebra_generic_BlendMode() {
   /*<skip>*/
 }
@@ -27784,6 +28854,17 @@ $c_Ldoodle_algebra_generic_DrawingContext.prototype.stroke__s_Option = (function
     return new $c_s_Some(new $c_Ldoodle_algebra_generic_Stroke(color, w, cap, join, dash))
   }
 });
+$c_Ldoodle_algebra_generic_DrawingContext.prototype.strokeWidth__D__Ldoodle_algebra_generic_DrawingContext = (function(width) {
+  var strokeWidth$1 = ((width <= 0.0) ? $m_s_None$() : new $c_s_Some(width));
+  var blendMode$1 = this.Ldoodle_algebra_generic_DrawingContext__f_blendMode;
+  var strokeColor$1 = this.Ldoodle_algebra_generic_DrawingContext__f_strokeColor;
+  var strokeCap$1 = this.Ldoodle_algebra_generic_DrawingContext__f_strokeCap;
+  var strokeJoin$1 = this.Ldoodle_algebra_generic_DrawingContext__f_strokeJoin;
+  var strokeDash$1 = this.Ldoodle_algebra_generic_DrawingContext__f_strokeDash;
+  var fill$1 = this.Ldoodle_algebra_generic_DrawingContext__f_fill;
+  var font$1 = this.Ldoodle_algebra_generic_DrawingContext__f_font;
+  return new $c_Ldoodle_algebra_generic_DrawingContext(blendMode$1, strokeColor$1, strokeWidth$1, strokeCap$1, strokeJoin$1, strokeDash$1, fill$1, font$1)
+});
 $c_Ldoodle_algebra_generic_DrawingContext.prototype.fillColor__Ldoodle_core_Color__Ldoodle_algebra_generic_DrawingContext = (function(color) {
   var value = new $c_Ldoodle_algebra_generic_Fill$ColorFill(color);
   var fill$5 = new $c_s_Some(value);
@@ -27795,6 +28876,17 @@ $c_Ldoodle_algebra_generic_DrawingContext.prototype.fillColor__Ldoodle_core_Colo
   var strokeDash$5 = this.Ldoodle_algebra_generic_DrawingContext__f_strokeDash;
   var font$5 = this.Ldoodle_algebra_generic_DrawingContext__f_font;
   return new $c_Ldoodle_algebra_generic_DrawingContext(blendMode$5, strokeColor$5, strokeWidth$5, strokeCap$5, strokeJoin$5, strokeDash$5, fill$5, font$5)
+});
+$c_Ldoodle_algebra_generic_DrawingContext.prototype.noFill__Ldoodle_algebra_generic_DrawingContext = (function() {
+  var fill$7 = $m_s_None$();
+  var blendMode$7 = this.Ldoodle_algebra_generic_DrawingContext__f_blendMode;
+  var strokeColor$7 = this.Ldoodle_algebra_generic_DrawingContext__f_strokeColor;
+  var strokeWidth$7 = this.Ldoodle_algebra_generic_DrawingContext__f_strokeWidth;
+  var strokeCap$7 = this.Ldoodle_algebra_generic_DrawingContext__f_strokeCap;
+  var strokeJoin$7 = this.Ldoodle_algebra_generic_DrawingContext__f_strokeJoin;
+  var strokeDash$7 = this.Ldoodle_algebra_generic_DrawingContext__f_strokeDash;
+  var font$7 = this.Ldoodle_algebra_generic_DrawingContext__f_font;
+  return new $c_Ldoodle_algebra_generic_DrawingContext(blendMode$7, strokeColor$7, strokeWidth$7, strokeCap$7, strokeJoin$7, strokeDash$7, fill$7, font$7)
 });
 function $as_Ldoodle_algebra_generic_DrawingContext(obj) {
   return (((obj instanceof $c_Ldoodle_algebra_generic_DrawingContext) || (obj === null)) ? obj : $throwClassCastException(obj, "doodle.algebra.generic.DrawingContext"))
@@ -28089,6 +29181,30 @@ $c_Ldoodle_core_BoundingBox.prototype.on__Ldoodle_core_BoundingBox__Ldoodle_core
   var bottom = $uD(Math.min(x$3, that$4));
   return new $c_Ldoodle_core_BoundingBox(left, top, right, bottom)
 });
+$c_Ldoodle_core_BoundingBox.prototype.beside__Ldoodle_core_BoundingBox__Ldoodle_core_BoundingBox = (function(that) {
+  $m_Ldoodle_core_BoundingBox$();
+  var left = ((-(this.width__D() + $n(that).width__D())) / 2.0);
+  var x = this.Ldoodle_core_BoundingBox__f_top;
+  var that$1 = $n(that).Ldoodle_core_BoundingBox__f_top;
+  var top = $uD(Math.max(x, that$1));
+  var right = ((this.width__D() + $n(that).width__D()) / 2.0);
+  var x$1 = this.Ldoodle_core_BoundingBox__f_bottom;
+  var that$2 = $n(that).Ldoodle_core_BoundingBox__f_bottom;
+  var bottom = $uD(Math.min(x$1, that$2));
+  return new $c_Ldoodle_core_BoundingBox(left, top, right, bottom)
+});
+$c_Ldoodle_core_BoundingBox.prototype.above__Ldoodle_core_BoundingBox__Ldoodle_core_BoundingBox = (function(that) {
+  $m_Ldoodle_core_BoundingBox$();
+  var x = this.Ldoodle_core_BoundingBox__f_left;
+  var that$1 = $n(that).Ldoodle_core_BoundingBox__f_left;
+  var left = $uD(Math.min(x, that$1));
+  var top = ((this.height__D() + $n(that).height__D()) / 2.0);
+  var x$1 = this.Ldoodle_core_BoundingBox__f_right;
+  var that$2 = $n(that).Ldoodle_core_BoundingBox__f_right;
+  var right = $uD(Math.max(x$1, that$2));
+  var bottom = ((-(this.height__D() + $n(that).height__D())) / 2.0);
+  return new $c_Ldoodle_core_BoundingBox(left, top, right, bottom)
+});
 $c_Ldoodle_core_BoundingBox.prototype.eval__Ldoodle_core_Landmark__Ldoodle_core_Point = (function(landmark) {
   $m_Ldoodle_core_Point$();
   var this$1 = $n($n(landmark).Ldoodle_core_Landmark__f_x);
@@ -28130,6 +29246,25 @@ $c_Ldoodle_core_BoundingBox.prototype.enclose__Ldoodle_core_Point__Ldoodle_core_
   var that$3 = $n(toInclude).Ldoodle_core_Point$Cartesian__f_y;
   var bottom = $uD(Math.min(x$3, that$3));
   return new $c_Ldoodle_core_BoundingBox(left, top, right, bottom)
+});
+$c_Ldoodle_core_BoundingBox.prototype.transform__Ldoodle_core_Transform__Ldoodle_core_BoundingBox = (function(tx) {
+  var $$x4 = $m_Ldoodle_core_BoundingBox$().Ldoodle_core_BoundingBox$__f_empty;
+  $m_Ldoodle_core_Point$();
+  var x = this.Ldoodle_core_BoundingBox__f_left;
+  var y = this.Ldoodle_core_BoundingBox__f_top;
+  var $$x3 = $n($n($$x4).enclose__Ldoodle_core_Point__Ldoodle_core_BoundingBox($n(tx).apply__Ldoodle_core_Point__Ldoodle_core_Point(new $c_Ldoodle_core_Point$Cartesian(x, y))));
+  $m_Ldoodle_core_Point$();
+  var x$1 = this.Ldoodle_core_BoundingBox__f_right;
+  var y$1 = this.Ldoodle_core_BoundingBox__f_top;
+  var $$x2 = $n($$x3).enclose__Ldoodle_core_Point__Ldoodle_core_BoundingBox($n(tx).apply__Ldoodle_core_Point__Ldoodle_core_Point(new $c_Ldoodle_core_Point$Cartesian(x$1, y$1)));
+  $m_Ldoodle_core_Point$();
+  var x$2 = this.Ldoodle_core_BoundingBox__f_left;
+  var y$2 = this.Ldoodle_core_BoundingBox__f_bottom;
+  var $$x1 = $n($n($$x2).enclose__Ldoodle_core_Point__Ldoodle_core_BoundingBox($n(tx).apply__Ldoodle_core_Point__Ldoodle_core_Point(new $c_Ldoodle_core_Point$Cartesian(x$2, y$2))));
+  $m_Ldoodle_core_Point$();
+  var x$3 = this.Ldoodle_core_BoundingBox__f_right;
+  var y$3 = this.Ldoodle_core_BoundingBox__f_bottom;
+  return $n($$x1).enclose__Ldoodle_core_Point__Ldoodle_core_BoundingBox($n(tx).apply__Ldoodle_core_Point__Ldoodle_core_Point(new $c_Ldoodle_core_Point$Cartesian(x$3, y$3)))
 });
 function $as_Ldoodle_core_BoundingBox(obj) {
   return (((obj instanceof $c_Ldoodle_core_BoundingBox) || (obj === null)) ? obj : $throwClassCastException(obj, "doodle.core.BoundingBox"))
@@ -28845,7 +29980,7 @@ $c_Ldoodle_core_font_FontWeight.prototype.productIterator__sc_Iterator = (functi
   return new $c_s_Product$$anon$1(this)
 });
 function $f_Ldoodle_svg_algebra_TextModule$Text__$init$__V($thiz) {
-  new $c_Ldoodle_svg_algebra_TextModule$$anon$1($thiz)
+  $thiz.Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_TextApi = new $c_Ldoodle_svg_algebra_TextModule$$anon$1($thiz)
 }
 function $p_Ldoodle_svg_effect_Canvas__mouseClickCallback__Ldoodle_core_Transform__F1($thiz, tx) {
   return new $c_sjsr_AnonFunction1(((evt) => {
@@ -29085,6 +30220,19 @@ $c_Ldoodle_svg_effect_Canvas.prototype.renderChild__Lorg_scalajs_dom_Node__Lorg_
     svgRoot.replaceChild(nodes, this.Ldoodle_svg_effect_Canvas__f_svgChild);
     this.Ldoodle_svg_effect_Canvas__f_svgChild = nodes
   }
+});
+$c_Ldoodle_svg_effect_Canvas.prototype.textBoundingBox__T__Ldoodle_core_font_Font__T2 = (function(text, font) {
+  var $$x1 = this.Ldoodle_svg_effect_Canvas__f_target;
+  var this$1 = $n($m_Lscalatags_JsDom$svgTags$().svg__Lscalatags_generic_TypedTag());
+  var xs = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_JsDom$svgAttrs$().visibility__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("hidden", $m_Lscalatags_JsDom$all$().Lscalatags_JsDom$all$__f_stringAttr)]));
+  var this$2 = $n(this$1.apply__sci_Seq__Lscalatags_JsDom$TypedTag(xs));
+  var elt = $$x1.appendChild(this$2.render__Lorg_scalajs_dom_Element());
+  var this$3 = $n($n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Svg).textTag__T__Ldoodle_core_font_Font__Lscalatags_generic_TypedTag(text, font));
+  var txt = elt.appendChild(this$3.render__Lorg_scalajs_dom_Element());
+  var bb = txt.getBBox();
+  var boundingBox = $m_Ldoodle_core_BoundingBox$().centered__D__D__Ldoodle_core_BoundingBox($uD(bb.width), $uD(bb.height));
+  this.Ldoodle_svg_effect_Canvas__f_target.removeChild(elt);
+  return new $c_T2(boundingBox, bb)
 });
 $c_Ldoodle_svg_effect_Canvas.prototype.render__Ldoodle_algebra_Picture__Lcats_effect_IO = (function(picture) {
   return $n($n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Svg).renderWithoutRootTag__Ldoodle_algebra_Algebra__Ldoodle_algebra_Picture__Lcats_effect_IO(this.Ldoodle_svg_effect_Canvas__f_algebra, picture)).map__F1__Lcats_effect_IO(new $c_sjsr_AnonFunction1(((result) => {
@@ -35827,6 +36975,15 @@ var $d_Ldoodle_core_Point$Cartesian = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_Ldoodle_core_Point$Cartesian.prototype.$classData = $d_Ldoodle_core_Point$Cartesian;
+function $as_Ldoodle_core_font_FontFamily$Named(obj) {
+  return ((false || (obj === null)) ? obj : $throwClassCastException(obj, "doodle.core.font.FontFamily$Named"))
+}
+function $isArrayOf_Ldoodle_core_font_FontFamily$Named(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ldoodle_core_font_FontFamily$Named)))
+}
+function $asArrayOf_Ldoodle_core_font_FontFamily$Named(obj, depth) {
+  return (($isArrayOf_Ldoodle_core_font_FontFamily$Named(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ldoodle.core.font.FontFamily$Named;", depth))
+}
 /** @constructor */
 function $c_Ldoodle_core_font_FontSize$Points(get) {
   this.Ldoodle_core_font_FontSize$Points__f_get = 0;
@@ -38200,6 +39357,104 @@ var $d_sc_StrictOptimizedLinearSeqOps$$anon$1 = new $TypeData().initClass({
   sc_IterableOnceOps: 1
 });
 $c_sc_StrictOptimizedLinearSeqOps$$anon$1.prototype.$classData = $d_sc_StrictOptimizedLinearSeqOps$$anon$1;
+function $p_sc_StringOps$$anon$1__advance__T($thiz) {
+  var start = $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index;
+  while (true) {
+    if (($thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index < $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$len)) {
+      $m_sc_StringOps$();
+      $m_sc_StringOps$();
+      var this$ = $thiz.sc_StringOps$$anon$1__f_$this$2;
+      var i = $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index;
+      var this$2 = $n(this$);
+      var c = $charAt(this$2, i);
+      var $$x1 = (!((c === 13) || (c === 10)))
+    } else {
+      var $$x1 = false
+    };
+    if ($$x1) {
+      $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index = ((1 + $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index) | 0)
+    } else {
+      break
+    }
+  };
+  var end = $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index;
+  if (($thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index < $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$len)) {
+    $m_sc_StringOps$();
+    var this$$2 = $thiz.sc_StringOps$$anon$1__f_$this$2;
+    var i$1 = $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index;
+    var this$5 = $n(this$$2);
+    var c$1 = $charAt(this$5, i$1);
+    $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index = ((1 + $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index) | 0);
+    if (($thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index < $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$len)) {
+      $m_sc_StringOps$();
+      $m_sc_StringOps$();
+      var this$$3 = $thiz.sc_StringOps$$anon$1__f_$this$2;
+      var i$2 = $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index;
+      var this$7 = $n(this$$3);
+      var c$2 = $charAt(this$7, i$2);
+      var $$x2 = ((c$1 === 13) && (c$2 === 10))
+    } else {
+      var $$x2 = false
+    };
+    if ($$x2) {
+      $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index = ((1 + $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index) | 0)
+    };
+    if ((!$thiz.sc_StringOps$$anon$1__f_stripped$1)) {
+      end = $thiz.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index
+    }
+  };
+  var this$9 = $n($thiz.sc_StringOps$$anon$1__f_$this$2);
+  var endIndex = end;
+  if ((start < 0)) {
+    $charAt(this$9, start)
+  };
+  if ((endIndex > this$9.length)) {
+    $charAt(this$9, endIndex)
+  };
+  if ((endIndex < start)) {
+    $charAt(this$9, (-1))
+  };
+  return $as_T(this$9.substring(start, endIndex))
+}
+/** @constructor */
+function $c_sc_StringOps$$anon$1(\u03b4this$2, stripped$1) {
+  this.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$len = 0;
+  this.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index = 0;
+  this.sc_StringOps$$anon$1__f_$this$2 = null;
+  this.sc_StringOps$$anon$1__f_stripped$1 = false;
+  this.sc_StringOps$$anon$1__f_$this$2 = \u03b4this$2;
+  this.sc_StringOps$$anon$1__f_stripped$1 = stripped$1;
+  var this$1 = $n(\u03b4this$2);
+  this.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$len = this$1.length;
+  this.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index = 0
+}
+$c_sc_StringOps$$anon$1.prototype = new $h_sc_AbstractIterator();
+$c_sc_StringOps$$anon$1.prototype.constructor = $c_sc_StringOps$$anon$1;
+/** @constructor */
+function $h_sc_StringOps$$anon$1() {
+  /*<skip>*/
+}
+$h_sc_StringOps$$anon$1.prototype = $c_sc_StringOps$$anon$1.prototype;
+$c_sc_StringOps$$anon$1.prototype.hasNext__Z = (function() {
+  return (this.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index < this.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$len)
+});
+$c_sc_StringOps$$anon$1.prototype.next__T = (function() {
+  return ((this.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$index >= this.sc_StringOps$$anon$1__f_scala$collection$StringOps$$anon$$len) ? $as_T($n($m_sc_Iterator$().sc_Iterator$__f_scala$collection$Iterator$$_empty).next__O()) : $p_sc_StringOps$$anon$1__advance__T(this))
+});
+$c_sc_StringOps$$anon$1.prototype.next__O = (function() {
+  return this.next__T()
+});
+var $d_sc_StringOps$$anon$1 = new $TypeData().initClass({
+  sc_StringOps$$anon$1: 0
+}, false, "scala.collection.StringOps$$anon$1", {
+  sc_StringOps$$anon$1: 1,
+  sc_AbstractIterator: 1,
+  O: 1,
+  sc_Iterator: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOnceOps: 1
+});
+$c_sc_StringOps$$anon$1.prototype.$classData = $d_sc_StringOps$$anon$1;
 function $p_sci_HashMapBuilder__isAliased__Z($thiz) {
   return ($thiz.sci_HashMapBuilder__f_aliased !== null)
 }
@@ -47391,14 +48646,20 @@ function $c_Lscalatags_JsDom$svgAttrs$() {
   this.Lscalatags_JsDom$svgAttrs$__f_transformbitmap$2 = false;
   this.Lscalatags_JsDom$svgAttrs$__f_viewBox$lzy1 = null;
   this.Lscalatags_JsDom$svgAttrs$__f_viewBoxbitmap$1 = false;
+  this.Lscalatags_JsDom$svgAttrs$__f_visibility$lzy2 = null;
+  this.Lscalatags_JsDom$svgAttrs$__f_visibilitybitmap$2 = false;
   this.Lscalatags_JsDom$svgAttrs$__f_width$lzy2 = null;
   this.Lscalatags_JsDom$svgAttrs$__f_widthbitmap$2 = false;
+  this.Lscalatags_JsDom$svgAttrs$__f_x$lzy1 = null;
+  this.Lscalatags_JsDom$svgAttrs$__f_xbitmap$1 = false;
   this.Lscalatags_JsDom$svgAttrs$__f_x1$lzy1 = null;
   this.Lscalatags_JsDom$svgAttrs$__f_x1bitmap$1 = false;
   this.Lscalatags_JsDom$svgAttrs$__f_x2$lzy1 = null;
   this.Lscalatags_JsDom$svgAttrs$__f_x2bitmap$1 = false;
   this.Lscalatags_JsDom$svgAttrs$__f_xmlns$lzy2 = null;
   this.Lscalatags_JsDom$svgAttrs$__f_xmlnsbitmap$2 = false;
+  this.Lscalatags_JsDom$svgAttrs$__f_y$lzy1 = null;
+  this.Lscalatags_JsDom$svgAttrs$__f_ybitmap$1 = false;
   this.Lscalatags_JsDom$svgAttrs$__f_y1$lzy1 = null;
   this.Lscalatags_JsDom$svgAttrs$__f_y1bitmap$1 = false;
   this.Lscalatags_JsDom$svgAttrs$__f_y2$lzy1 = null;
@@ -47516,12 +48777,26 @@ $c_Lscalatags_JsDom$svgAttrs$.prototype.viewBox__Lscalatags_generic_Attr = (func
   };
   return this.Lscalatags_JsDom$svgAttrs$__f_viewBox$lzy1
 });
+$c_Lscalatags_JsDom$svgAttrs$.prototype.visibility__Lscalatags_generic_Attr = (function() {
+  if ((!this.Lscalatags_JsDom$svgAttrs$__f_visibilitybitmap$2)) {
+    this.Lscalatags_JsDom$svgAttrs$__f_visibility$lzy2 = $f_Lscalatags_generic_Util__attr__T__Lscalatags_generic_Namespace__Z__Lscalatags_generic_Attr(this, "visibility", null, false);
+    this.Lscalatags_JsDom$svgAttrs$__f_visibilitybitmap$2 = true
+  };
+  return this.Lscalatags_JsDom$svgAttrs$__f_visibility$lzy2
+});
 $c_Lscalatags_JsDom$svgAttrs$.prototype.width__Lscalatags_generic_Attr = (function() {
   if ((!this.Lscalatags_JsDom$svgAttrs$__f_widthbitmap$2)) {
     this.Lscalatags_JsDom$svgAttrs$__f_width$lzy2 = $f_Lscalatags_generic_Util__attr__T__Lscalatags_generic_Namespace__Z__Lscalatags_generic_Attr(this, "width", null, false);
     this.Lscalatags_JsDom$svgAttrs$__f_widthbitmap$2 = true
   };
   return this.Lscalatags_JsDom$svgAttrs$__f_width$lzy2
+});
+$c_Lscalatags_JsDom$svgAttrs$.prototype.x__Lscalatags_generic_Attr = (function() {
+  if ((!this.Lscalatags_JsDom$svgAttrs$__f_xbitmap$1)) {
+    this.Lscalatags_JsDom$svgAttrs$__f_x$lzy1 = $f_Lscalatags_generic_Util__attr__T__Lscalatags_generic_Namespace__Z__Lscalatags_generic_Attr(this, "x", null, false);
+    this.Lscalatags_JsDom$svgAttrs$__f_xbitmap$1 = true
+  };
+  return this.Lscalatags_JsDom$svgAttrs$__f_x$lzy1
 });
 $c_Lscalatags_JsDom$svgAttrs$.prototype.x1__Lscalatags_generic_Attr = (function() {
   if ((!this.Lscalatags_JsDom$svgAttrs$__f_x1bitmap$1)) {
@@ -47543,6 +48818,13 @@ $c_Lscalatags_JsDom$svgAttrs$.prototype.xmlns__Lscalatags_generic_Attr = (functi
     this.Lscalatags_JsDom$svgAttrs$__f_xmlnsbitmap$2 = true
   };
   return this.Lscalatags_JsDom$svgAttrs$__f_xmlns$lzy2
+});
+$c_Lscalatags_JsDom$svgAttrs$.prototype.y__Lscalatags_generic_Attr = (function() {
+  if ((!this.Lscalatags_JsDom$svgAttrs$__f_ybitmap$1)) {
+    this.Lscalatags_JsDom$svgAttrs$__f_y$lzy1 = $f_Lscalatags_generic_Util__attr__T__Lscalatags_generic_Namespace__Z__Lscalatags_generic_Attr(this, "y", null, false);
+    this.Lscalatags_JsDom$svgAttrs$__f_ybitmap$1 = true
+  };
+  return this.Lscalatags_JsDom$svgAttrs$__f_y$lzy1
 });
 $c_Lscalatags_JsDom$svgAttrs$.prototype.y1__Lscalatags_generic_Attr = (function() {
   if ((!this.Lscalatags_JsDom$svgAttrs$__f_y1bitmap$1)) {
@@ -49273,6 +50555,84 @@ var $d_sjs_js_JavaScriptException = new $TypeData().initClass({
 });
 $c_sjs_js_JavaScriptException.prototype.$classData = $d_sjs_js_JavaScriptException;
 /** @constructor */
+function $c_Lscalatags_JsDom$StringFrag(v) {
+  this.Lscalatags_JsDom$StringFrag__f_v = null;
+  this.Lscalatags_JsDom$StringFrag__f_v = v;
+  if ((v === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  }
+}
+$c_Lscalatags_JsDom$StringFrag.prototype = new $h_O();
+$c_Lscalatags_JsDom$StringFrag.prototype.constructor = $c_Lscalatags_JsDom$StringFrag;
+/** @constructor */
+function $h_Lscalatags_JsDom$StringFrag() {
+  /*<skip>*/
+}
+$h_Lscalatags_JsDom$StringFrag.prototype = $c_Lscalatags_JsDom$StringFrag.prototype;
+$c_Lscalatags_JsDom$StringFrag.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_s_Product$$anon$1(this)
+});
+$c_Lscalatags_JsDom$StringFrag.prototype.hashCode__I = (function() {
+  var this$2 = $m_s_util_hashing_MurmurHash3$();
+  return this$2.productHash__s_Product__I__Z__I(this, (-889275714), false)
+});
+$c_Lscalatags_JsDom$StringFrag.prototype.equals__O__Z = (function(x$0) {
+  if ((this === x$0)) {
+    return true
+  } else if ((x$0 instanceof $c_Lscalatags_JsDom$StringFrag)) {
+    var x$0$2 = $as_Lscalatags_JsDom$StringFrag(x$0);
+    return ((this.Lscalatags_JsDom$StringFrag__f_v === $n(x$0$2).Lscalatags_JsDom$StringFrag__f_v) && ($n(x$0$2), true))
+  } else {
+    return false
+  }
+});
+$c_Lscalatags_JsDom$StringFrag.prototype.toString__T = (function() {
+  return $m_sr_ScalaRunTime$()._toString__s_Product__T(this)
+});
+$c_Lscalatags_JsDom$StringFrag.prototype.productArity__I = (function() {
+  return 1
+});
+$c_Lscalatags_JsDom$StringFrag.prototype.productPrefix__T = (function() {
+  return "StringFrag"
+});
+$c_Lscalatags_JsDom$StringFrag.prototype.productElement__I__O = (function(n) {
+  if ((n === 0)) {
+    return this.Lscalatags_JsDom$StringFrag__f_v
+  };
+  throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
+});
+$c_Lscalatags_JsDom$StringFrag.prototype.render__Lorg_scalajs_dom_Text = (function() {
+  return document.createTextNode(this.Lscalatags_JsDom$StringFrag__f_v)
+});
+$c_Lscalatags_JsDom$StringFrag.prototype.render__Lorg_scalajs_dom_Node = (function() {
+  return this.render__Lorg_scalajs_dom_Text()
+});
+$c_Lscalatags_JsDom$StringFrag.prototype.applyTo__O__V = (function(t) {
+  $f_Lscalatags_jsdom_Frag__applyTo__Lorg_scalajs_dom_Element__V(this, t)
+});
+function $as_Lscalatags_JsDom$StringFrag(obj) {
+  return (((obj instanceof $c_Lscalatags_JsDom$StringFrag) || (obj === null)) ? obj : $throwClassCastException(obj, "scalatags.JsDom$StringFrag"))
+}
+function $isArrayOf_Lscalatags_JsDom$StringFrag(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lscalatags_JsDom$StringFrag)))
+}
+function $asArrayOf_Lscalatags_JsDom$StringFrag(obj, depth) {
+  return (($isArrayOf_Lscalatags_JsDom$StringFrag(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscalatags.JsDom$StringFrag;", depth))
+}
+var $d_Lscalatags_JsDom$StringFrag = new $TypeData().initClass({
+  Lscalatags_JsDom$StringFrag: 0
+}, false, "scalatags.JsDom$StringFrag", {
+  Lscalatags_JsDom$StringFrag: 1,
+  O: 1,
+  Lscalatags_generic_Modifier: 1,
+  Lscalatags_generic_Frag: 1,
+  Lscalatags_jsdom_Frag: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lscalatags_JsDom$StringFrag.prototype.$classData = $d_Lscalatags_JsDom$StringFrag;
+/** @constructor */
 function $c_Lscalatags_JsDom$svgTags$() {
   this.Lscalatags_JsDom$svgTags$__f_svgNamespaceConfig$lzy1 = null;
   this.Lscalatags_JsDom$svgTags$__f_svgNamespaceConfigbitmap$1 = false;
@@ -49286,10 +50646,14 @@ function $c_Lscalatags_JsDom$svgTags$() {
   this.Lscalatags_JsDom$svgTags$__f_linearGradientbitmap$1 = false;
   this.Lscalatags_JsDom$svgTags$__f_radialGradient$lzy1 = null;
   this.Lscalatags_JsDom$svgTags$__f_radialGradientbitmap$1 = false;
+  this.Lscalatags_JsDom$svgTags$__f_rect$lzy1 = null;
+  this.Lscalatags_JsDom$svgTags$__f_rectbitmap$1 = false;
   this.Lscalatags_JsDom$svgTags$__f_stop$lzy1 = null;
   this.Lscalatags_JsDom$svgTags$__f_stopbitmap$1 = false;
   this.Lscalatags_JsDom$svgTags$__f_svg$lzy1 = null;
-  this.Lscalatags_JsDom$svgTags$__f_svgbitmap$1 = false
+  this.Lscalatags_JsDom$svgTags$__f_svgbitmap$1 = false;
+  this.Lscalatags_JsDom$svgTags$__f_text$lzy1 = null;
+  this.Lscalatags_JsDom$svgTags$__f_textbitmap$1 = false
 }
 $c_Lscalatags_JsDom$svgTags$.prototype = new $h_O();
 $c_Lscalatags_JsDom$svgTags$.prototype.constructor = $c_Lscalatags_JsDom$svgTags$;
@@ -49345,6 +50709,14 @@ $c_Lscalatags_JsDom$svgTags$.prototype.radialGradient__Lscalatags_generic_TypedT
   };
   return this.Lscalatags_JsDom$svgTags$__f_radialGradient$lzy1
 });
+$c_Lscalatags_JsDom$svgTags$.prototype.rect__Lscalatags_generic_TypedTag = (function() {
+  if ((!this.Lscalatags_JsDom$svgTags$__f_rectbitmap$1)) {
+    var ns = this.svgNamespaceConfig__Lscalatags_generic_Namespace();
+    this.Lscalatags_JsDom$svgTags$__f_rect$lzy1 = $f_Lscalatags_jsdom_TagFactory__typedTag__T__Z__Lscalatags_generic_Namespace__Lscalatags_generic_TypedTag(this, "rect", false, ns);
+    this.Lscalatags_JsDom$svgTags$__f_rectbitmap$1 = true
+  };
+  return this.Lscalatags_JsDom$svgTags$__f_rect$lzy1
+});
 $c_Lscalatags_JsDom$svgTags$.prototype.stop__Lscalatags_generic_TypedTag = (function() {
   if ((!this.Lscalatags_JsDom$svgTags$__f_stopbitmap$1)) {
     var ns = this.svgNamespaceConfig__Lscalatags_generic_Namespace();
@@ -49360,6 +50732,14 @@ $c_Lscalatags_JsDom$svgTags$.prototype.svg__Lscalatags_generic_TypedTag = (funct
     this.Lscalatags_JsDom$svgTags$__f_svgbitmap$1 = true
   };
   return this.Lscalatags_JsDom$svgTags$__f_svg$lzy1
+});
+$c_Lscalatags_JsDom$svgTags$.prototype.text__Lscalatags_generic_TypedTag = (function() {
+  if ((!this.Lscalatags_JsDom$svgTags$__f_textbitmap$1)) {
+    var ns = this.svgNamespaceConfig__Lscalatags_generic_Namespace();
+    this.Lscalatags_JsDom$svgTags$__f_text$lzy1 = $f_Lscalatags_jsdom_TagFactory__typedTag__T__Z__Lscalatags_generic_Namespace__Lscalatags_generic_TypedTag(this, "text", false, ns);
+    this.Lscalatags_JsDom$svgTags$__f_textbitmap$1 = true
+  };
+  return this.Lscalatags_JsDom$svgTags$__f_text$lzy1
 });
 var $d_Lscalatags_JsDom$svgTags$ = new $TypeData().initClass({
   Lscalatags_JsDom$svgTags$: 0
@@ -50645,6 +52025,53 @@ function $m_Ldoodle_core_Join$Round$() {
   return $n_Ldoodle_core_Join$Round$
 }
 /** @constructor */
+function $c_Ldoodle_core_font_FontFamily$Monospaced$() {
+  /*<skip>*/
+}
+$c_Ldoodle_core_font_FontFamily$Monospaced$.prototype = new $h_Ldoodle_core_font_FontFamily();
+$c_Ldoodle_core_font_FontFamily$Monospaced$.prototype.constructor = $c_Ldoodle_core_font_FontFamily$Monospaced$;
+/** @constructor */
+function $h_Ldoodle_core_font_FontFamily$Monospaced$() {
+  /*<skip>*/
+}
+$h_Ldoodle_core_font_FontFamily$Monospaced$.prototype = $c_Ldoodle_core_font_FontFamily$Monospaced$.prototype;
+$c_Ldoodle_core_font_FontFamily$Monospaced$.prototype.hashCode__I = (function() {
+  return 552423649
+});
+$c_Ldoodle_core_font_FontFamily$Monospaced$.prototype.toString__T = (function() {
+  return "Monospaced"
+});
+$c_Ldoodle_core_font_FontFamily$Monospaced$.prototype.productArity__I = (function() {
+  return 0
+});
+$c_Ldoodle_core_font_FontFamily$Monospaced$.prototype.productPrefix__T = (function() {
+  return "Monospaced"
+});
+$c_Ldoodle_core_font_FontFamily$Monospaced$.prototype.productElement__I__O = (function(n) {
+  throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
+});
+var $d_Ldoodle_core_font_FontFamily$Monospaced$ = new $TypeData().initClass({
+  Ldoodle_core_font_FontFamily$Monospaced$: 0
+}, false, "doodle.core.font.FontFamily$Monospaced$", {
+  Ldoodle_core_font_FontFamily$Monospaced$: 1,
+  Ldoodle_core_font_FontFamily: 1,
+  O: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1,
+  s_deriving_Mirror: 1,
+  s_deriving_Mirror$Product: 1,
+  s_deriving_Mirror$Singleton: 1
+});
+$c_Ldoodle_core_font_FontFamily$Monospaced$.prototype.$classData = $d_Ldoodle_core_font_FontFamily$Monospaced$;
+var $n_Ldoodle_core_font_FontFamily$Monospaced$;
+function $m_Ldoodle_core_font_FontFamily$Monospaced$() {
+  if ((!$n_Ldoodle_core_font_FontFamily$Monospaced$)) {
+    $n_Ldoodle_core_font_FontFamily$Monospaced$ = new $c_Ldoodle_core_font_FontFamily$Monospaced$()
+  };
+  return $n_Ldoodle_core_font_FontFamily$Monospaced$
+}
+/** @constructor */
 function $c_Ldoodle_core_font_FontFamily$SansSerif$() {
   /*<skip>*/
 }
@@ -50739,6 +52166,53 @@ function $m_Ldoodle_core_font_FontFamily$Serif$() {
   return $n_Ldoodle_core_font_FontFamily$Serif$
 }
 /** @constructor */
+function $c_Ldoodle_core_font_FontStyle$Italic$() {
+  /*<skip>*/
+}
+$c_Ldoodle_core_font_FontStyle$Italic$.prototype = new $h_Ldoodle_core_font_FontStyle();
+$c_Ldoodle_core_font_FontStyle$Italic$.prototype.constructor = $c_Ldoodle_core_font_FontStyle$Italic$;
+/** @constructor */
+function $h_Ldoodle_core_font_FontStyle$Italic$() {
+  /*<skip>*/
+}
+$h_Ldoodle_core_font_FontStyle$Italic$.prototype = $c_Ldoodle_core_font_FontStyle$Italic$.prototype;
+$c_Ldoodle_core_font_FontStyle$Italic$.prototype.hashCode__I = (function() {
+  return (-2094913968)
+});
+$c_Ldoodle_core_font_FontStyle$Italic$.prototype.toString__T = (function() {
+  return "Italic"
+});
+$c_Ldoodle_core_font_FontStyle$Italic$.prototype.productArity__I = (function() {
+  return 0
+});
+$c_Ldoodle_core_font_FontStyle$Italic$.prototype.productPrefix__T = (function() {
+  return "Italic"
+});
+$c_Ldoodle_core_font_FontStyle$Italic$.prototype.productElement__I__O = (function(n) {
+  throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
+});
+var $d_Ldoodle_core_font_FontStyle$Italic$ = new $TypeData().initClass({
+  Ldoodle_core_font_FontStyle$Italic$: 0
+}, false, "doodle.core.font.FontStyle$Italic$", {
+  Ldoodle_core_font_FontStyle$Italic$: 1,
+  Ldoodle_core_font_FontStyle: 1,
+  O: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1,
+  s_deriving_Mirror: 1,
+  s_deriving_Mirror$Product: 1,
+  s_deriving_Mirror$Singleton: 1
+});
+$c_Ldoodle_core_font_FontStyle$Italic$.prototype.$classData = $d_Ldoodle_core_font_FontStyle$Italic$;
+var $n_Ldoodle_core_font_FontStyle$Italic$;
+function $m_Ldoodle_core_font_FontStyle$Italic$() {
+  if ((!$n_Ldoodle_core_font_FontStyle$Italic$)) {
+    $n_Ldoodle_core_font_FontStyle$Italic$ = new $c_Ldoodle_core_font_FontStyle$Italic$()
+  };
+  return $n_Ldoodle_core_font_FontStyle$Italic$
+}
+/** @constructor */
 function $c_Ldoodle_core_font_FontStyle$Normal$() {
   /*<skip>*/
 }
@@ -50784,6 +52258,53 @@ function $m_Ldoodle_core_font_FontStyle$Normal$() {
     $n_Ldoodle_core_font_FontStyle$Normal$ = new $c_Ldoodle_core_font_FontStyle$Normal$()
   };
   return $n_Ldoodle_core_font_FontStyle$Normal$
+}
+/** @constructor */
+function $c_Ldoodle_core_font_FontWeight$Bold$() {
+  /*<skip>*/
+}
+$c_Ldoodle_core_font_FontWeight$Bold$.prototype = new $h_Ldoodle_core_font_FontWeight();
+$c_Ldoodle_core_font_FontWeight$Bold$.prototype.constructor = $c_Ldoodle_core_font_FontWeight$Bold$;
+/** @constructor */
+function $h_Ldoodle_core_font_FontWeight$Bold$() {
+  /*<skip>*/
+}
+$h_Ldoodle_core_font_FontWeight$Bold$.prototype = $c_Ldoodle_core_font_FontWeight$Bold$.prototype;
+$c_Ldoodle_core_font_FontWeight$Bold$.prototype.hashCode__I = (function() {
+  return 2076325
+});
+$c_Ldoodle_core_font_FontWeight$Bold$.prototype.toString__T = (function() {
+  return "Bold"
+});
+$c_Ldoodle_core_font_FontWeight$Bold$.prototype.productArity__I = (function() {
+  return 0
+});
+$c_Ldoodle_core_font_FontWeight$Bold$.prototype.productPrefix__T = (function() {
+  return "Bold"
+});
+$c_Ldoodle_core_font_FontWeight$Bold$.prototype.productElement__I__O = (function(n) {
+  throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
+});
+var $d_Ldoodle_core_font_FontWeight$Bold$ = new $TypeData().initClass({
+  Ldoodle_core_font_FontWeight$Bold$: 0
+}, false, "doodle.core.font.FontWeight$Bold$", {
+  Ldoodle_core_font_FontWeight$Bold$: 1,
+  Ldoodle_core_font_FontWeight: 1,
+  O: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1,
+  s_deriving_Mirror: 1,
+  s_deriving_Mirror$Product: 1,
+  s_deriving_Mirror$Singleton: 1
+});
+$c_Ldoodle_core_font_FontWeight$Bold$.prototype.$classData = $d_Ldoodle_core_font_FontWeight$Bold$;
+var $n_Ldoodle_core_font_FontWeight$Bold$;
+function $m_Ldoodle_core_font_FontWeight$Bold$() {
+  if ((!$n_Ldoodle_core_font_FontWeight$Bold$)) {
+    $n_Ldoodle_core_font_FontWeight$Bold$ = new $c_Ldoodle_core_font_FontWeight$Bold$()
+  };
+  return $n_Ldoodle_core_font_FontWeight$Bold$
 }
 /** @constructor */
 function $c_Ldoodle_core_font_FontWeight$Normal$() {
@@ -52014,6 +53535,9 @@ $c_Lscalatags_JsDom$TypedTag.prototype.apply__sci_Seq__Lscalatags_JsDom$TypedTag
 });
 $c_Lscalatags_JsDom$TypedTag.prototype.toString__T = (function() {
   return $as_T(this.render__Lorg_scalajs_dom_Element().outerHTML)
+});
+$c_Lscalatags_JsDom$TypedTag.prototype.render__Lorg_scalajs_dom_Node = (function() {
+  return this.render__Lorg_scalajs_dom_Element()
 });
 $c_Lscalatags_JsDom$TypedTag.prototype.applyTo__O__V = (function(t) {
   $f_Lscalatags_jsdom_Frag__applyTo__Lorg_scalajs_dom_Element__V(this, t)
@@ -58685,8 +60209,11 @@ $c_scm_Map$WithDefault.prototype.$classData = $d_scm_Map$WithDefault;
 function $c_Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra(outer, canvas, applyF, functorF) {
   this.Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_ShapeApi$lzy1 = null;
   this.Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_ShapeApibitmap$1 = false;
+  this.Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_TextApi = null;
+  this.Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_canvas = null;
   this.Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_applyDrawing = null;
   this.Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_$outer = null;
+  this.Ldoodle_svg_algebra_JsAlgebraModule$JsAlgebra__f_canvas = canvas;
   if ((outer === null)) {
     throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
   };
@@ -66882,6 +68409,7 @@ function $m_Lcats_instances_package$all$() {
 }
 /** @constructor */
 function $c_Lcats_implicits$() {
+  this.Lcats_implicits$__f_catsKernelStdAlgebraForUnit = null;
   this.Lcats_implicits$__f_catsStdInstancesForFunction1 = null;
   this.Lcats_implicits$__f_catsStdInstancesForLazyList = null;
   $n_Lcats_implicits$ = this;
@@ -67010,7 +68538,7 @@ $c_Lcats_implicits$.prototype.cats$kernel$instances$UnitInstances$_setter_$catsK
   /*<skip>*/
 });
 $c_Lcats_implicits$.prototype.cats$kernel$instances$UnitInstances$_setter_$catsKernelStdAlgebraForUnit_$eq__Lcats_kernel_BoundedSemilattice__V = (function(x$0) {
-  /*<skip>*/
+  this.Lcats_implicits$__f_catsKernelStdAlgebraForUnit = x$0
 });
 $c_Lcats_implicits$.prototype.cats$kernel$instances$BigIntInstances$_setter_$catsKernelStdOrderForBigInt_$eq__Lcats_kernel_Hash__V = (function(x$0) {
   /*<skip>*/
@@ -67364,5 +68892,6 @@ $L0 = new $c_RTLong(0, 0);
 $d_J.zero = $L0;
 ScatterPlotExample = $m_Lchartreuse_examples_ScatterPlotExample$();
 ChartreuseExamples = $m_Lchartreuse_examples_Examples$();
+PlotExample = $m_Lchartreuse_examples_PlotExample$();
 }).call(this);
 //# sourceMappingURL=main.js.map
