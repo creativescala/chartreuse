@@ -10,7 +10,7 @@ object Dependencies {
   val fs2Version = "3.6.1"
 
   val doodleVersion = "0.18.0"
-  val doodleSvgVersion = "0.15.0"
+  val doodleSvgVersion = "0.15.1"
 
   val munitVersion = "0.7.29"
 
