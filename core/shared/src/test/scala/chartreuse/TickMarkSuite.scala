@@ -20,10 +20,25 @@ import munit.FunSuite
 
 class TickMarkSuite extends FunSuite {
   test("tick mark algorithm chooses the right min, max and step values") {
-    assertEquals(TickMarkCalculator.calculateTickScale(0.0, 1.0), (0.0, 1.0, 0.1))
-    assertEquals(TickMarkCalculator.calculateTickScale(0.0, 10.0), (0.0, 10.0, 1.0))
-    assertEquals(TickMarkCalculator.calculateTickScale(-5.0, 5.0), (-5.0, 5.0, 1.0))
-    assertEquals(TickMarkCalculator.calculateTickScale(1000.0, 1000000.0), (0.0, 1000000.0, 100000.0))
-    assertEquals(TickMarkCalculator.calculateTickScale(1.25, 15.12345), (0.0,16.5,1.5))
+    assertEquals(
+      TickMarkCalculator.calculateTickScale(0.0, 1.0, 12),
+      (0.0, 1.0, 0.1)
+    )
+    assertEquals(
+      TickMarkCalculator.calculateTickScale(0.0, 10.0, 12),
+      (0.0, 10.0, 1.0)
+    )
+    assertEquals(
+      TickMarkCalculator.calculateTickScale(-5.0, 5.0, 12),
+      (-5.0, 5.0, 1.0)
+    )
+    assertEquals(
+      TickMarkCalculator.calculateTickScale(1000.0, 1000000.0, 12),
+      (0.0, 1000000.0, 100000.0)
+    )
+    assertEquals(
+      TickMarkCalculator.calculateTickScale(1.25, 15.12345, 12),
+      (0.0, 16.5, 1.5)
+    )
   }
 }
