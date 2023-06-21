@@ -23,7 +23,7 @@ object TickMarkCalculator {
       min: Double,
       max: Double,
       tickCount: Double
-  ): (Double, Double, Double) = {
+  ): Ticks = {
     val margin: Double = (max - min) / 1e6
     val newMax = max + margin
     val newMin = min - margin
@@ -41,6 +41,10 @@ object TickMarkCalculator {
     val tickMax: Double = ceil(max / tickSize) * tickSize
     val tickMin: Double = floor(min / tickSize) * tickSize
 
-    (tickMin, tickMax, tickSize)
+    Ticks(
+      (tickMin * 1000).round / 1000.0,
+      (tickMax * 1000).round / 1000.0,
+      (tickSize * 1000).round / 1000.0
+    )
   }
 }
