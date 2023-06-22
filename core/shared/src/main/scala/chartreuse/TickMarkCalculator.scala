@@ -49,7 +49,7 @@ object TickMarkCalculator {
       * the power is to invert the scale of the rough tick size. Finally, to
       * calculate tickSizePower, we have to put 10 to the power of the
       * -log10(roughTickSize.abs).floor. Then roughTickSize will be multiplied
-      * by 1000 to get 3, which is in the range [0,10].
+      * by 1000 to get 3, which is in the range between 1 and 10.
       */
     val tickSizePower: Double = pow(10, -log10(roughTickSize.abs).floor)
     val normalizedTickSize: Double = roughTickSize * tickSizePower
