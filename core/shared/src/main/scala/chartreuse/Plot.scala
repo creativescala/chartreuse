@@ -55,6 +55,22 @@ final case class Plot[
     Alg & Text & doodle.algebra.Transform & Debug,
     Unit
   ] = {
+    val allData = layers.flatMap(_.data.foldLeft(List.empty[A])(_ :+ _))
+    val dataBoundingBox = Data(allData).boundingBox(layers.head.toPoint)
+
+    val minX = dataBoundingBox.left
+    val maxX = dataBoundingBox.right
+    val minY = dataBoundingBox.bottom
+    val maxY = dataBoundingBox.top
+
+    println(minX)
+    println(maxX)
+    println(minY)
+    println(maxY)
+
+    println(TickMarkCalculator.calculateTickScale(minX, maxX, 12))
+    println(TickMarkCalculator.calculateTickScale(minY, maxY, 12))
+
     val plot =
       layers
         .map(_.draw(width, height))
