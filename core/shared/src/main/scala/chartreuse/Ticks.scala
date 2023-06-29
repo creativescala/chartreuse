@@ -16,4 +16,17 @@
 
 package chartreuse
 
+/** Represents tick marks for an axis of a graph.
+  *
+  * Encapsulates the coordinates of the first and last tick marks on the axis,
+  * as well as the step size between consecutive tick marks.
+  * @param min
+  *   The coordinate of the first tick mark.
+  * @param max
+  *   The coordinate of the last tick mark.
+  * @param size
+  *   The step size between consecutive tick marks.
+  * @see
+  *   [[TickMarkCalculator.calculateTickScale]]
+  */
 final case class Ticks(min: Double, max: Double, size: Double)

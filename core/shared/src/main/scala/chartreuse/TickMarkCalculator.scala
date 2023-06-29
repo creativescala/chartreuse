@@ -16,9 +16,60 @@
 
 package chartreuse
 
-import scala.math.{log10, ceil, floor, pow}
+import scala.math.ceil
+import scala.math.floor
+import scala.math.log10
+import scala.math.pow
 
 object TickMarkCalculator {
+
+  /** Calculates tick marks for a given range and tick count.
+    *
+    * Takes a minimum value, maximum value, and tick count as input parameters
+    * and calculates tick marks that evenly divide the range between the minimum
+    * and maximum values. Tick marks are the values displayed on an axis of a
+    * graph or chart to indicate reference points. The purpose of calculating
+    * tick marks is to determine appropriate values for the axis labels and grid
+    * lines to ensure that data points are visually represented in a clear and
+    * understandable manner.
+    *
+    * The algorithm always tries to generate round tick values so even if you
+    * ask for seven ticks, you might get six if that fits better with the
+    * rounding.
+    *
+    * The algorithm doesn't necessarily maintain any of the bounds. It may leave
+    * the output bound the same as the input bound if it aligns with the output
+    * `tickSize`,
+    * i.e. if it is a multiple of `tickSize`. If the output bound is not a
+    * multiple of the `tickSize`, it will be adjusted to the nearest `tickSize`
+    * multiple. For example, `calculateTickScale(0.0, 10.0, 3)` outputs
+    * `Ticks(0.0, 15.0, 7.5)` and `calculateTickScale(-0.5, 10.0, 3)` outputs
+    * `Ticks(-7.5, 15.0, 7.5)`.
+    *
+    * The method maintains the following invariants:
+    *   1. `tickCount` should be greater than or equal to 2. This ensures that
+    *      there are at least two tick marks to define a range.
+    *   1. `max` should be greater than `min`. It assumes that the range is
+    *      valid and not empty.
+    *   1. `goodNormalizedTickSizes` list should always be sorted in ascending
+    *      order. This is important for the algorithm to select the smallest
+    *      value greater than or equal to the normalized tick size.
+    *   1. `tickSize` should be a positive value greater than 0, as it
+    *      represents a non-empty interval between tick marks.
+    *
+    * @param min
+    *   The minimum value of the range.
+    * @param max
+    *   The maximum value of the range.
+    * @param tickCount
+    *   The desired number of tick marks.
+    * @return
+    *   An instance of the Ticks class containing the coordinates of the first
+    *   and last tick marks and the step size.
+    * @version 1.0
+    * @see
+    *   [[Ticks]] [[Plot]]
+    */
   def calculateTickScale(
       min: Double,
       max: Double,
