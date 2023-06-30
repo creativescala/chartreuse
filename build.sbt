@@ -19,7 +19,7 @@ import laika.rewrite.link.LinkConfig
 import laika.rewrite.link.ApiLinks
 import laika.theme.Theme
 
-val scala3 = "3.2.2"
+val scala3 = "3.3.0"
 
 ThisBuild / organization := "org.creativescala"
 ThisBuild / organizationName := "Creative Scala"
