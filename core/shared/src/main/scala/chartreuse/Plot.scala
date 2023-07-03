@@ -50,9 +50,9 @@ final case class Plot[
     copy(yTitle = newYTitle)
   }
 
-  //  TODO: handle axes and grid layout
+  // TODO: handle grid layout
   def draw(width: Int, height: Int): Picture[
-    Alg & Text & doodle.algebra.Transform & Debug,
+    Alg & Text & doodle.algebra.Transform & Debug & Path,
     Unit
   ] = {
     val allData = layers.flatMap(_.data.foldLeft(List.empty[A])(_ :+ _))
@@ -63,21 +63,54 @@ final case class Plot[
     val minY = dataBoundingBox.bottom
     val maxY = dataBoundingBox.top
 
-    println(minX)
-    println(maxX)
-    println(minY)
-    println(maxY)
+    val scale = Scale.linear.build(dataBoundingBox, width, height)
 
-    println(TickMarkCalculator.calculateTickScale(minX, maxX, 12))
-    println(TickMarkCalculator.calculateTickScale(minY, maxY, 12))
+    val xTicks = TickMarkCalculator.calculateTickScale(minX, maxX, 12)
+    var yTicks = TickMarkCalculator.calculateTickScale(minY, maxY, 12)
 
-    val plot =
+    // This is needed to prevent the y-axis lowest tick to be under the x-axis
+    if (scale(Point(0, yTicks.min)).y < -(height / 2) - 30) {
+      yTicks = yTicks.copy(min = yTicks.min + yTicks.size)
+    }
+
+    val xTicksMapped = (0 to ((xTicks.max - xTicks.min) / xTicks.size).toInt)
+      .map(i =>
+        (
+          scale(Point(xTicks.min + i * xTicks.size, 0)),
+          Point(xTicks.min + i * xTicks.size, 0)
+        )
+      )
+      .toList
+
+    val yTicksMapped = (0 to ((yTicks.max - yTicks.min) / yTicks.size).toInt)
+      .map(i =>
+        (
+          scale(Point(0, yTicks.min + i * yTicks.size)),
+          Point(0, yTicks.min + i * yTicks.size)
+        )
+      )
+      .toList
+
+    val allLayers =
       layers
         .map(_.draw(width, height))
-        .foldLeft(empty[Alg])(_ on _)
-        .margin(20)
-        .debug(color = Color.black)
-        .margin(5)
+        .foldLeft(empty[Alg & Text & Path])(_ on _)
+
+    val plotWithXTicks = xTicksMapped.foldLeft(allLayers)((plot, tick) =>
+      plot.on(
+        text(((tick._2.x * 1000).round / 1000.0).toString)
+          .at(tick._1.x, -(height / 2) - 30)
+      )
+    )
+
+    val plotWithXAndYTicks = yTicksMapped
+      .foldLeft(plotWithXTicks)((plot, tick) =>
+        plot.on(
+          text(((tick._2.y * 1000).round / 1000.0).toString)
+            .at(xTicksMapped.head._1.x - 35, tick._1.y)
+        )
+      )
+      .margin(20)
 
     val plotTitle = text(this.plotTitle)
       .scale(2, 2)
@@ -87,7 +120,7 @@ final case class Plot[
 
     yTitle
       .beside(
-        plot
+        plotWithXAndYTicks
           .below(plotTitle)
           .above(xTitle)
       )
