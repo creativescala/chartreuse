@@ -52,7 +52,7 @@ final case class Plot[
 
   // TODO: handle grid layout
   def draw(width: Int, height: Int): Picture[
-    Alg & Text & doodle.algebra.Transform & Debug & Path,
+    Alg & Text & doodle.algebra.Transform & Path & Debug,
     Unit
   ] = {
     val allData = layers.flatMap(_.data.foldLeft(List.empty[A])(_ :+ _))
@@ -64,12 +64,13 @@ final case class Plot[
     val maxY = dataBoundingBox.top
 
     val scale = Scale.linear.build(dataBoundingBox, width, height)
+    val minYPoint = scale(Point(0, minY)).y
 
     val xTicks = TickMarkCalculator.calculateTickScale(minX, maxX, 12)
     var yTicks = TickMarkCalculator.calculateTickScale(minY, maxY, 12)
 
     // This is needed to prevent the y-axis lowest tick to be under the x-axis
-    if (scale(Point(0, yTicks.min)).y < -(height / 2) - 30) {
+    if (scale(Point(0, yTicks.min)).y < minYPoint - 20) {
       yTicks = yTicks.copy(min = yTicks.min + yTicks.size)
     }
 
@@ -94,23 +95,62 @@ final case class Plot[
     val allLayers =
       layers
         .map(_.draw(width, height))
-        .foldLeft(empty[Alg & Text & Path])(_ on _)
+        .foldLeft(empty[Alg & Path & Text])(_ on _)
 
-    val plotWithXTicks = xTicksMapped.foldLeft(allLayers)((plot, tick) =>
-      plot.on(
-        text(((tick._2.x * 1000).round / 1000.0).toString)
-          .at(tick._1.x, -(height / 2) - 30)
+    val plotWithXTicks = xTicksMapped
+      .foldLeft(allLayers)((plot, tick) =>
+        plot
+          .on(
+            interpolatingSpline(
+              List(
+                Point(tick._1.x, minYPoint - 20),
+                Point(tick._1.x, minYPoint - 27)
+              )
+            )
+          )
+          .on(
+            text(((tick._2.x * 1000).round / 1000.0).toString)
+              .at(tick._1.x, minYPoint - 40)
+          )
       )
-    )
 
     val plotWithXAndYTicks = yTicksMapped
       .foldLeft(plotWithXTicks)((plot, tick) =>
-        plot.on(
-          text(((tick._2.y * 1000).round / 1000.0).toString)
-            .at(xTicksMapped.head._1.x - 35, tick._1.y)
+        plot
+          .on(
+            interpolatingSpline(
+              List(
+                Point(xTicksMapped.head._1.x - 10, tick._1.y),
+                Point(xTicksMapped.head._1.x - 17, tick._1.y)
+              )
+            )
+          )
+          .on(
+            text(((tick._2.y * 1000).round / 1000.0).toString)
+              .at(xTicksMapped.head._1.x - 45, tick._1.y)
+          )
+      )
+
+    val plotWithAxes = plotWithXAndYTicks
+      .on(
+        interpolatingSpline(
+          List(
+            Point(xTicksMapped.head._1.x - 10, minYPoint - 20),
+            Point(scale(Point(xTicks.max, 0)).x + 10, minYPoint - 20)
+          )
         )
       )
-      .margin(20)
+      .on(
+        interpolatingSpline(
+          List(
+            Point(xTicksMapped.head._1.x - 10, minYPoint - 20),
+            Point(
+              xTicksMapped.head._1.x - 10,
+              scale(Point(0, yTicks.max)).y + 10
+            )
+          )
+        )
+      )
 
     val plotTitle = text(this.plotTitle)
       .scale(2, 2)
@@ -120,9 +160,11 @@ final case class Plot[
 
     yTitle
       .beside(
-        plotWithXAndYTicks
+        plotWithAxes
+          .margin(15)
           .below(plotTitle)
           .above(xTitle)
       )
+
   }
 }
