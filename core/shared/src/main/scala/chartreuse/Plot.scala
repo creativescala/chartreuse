@@ -26,13 +26,13 @@ import doodle.syntax.all.*
   */
 final case class Plot[
     A,
-    Alg <: Layout & Shape
+    Alg <: Layout & Shape & Style
 ](
     layers: List[Layer[A, Alg]],
     plotTitle: String = "Plot Title",
     xTitle: String = "X data",
     yTitle: String = "Y data",
-    grid: Boolean = true
+    grid: Boolean = false
 ) {
   def addLayer(layer: Layer[A, Alg]): Plot[A, Alg] = {
     copy(layers = layer :: layers)
@@ -50,7 +50,10 @@ final case class Plot[
     copy(yTitle = newYTitle)
   }
 
-  // TODO: handle grid layout
+  def withGrid(newGrid: Boolean): Plot[A, Alg] = {
+    copy(grid = newGrid)
+  }
+
   def draw(width: Int, height: Int): Picture[
     Alg & Text & doodle.algebra.Transform & Path & Debug,
     Unit
@@ -104,7 +107,7 @@ final case class Plot[
             interpolatingSpline(
               List(
                 Point(tick._1.x, minYPoint - 20),
-                Point(tick._1.x, minYPoint - 27)
+                Point(tick._1.x, minYPoint - 27),
               )
             )
           )
@@ -151,6 +154,25 @@ final case class Plot[
           )
         )
       )
+      .on(
+        interpolatingSpline(
+          List(
+            Point(xTicksMapped.head._1.x - 10, scale(Point(0, yTicks.max)).y + 10),
+            Point(scale(Point(xTicks.max, 0)).x + 10, scale(Point(0, yTicks.max)).y + 10)
+          )
+        )
+      )
+      .on(
+        interpolatingSpline(
+          List(
+            Point(scale(Point(xTicks.max, 0)).x + 10, minYPoint - 20),
+            Point(
+              scale(Point(xTicks.max, 0)).x + 10,
+              scale(Point(0, yTicks.max)).y + 10
+            )
+          )
+        )
+      )
 
     val plotTitle = text(this.plotTitle)
       .scale(2, 2)
@@ -158,13 +180,57 @@ final case class Plot[
     val yTitle = text(this.yTitle)
       .rotate(Angle(1.5708))
 
+    if (grid) {
+      val gridLayout = xTicksMapped
+        .foldLeft(empty[Alg & Path & Style])((plot, tick) =>
+          plot
+            .on(
+              interpolatingSpline(
+                List(
+                  Point(tick._1.x, minYPoint - 20),
+                  Point(tick._1.x, scale(Point(0, yTicks.max)).y + 10)
+                )
+              )
+                .strokeColor(Color.gray)
+                .strokeWidth(0.5)
+            )
+        )
+        .on(
+          yTicksMapped
+            .foldLeft(empty[Alg & Path & Style])((plot, tick) =>
+              plot
+                .on(
+                  interpolatingSpline(
+                    List(
+                      Point(xTicksMapped.head._1.x - 10, tick._1.y),
+                      Point(
+                        scale(Point(xTicks.max, 0)).x + 10,
+                        tick._1.y
+                      )
+                    )
+                  )
+                    .strokeColor(Color.gray)
+                    .strokeWidth(0.5)
+                )
+            )
+        )
+
+      return yTitle
+        .beside(
+          plotWithAxes
+            .on(gridLayout)
+            .margin(5)
+            .below(plotTitle)
+            .above(xTitle)
+        )
+    }
+
     yTitle
       .beside(
         plotWithAxes
-          .margin(15)
+          .margin(5)
           .below(plotTitle)
           .above(xTitle)
       )
-
   }
 }
