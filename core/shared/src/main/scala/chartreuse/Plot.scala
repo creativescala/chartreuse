@@ -104,12 +104,10 @@ final case class Plot[
       .foldLeft(allLayers)((plot, tick) =>
         plot
           .on(
-            interpolatingSpline(
-              List(
-                Point(tick._1.x, minYPoint - 20),
-                Point(tick._1.x, minYPoint - 27),
-              )
-            )
+            OpenPath.empty
+              .moveTo(tick._1.x, minYPoint - 20)
+              .lineTo(tick._1.x, minYPoint - 27)
+              .path
           )
           .on(
             text(((tick._2.x * 1000).round / 1000.0).toString)
@@ -121,12 +119,10 @@ final case class Plot[
       .foldLeft(plotWithXTicks)((plot, tick) =>
         plot
           .on(
-            interpolatingSpline(
-              List(
-                Point(xTicksMapped.head._1.x - 10, tick._1.y),
-                Point(xTicksMapped.head._1.x - 17, tick._1.y)
-              )
-            )
+            OpenPath.empty
+              .moveTo(xTicksMapped.head._1.x - 10, tick._1.y)
+              .lineTo(xTicksMapped.head._1.x - 17, tick._1.y)
+              .path
           )
           .on(
             text(((tick._2.y * 1000).round / 1000.0).toString)
@@ -136,42 +132,18 @@ final case class Plot[
 
     val plotWithAxes = plotWithXAndYTicks
       .on(
-        interpolatingSpline(
-          List(
-            Point(xTicksMapped.head._1.x - 10, minYPoint - 20),
-            Point(scale(Point(xTicks.max, 0)).x + 10, minYPoint - 20)
+        ClosedPath.empty
+          .moveTo(xTicksMapped.head._1.x - 10, minYPoint - 20)
+          .lineTo(scale(Point(xTicks.max, 0)).x + 10, minYPoint - 20)
+          .lineTo(
+            scale(Point(xTicks.max, 0)).x + 10,
+            scale(Point(0, yTicks.max)).y + 10
           )
-        )
-      )
-      .on(
-        interpolatingSpline(
-          List(
-            Point(xTicksMapped.head._1.x - 10, minYPoint - 20),
-            Point(
-              xTicksMapped.head._1.x - 10,
-              scale(Point(0, yTicks.max)).y + 10
-            )
+          .lineTo(
+            xTicksMapped.head._1.x - 10,
+            scale(Point(0, yTicks.max)).y + 10
           )
-        )
-      )
-      .on(
-        interpolatingSpline(
-          List(
-            Point(xTicksMapped.head._1.x - 10, scale(Point(0, yTicks.max)).y + 10),
-            Point(scale(Point(xTicks.max, 0)).x + 10, scale(Point(0, yTicks.max)).y + 10)
-          )
-        )
-      )
-      .on(
-        interpolatingSpline(
-          List(
-            Point(scale(Point(xTicks.max, 0)).x + 10, minYPoint - 20),
-            Point(
-              scale(Point(xTicks.max, 0)).x + 10,
-              scale(Point(0, yTicks.max)).y + 10
-            )
-          )
-        )
+          .path
       )
 
     val plotTitle = text(this.plotTitle)
@@ -185,12 +157,10 @@ final case class Plot[
         .foldLeft(empty[Alg & Path & Style])((plot, tick) =>
           plot
             .on(
-              interpolatingSpline(
-                List(
-                  Point(tick._1.x, minYPoint - 20),
-                  Point(tick._1.x, scale(Point(0, yTicks.max)).y + 10)
-                )
-              )
+              OpenPath.empty
+                .moveTo(tick._1.x, minYPoint - 20)
+                .lineTo(tick._1.x, scale(Point(0, yTicks.max)).y + 10)
+                .path
                 .strokeColor(Color.gray)
                 .strokeWidth(0.5)
             )
@@ -200,15 +170,10 @@ final case class Plot[
             .foldLeft(empty[Alg & Path & Style])((plot, tick) =>
               plot
                 .on(
-                  interpolatingSpline(
-                    List(
-                      Point(xTicksMapped.head._1.x - 10, tick._1.y),
-                      Point(
-                        scale(Point(xTicks.max, 0)).x + 10,
-                        tick._1.y
-                      )
-                    )
-                  )
+                  OpenPath.empty
+                    .moveTo(xTicksMapped.head._1.x - 10, tick._1.y)
+                    .lineTo(scale(Point(xTicks.max, 0)).x + 10, tick._1.y)
+                    .path
                     .strokeColor(Color.gray)
                     .strokeWidth(0.5)
                 )
