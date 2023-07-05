@@ -26,7 +26,7 @@ import doodle.syntax.all.*
   */
 final case class Plot[
     A,
-    Alg <: Layout & Shape & Style
+    Alg <: Layout & Shape & Style & Text & doodle.algebra.Transform & Path
 ](
     layers: List[Layer[A, Alg]],
     plotTitle: String = "Plot Title",
@@ -55,7 +55,7 @@ final case class Plot[
   }
 
   def draw(width: Int, height: Int): Picture[
-    Alg & Text & doodle.algebra.Transform & Path & Debug,
+    Alg,
     Unit
   ] = {
     val allData = layers.flatMap(_.data.foldLeft(List.empty[A])(_ :+ _))
@@ -67,17 +67,54 @@ final case class Plot[
     val maxY = dataBoundingBox.top
 
     val scale = Scale.linear.build(dataBoundingBox, width, height)
-    val minYPoint = scale(Point(0, minY)).y
 
     val xTicks = TickMarkCalculator.calculateTickScale(minX, maxX, 12)
-    var yTicks = TickMarkCalculator.calculateTickScale(minY, maxY, 12)
+    val yTicks = TickMarkCalculator.calculateTickScale(minY, maxY, 12)
 
-    // This is needed to prevent the y-axis lowest tick to be under the x-axis
-    if (scale(Point(0, yTicks.min)).y < minYPoint - 20) {
-      yTicks = yTicks.copy(min = yTicks.min + yTicks.size)
+    val xTicksMapped = Ticks(
+      scale(Point(xTicks.min, 0)).x,
+      scale(Point(xTicks.max, 0)).x,
+      xTicks.size
+    )
+    val yTicksMapped = Ticks(
+      scale(Point(0, yTicks.min)).y,
+      scale(Point(0, yTicks.max)).y,
+      yTicks.size
+    )
+
+    val xTicksSequence = xTicksToSequence(xTicks, scale)
+    val yTicksSequence = yTicksToSequence(yTicks, scale)
+
+    val allLayers =
+      layers
+        .map(_.draw(width, height))
+        .foldLeft(empty[Alg])(_ on _)
+
+    val plotWithXTicks = withXTicks(xTicksSequence, allLayers, yTicksMapped)
+    val plotWithXAndYTicks =
+      withYTicks(yTicksSequence, plotWithXTicks, xTicksMapped)
+    val plotWithTicksAndAxes =
+      withAxes(plotWithXAndYTicks, xTicksMapped, yTicksMapped)
+
+    if (grid) {
+      val plotWithTicksAndAxesAndGrid = withGrid(
+        plotWithTicksAndAxes,
+        xTicksMapped,
+        yTicksMapped,
+        xTicksSequence,
+        yTicksSequence
+      )
+      return withTitles(plotWithTicksAndAxesAndGrid)
     }
 
-    val xTicksMapped = (0 to ((xTicks.max - xTicks.min) / xTicks.size).toInt)
+    withTitles(plotWithTicksAndAxes)
+  }
+
+  private def xTicksToSequence(
+      xTicks: Ticks,
+      scale: Bijection[Point, Point]
+  ): Seq[(Point, Point)] = {
+    (0 to ((xTicks.max - xTicks.min) / xTicks.size).toInt)
       .map(i =>
         (
           scale(Point(xTicks.min + i * xTicks.size, 0)),
@@ -85,8 +122,13 @@ final case class Plot[
         )
       )
       .toList
+  }
 
-    val yTicksMapped = (0 to ((yTicks.max - yTicks.min) / yTicks.size).toInt)
+  private def yTicksToSequence(
+      yTicks: Ticks,
+      scale: Bijection[Point, Point]
+  ): Seq[(Point, Point)] = {
+    (0 to ((yTicks.max - yTicks.min) / yTicks.size).toInt)
       .map(i =>
         (
           scale(Point(0, yTicks.min + i * yTicks.size)),
@@ -94,105 +136,113 @@ final case class Plot[
         )
       )
       .toList
+  }
 
-    val allLayers =
-      layers
-        .map(_.draw(width, height))
-        .foldLeft(empty[Alg & Path & Text])(_ on _)
-
-    val plotWithXTicks = xTicksMapped
-      .foldLeft(allLayers)((plot, tick) =>
+  private def withXTicks(
+      xTicksSequence: Seq[(Point, Point)],
+      plot: Picture[Alg, Unit],
+      yTicksMapped: Ticks
+  ) = {
+    xTicksSequence
+      .foldLeft(plot)((plot, tick) =>
         plot
           .on(
             OpenPath.empty
-              .moveTo(tick._1.x, minYPoint - 20)
-              .lineTo(tick._1.x, minYPoint - 27)
+              .moveTo(tick._1.x, yTicksMapped.min - 10)
+              .lineTo(tick._1.x, yTicksMapped.min - 17)
               .path
           )
           .on(
             text(((tick._2.x * 1000).round / 1000.0).toString)
-              .at(tick._1.x, minYPoint - 40)
+              .at(tick._1.x, yTicksMapped.min - 30)
           )
       )
+  }
 
-    val plotWithXAndYTicks = yTicksMapped
-      .foldLeft(plotWithXTicks)((plot, tick) =>
+  private def withYTicks(
+      yTicksSequence: Seq[(Point, Point)],
+      plot: Picture[Alg, Unit],
+      xTicksMapped: Ticks
+  ) = {
+    yTicksSequence
+      .foldLeft(plot)((plot, tick) =>
         plot
           .on(
             OpenPath.empty
-              .moveTo(xTicksMapped.head._1.x - 10, tick._1.y)
-              .lineTo(xTicksMapped.head._1.x - 17, tick._1.y)
+              .moveTo(xTicksMapped.min - 10, tick._1.y)
+              .lineTo(xTicksMapped.min - 17, tick._1.y)
               .path
           )
           .on(
             text(((tick._2.y * 1000).round / 1000.0).toString)
-              .at(xTicksMapped.head._1.x - 45, tick._1.y)
+              .at(xTicksMapped.min - 45, tick._1.y)
           )
       )
+  }
 
-    val plotWithAxes = plotWithXAndYTicks
+  private def withAxes(
+      plot: Picture[Alg, Unit],
+      xTicksMapped: Ticks,
+      yTicksMapped: Ticks
+  ) = {
+    plot
       .on(
         ClosedPath.empty
-          .moveTo(xTicksMapped.head._1.x - 10, minYPoint - 20)
-          .lineTo(scale(Point(xTicks.max, 0)).x + 10, minYPoint - 20)
-          .lineTo(
-            scale(Point(xTicks.max, 0)).x + 10,
-            scale(Point(0, yTicks.max)).y + 10
-          )
-          .lineTo(
-            xTicksMapped.head._1.x - 10,
-            scale(Point(0, yTicks.max)).y + 10
-          )
+          .moveTo(xTicksMapped.min - 10, yTicksMapped.min - 10)
+          .lineTo(xTicksMapped.max + 10, yTicksMapped.min - 10)
+          .lineTo(xTicksMapped.max + 10, yTicksMapped.max + 10)
+          .lineTo(xTicksMapped.min - 10, yTicksMapped.max + 10)
           .path
       )
+  }
 
-    val plotTitle = text(this.plotTitle)
-      .scale(2, 2)
-    val xTitle = text(this.xTitle)
-    val yTitle = text(this.yTitle)
-      .rotate(Angle(1.5708))
-
-    if (grid) {
-      val gridLayout = xTicksMapped
-        .foldLeft(empty[Alg & Path & Style])((plot, tick) =>
+  private def withGrid(
+      plot: Picture[Alg, Unit],
+      xTicksMapped: Ticks,
+      yTicksMapped: Ticks,
+      xTicksSequence: Seq[(Point, Point)],
+      yTicksSequence: Seq[(Point, Point)]
+  ) = {
+    plot.on(
+      xTicksSequence
+        .foldLeft(empty[Alg])((plot, tick) =>
           plot
             .on(
               OpenPath.empty
-                .moveTo(tick._1.x, minYPoint - 20)
-                .lineTo(tick._1.x, scale(Point(0, yTicks.max)).y + 10)
+                .moveTo(tick._1.x, yTicksMapped.min - 20)
+                .lineTo(tick._1.x, yTicksMapped.max + 10)
                 .path
                 .strokeColor(Color.gray)
                 .strokeWidth(0.5)
             )
         )
         .on(
-          yTicksMapped
-            .foldLeft(empty[Alg & Path & Style])((plot, tick) =>
+          yTicksSequence
+            .foldLeft(empty[Alg])((plot, tick) =>
               plot
                 .on(
                   OpenPath.empty
-                    .moveTo(xTicksMapped.head._1.x - 10, tick._1.y)
-                    .lineTo(scale(Point(xTicks.max, 0)).x + 10, tick._1.y)
+                    .moveTo(xTicksMapped.min - 10, tick._1.y)
+                    .lineTo(xTicksMapped.max + 10, tick._1.y)
                     .path
                     .strokeColor(Color.gray)
                     .strokeWidth(0.5)
                 )
             )
         )
+    )
+  }
 
-      return yTitle
-        .beside(
-          plotWithAxes
-            .on(gridLayout)
-            .margin(5)
-            .below(plotTitle)
-            .above(xTitle)
-        )
-    }
+  private def withTitles(plot: Picture[Alg, Unit]) = {
+    val plotTitle = text(this.plotTitle)
+      .scale(2, 2)
+    val xTitle = text(this.xTitle)
+    val yTitle = text(this.yTitle)
+      .rotate(Angle(1.5708))
 
     yTitle
       .beside(
-        plotWithAxes
+        plot
           .margin(5)
           .below(plotTitle)
           .above(xTitle)
