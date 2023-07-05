@@ -73,6 +73,7 @@ final case class Plot[
     val xTicks = TickMarkCalculator.calculateTickScale(minX, maxX, 12)
     val yTicks = TickMarkCalculator.calculateTickScale(minY, maxY, 12)
 
+    // Map the Ticks to the screen coordinates
     val xTicksMapped = Ticks(
       scale(Point(xTicks.min, 0)).x,
       scale(Point(xTicks.max, 0)).x,
@@ -84,6 +85,7 @@ final case class Plot[
       yTicks.size
     )
 
+    // Convert the Ticks to a sequence of points
     val xTicksSequence = xTicksToSequence(xTicks, scale)
     val yTicksSequence = yTicksToSequence(yTicks, scale)
 
@@ -112,6 +114,10 @@ final case class Plot[
     withTitles(plotWithTicksAndAxes)
   }
 
+  /** Converts `Ticks` to a list of tuples. The first element is the mapped
+    * coordinate of a tick - to place the tick on a graph. The second one is the
+    * original coordinate - to give the tick a label with its coordinate.
+    */
   private def xTicksToSequence(
       xTicks: Ticks,
       scale: Bijection[Point, Point]
@@ -126,6 +132,10 @@ final case class Plot[
       .toList
   }
 
+  /** Converts `Ticks` to a list of tuples. The first element is the mapped
+    * coordinate of a tick - to place the tick on a graph. The second one is the
+    * original coordinate - to give the tick a label with its coordinate.
+    */
   private def yTicksToSequence(
       yTicks: Ticks,
       scale: Bijection[Point, Point]
