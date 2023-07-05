@@ -34,6 +34,8 @@ final case class Plot[
     yTitle: String = "Y data",
     grid: Boolean = false
 ) {
+  type TicksSequence = Seq[(Point, Point)]
+
   def addLayer(layer: Layer[A, Alg]): Plot[A, Alg] = {
     copy(layers = layer :: layers)
   }
@@ -113,7 +115,7 @@ final case class Plot[
   private def xTicksToSequence(
       xTicks: Ticks,
       scale: Bijection[Point, Point]
-  ): Seq[(Point, Point)] = {
+  ): TicksSequence = {
     (0 to ((xTicks.max - xTicks.min) / xTicks.size).toInt)
       .map(i =>
         (
@@ -127,7 +129,7 @@ final case class Plot[
   private def yTicksToSequence(
       yTicks: Ticks,
       scale: Bijection[Point, Point]
-  ): Seq[(Point, Point)] = {
+  ): TicksSequence = {
     (0 to ((yTicks.max - yTicks.min) / yTicks.size).toInt)
       .map(i =>
         (
@@ -139,7 +141,7 @@ final case class Plot[
   }
 
   private def withXTicks(
-      xTicksSequence: Seq[(Point, Point)],
+      xTicksSequence: TicksSequence,
       plot: Picture[Alg, Unit],
       yTicksMapped: Ticks
   ) = {
@@ -160,7 +162,7 @@ final case class Plot[
   }
 
   private def withYTicks(
-      yTicksSequence: Seq[(Point, Point)],
+      yTicksSequence: TicksSequence,
       plot: Picture[Alg, Unit],
       xTicksMapped: Ticks
   ) = {
@@ -200,8 +202,8 @@ final case class Plot[
       plot: Picture[Alg, Unit],
       xTicksMapped: Ticks,
       yTicksMapped: Ticks,
-      xTicksSequence: Seq[(Point, Point)],
-      yTicksSequence: Seq[(Point, Point)]
+      xTicksSequence: TicksSequence,
+      yTicksSequence: TicksSequence
   ) = {
     plot.on(
       xTicksSequence
