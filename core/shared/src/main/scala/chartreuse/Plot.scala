@@ -56,10 +56,7 @@ final case class Plot[
     copy(grid = newGrid)
   }
 
-  def draw(width: Int, height: Int): Picture[
-    Alg,
-    Unit
-  ] = {
+  def draw(width: Int, height: Int): Picture[Alg, Unit] = {
     val allData = layers.flatMap(_.data.foldLeft(List.empty[A])(_ :+ _))
     val dataBoundingBox = Data(allData).boundingBox(layers.head.toPoint)
 
@@ -154,7 +151,7 @@ final case class Plot[
       xTicksSequence: TicksSequence,
       plot: Picture[Alg, Unit],
       yTicksMapped: Ticks
-  ) = {
+  ): Picture[Alg, Unit] = {
     xTicksSequence
       .foldLeft(plot)((plot, tick) =>
         plot
@@ -175,7 +172,7 @@ final case class Plot[
       yTicksSequence: TicksSequence,
       plot: Picture[Alg, Unit],
       xTicksMapped: Ticks
-  ) = {
+  ): Picture[Alg, Unit] = {
     yTicksSequence
       .foldLeft(plot)((plot, tick) =>
         plot
@@ -196,7 +193,7 @@ final case class Plot[
       plot: Picture[Alg, Unit],
       xTicksMapped: Ticks,
       yTicksMapped: Ticks
-  ) = {
+  ): Picture[Alg, Unit] = {
     plot
       .on(
         ClosedPath.empty
@@ -214,7 +211,7 @@ final case class Plot[
       yTicksMapped: Ticks,
       xTicksSequence: TicksSequence,
       yTicksSequence: TicksSequence
-  ) = {
+  ): Picture[Alg, Unit] = {
     plot.on(
       xTicksSequence
         .foldLeft(empty[Alg])((plot, tick) =>
@@ -245,7 +242,7 @@ final case class Plot[
     )
   }
 
-  private def withTitles(plot: Picture[Alg, Unit]) = {
+  private def withTitles(plot: Picture[Alg, Unit]): Picture[Alg, Unit] = {
     val plotTitle = text(this.plotTitle)
       .scale(2, 2)
     val xTitle = text(this.xTitle)
