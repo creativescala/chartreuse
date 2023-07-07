@@ -84,8 +84,10 @@ final case class Plot[
     )
 
     // Convert the Ticks to a sequence of points
-    val xTicksSequence = xTicksToSequence(xTicks, scale)
-    val yTicksSequence = yTicksToSequence(yTicks, scale)
+    val asX: Double => Point = x => Point(x, 0)
+    val asY: Double => Point = y => Point(0, y)
+    val xTicksSequence = ticksToSequence(xTicks, scale, asX)
+    val yTicksSequence = ticksToSequence(yTicks, scale, asY)
 
     val allLayers =
       layers
@@ -116,33 +118,16 @@ final case class Plot[
     * coordinate of a tick - to place the tick on a graph. The second one is the
     * original coordinate - to give the tick a label with its coordinate.
     */
-  private def xTicksToSequence(
-      xTicks: Ticks,
-      scale: Bijection[Point, Point]
+  private def ticksToSequence(
+      ticks: Ticks,
+      scale: Bijection[Point, Point],
+      toPoint: Double => Point
   ): TicksSequence = {
-    (0 to ((xTicks.max - xTicks.min) / xTicks.size).toInt)
+    (0 to ((ticks.max - ticks.min) / ticks.size).toInt)
       .map(i =>
         (
-          scale(Point(xTicks.min + i * xTicks.size, 0)),
-          Point(xTicks.min + i * xTicks.size, 0)
-        )
-      )
-      .toList
-  }
-
-  /** Converts `Ticks` to a list of tuples. The first element is the mapped
-    * coordinate of a tick - to place the tick on a graph. The second one is the
-    * original coordinate - to give the tick a label with its coordinate.
-    */
-  private def yTicksToSequence(
-      yTicks: Ticks,
-      scale: Bijection[Point, Point]
-  ): TicksSequence = {
-    (0 to ((yTicks.max - yTicks.min) / yTicks.size).toInt)
-      .map(i =>
-        (
-          scale(Point(0, yTicks.min + i * yTicks.size)),
-          Point(0, yTicks.min + i * yTicks.size)
+          scale(toPoint(ticks.min + i * ticks.size)),
+          toPoint(ticks.min + i * ticks.size)
         )
       )
       .toList
