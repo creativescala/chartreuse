@@ -57,8 +57,9 @@ final case class Plot[
   }
 
   def draw(width: Int, height: Int): Picture[Alg, Unit] = {
-    val allData = layers.flatMap(_.data.foldLeft(List.empty[A])(_ :+ _))
-    val dataBoundingBox = Data(allData).boundingBox(layers.head.toPoint)
+    val dataBoundingBox = layers.foldLeft(BoundingBox.empty) { (bb, layer) =>
+      bb.on(layer.data.boundingBox(layers.head.toPoint))
+    }
 
     val minX = dataBoundingBox.left
     val maxX = dataBoundingBox.right
