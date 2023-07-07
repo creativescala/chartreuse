@@ -106,10 +106,10 @@ final case class Plot[
         xTicksSequence,
         yTicksSequence
       )
-      return withTitles(plotWithTicksAndAxesAndGrid)
+      withTitles(plotWithTicksAndAxesAndGrid)
+    } else {
+      withTitles(plotWithTicksAndAxes)
     }
-
-    withTitles(plotWithTicksAndAxes)
   }
 
   /** Converts `Ticks` to a list of tuples. The first element is the mapped
