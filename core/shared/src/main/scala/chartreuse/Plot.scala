@@ -140,16 +140,18 @@ final case class Plot[
   ): Picture[Alg, Unit] = {
     xTicksSequence
       .foldLeft(plot)((plot, tick) =>
+        val (screenCoordinate, dataCoordinate) = tick
+
         plot
           .on(
             OpenPath.empty
-              .moveTo(tick._1.x, yTicksMapped.min - 10)
-              .lineTo(tick._1.x, yTicksMapped.min - 17)
+              .moveTo(screenCoordinate.x, yTicksMapped.min - 10)
+              .lineTo(screenCoordinate.x, yTicksMapped.min - 17)
               .path
           )
           .on(
-            text(((tick._2.x * 1000).round / 1000.0).toString)
-              .at(tick._1.x, yTicksMapped.min - 30)
+            text(((dataCoordinate.x * 1000).round / 1000.0).toString)
+              .at(screenCoordinate.x, yTicksMapped.min - 30)
           )
       )
   }
@@ -161,16 +163,18 @@ final case class Plot[
   ): Picture[Alg, Unit] = {
     yTicksSequence
       .foldLeft(plot)((plot, tick) =>
+        val (screenCoordinate, dataCoordinate) = tick
+
         plot
           .on(
             OpenPath.empty
-              .moveTo(xTicksMapped.min - 10, tick._1.y)
-              .lineTo(xTicksMapped.min - 17, tick._1.y)
+              .moveTo(xTicksMapped.min - 10, screenCoordinate.y)
+              .lineTo(xTicksMapped.min - 17, screenCoordinate.y)
               .path
           )
           .on(
-            text(((tick._2.y * 1000).round / 1000.0).toString)
-              .at(xTicksMapped.min - 45, tick._1.y)
+            text(((dataCoordinate.y * 1000).round / 1000.0).toString)
+              .at(xTicksMapped.min - 45, screenCoordinate.y)
           )
       )
   }
@@ -201,11 +205,13 @@ final case class Plot[
     plot.on(
       xTicksSequence
         .foldLeft(empty[Alg])((plot, tick) =>
+          val (screenCoordinate, _) = tick
+
           plot
             .on(
               OpenPath.empty
-                .moveTo(tick._1.x, yTicksMapped.min - 20)
-                .lineTo(tick._1.x, yTicksMapped.max + 10)
+                .moveTo(screenCoordinate.x, yTicksMapped.min - 20)
+                .lineTo(screenCoordinate.x, yTicksMapped.max + 10)
                 .path
                 .strokeColor(Color.gray)
                 .strokeWidth(0.5)
@@ -214,11 +220,13 @@ final case class Plot[
         .on(
           yTicksSequence
             .foldLeft(empty[Alg])((plot, tick) =>
+              val (screenCoordinate, _) = tick
+
               plot
                 .on(
                   OpenPath.empty
-                    .moveTo(xTicksMapped.min - 10, tick._1.y)
-                    .lineTo(xTicksMapped.max + 10, tick._1.y)
+                    .moveTo(xTicksMapped.min - 10, screenCoordinate.y)
+                    .lineTo(xTicksMapped.max + 10, screenCoordinate.y)
                     .path
                     .strokeColor(Color.gray)
                     .strokeWidth(0.5)
