@@ -116,8 +116,11 @@ final case class Plot[A, Alg <: Algebra](
   }
 
   /** Converts `Ticks` to a list of tuples. The first element is the mapped
-    * coordinate of a tick - to place the tick on a graph. The second one is the
-    * original coordinate - to give the tick a label with its coordinate.
+    * coordinate of a tick, i.e. a screen coordinate - to place the tick on a
+    * graph. The second one is the original coordinate, i.e. a data coordinate -
+    * to give the tick a label with its coordinate. Screen coordinates are the
+    * coordinates of the graph rendered on the screen. Data coordinates are the
+    * values in the data.
     */
   private def ticksToSequence(
       ticks: Ticks,
