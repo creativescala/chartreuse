@@ -20,6 +20,7 @@ import chartreuse.layout.ScatterPlot
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
+import chartreuse.Coordinate._
 
 /** A `Plot` is a collection of layers along with a title, legend, axes, and
   * grid.
@@ -31,7 +32,7 @@ final case class Plot[A, Alg <: Algebra](
     yTitle: String = "Y data",
     grid: Boolean = false
 ) {
-  type TicksSequence = Seq[(Point, Point)]
+  type TicksSequence = Seq[(ScreenCoordinate, DataCoordinate)]
   type PlotPicture = Picture[
     Alg & Layout & Text & Path & Style & Shape & doodle.algebra.Transform,
     Unit
@@ -130,8 +131,8 @@ final case class Plot[A, Alg <: Algebra](
     (0 to ((ticks.max - ticks.min) / ticks.size).toInt)
       .map(i =>
         (
-          scale(toPoint(ticks.min + i * ticks.size)),
-          toPoint(ticks.min + i * ticks.size)
+          ScreenCoordinate(scale(toPoint(ticks.min + i * ticks.size))),
+          DataCoordinate(toPoint(ticks.min + i * ticks.size))
         )
       )
       .toList
