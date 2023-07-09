@@ -19,31 +19,27 @@ package chartreuse
 import doodle.core.Point
 
 object Coordinate {
-  opaque type ScreenCoordinate = Point
+  opaque type Coordinate = Point
+  opaque type ScreenCoordinate <: Coordinate = Point
+  opaque type DataCoordinate <: Coordinate = Point
+
+  extension (coordinate: Coordinate) {
+    def x: Double = coordinate.x
+    def y: Double = coordinate.y
+  }
 
   object ScreenCoordinate {
     def apply(x: Double, y: Double): ScreenCoordinate = Point(x, y)
     def apply(point: Point): ScreenCoordinate = point
 
     def unapply(point: ScreenCoordinate): Option[Point] = Some(point)
-
-    extension (screenCoordinate: ScreenCoordinate) {
-      def x: Double = screenCoordinate.x
-      def y: Double = screenCoordinate.y
-    }
   }
 
-  opaque type DataCoordinate = Point
 
   object DataCoordinate {
     def apply(x: Double, y: Double): DataCoordinate = Point(x, y)
     def apply(point: Point): DataCoordinate = point
 
     def unapply(point: DataCoordinate): Option[Point] = Some(point)
-
-    extension (dataCoordinate: DataCoordinate) {
-      def x: Double = dataCoordinate.x
-      def y: Double = dataCoordinate.y
-    }
   }
 }
