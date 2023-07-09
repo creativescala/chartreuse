@@ -35,7 +35,6 @@ object Coordinate {
     def unapply(point: ScreenCoordinate): Option[Point] = Some(point)
   }
 
-
   object DataCoordinate {
     def apply(x: Double, y: Double): DataCoordinate = Point(x, y)
     def apply(point: Point): DataCoordinate = point
