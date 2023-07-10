@@ -19,7 +19,7 @@ package chartreuse
 import doodle.algebra.Algebra
 import doodle.algebra.Picture
 import doodle.algebra.Shape
-import doodle.core.Point
+import doodle.core.{BoundingBox, Point}
 
 /** A `Layer` combines data with layout and other properties required to produce
   * a plot.
@@ -36,6 +36,9 @@ final case class Layer[A, Alg <: Algebra](
 
     layout.draw(data, toPoint, s)
   }
+
+  def boundingBox: BoundingBox =
+    data.boundingBox(toPoint)
 
   // Builder methods -----------------------------------------------------------
 
