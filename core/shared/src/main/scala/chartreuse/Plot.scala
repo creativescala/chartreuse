@@ -20,7 +20,7 @@ import chartreuse.layout.ScatterPlot
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
-import chartreuse.Coordinate._
+import chartreuse.Coordinate.*
 
 /** A `Plot` is a collection of layers along with a title, legend, axes, and
   * grid.
@@ -60,7 +60,7 @@ final case class Plot[A, Alg <: Algebra](
 
   def draw(width: Int, height: Int): PlotPicture = {
     val dataBoundingBox = layers.foldLeft(BoundingBox.empty) { (bb, layer) =>
-      bb.on(layer.data.boundingBox(layers.head.toPoint))
+      bb.on(layer.data.boundingBox(layer.toPoint))
     }
 
     val minX = dataBoundingBox.left
