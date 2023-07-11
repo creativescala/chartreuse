@@ -92,7 +92,7 @@ final case class Plot[Alg <: Algebra](
     val xTicksSequence = ticksToSequence(xTicks, scale, asX)
     val yTicksSequence = ticksToSequence(yTicks, scale, asY)
 
-    val numberFormat = new NumberFormat()
+    val numberFormat = new NumberFormat
 
     val allLayers =
       layers

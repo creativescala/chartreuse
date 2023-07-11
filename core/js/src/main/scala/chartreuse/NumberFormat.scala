@@ -17,10 +17,10 @@
 package chartreuse
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation._
+import scala.scalajs.js.annotation.*
 
 @js.native
 @JSGlobal("Intl.NumberFormat")
-class NumberFormat() extends js.Object {
+class NumberFormat extends js.Object {
   def format(value: Double): String = js.native
 }
