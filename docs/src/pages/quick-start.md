@@ -50,6 +50,6 @@ In our case this is just the identity function.
 
 Now we add the layer to a plot, and we can set the title and other properties.
 
-```scala mdoc:silent 
+```scala
 TODO
 ```

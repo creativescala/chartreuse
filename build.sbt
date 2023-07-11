@@ -34,7 +34,6 @@ ThisBuild / developers ++= List(
   tlGitHubDev("noelwelsh", "Noel Welsh")
 )
 ThisBuild / scalaVersion := scala3
-ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
 ThisBuild / semanticdbEnabled := true
 ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 
@@ -43,11 +42,12 @@ Global / onChangedBuildSource := ReloadOnSourceChanges
 // Run this (build) to do everything involved in building the project
 commands += Command.command("build") { state =>
   "dependencyUpdates" ::
+    "clean" ::
     "compile" ::
     "test" ::
     "scalafixAll" ::
     "scalafmtAll" ::
-    // "headerCreateAll" ::
+    "headerCreateAll" ::
     "docs/tlSite" ::
     state
 }
