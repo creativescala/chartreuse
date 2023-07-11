@@ -16,11 +16,9 @@
 
 package chartreuse
 
-import chartreuse.layout.ScatterPlot
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
-import chartreuse.Coordinate.*
 
 /** A `Plot` is a collection of layers along with a title, legend, axes, and
   * grid.
@@ -60,7 +58,7 @@ final case class Plot[A, Alg <: Algebra](
 
   def draw(width: Int, height: Int): PlotPicture = {
     val dataBoundingBox = layers.foldLeft(BoundingBox.empty) { (bb, layer) =>
-      bb.on(layer.data.boundingBox(layer.toPoint))
+      bb.on(layer.boundingBox)
     }
 
     val minX = dataBoundingBox.left
@@ -96,24 +94,55 @@ final case class Plot[A, Alg <: Algebra](
         .map(_.draw(width, height))
         .foldLeft(empty[Alg & Layout & Shape])(_ on _)
 
-    val plotWithXTicks = withXTicks(xTicksSequence, allLayers, yTicksMapped)
-    val plotWithXAndYTicks =
-      withYTicks(yTicksSequence, plotWithXTicks, xTicksMapped)
-    val plotWithTicksAndAxes =
-      withAxes(plotWithXAndYTicks, xTicksMapped, yTicksMapped)
+    val createTickX: ScreenCoordinate => OpenPath =
+      screenCoordinate =>
+        OpenPath.empty
+          .moveTo(screenCoordinate.x, yTicksMapped.min - 10)
+          .lineTo(screenCoordinate.x, yTicksMapped.min - 17)
 
-    if (grid) {
-      val plotWithTicksAndAxesAndGrid = withGrid(
-        plotWithTicksAndAxes,
-        xTicksMapped,
-        yTicksMapped,
-        xTicksSequence,
-        yTicksSequence
+    val createTickLabelX: (ScreenCoordinate, DataCoordinate) => PlotPicture =
+      (screenCoordinate, dataCoordinate) =>
+        text(dataCoordinate.x.toString)
+          .at(screenCoordinate.x, yTicksMapped.min - 30)
+
+    val createTickY: ScreenCoordinate => OpenPath =
+      screenCoordinate =>
+        OpenPath.empty
+          .moveTo(xTicksMapped.min - 10, screenCoordinate.y)
+          .lineTo(xTicksMapped.min - 17, screenCoordinate.y)
+
+    val createTickLabelY: (ScreenCoordinate, DataCoordinate) => PlotPicture =
+      (screenCoordinate, dataCoordinate) =>
+        text(((dataCoordinate.y * 1000).round / 1000.0).toString)
+          .at(xTicksMapped.min - 45, screenCoordinate.y)
+
+    val plotTitle = text(this.plotTitle)
+      .scale(2, 2)
+    val xTitle = text(this.xTitle)
+    val yTitle = text(this.yTitle)
+      .rotate(Angle(1.5708))
+
+    yTitle
+      .beside(
+        allLayers
+          .on(withTicks(xTicksSequence, createTickX, createTickLabelX))
+          .on(withTicks(yTicksSequence, createTickY, createTickLabelY))
+          .on(withAxes(xTicksMapped, yTicksMapped))
+          .on(
+            if grid then
+              withGrid(
+                xTicksMapped,
+                yTicksMapped,
+                xTicksSequence,
+                yTicksSequence
+              )
+            else empty[Shape]
+          )
+          .margin(5)
+          .below(plotTitle)
+          .above(xTitle)
       )
-      withTitles(plotWithTicksAndAxesAndGrid)
-    } else {
-      withTitles(plotWithTicksAndAxes)
-    }
+
   }
 
   /** Converts `Ticks` to a list of tuples. The first element is the mapped
@@ -138,124 +167,72 @@ final case class Plot[A, Alg <: Algebra](
       .toList
   }
 
-  private def withXTicks(
-      xTicksSequence: TicksSequence,
-      plot: PlotPicture,
-      yTicksMapped: Ticks
+  private def withTicks(
+      ticksSequence: TicksSequence,
+      createTick: ScreenCoordinate => OpenPath,
+      createTickLabel: (ScreenCoordinate, DataCoordinate) => PlotPicture
   ): PlotPicture = {
-    xTicksSequence
-      .foldLeft(plot)((plot, tick) =>
+    ticksSequence
+      .foldLeft(
+        empty[
+          Alg & Layout & Text & Path & Style & Shape & doodle.algebra.Transform
+        ]
+      )((plot, tick) =>
         val (screenCoordinate, dataCoordinate) = tick
 
         plot
-          .on(
-            OpenPath.empty
-              .moveTo(screenCoordinate.x, yTicksMapped.min - 10)
-              .lineTo(screenCoordinate.x, yTicksMapped.min - 17)
-              .path
-          )
-          .on(
-            text(((dataCoordinate.x * 1000).round / 1000.0).toString)
-              .at(screenCoordinate.x, yTicksMapped.min - 30)
-          )
-      )
-  }
-
-  private def withYTicks(
-      yTicksSequence: TicksSequence,
-      plot: PlotPicture,
-      xTicksMapped: Ticks
-  ): PlotPicture = {
-    yTicksSequence
-      .foldLeft(plot)((plot, tick) =>
-        val (screenCoordinate, dataCoordinate) = tick
-
-        plot
-          .on(
-            OpenPath.empty
-              .moveTo(xTicksMapped.min - 10, screenCoordinate.y)
-              .lineTo(xTicksMapped.min - 17, screenCoordinate.y)
-              .path
-          )
-          .on(
-            text(((dataCoordinate.y * 1000).round / 1000.0).toString)
-              .at(xTicksMapped.min - 45, screenCoordinate.y)
-          )
+          .on(createTick(screenCoordinate).path)
+          .on(createTickLabel(screenCoordinate, dataCoordinate))
       )
   }
 
   private def withAxes(
-      plot: PlotPicture,
       xTicksMapped: Ticks,
       yTicksMapped: Ticks
   ): PlotPicture = {
-    plot
-      .on(
-        ClosedPath.empty
-          .moveTo(xTicksMapped.min - 10, yTicksMapped.min - 10)
-          .lineTo(xTicksMapped.max + 10, yTicksMapped.min - 10)
-          .lineTo(xTicksMapped.max + 10, yTicksMapped.max + 10)
-          .lineTo(xTicksMapped.min - 10, yTicksMapped.max + 10)
-          .path
-      )
+    ClosedPath.empty
+      .moveTo(xTicksMapped.min - 10, yTicksMapped.min - 10)
+      .lineTo(xTicksMapped.max + 10, yTicksMapped.min - 10)
+      .lineTo(xTicksMapped.max + 10, yTicksMapped.max + 10)
+      .lineTo(xTicksMapped.min - 10, yTicksMapped.max + 10)
+      .path
   }
 
   private def withGrid(
-      plot: PlotPicture,
       xTicksMapped: Ticks,
       yTicksMapped: Ticks,
       xTicksSequence: TicksSequence,
       yTicksSequence: TicksSequence
   ): PlotPicture = {
-    plot.on(
-      xTicksSequence
-        .foldLeft(empty[Alg & Layout & Text & Path & Style & Shape])(
-          (plot, tick) =>
+    xTicksSequence
+      .foldLeft(empty[Layout & Path & Style & Shape])((plot, tick) =>
+        val (screenCoordinate, _) = tick
+
+        plot
+          .on(
+            OpenPath.empty
+              .moveTo(screenCoordinate.x, yTicksMapped.min - 10)
+              .lineTo(screenCoordinate.x, yTicksMapped.max + 10)
+              .path
+              .strokeColor(Color.gray)
+              .strokeWidth(0.5)
+          )
+      )
+      .on(
+        yTicksSequence
+          .foldLeft(empty[Layout & Path & Style & Shape])((plot, tick) =>
             val (screenCoordinate, _) = tick
 
             plot
               .on(
                 OpenPath.empty
-                  .moveTo(screenCoordinate.x, yTicksMapped.min - 20)
-                  .lineTo(screenCoordinate.x, yTicksMapped.max + 10)
+                  .moveTo(xTicksMapped.min - 10, screenCoordinate.y)
+                  .lineTo(xTicksMapped.max + 10, screenCoordinate.y)
                   .path
                   .strokeColor(Color.gray)
                   .strokeWidth(0.5)
               )
-        )
-        .on(
-          yTicksSequence
-            .foldLeft(empty[Alg & Layout & Text & Path & Style & Shape])(
-              (plot, tick) =>
-                val (screenCoordinate, _) = tick
-
-                plot
-                  .on(
-                    OpenPath.empty
-                      .moveTo(xTicksMapped.min - 10, screenCoordinate.y)
-                      .lineTo(xTicksMapped.max + 10, screenCoordinate.y)
-                      .path
-                      .strokeColor(Color.gray)
-                      .strokeWidth(0.5)
-                  )
-            )
-        )
-    )
-  }
-
-  private def withTitles(plot: PlotPicture): PlotPicture = {
-    val plotTitle = text(this.plotTitle)
-      .scale(2, 2)
-    val xTitle = text(this.xTitle)
-    val yTitle = text(this.yTitle)
-      .rotate(Angle(1.5708))
-
-    yTitle
-      .beside(
-        plot
-          .margin(5)
-          .below(plotTitle)
-          .above(xTitle)
+          )
       )
   }
 }
