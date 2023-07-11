@@ -19,13 +19,12 @@ package chartreuse
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
-import java.text.NumberFormat
 
 /** A `Plot` is a collection of layers along with a title, legend, axes, and
   * grid.
   */
-final case class Plot[A, Alg <: Algebra](
-    layers: List[Layer[A, Alg]],
+final case class Plot[Alg <: Algebra](
+    layers: List[Layer[?, Alg]],
     plotTitle: String = "Plot Title",
     xTitle: String = "X data",
     yTitle: String = "Y data",
@@ -40,23 +39,23 @@ final case class Plot[A, Alg <: Algebra](
 
   private val margin = 10
 
-  def addLayer(layer: Layer[A, Alg]): Plot[A, Alg] = {
+  def addLayer(layer: Layer[?, Alg]): Plot[Alg] = {
     copy(layers = layer :: layers)
   }
 
-  def withPlotTitle(newPlotTitle: String): Plot[A, Alg] = {
+  def withPlotTitle(newPlotTitle: String): Plot[Alg] = {
     copy(plotTitle = newPlotTitle)
   }
 
-  def withXTitle(newXTitle: String): Plot[A, Alg] = {
+  def withXTitle(newXTitle: String): Plot[Alg] = {
     copy(xTitle = newXTitle)
   }
 
-  def withYTitle(newYTitle: String): Plot[A, Alg] = {
+  def withYTitle(newYTitle: String): Plot[Alg] = {
     copy(yTitle = newYTitle)
   }
 
-  def withGrid(newGrid: Boolean): Plot[A, Alg] = {
+  def withGrid(newGrid: Boolean): Plot[Alg] = {
     copy(grid = newGrid)
   }
 
@@ -93,31 +92,31 @@ final case class Plot[A, Alg <: Algebra](
     val xTicksSequence = ticksToSequence(xTicks, scale, asX)
     val yTicksSequence = ticksToSequence(yTicks, scale, asY)
 
-    val numberFormat = NumberFormat.getNumberInstance
+    val numberFormat = java.text.NumberFormat.getNumberInstance
 
     val allLayers =
       layers
         .map(_.draw(width, height))
         .foldLeft(empty[Alg & Layout & Shape])(_ on _)
 
-    val createTickX: ScreenCoordinate => OpenPath =
+    val createXTick: ScreenCoordinate => OpenPath =
       screenCoordinate =>
         OpenPath.empty
           .moveTo(screenCoordinate.x, yTicksMapped.min - margin)
           .lineTo(screenCoordinate.x, yTicksMapped.min - margin - tickSize)
 
-    val createTickLabelX: (ScreenCoordinate, DataCoordinate) => PlotPicture =
+    val createXTickLabel: (ScreenCoordinate, DataCoordinate) => PlotPicture =
       (screenCoordinate, dataCoordinate) =>
         text(numberFormat.format(dataCoordinate.x))
           .at(screenCoordinate.x, yTicksMapped.min - 30)
 
-    val createTickY: ScreenCoordinate => OpenPath =
+    val createYTick: ScreenCoordinate => OpenPath =
       screenCoordinate =>
         OpenPath.empty
           .moveTo(xTicksMapped.min - margin, screenCoordinate.y)
           .lineTo(xTicksMapped.min - margin - tickSize, screenCoordinate.y)
 
-    val createTickLabelY: (ScreenCoordinate, DataCoordinate) => PlotPicture =
+    val createYTickLabel: (ScreenCoordinate, DataCoordinate) => PlotPicture =
       (screenCoordinate, dataCoordinate) =>
         text(numberFormat.format(dataCoordinate.y))
           .at(xTicksMapped.min - 45, screenCoordinate.y)
@@ -131,8 +130,8 @@ final case class Plot[A, Alg <: Algebra](
     yTitle
       .beside(
         allLayers
-          .on(withTicks(xTicksSequence, createTickX, createTickLabelX))
-          .on(withTicks(yTicksSequence, createTickY, createTickLabelY))
+          .on(withTicks(xTicksSequence, createXTick, createXTickLabel))
+          .on(withTicks(yTicksSequence, createYTick, createYTickLabel))
           .on(withAxes(xTicksMapped, yTicksMapped))
           .on(
             if grid then
