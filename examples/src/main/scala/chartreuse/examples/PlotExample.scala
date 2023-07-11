@@ -40,7 +40,7 @@ object PlotExample {
     Layer(data, layout)(pt => pt)
   }
 
-  val plot: Plot[Point, Basic] = Plot(
+  val plot: Plot[Basic] = Plot(
     List.fill(20)(randomLayer)
   )
 
