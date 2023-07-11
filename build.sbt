@@ -24,15 +24,16 @@ val scala3 = "3.3.0"
 ThisBuild / organization := "org.creativescala"
 ThisBuild / organizationName := "Creative Scala"
 ThisBuild / tlBaseVersion := "0.1" // your current series x.y
+ThisBuild / tlSitePublishBranch := Some("main")
 
 ThisBuild / crossScalaVersions := List(scala3)
-ThisBuild / startYear := Some(2015)
+ThisBuild / startYear := Some(2023)
 ThisBuild / licenses := Seq(License.Apache2)
-ThisBuild / developers := List(
+ThisBuild / developers ++= List(
   // your GitHub handle and name
   tlGitHubDev("noelwelsh", "Noel Welsh")
 )
-ThisBuild / scalaVersion := crossScalaVersions.value.head
+ThisBuild / scalaVersion := scala3
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
 ThisBuild / semanticdbEnabled := true
 ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
@@ -46,7 +47,7 @@ commands += Command.command("build") { state =>
     "test" ::
     "scalafixAll" ::
     "scalafmtAll" ::
-    "headerCreateAll" ::
+    // "headerCreateAll" ::
     "docs/tlSite" ::
     state
 }
