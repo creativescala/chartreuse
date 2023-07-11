@@ -28,13 +28,16 @@ final case class Plot[A, Alg <: Algebra](
     plotTitle: String = "Plot Title",
     xTitle: String = "X data",
     yTitle: String = "Y data",
-    grid: Boolean = false
+    grid: Boolean = false,
+    tickSize: Int = 7
 ) {
   type TicksSequence = Seq[(ScreenCoordinate, DataCoordinate)]
   type PlotPicture = Picture[
     Alg & Layout & Text & Path & Style & Shape & doodle.algebra.Transform,
     Unit
   ]
+
+  private val margin = 10
 
   def addLayer(layer: Layer[A, Alg]): Plot[A, Alg] = {
     copy(layers = layer :: layers)
@@ -97,8 +100,8 @@ final case class Plot[A, Alg <: Algebra](
     val createTickX: ScreenCoordinate => OpenPath =
       screenCoordinate =>
         OpenPath.empty
-          .moveTo(screenCoordinate.x, yTicksMapped.min - 10)
-          .lineTo(screenCoordinate.x, yTicksMapped.min - 17)
+          .moveTo(screenCoordinate.x, yTicksMapped.min - margin)
+          .lineTo(screenCoordinate.x, yTicksMapped.min - margin - tickSize)
 
     val createTickLabelX: (ScreenCoordinate, DataCoordinate) => PlotPicture =
       (screenCoordinate, dataCoordinate) =>
@@ -108,8 +111,8 @@ final case class Plot[A, Alg <: Algebra](
     val createTickY: ScreenCoordinate => OpenPath =
       screenCoordinate =>
         OpenPath.empty
-          .moveTo(xTicksMapped.min - 10, screenCoordinate.y)
-          .lineTo(xTicksMapped.min - 17, screenCoordinate.y)
+          .moveTo(xTicksMapped.min - margin, screenCoordinate.y)
+          .lineTo(xTicksMapped.min - margin - tickSize, screenCoordinate.y)
 
     val createTickLabelY: (ScreenCoordinate, DataCoordinate) => PlotPicture =
       (screenCoordinate, dataCoordinate) =>
@@ -191,10 +194,10 @@ final case class Plot[A, Alg <: Algebra](
       yTicksMapped: Ticks
   ): PlotPicture = {
     ClosedPath.empty
-      .moveTo(xTicksMapped.min - 10, yTicksMapped.min - 10)
-      .lineTo(xTicksMapped.max + 10, yTicksMapped.min - 10)
-      .lineTo(xTicksMapped.max + 10, yTicksMapped.max + 10)
-      .lineTo(xTicksMapped.min - 10, yTicksMapped.max + 10)
+      .moveTo(xTicksMapped.min - margin, yTicksMapped.min - margin)
+      .lineTo(xTicksMapped.max + margin, yTicksMapped.min - margin)
+      .lineTo(xTicksMapped.max + margin, yTicksMapped.max + margin)
+      .lineTo(xTicksMapped.min - margin, yTicksMapped.max + margin)
       .path
   }
 
@@ -211,8 +214,8 @@ final case class Plot[A, Alg <: Algebra](
         plot
           .on(
             OpenPath.empty
-              .moveTo(screenCoordinate.x, yTicksMapped.min - 10)
-              .lineTo(screenCoordinate.x, yTicksMapped.max + 10)
+              .moveTo(screenCoordinate.x, yTicksMapped.min - margin)
+              .lineTo(screenCoordinate.x, yTicksMapped.max + margin)
               .path
               .strokeColor(Color.gray)
               .strokeWidth(0.5)
@@ -226,8 +229,8 @@ final case class Plot[A, Alg <: Algebra](
             plot
               .on(
                 OpenPath.empty
-                  .moveTo(xTicksMapped.min - 10, screenCoordinate.y)
-                  .lineTo(xTicksMapped.max + 10, screenCoordinate.y)
+                  .moveTo(xTicksMapped.min - margin, screenCoordinate.y)
+                  .lineTo(xTicksMapped.max + margin, screenCoordinate.y)
                   .path
                   .strokeColor(Color.gray)
                   .strokeWidth(0.5)
