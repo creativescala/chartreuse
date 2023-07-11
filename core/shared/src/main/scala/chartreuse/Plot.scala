@@ -19,6 +19,7 @@ package chartreuse
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
+import java.text.NumberFormat
 
 /** A `Plot` is a collection of layers along with a title, legend, axes, and
   * grid.
@@ -92,6 +93,8 @@ final case class Plot[A, Alg <: Algebra](
     val xTicksSequence = ticksToSequence(xTicks, scale, asX)
     val yTicksSequence = ticksToSequence(yTicks, scale, asY)
 
+    val numberFormat = NumberFormat.getNumberInstance
+
     val allLayers =
       layers
         .map(_.draw(width, height))
@@ -105,7 +108,7 @@ final case class Plot[A, Alg <: Algebra](
 
     val createTickLabelX: (ScreenCoordinate, DataCoordinate) => PlotPicture =
       (screenCoordinate, dataCoordinate) =>
-        text(dataCoordinate.x.toString)
+        text(numberFormat.format(dataCoordinate.x))
           .at(screenCoordinate.x, yTicksMapped.min - 30)
 
     val createTickY: ScreenCoordinate => OpenPath =
@@ -116,7 +119,7 @@ final case class Plot[A, Alg <: Algebra](
 
     val createTickLabelY: (ScreenCoordinate, DataCoordinate) => PlotPicture =
       (screenCoordinate, dataCoordinate) =>
-        text(((dataCoordinate.y * 1000).round / 1000.0).toString)
+        text(numberFormat.format(dataCoordinate.y))
           .at(xTicksMapped.min - 45, screenCoordinate.y)
 
     val plotTitle = text(this.plotTitle)
