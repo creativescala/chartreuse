@@ -34,8 +34,12 @@ object QuickStartExample {
 
   val layout = ScatterPlot.default[Point]
   val layer = Layer(data, layout)(pt => pt)
+  val plot = Plot(layer)
+    .withPlotTitle("Our Amazing Plot")
+    .withXTitle("Awesomeness")
+    .withYTitle("Marvellousness")
 
   @JSExport
   def draw(id: String): Unit =
-    layer.draw(640, 480).drawWithFrame(Frame(id))
+    plot.draw(640, 480).drawWithFrame(Frame(id))
 }
