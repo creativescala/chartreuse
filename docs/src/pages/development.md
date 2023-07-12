@@ -28,9 +28,8 @@ Interfaces are represented as Scala `traits`.
 ## Builders
 
 Components that have extensive options, but are limited in the number of possible implementations, are represented as builders.
-`Layer` is an example.
 `Plot` is an example.
-It acts a container fro all the other elements of a visualization.
+It acts a container for all the other elements of a visualization.
 It's appearance is determined by it's components, but the user will probably wish to change the title, axes, and so on.
 Chartreuse uses the builder pattern extensively to make it easier for users to construct these kinds of components,
 overriding only the defaults they care about.
