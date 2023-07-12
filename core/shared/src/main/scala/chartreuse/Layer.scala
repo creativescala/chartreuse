@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Creative Scala
+ * Copyright 2023 Creative Scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,8 @@ package chartreuse
 import doodle.algebra.Algebra
 import doodle.algebra.Picture
 import doodle.algebra.Shape
-import doodle.core.{BoundingBox, Point}
+import doodle.core.BoundingBox
+import doodle.core.Point
 
 /** A `Layer` combines data with layout and other properties required to produce
   * a plot.

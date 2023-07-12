@@ -16,11 +16,26 @@
 
 package chartreuse.examples
 
+import cats.effect.unsafe.implicits.global
+import chartreuse.*
+import chartreuse.layout.ScatterPlot
+import doodle.core.Point
+import doodle.svg.*
+import doodle.syntax.all.*
+
 import scala.scalajs.js.annotation.JSExport
 import scala.scalajs.js.annotation.JSExportTopLevel
+import scala.util.Random
 
-@JSExportTopLevel("ChartreuseExamples")
-object Examples {
+@JSExportTopLevel("QuickStartExample")
+object QuickStartExample {
+  val data =
+    Data(List.fill(100)(Point(Random.nextGaussian(), Random.nextGaussian())))
+
+  val layout = ScatterPlot.default[Point]
+  val layer = Layer(data, layout)(pt => pt)
+
   @JSExport
-  def go(): Unit = println("Hello")
+  def draw(id: String): Unit =
+    layer.draw(640, 480).drawWithFrame(Frame(id))
 }
