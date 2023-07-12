@@ -41,7 +41,7 @@ trait PlotModule(numberFormat: NumberFormat) {
 
     private val margin = 10
 
-    def addLayer(layer: Layer[?, Alg]): Plot[Alg] = {
+    def addLayer[Alg2 <: Algebra](layer: Layer[?, Alg2]): Plot[Alg & Alg2] = {
       copy(layers = layer :: layers)
     }
 
