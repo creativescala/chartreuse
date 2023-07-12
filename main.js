@@ -3056,6 +3056,33 @@ var $d_Lcats_syntax_SemigroupOps = new $TypeData().initClass({
 });
 $c_Lcats_syntax_SemigroupOps.prototype.$classData = $d_Lcats_syntax_SemigroupOps;
 /** @constructor */
+function $c_Lchartreuse_Plot$package$() {
+  this.Lchartreuse_Plot$package$__f_module = null;
+  $n_Lchartreuse_Plot$package$ = this;
+  this.Lchartreuse_Plot$package$__f_module = new $c_Lchartreuse_Plot$package$$anon$1()
+}
+$c_Lchartreuse_Plot$package$.prototype = new $h_O();
+$c_Lchartreuse_Plot$package$.prototype.constructor = $c_Lchartreuse_Plot$package$;
+/** @constructor */
+function $h_Lchartreuse_Plot$package$() {
+  /*<skip>*/
+}
+$h_Lchartreuse_Plot$package$.prototype = $c_Lchartreuse_Plot$package$.prototype;
+var $d_Lchartreuse_Plot$package$ = new $TypeData().initClass({
+  Lchartreuse_Plot$package$: 0
+}, false, "chartreuse.Plot$package$", {
+  Lchartreuse_Plot$package$: 1,
+  O: 1
+});
+$c_Lchartreuse_Plot$package$.prototype.$classData = $d_Lchartreuse_Plot$package$;
+var $n_Lchartreuse_Plot$package$;
+function $m_Lchartreuse_Plot$package$() {
+  if ((!$n_Lchartreuse_Plot$package$)) {
+    $n_Lchartreuse_Plot$package$ = new $c_Lchartreuse_Plot$package$()
+  };
+  return $n_Lchartreuse_Plot$package$
+}
+/** @constructor */
 function $c_Lchartreuse_TickMarkCalculator$() {
   /*<skip>*/
 }
@@ -3177,7 +3204,15 @@ function $c_Lchartreuse_examples_PlotExample$() {
     i = ((1 + i) | 0)
   };
   var layers$1 = b.toList__sci_List();
-  this.Lchartreuse_examples_PlotExample$__f_plot = new $c_Lchartreuse_Plot(layers$1, "Plot Title", "X data", "Y data", true, 7)
+  $n(($m_Lchartreuse_Plot$package$(), $n($m_Lchartreuse_Plot$package$().Lchartreuse_Plot$package$__f_module).Plot__Lchartreuse_PlotModule$Plot$()));
+  var plotTitle$1 = "Plot Title";
+  $n(($m_Lchartreuse_Plot$package$(), $n($m_Lchartreuse_Plot$package$().Lchartreuse_Plot$package$__f_module).Plot__Lchartreuse_PlotModule$Plot$()));
+  var xTitle$1 = "X data";
+  $n(($m_Lchartreuse_Plot$package$(), $n($m_Lchartreuse_Plot$package$().Lchartreuse_Plot$package$__f_module).Plot__Lchartreuse_PlotModule$Plot$()));
+  var yTitle$1 = "Y data";
+  $n(($m_Lchartreuse_Plot$package$(), $n($m_Lchartreuse_Plot$package$().Lchartreuse_Plot$package$__f_module).Plot__Lchartreuse_PlotModule$Plot$()));
+  var tickSize$1 = 7;
+  this.Lchartreuse_examples_PlotExample$__f_plot = $n(($m_Lchartreuse_Plot$package$(), $n($m_Lchartreuse_Plot$package$().Lchartreuse_Plot$package$__f_module).Plot__Lchartreuse_PlotModule$Plot$())).apply__sci_List__T__T__T__Z__I__Lchartreuse_PlotModule$Plot(layers$1, plotTitle$1, xTitle$1, yTitle$1, true, tickSize$1)
 }
 $c_Lchartreuse_examples_PlotExample$.prototype = new $h_O();
 $c_Lchartreuse_examples_PlotExample$.prototype.constructor = $c_Lchartreuse_examples_PlotExample$;
@@ -16844,6 +16879,66 @@ var $d_Lcats_syntax_Tuple3SemigroupalOps = new $TypeData().initClass({
 });
 $c_Lcats_syntax_Tuple3SemigroupalOps.prototype.$classData = $d_Lcats_syntax_Tuple3SemigroupalOps;
 /** @constructor */
+function $c_Lchartreuse_JsNumberFormat$() {
+  this.Lchartreuse_JsNumberFormat$__f_instance = null;
+  $n_Lchartreuse_JsNumberFormat$ = this;
+  this.Lchartreuse_JsNumberFormat$__f_instance = new Intl.NumberFormat()
+}
+$c_Lchartreuse_JsNumberFormat$.prototype = new $h_O();
+$c_Lchartreuse_JsNumberFormat$.prototype.constructor = $c_Lchartreuse_JsNumberFormat$;
+/** @constructor */
+function $h_Lchartreuse_JsNumberFormat$() {
+  /*<skip>*/
+}
+$h_Lchartreuse_JsNumberFormat$.prototype = $c_Lchartreuse_JsNumberFormat$.prototype;
+$c_Lchartreuse_JsNumberFormat$.prototype.format__D__T = (function(value) {
+  return $as_T(this.Lchartreuse_JsNumberFormat$__f_instance.format(value))
+});
+var $d_Lchartreuse_JsNumberFormat$ = new $TypeData().initClass({
+  Lchartreuse_JsNumberFormat$: 0
+}, false, "chartreuse.JsNumberFormat$", {
+  Lchartreuse_JsNumberFormat$: 1,
+  O: 1,
+  Lchartreuse_NumberFormat: 1
+});
+$c_Lchartreuse_JsNumberFormat$.prototype.$classData = $d_Lchartreuse_JsNumberFormat$;
+var $n_Lchartreuse_JsNumberFormat$;
+function $m_Lchartreuse_JsNumberFormat$() {
+  if ((!$n_Lchartreuse_JsNumberFormat$)) {
+    $n_Lchartreuse_JsNumberFormat$ = new $c_Lchartreuse_JsNumberFormat$()
+  };
+  return $n_Lchartreuse_JsNumberFormat$
+}
+/** @constructor */
+function $c_Lchartreuse_Plot$package$$anon$1() {
+  this.Lchartreuse_Plot$package$$anon$1__f_chartreuse$PlotModule$$numberFormat = null;
+  this.Lchartreuse_Plot$package$$anon$1__f_Plot$lzy1 = null;
+  this.Lchartreuse_Plot$package$$anon$1__f_Plotbitmap$1 = false;
+  this.Lchartreuse_Plot$package$$anon$1__f_chartreuse$PlotModule$$numberFormat = $m_Lchartreuse_JsNumberFormat$()
+}
+$c_Lchartreuse_Plot$package$$anon$1.prototype = new $h_O();
+$c_Lchartreuse_Plot$package$$anon$1.prototype.constructor = $c_Lchartreuse_Plot$package$$anon$1;
+/** @constructor */
+function $h_Lchartreuse_Plot$package$$anon$1() {
+  /*<skip>*/
+}
+$h_Lchartreuse_Plot$package$$anon$1.prototype = $c_Lchartreuse_Plot$package$$anon$1.prototype;
+$c_Lchartreuse_Plot$package$$anon$1.prototype.Plot__Lchartreuse_PlotModule$Plot$ = (function() {
+  if ((!this.Lchartreuse_Plot$package$$anon$1__f_Plotbitmap$1)) {
+    this.Lchartreuse_Plot$package$$anon$1__f_Plot$lzy1 = new $c_Lchartreuse_PlotModule$Plot$(this);
+    this.Lchartreuse_Plot$package$$anon$1__f_Plotbitmap$1 = true
+  };
+  return this.Lchartreuse_Plot$package$$anon$1__f_Plot$lzy1
+});
+var $d_Lchartreuse_Plot$package$$anon$1 = new $TypeData().initClass({
+  Lchartreuse_Plot$package$$anon$1: 0
+}, false, "chartreuse.Plot$package$$anon$1", {
+  Lchartreuse_Plot$package$$anon$1: 1,
+  O: 1,
+  Lchartreuse_PlotModule: 1
+});
+$c_Lchartreuse_Plot$package$$anon$1.prototype.$classData = $d_Lchartreuse_Plot$package$$anon$1;
+/** @constructor */
 function $c_Lchartreuse_Scale$$anon$1() {
   /*<skip>*/
 }
@@ -23231,6 +23326,36 @@ var $d_Lcats_syntax_ApplySyntax$$anon$1 = new $TypeData().initClass({
 });
 $c_Lcats_syntax_ApplySyntax$$anon$1.prototype.$classData = $d_Lcats_syntax_ApplySyntax$$anon$1;
 /** @constructor */
+function $c_Lchartreuse_PlotModule$Plot$(outer) {
+  this.Lchartreuse_PlotModule$Plot$__f_$outer = null;
+  if ((outer === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  };
+  this.Lchartreuse_PlotModule$Plot$__f_$outer = outer
+}
+$c_Lchartreuse_PlotModule$Plot$.prototype = new $h_O();
+$c_Lchartreuse_PlotModule$Plot$.prototype.constructor = $c_Lchartreuse_PlotModule$Plot$;
+/** @constructor */
+function $h_Lchartreuse_PlotModule$Plot$() {
+  /*<skip>*/
+}
+$h_Lchartreuse_PlotModule$Plot$.prototype = $c_Lchartreuse_PlotModule$Plot$.prototype;
+$c_Lchartreuse_PlotModule$Plot$.prototype.apply__sci_List__T__T__T__Z__I__Lchartreuse_PlotModule$Plot = (function(layers, plotTitle, xTitle, yTitle, grid, tickSize) {
+  return new $c_Lchartreuse_PlotModule$Plot(this.Lchartreuse_PlotModule$Plot$__f_$outer, layers, plotTitle, xTitle, yTitle, grid, tickSize)
+});
+$c_Lchartreuse_PlotModule$Plot$.prototype.toString__T = (function() {
+  return "Plot"
+});
+var $d_Lchartreuse_PlotModule$Plot$ = new $TypeData().initClass({
+  Lchartreuse_PlotModule$Plot$: 0
+}, false, "chartreuse.PlotModule$Plot$", {
+  Lchartreuse_PlotModule$Plot$: 1,
+  O: 1,
+  s_deriving_Mirror: 1,
+  s_deriving_Mirror$Product: 1
+});
+$c_Lchartreuse_PlotModule$Plot$.prototype.$classData = $d_Lchartreuse_PlotModule$Plot$;
+/** @constructor */
 function $c_Lchartreuse_layout_ScatterPlot$() {
   /*<skip>*/
 }
@@ -29199,13 +29324,13 @@ var $d_Lchartreuse_Layer = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_Lchartreuse_Layer.prototype.$classData = $d_Lchartreuse_Layer;
-function $p_Lchartreuse_Plot__withAxes__Lchartreuse_Ticks__Lchartreuse_Ticks__Ldoodle_algebra_Picture($thiz, xTicksMapped, yTicksMapped) {
+function $p_Lchartreuse_PlotModule$Plot__withAxes__Lchartreuse_Ticks__Lchartreuse_Ticks__Ldoodle_algebra_Picture($thiz, xTicksMapped, yTicksMapped) {
   var this$1 = $m_Ldoodle_syntax_package$all$();
-  var closedPath = $n($n($n($n($m_Ldoodle_core_ClosedPath$().Ldoodle_core_ClosedPath$__f_empty).moveTo__D__D__Ldoodle_core_ClosedPath(($n(xTicksMapped).Lchartreuse_Ticks__f_min - $thiz.Lchartreuse_Plot__f_margin), ($n(yTicksMapped).Lchartreuse_Ticks__f_min - $thiz.Lchartreuse_Plot__f_margin))).lineTo__D__D__Ldoodle_core_ClosedPath(($n(xTicksMapped).Lchartreuse_Ticks__f_max + $thiz.Lchartreuse_Plot__f_margin), ($n(yTicksMapped).Lchartreuse_Ticks__f_min - $thiz.Lchartreuse_Plot__f_margin))).lineTo__D__D__Ldoodle_core_ClosedPath(($n(xTicksMapped).Lchartreuse_Ticks__f_max + $thiz.Lchartreuse_Plot__f_margin), ($n(yTicksMapped).Lchartreuse_Ticks__f_max + $thiz.Lchartreuse_Plot__f_margin))).lineTo__D__D__Ldoodle_core_ClosedPath(($n(xTicksMapped).Lchartreuse_Ticks__f_min - $thiz.Lchartreuse_Plot__f_margin), ($n(yTicksMapped).Lchartreuse_Ticks__f_max + $thiz.Lchartreuse_Plot__f_margin));
+  var closedPath = $n($n($n($n($m_Ldoodle_core_ClosedPath$().Ldoodle_core_ClosedPath$__f_empty).moveTo__D__D__Ldoodle_core_ClosedPath(($n(xTicksMapped).Lchartreuse_Ticks__f_min - $thiz.Lchartreuse_PlotModule$Plot__f_margin), ($n(yTicksMapped).Lchartreuse_Ticks__f_min - $thiz.Lchartreuse_PlotModule$Plot__f_margin))).lineTo__D__D__Ldoodle_core_ClosedPath(($n(xTicksMapped).Lchartreuse_Ticks__f_max + $thiz.Lchartreuse_PlotModule$Plot__f_margin), ($n(yTicksMapped).Lchartreuse_Ticks__f_min - $thiz.Lchartreuse_PlotModule$Plot__f_margin))).lineTo__D__D__Ldoodle_core_ClosedPath(($n(xTicksMapped).Lchartreuse_Ticks__f_max + $thiz.Lchartreuse_PlotModule$Plot__f_margin), ($n(yTicksMapped).Lchartreuse_Ticks__f_max + $thiz.Lchartreuse_PlotModule$Plot__f_margin))).lineTo__D__D__Ldoodle_core_ClosedPath(($n(xTicksMapped).Lchartreuse_Ticks__f_min - $thiz.Lchartreuse_PlotModule$Plot__f_margin), ($n(yTicksMapped).Lchartreuse_Ticks__f_max + $thiz.Lchartreuse_PlotModule$Plot__f_margin));
   var this$2 = new $c_Ldoodle_syntax_PathSyntax$ClosedPathOps(this$1, closedPath);
   return new $c_Ldoodle_syntax_PathSyntax$$anon$1(this$2)
 }
-function $p_Lchartreuse_Plot__withGrid__Lchartreuse_Ticks__Lchartreuse_Ticks__sci_Seq__sci_Seq__Ldoodle_algebra_Picture($thiz, xTicksMapped, yTicksMapped, xTicksSequence, yTicksSequence) {
+function $p_Lchartreuse_PlotModule$Plot__withGrid__Lchartreuse_Ticks__Lchartreuse_Ticks__sci_Seq__sci_Seq__Ldoodle_algebra_Picture($thiz, xTicksMapped, yTicksMapped, xTicksSequence, yTicksSequence) {
   var this$14 = $m_Ldoodle_syntax_package$all$();
   var picture$2 = $as_Ldoodle_algebra_Picture($n(xTicksSequence).foldLeft__O__F2__O(new $c_Ldoodle_syntax_ShapeSyntax$$anon$5(), new $c_sjsr_AnonFunction2(((plot, tick) => {
     var plot$1 = $as_Ldoodle_algebra_Picture(plot);
@@ -29224,7 +29349,7 @@ function $p_Lchartreuse_Plot__withGrid__Lchartreuse_Ticks__Lchartreuse_Ticks__sc
     var this$10 = $m_Ldoodle_syntax_package$all$();
     var this$8 = $m_Ldoodle_syntax_package$all$();
     var this$6 = $m_Ldoodle_syntax_package$all$();
-    var openPath = $n($n($m_Ldoodle_core_OpenPath$().Ldoodle_core_OpenPath$__f_empty).moveTo__D__D__Ldoodle_core_OpenPath($n(screenCoordinate$2).Ldoodle_core_Point$Cartesian__f_x, ($n(yTicksMapped).Lchartreuse_Ticks__f_min - $thiz.Lchartreuse_Plot__f_margin))).lineTo__D__D__Ldoodle_core_OpenPath($n(screenCoordinate$2).Ldoodle_core_Point$Cartesian__f_x, ($n(yTicksMapped).Lchartreuse_Ticks__f_max + $thiz.Lchartreuse_Plot__f_margin));
+    var openPath = $n($n($m_Ldoodle_core_OpenPath$().Ldoodle_core_OpenPath$__f_empty).moveTo__D__D__Ldoodle_core_OpenPath($n(screenCoordinate$2).Ldoodle_core_Point$Cartesian__f_x, ($n(yTicksMapped).Lchartreuse_Ticks__f_min - $thiz.Lchartreuse_PlotModule$Plot__f_margin))).lineTo__D__D__Ldoodle_core_OpenPath($n(screenCoordinate$2).Ldoodle_core_Point$Cartesian__f_x, ($n(yTicksMapped).Lchartreuse_Ticks__f_max + $thiz.Lchartreuse_PlotModule$Plot__f_margin));
     var this$7 = new $c_Ldoodle_syntax_PathSyntax$OpenPathOps(this$6, openPath);
     var picture = new $c_Ldoodle_syntax_PathSyntax$$anon$2(this$7);
     var this$9 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$8, picture);
@@ -29253,7 +29378,7 @@ function $p_Lchartreuse_Plot__withGrid__Lchartreuse_Ticks__Lchartreuse_Ticks__sc
     var this$23 = $m_Ldoodle_syntax_package$all$();
     var this$21 = $m_Ldoodle_syntax_package$all$();
     var this$19 = $m_Ldoodle_syntax_package$all$();
-    var openPath$1 = $n($n($m_Ldoodle_core_OpenPath$().Ldoodle_core_OpenPath$__f_empty).moveTo__D__D__Ldoodle_core_OpenPath(($n(xTicksMapped).Lchartreuse_Ticks__f_min - $thiz.Lchartreuse_Plot__f_margin), $n(screenCoordinate$2$1).Ldoodle_core_Point$Cartesian__f_y)).lineTo__D__D__Ldoodle_core_OpenPath(($n(xTicksMapped).Lchartreuse_Ticks__f_max + $thiz.Lchartreuse_Plot__f_margin), $n(screenCoordinate$2$1).Ldoodle_core_Point$Cartesian__f_y);
+    var openPath$1 = $n($n($m_Ldoodle_core_OpenPath$().Ldoodle_core_OpenPath$__f_empty).moveTo__D__D__Ldoodle_core_OpenPath(($n(xTicksMapped).Lchartreuse_Ticks__f_min - $thiz.Lchartreuse_PlotModule$Plot__f_margin), $n(screenCoordinate$2$1).Ldoodle_core_Point$Cartesian__f_y)).lineTo__D__D__Ldoodle_core_OpenPath(($n(xTicksMapped).Lchartreuse_Ticks__f_max + $thiz.Lchartreuse_PlotModule$Plot__f_margin), $n(screenCoordinate$2$1).Ldoodle_core_Point$Cartesian__f_y);
     var this$20 = new $c_Ldoodle_syntax_PathSyntax$OpenPathOps(this$19, openPath$1);
     var picture$3 = new $c_Ldoodle_syntax_PathSyntax$$anon$2(this$20);
     var this$22 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$21, picture$3);
@@ -29268,76 +29393,81 @@ function $p_Lchartreuse_Plot__withGrid__Lchartreuse_Ticks__Lchartreuse_Ticks__sc
   return new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$2, s$2, this$28)
 }
 /** @constructor */
-function $c_Lchartreuse_Plot(layers, plotTitle, xTitle, yTitle, grid, tickSize) {
-  this.Lchartreuse_Plot__f_layers = null;
-  this.Lchartreuse_Plot__f_plotTitle = null;
-  this.Lchartreuse_Plot__f_xTitle = null;
-  this.Lchartreuse_Plot__f_yTitle = null;
-  this.Lchartreuse_Plot__f_grid = false;
-  this.Lchartreuse_Plot__f_tickSize = 0;
-  this.Lchartreuse_Plot__f_margin = 0;
-  this.Lchartreuse_Plot__f_layers = layers;
-  this.Lchartreuse_Plot__f_plotTitle = plotTitle;
-  this.Lchartreuse_Plot__f_xTitle = xTitle;
-  this.Lchartreuse_Plot__f_yTitle = yTitle;
-  this.Lchartreuse_Plot__f_grid = grid;
-  this.Lchartreuse_Plot__f_tickSize = tickSize;
-  this.Lchartreuse_Plot__f_margin = 10
+function $c_Lchartreuse_PlotModule$Plot(outer, layers, plotTitle, xTitle, yTitle, grid, tickSize) {
+  this.Lchartreuse_PlotModule$Plot__f_layers = null;
+  this.Lchartreuse_PlotModule$Plot__f_plotTitle = null;
+  this.Lchartreuse_PlotModule$Plot__f_xTitle = null;
+  this.Lchartreuse_PlotModule$Plot__f_yTitle = null;
+  this.Lchartreuse_PlotModule$Plot__f_grid = false;
+  this.Lchartreuse_PlotModule$Plot__f_tickSize = 0;
+  this.Lchartreuse_PlotModule$Plot__f_margin = 0;
+  this.Lchartreuse_PlotModule$Plot__f_$outer = null;
+  this.Lchartreuse_PlotModule$Plot__f_layers = layers;
+  this.Lchartreuse_PlotModule$Plot__f_plotTitle = plotTitle;
+  this.Lchartreuse_PlotModule$Plot__f_xTitle = xTitle;
+  this.Lchartreuse_PlotModule$Plot__f_yTitle = yTitle;
+  this.Lchartreuse_PlotModule$Plot__f_grid = grid;
+  this.Lchartreuse_PlotModule$Plot__f_tickSize = tickSize;
+  if ((outer === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  };
+  this.Lchartreuse_PlotModule$Plot__f_$outer = outer;
+  this.Lchartreuse_PlotModule$Plot__f_margin = 10
 }
-$c_Lchartreuse_Plot.prototype = new $h_O();
-$c_Lchartreuse_Plot.prototype.constructor = $c_Lchartreuse_Plot;
+$c_Lchartreuse_PlotModule$Plot.prototype = new $h_O();
+$c_Lchartreuse_PlotModule$Plot.prototype.constructor = $c_Lchartreuse_PlotModule$Plot;
 /** @constructor */
-function $h_Lchartreuse_Plot() {
+function $h_Lchartreuse_PlotModule$Plot() {
   /*<skip>*/
 }
-$h_Lchartreuse_Plot.prototype = $c_Lchartreuse_Plot.prototype;
-$c_Lchartreuse_Plot.prototype.productIterator__sc_Iterator = (function() {
+$h_Lchartreuse_PlotModule$Plot.prototype = $c_Lchartreuse_PlotModule$Plot.prototype;
+$c_Lchartreuse_PlotModule$Plot.prototype.productIterator__sc_Iterator = (function() {
   return new $c_s_Product$$anon$1(this)
 });
-$c_Lchartreuse_Plot.prototype.hashCode__I = (function() {
+$c_Lchartreuse_PlotModule$Plot.prototype.hashCode__I = (function() {
   var acc = (-889275714);
   var hash = acc;
   var data = $f_T__hashCode__I("Plot");
   acc = $m_sr_Statics$().mix__I__I__I(hash, data);
   var hash$1 = acc;
-  var x = this.Lchartreuse_Plot__f_layers;
+  var x = this.Lchartreuse_PlotModule$Plot__f_layers;
   var data$1 = $m_sr_Statics$().anyHash__O__I(x);
   acc = $m_sr_Statics$().mix__I__I__I(hash$1, data$1);
   var hash$2 = acc;
-  var x$1 = this.Lchartreuse_Plot__f_plotTitle;
+  var x$1 = this.Lchartreuse_PlotModule$Plot__f_plotTitle;
   var data$2 = $m_sr_Statics$().anyHash__O__I(x$1);
   acc = $m_sr_Statics$().mix__I__I__I(hash$2, data$2);
   var hash$3 = acc;
-  var x$2 = this.Lchartreuse_Plot__f_xTitle;
+  var x$2 = this.Lchartreuse_PlotModule$Plot__f_xTitle;
   var data$3 = $m_sr_Statics$().anyHash__O__I(x$2);
   acc = $m_sr_Statics$().mix__I__I__I(hash$3, data$3);
   var hash$4 = acc;
-  var x$3 = this.Lchartreuse_Plot__f_yTitle;
+  var x$3 = this.Lchartreuse_PlotModule$Plot__f_yTitle;
   var data$4 = $m_sr_Statics$().anyHash__O__I(x$3);
   acc = $m_sr_Statics$().mix__I__I__I(hash$4, data$4);
   var hash$5 = acc;
-  var data$5 = (this.Lchartreuse_Plot__f_grid ? 1231 : 1237);
+  var data$5 = (this.Lchartreuse_PlotModule$Plot__f_grid ? 1231 : 1237);
   acc = $m_sr_Statics$().mix__I__I__I(hash$5, data$5);
   var hash$6 = acc;
-  var data$6 = this.Lchartreuse_Plot__f_tickSize;
+  var data$6 = this.Lchartreuse_PlotModule$Plot__f_tickSize;
   acc = $m_sr_Statics$().mix__I__I__I(hash$6, data$6);
   var hash$7 = acc;
   return $m_sr_Statics$().finalizeHash__I__I__I(hash$7, 6)
 });
-$c_Lchartreuse_Plot.prototype.equals__O__Z = (function(x$0) {
+$c_Lchartreuse_PlotModule$Plot.prototype.equals__O__Z = (function(x$0) {
   if ((this === x$0)) {
     return true
-  } else if ((x$0 instanceof $c_Lchartreuse_Plot)) {
-    var x$0$2 = $as_Lchartreuse_Plot(x$0);
-    if (((this.Lchartreuse_Plot__f_grid === $n(x$0$2).Lchartreuse_Plot__f_grid) && (this.Lchartreuse_Plot__f_tickSize === $n(x$0$2).Lchartreuse_Plot__f_tickSize))) {
-      var x = this.Lchartreuse_Plot__f_layers;
-      var x$2 = $n(x$0$2).Lchartreuse_Plot__f_layers;
+  } else if (((x$0 instanceof $c_Lchartreuse_PlotModule$Plot) && ($n($as_Lchartreuse_PlotModule$Plot(x$0)).Lchartreuse_PlotModule$Plot__f_$outer === this.Lchartreuse_PlotModule$Plot__f_$outer))) {
+    var x$0$2 = $as_Lchartreuse_PlotModule$Plot(x$0);
+    if (((this.Lchartreuse_PlotModule$Plot__f_grid === $n(x$0$2).Lchartreuse_PlotModule$Plot__f_grid) && (this.Lchartreuse_PlotModule$Plot__f_tickSize === $n(x$0$2).Lchartreuse_PlotModule$Plot__f_tickSize))) {
+      var x = this.Lchartreuse_PlotModule$Plot__f_layers;
+      var x$2 = $n(x$0$2).Lchartreuse_PlotModule$Plot__f_layers;
       var $$x1 = ((x === null) ? (x$2 === null) : $n(x).equals__O__Z(x$2))
     } else {
       var $$x1 = false
     };
-    if ((($$x1 && (this.Lchartreuse_Plot__f_plotTitle === $n(x$0$2).Lchartreuse_Plot__f_plotTitle)) && (this.Lchartreuse_Plot__f_xTitle === $n(x$0$2).Lchartreuse_Plot__f_xTitle))) {
-      return (this.Lchartreuse_Plot__f_yTitle === $n(x$0$2).Lchartreuse_Plot__f_yTitle)
+    if ((($$x1 && (this.Lchartreuse_PlotModule$Plot__f_plotTitle === $n(x$0$2).Lchartreuse_PlotModule$Plot__f_plotTitle)) && (this.Lchartreuse_PlotModule$Plot__f_xTitle === $n(x$0$2).Lchartreuse_PlotModule$Plot__f_xTitle))) {
+      return (this.Lchartreuse_PlotModule$Plot__f_yTitle === $n(x$0$2).Lchartreuse_PlotModule$Plot__f_yTitle)
     } else {
       return false
     }
@@ -29345,39 +29475,39 @@ $c_Lchartreuse_Plot.prototype.equals__O__Z = (function(x$0) {
     return false
   }
 });
-$c_Lchartreuse_Plot.prototype.toString__T = (function() {
+$c_Lchartreuse_PlotModule$Plot.prototype.toString__T = (function() {
   return $m_sr_ScalaRunTime$()._toString__s_Product__T(this)
 });
-$c_Lchartreuse_Plot.prototype.productArity__I = (function() {
+$c_Lchartreuse_PlotModule$Plot.prototype.productArity__I = (function() {
   return 6
 });
-$c_Lchartreuse_Plot.prototype.productPrefix__T = (function() {
+$c_Lchartreuse_PlotModule$Plot.prototype.productPrefix__T = (function() {
   return "Plot"
 });
-$c_Lchartreuse_Plot.prototype.productElement__I__O = (function(n) {
+$c_Lchartreuse_PlotModule$Plot.prototype.productElement__I__O = (function(n) {
   switch (n) {
     case 0: {
-      return this.Lchartreuse_Plot__f_layers;
+      return this.Lchartreuse_PlotModule$Plot__f_layers;
       break
     }
     case 1: {
-      return this.Lchartreuse_Plot__f_plotTitle;
+      return this.Lchartreuse_PlotModule$Plot__f_plotTitle;
       break
     }
     case 2: {
-      return this.Lchartreuse_Plot__f_xTitle;
+      return this.Lchartreuse_PlotModule$Plot__f_xTitle;
       break
     }
     case 3: {
-      return this.Lchartreuse_Plot__f_yTitle;
+      return this.Lchartreuse_PlotModule$Plot__f_yTitle;
       break
     }
     case 4: {
-      return this.Lchartreuse_Plot__f_grid;
+      return this.Lchartreuse_PlotModule$Plot__f_grid;
       break
     }
     case 5: {
-      return this.Lchartreuse_Plot__f_tickSize;
+      return this.Lchartreuse_PlotModule$Plot__f_tickSize;
       break
     }
     default: {
@@ -29385,8 +29515,8 @@ $c_Lchartreuse_Plot.prototype.productElement__I__O = (function(n) {
     }
   }
 });
-$c_Lchartreuse_Plot.prototype.draw__I__I__Ldoodle_algebra_Picture = (function(width, height) {
-  var this$1 = $n(this.Lchartreuse_Plot__f_layers);
+$c_Lchartreuse_PlotModule$Plot.prototype.draw__I__I__Ldoodle_algebra_Picture = (function(width, height) {
+  var this$1 = $n(this.Lchartreuse_PlotModule$Plot__f_layers);
   var z = $m_Ldoodle_core_BoundingBox$().Ldoodle_core_BoundingBox$__f_empty;
   var acc = z;
   var these = this$1;
@@ -29502,8 +29632,7 @@ $c_Lchartreuse_Plot.prototype.draw__I__I__Ldoodle_algebra_Picture = (function(wi
   var this$44 = $n($as_sci_IndexedSeq($n(b$1).result__O()));
   $m_sci_List$();
   var yTicksSequence = $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this$44);
-  var numberFormat = new Intl.NumberFormat();
-  var this$46 = $n(this.Lchartreuse_Plot__f_layers);
+  var this$46 = $n(this.Lchartreuse_PlotModule$Plot__f_layers);
   var f$2 = ((_$1) => {
     var _$1$1 = $as_Lchartreuse_Layer(_$1);
     return $n(_$1$1).draw__I__I__Ldoodle_algebra_Picture(width, height)
@@ -29541,14 +29670,14 @@ $c_Lchartreuse_Plot.prototype.draw__I__I__Ldoodle_algebra_Picture = (function(wi
   };
   var allLayers = $as_Ldoodle_algebra_Picture(acc$1);
   var this$53 = $m_Ldoodle_syntax_package$all$();
-  var text = this.Lchartreuse_Plot__f_plotTitle;
+  var text = this.Lchartreuse_PlotModule$Plot__f_plotTitle;
   var picture = new $c_Ldoodle_syntax_TextSyntax$$anon$2(text);
   var this$54 = new $c_Ldoodle_syntax_TransformSyntax$TransformPictureOps(this$53, picture);
   var plotTitle = new $c_Ldoodle_syntax_TransformSyntax$$anon$2(2.0, 2.0, this$54);
-  var text$1 = this.Lchartreuse_Plot__f_xTitle;
+  var text$1 = this.Lchartreuse_PlotModule$Plot__f_xTitle;
   var xTitle = new $c_Ldoodle_syntax_TextSyntax$$anon$2(text$1);
   var this$57 = $m_Ldoodle_syntax_package$all$();
-  var text$2 = this.Lchartreuse_Plot__f_yTitle;
+  var text$2 = this.Lchartreuse_PlotModule$Plot__f_yTitle;
   var picture$1 = new $c_Ldoodle_syntax_TextSyntax$$anon$2(text$2);
   var this$58 = new $c_Ldoodle_syntax_TransformSyntax$TransformPictureOps(this$57, picture$1);
   var angle = $m_Ldoodle_core_Angle$().apply__D__Ldoodle_core_Angle(1.5708);
@@ -29590,14 +29719,14 @@ $c_Lchartreuse_Plot.prototype.draw__I__I__Ldoodle_algebra_Picture = (function(wi
     var this$64 = $m_Ldoodle_syntax_package$all$();
     var this$70 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$64, plot);
     var this$67 = $m_Ldoodle_syntax_package$all$();
-    var openPath = $n($n($m_Ldoodle_core_OpenPath$().Ldoodle_core_OpenPath$__f_empty).moveTo__D__D__Ldoodle_core_OpenPath($n(screenCoordinate$2).Ldoodle_core_Point$Cartesian__f_x, (yTicksMapped.Lchartreuse_Ticks__f_min - this.Lchartreuse_Plot__f_margin))).lineTo__D__D__Ldoodle_core_OpenPath($n(screenCoordinate$2).Ldoodle_core_Point$Cartesian__f_x, ((yTicksMapped.Lchartreuse_Ticks__f_min - this.Lchartreuse_Plot__f_margin) - this.Lchartreuse_Plot__f_tickSize));
+    var openPath = $n($n($m_Ldoodle_core_OpenPath$().Ldoodle_core_OpenPath$__f_empty).moveTo__D__D__Ldoodle_core_OpenPath($n(screenCoordinate$2).Ldoodle_core_Point$Cartesian__f_x, (yTicksMapped.Lchartreuse_Ticks__f_min - this.Lchartreuse_PlotModule$Plot__f_margin))).lineTo__D__D__Ldoodle_core_OpenPath($n(screenCoordinate$2).Ldoodle_core_Point$Cartesian__f_x, ((yTicksMapped.Lchartreuse_Ticks__f_min - this.Lchartreuse_PlotModule$Plot__f_margin) - this.Lchartreuse_PlotModule$Plot__f_tickSize));
     var this$68 = new $c_Ldoodle_syntax_PathSyntax$OpenPathOps(this$67, openPath);
     var that = new $c_Ldoodle_syntax_PathSyntax$$anon$2(this$68);
     var s$1 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
     var picture$2 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that, s$1, this$70);
     var this$78 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$71, picture$2);
     var this$74 = $m_Ldoodle_syntax_package$all$();
-    var text$3 = $as_T(numberFormat.format($n(dataCoordinate$2).Ldoodle_core_Point$Cartesian__f_x));
+    var text$3 = $n($n(this.Lchartreuse_PlotModule$Plot__f_$outer).Lchartreuse_Plot$package$$anon$1__f_chartreuse$PlotModule$$numberFormat).format__D__T($n(dataCoordinate$2).Ldoodle_core_Point$Cartesian__f_x);
     var picture$3 = new $c_Ldoodle_syntax_TextSyntax$$anon$2(text$3);
     var this$76 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$74, picture$3);
     var x$4 = $n(screenCoordinate$2).Ldoodle_core_Point$Cartesian__f_x;
@@ -29638,14 +29767,14 @@ $c_Lchartreuse_Plot.prototype.draw__I__I__Ldoodle_algebra_Picture = (function(wi
     var this$85 = $m_Ldoodle_syntax_package$all$();
     var this$91 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$85, plot$1);
     var this$88 = $m_Ldoodle_syntax_package$all$();
-    var openPath$1 = $n($n($m_Ldoodle_core_OpenPath$().Ldoodle_core_OpenPath$__f_empty).moveTo__D__D__Ldoodle_core_OpenPath((xTicksMapped.Lchartreuse_Ticks__f_min - this.Lchartreuse_Plot__f_margin), $n(screenCoordinate$2$1).Ldoodle_core_Point$Cartesian__f_y)).lineTo__D__D__Ldoodle_core_OpenPath(((xTicksMapped.Lchartreuse_Ticks__f_min - this.Lchartreuse_Plot__f_margin) - this.Lchartreuse_Plot__f_tickSize), $n(screenCoordinate$2$1).Ldoodle_core_Point$Cartesian__f_y);
+    var openPath$1 = $n($n($m_Ldoodle_core_OpenPath$().Ldoodle_core_OpenPath$__f_empty).moveTo__D__D__Ldoodle_core_OpenPath((xTicksMapped.Lchartreuse_Ticks__f_min - this.Lchartreuse_PlotModule$Plot__f_margin), $n(screenCoordinate$2$1).Ldoodle_core_Point$Cartesian__f_y)).lineTo__D__D__Ldoodle_core_OpenPath(((xTicksMapped.Lchartreuse_Ticks__f_min - this.Lchartreuse_PlotModule$Plot__f_margin) - this.Lchartreuse_PlotModule$Plot__f_tickSize), $n(screenCoordinate$2$1).Ldoodle_core_Point$Cartesian__f_y);
     var this$89 = new $c_Ldoodle_syntax_PathSyntax$OpenPathOps(this$88, openPath$1);
     var that$3 = new $c_Ldoodle_syntax_PathSyntax$$anon$2(this$89);
     var s$4 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
     var picture$5 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$3, s$4, this$91);
     var this$99 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$92, picture$5);
     var this$95 = $m_Ldoodle_syntax_package$all$();
-    var text$4 = $as_T(numberFormat.format($n(dataCoordinate$2$1).Ldoodle_core_Point$Cartesian__f_y));
+    var text$4 = $n($n(this.Lchartreuse_PlotModule$Plot__f_$outer).Lchartreuse_Plot$package$$anon$1__f_chartreuse$PlotModule$$numberFormat).format__D__T($n(dataCoordinate$2$1).Ldoodle_core_Point$Cartesian__f_y);
     var picture$6 = new $c_Ldoodle_syntax_TextSyntax$$anon$2(text$4);
     var this$97 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$95, picture$6);
     var x$5 = (xTicksMapped.Lchartreuse_Ticks__f_min - 45.0);
@@ -29659,11 +29788,11 @@ $c_Lchartreuse_Plot.prototype.draw__I__I__Ldoodle_algebra_Picture = (function(wi
   var s$6 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
   var picture$7 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$5, s$6, this$101);
   var this$104 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$102, picture$7);
-  var that$6 = $p_Lchartreuse_Plot__withAxes__Lchartreuse_Ticks__Lchartreuse_Ticks__Ldoodle_algebra_Picture(this, xTicksMapped, yTicksMapped);
+  var that$6 = $p_Lchartreuse_PlotModule$Plot__withAxes__Lchartreuse_Ticks__Lchartreuse_Ticks__Ldoodle_algebra_Picture(this, xTicksMapped, yTicksMapped);
   var s$7 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
   var picture$8 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$6, s$7, this$104);
   var this$108 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$105, picture$8);
-  var that$7 = (this.Lchartreuse_Plot__f_grid ? $p_Lchartreuse_Plot__withGrid__Lchartreuse_Ticks__Lchartreuse_Ticks__sci_Seq__sci_Seq__Ldoodle_algebra_Picture(this, xTicksMapped, yTicksMapped, xTicksSequence, yTicksSequence) : new $c_Ldoodle_syntax_ShapeSyntax$$anon$5());
+  var that$7 = (this.Lchartreuse_PlotModule$Plot__f_grid ? $p_Lchartreuse_PlotModule$Plot__withGrid__Lchartreuse_Ticks__Lchartreuse_Ticks__sci_Seq__sci_Seq__Ldoodle_algebra_Picture(this, xTicksMapped, yTicksMapped, xTicksSequence, yTicksSequence) : new $c_Ldoodle_syntax_ShapeSyntax$$anon$5());
   var s$8 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
   var picture$9 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$7, s$8, this$108);
   var this$110 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$109, picture$9);
@@ -29677,25 +29806,25 @@ $c_Lchartreuse_Plot.prototype.draw__I__I__Ldoodle_algebra_Picture = (function(wi
   var s$11 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
   return new $c_Ldoodle_syntax_LayoutSyntax$$anon$2(that$8, s$11, this$118)
 });
-function $as_Lchartreuse_Plot(obj) {
-  return (((obj instanceof $c_Lchartreuse_Plot) || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.Plot"))
+function $as_Lchartreuse_PlotModule$Plot(obj) {
+  return (((obj instanceof $c_Lchartreuse_PlotModule$Plot) || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.PlotModule$Plot"))
 }
-function $isArrayOf_Lchartreuse_Plot(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lchartreuse_Plot)))
+function $isArrayOf_Lchartreuse_PlotModule$Plot(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lchartreuse_PlotModule$Plot)))
 }
-function $asArrayOf_Lchartreuse_Plot(obj, depth) {
-  return (($isArrayOf_Lchartreuse_Plot(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lchartreuse.Plot;", depth))
+function $asArrayOf_Lchartreuse_PlotModule$Plot(obj, depth) {
+  return (($isArrayOf_Lchartreuse_PlotModule$Plot(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lchartreuse.PlotModule$Plot;", depth))
 }
-var $d_Lchartreuse_Plot = new $TypeData().initClass({
-  Lchartreuse_Plot: 0
-}, false, "chartreuse.Plot", {
-  Lchartreuse_Plot: 1,
+var $d_Lchartreuse_PlotModule$Plot = new $TypeData().initClass({
+  Lchartreuse_PlotModule$Plot: 0
+}, false, "chartreuse.PlotModule$Plot", {
+  Lchartreuse_PlotModule$Plot: 1,
   O: 1,
   s_Equals: 1,
   s_Product: 1,
   Ljava_io_Serializable: 1
 });
-$c_Lchartreuse_Plot.prototype.$classData = $d_Lchartreuse_Plot;
+$c_Lchartreuse_PlotModule$Plot.prototype.$classData = $d_Lchartreuse_PlotModule$Plot;
 /** @constructor */
 function $c_Lchartreuse_Ticks(min, max, size) {
   this.Lchartreuse_Ticks__f_min = 0.0;
