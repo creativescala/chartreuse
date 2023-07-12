@@ -65,7 +65,7 @@ val picture = plot.draw(640, 480)
 
 Then we can render the `picture` in the usual way for Doodle, which depends on the backend in use. On the JVM we just call the `draw` method. On the JS backend we call `drawWithFrame` passing in the id of the DOM element (a `String`) where we should draw it.
 
-Here are examples. Firstly for the JVM.
+Here are complete examples. Firstly for the JVM.
 
 ```scala
 import cats.effect.unsafe.implicits.global
