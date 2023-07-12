@@ -242,4 +242,10 @@ trait PlotModule(numberFormat: NumberFormat) {
         )
     }
   }
+  object Plot {
+
+    /** Utility constructor to create a `Plot` from a single layer. */
+    def apply[Alg <: Algebra](layer: Layer[?, Alg]): Plot[Alg] =
+      Plot(layers = List(layer))
+  }
 }
