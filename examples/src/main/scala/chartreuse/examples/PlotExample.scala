@@ -17,7 +17,6 @@
 package chartreuse.examples
 
 import cats.effect.unsafe.implicits.global
-import chartreuse.Plot
 import chartreuse.*
 import chartreuse.layout.ScatterPlot
 import doodle.core.Point
@@ -40,8 +39,9 @@ object PlotExample {
     Layer(data, layout)(pt => pt)
   }
 
-  val plot: Plot[Point, Basic] = Plot(
-    List.fill(20)(randomLayer)
+  val plot: Plot[Basic] = Plot(
+    List.fill(5)(randomLayer),
+    grid = true
   )
 
   @JSExport
