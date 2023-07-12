@@ -1,11 +1,11 @@
-let ScatterPlotExample,ChartreuseExamples,PlotExample;
+let QuickStartExample,ScatterPlotExample,ChartreuseExamples,PlotExample;
 (function(){
 'use strict';
 var $linkingInfo = Object.freeze({
   "esVersion": 6,
   "assumingES6": true,
   "productionMode": false,
-  "linkerVersion": "1.13.1",
+  "linkerVersion": "1.13.2",
   "fileLevelThis": this
 });
 var $getOwnPropertyDescriptors = (Object.getOwnPropertyDescriptors || (() => {
@@ -3232,6 +3232,67 @@ function $m_Lchartreuse_examples_PlotExample$() {
     $n_Lchartreuse_examples_PlotExample$ = new $c_Lchartreuse_examples_PlotExample$()
   };
   return $n_Lchartreuse_examples_PlotExample$
+}
+/** @constructor */
+function $c_Lchartreuse_examples_QuickStartExample$() {
+  this.Lchartreuse_examples_QuickStartExample$__f_data = null;
+  this.Lchartreuse_examples_QuickStartExample$__f_layout = null;
+  this.Lchartreuse_examples_QuickStartExample$__f_layer = null;
+  $n_Lchartreuse_examples_QuickStartExample$ = this;
+  $n($m_s_package$().s_package$__f_List);
+  var b = new $c_scm_ListBuffer();
+  var i = 0;
+  while ((i < 100)) {
+    $m_Ldoodle_core_Point$();
+    var this$2 = $m_s_util_Random$();
+    var x = $n(this$2.s_util_Random__f_self).nextGaussian__D();
+    var this$3 = $m_s_util_Random$();
+    var y = $n(this$3.s_util_Random__f_self).nextGaussian__D();
+    var elem = new $c_Ldoodle_core_Point$Cartesian(x, y);
+    b.addOne__O__scm_ListBuffer(elem);
+    i = ((1 + i) | 0)
+  };
+  var data = b.toList__sci_List();
+  this.Lchartreuse_examples_QuickStartExample$__f_data = new $c_Lchartreuse_Data$FromIterable(data);
+  this.Lchartreuse_examples_QuickStartExample$__f_layout = $m_Lchartreuse_layout_ScatterPlot$().default__Lchartreuse_layout_ScatterPlot();
+  var data$1 = this.Lchartreuse_examples_QuickStartExample$__f_data;
+  var layout = this.Lchartreuse_examples_QuickStartExample$__f_layout;
+  var toPoint = new $c_sjsr_AnonFunction1(((pt) => {
+    var pt$1 = $as_Ldoodle_core_Point(pt);
+    return pt$1
+  }));
+  var scale = new $c_Lchartreuse_Scale$$anon$1();
+  this.Lchartreuse_examples_QuickStartExample$__f_layer = new $c_Lchartreuse_Layer(data$1, toPoint, scale, layout)
+}
+$c_Lchartreuse_examples_QuickStartExample$.prototype = new $h_O();
+$c_Lchartreuse_examples_QuickStartExample$.prototype.constructor = $c_Lchartreuse_examples_QuickStartExample$;
+/** @constructor */
+function $h_Lchartreuse_examples_QuickStartExample$() {
+  /*<skip>*/
+}
+$h_Lchartreuse_examples_QuickStartExample$.prototype = $c_Lchartreuse_examples_QuickStartExample$.prototype;
+$c_Lchartreuse_examples_QuickStartExample$.prototype.draw__T__V = (function(id) {
+  var this$1 = $m_Ldoodle_syntax_package$all$();
+  var picture = $n(this.Lchartreuse_examples_QuickStartExample$__f_layer).draw__I__I__Ldoodle_algebra_Picture(640, 480);
+  new $c_Ldoodle_syntax_AbstractRendererSyntax$RendererPictureOps(this$1, picture).drawWithFrame__O__Ldoodle_effect_Renderer__Lcats_effect_unsafe_IORuntime__V($n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Frame).apply__T__Ldoodle_svg_effect_Frame(id), $m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_svgRenderer, $m_Lcats_effect_unsafe_IORuntime$().global__Lcats_effect_unsafe_IORuntime())
+});
+$c_Lchartreuse_examples_QuickStartExample$.prototype.draw = (function(arg) {
+  var prep0 = $as_T(arg);
+  this.draw__T__V(prep0)
+});
+var $d_Lchartreuse_examples_QuickStartExample$ = new $TypeData().initClass({
+  Lchartreuse_examples_QuickStartExample$: 0
+}, false, "chartreuse.examples.QuickStartExample$", {
+  Lchartreuse_examples_QuickStartExample$: 1,
+  O: 1
+});
+$c_Lchartreuse_examples_QuickStartExample$.prototype.$classData = $d_Lchartreuse_examples_QuickStartExample$;
+var $n_Lchartreuse_examples_QuickStartExample$;
+function $m_Lchartreuse_examples_QuickStartExample$() {
+  if ((!$n_Lchartreuse_examples_QuickStartExample$)) {
+    $n_Lchartreuse_examples_QuickStartExample$ = new $c_Lchartreuse_examples_QuickStartExample$()
+  };
+  return $n_Lchartreuse_examples_QuickStartExample$
 }
 /** @constructor */
 function $c_Lchartreuse_examples_ScatterPlotExample$() {
@@ -71259,6 +71320,7 @@ function $m_Lcats_implicits$() {
 }
 $L0 = new $c_RTLong(0, 0);
 $d_J.zero = $L0;
+QuickStartExample = $m_Lchartreuse_examples_QuickStartExample$();
 ScatterPlotExample = $m_Lchartreuse_examples_ScatterPlotExample$();
 ChartreuseExamples = $m_Lchartreuse_examples_Examples$();
 PlotExample = $m_Lchartreuse_examples_PlotExample$();

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Laika 0.19.0" />
+    <title>Development</title>
+    
+    
+    <meta name="description" content="docs" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Source+Sans+Pro:300,400,600"
+        rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Pro:400" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="creative-scala.css" />
+    <script src="solution.js"></script>
+    <script src="toc.js"></script>
+    <script src="main.js"></script>
+    <script> /* for avoiding page load transitions */</script>
+</head>
+
+<body>
+    <nav id="topbar"><p><a href="examples.html">←</a></p>
+<p><a href="../">Chartreuse</a></p>
+<p></p></nav>
+    <nav id="sidebar">
+        <ul class="nav-list">
+          <li class="level1 nav-leaf"><a href="index.html">Chartreuse</a></li>
+          <li class="level1 nav-leaf"><a href="quick-start.html">Quick Start</a></li>
+          <li class="level1 nav-leaf"><a href="concepts.html">Core Concepts</a></li>
+          <li class="level1 nav-leaf"><a href="creating-visualizations.html">Creating Visualizations</a></li>
+          <li class="level1 nav-leaf"><a href="examples.html">Examples</a></li>
+          <li class="level1 active nav-leaf"><a href="#">Development</a></li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        <main class="content">
+            <h1 id="development" class="title">Development</h1>
+            <p>This section contains notes on the development of Chartreuse.</p>
+            
+            <h2 id="components" class="section">Components</h2>
+            <p>Composition is a core principle of Chartreuse.
+            This means visualizations are built from components, where each component represents part of a visualization or some computation needed to glue things together.
+            There are two main kinds of components:</p>
+            <ul>
+              <li>interfaces, which usually represent the visual parts of a visualization; and</li>
+              <li>builders, which usually represent the computational glue between components.</li>
+            </ul>
+            
+            <h2 id="interfaces" class="section">Interfaces</h2>
+            <p>The majority of visualizations have a well defined visual structure. 
+            For example, most plots will have axes, a legend, and so on. 
+            The exact rendering of these elements is something the user will want to customize.
+            This means the visual functionality in Chartreuse can be described in terms of the operations the components support; it&#39;s interface.
+            So, for example, a <code>Layout</code> only needs to be able to draw itself.
+            The details of how the <code>Layout</code> draws itself is something the particular <code>Layout</code> can decide on.
+            There are an infinite number of possible <code>Layouts</code>, so we cannot enumerate them all, but we don&#39;t need to so long as the interface is consistent.
+            Interfaces are represented as Scala <code>traits</code>.</p>
+            
+            <h2 id="builders" class="section">Builders</h2>
+            <p>Components that have extensive options, but are limited in the number of possible implementations, are represented as builders.
+            <code>Plot</code> is an example.
+            It acts a container for all the other elements of a visualization.
+            It&#39;s appearance is determined by it&#39;s components, but the user will probably wish to change the title, axes, and so on.
+            Chartreuse uses the builder pattern extensively to make it easier for users to construct these kinds of components,
+            overriding only the defaults they care about.</p>
+            <p>The builder pattern has the following details:</p>
+            <ul>
+              <li>Types are implemented as <code>final case classes</code> or <code>enums</code> as appropriate.</li>
+              <li>Builder methods always return a copy of the object. There is no mutable state.</li>
+              <li>Changing a parameter called <code>name</code> is done by a method called <code>withName</code>, which takes a new value for <code>name</code>.</li>
+              <li>Changing a nested object called <code>name</code> is done by a method called <code>forName</code>, which takes a <code>name =&gt; name</code> function.</li>
+            </ul>
+            <div class="flex flex-row justify-between">
+                <a class="pageNavigation" href="examples.html">←Examples</a> 
+            </div>
+        </main>
+        <footer>Creative Scala is copyright Noel Welsh</footer>
+    </div>
+
+    </div>
+</body>
+
+</html>
