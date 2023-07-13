@@ -50,6 +50,41 @@ In our case this is just the identity function.
 
 Now we add the layer to a plot, and we can set the title and other properties.
 
-```scala
-TODO
+```scala mdoc:silent
+val plot = Plot(layer)
+  .withPlotTitle("Our Amazing Plot")
+  .withXTitle("Awesomeness")
+  .withYTitle("Marvellousness")
 ```
+
+We can convert a `Plot` to a Doodle `Picture` using the `draw`, to which we pass the size of the output.
+
+```scala
+val picture = plot.draw(640, 480)
+```
+
+Then we can render the `picture` in the usual way for Doodle, which depends on the backend in use. On the JVM we just call the `draw` method. On the JS backend we call `drawWithFrame` passing in the id of the DOM element (a `String`) where we should draw it.
+
+Here are complete examples. Firstly for the JVM.
+
+```scala
+import cats.effect.unsafe.implicits.global
+import doodle.java2d.*
+import doodle.syntax.all.*
+
+picture.draw()
+```
+
+Now for SVG output in the browser.
+
+```scala
+import cats.effect.unsafe.implicits.global
+import doodle.svg.*
+import doodle.syntax.all.*
+
+picture.drawWithFrame("theId")
+```
+
+This will produce output like that shown below.
+
+@:doodle(quick-start-example, QuickStartExample.draw)

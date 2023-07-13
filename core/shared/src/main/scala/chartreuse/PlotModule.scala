@@ -41,7 +41,7 @@ trait PlotModule(numberFormat: NumberFormat) {
 
     private val margin = 10
 
-    def addLayer(layer: Layer[?, Alg]): Plot[Alg] = {
+    def addLayer[Alg2 <: Algebra](layer: Layer[?, Alg2]): Plot[Alg & Alg2] = {
       copy(layers = layer :: layers)
     }
 
@@ -241,5 +241,11 @@ trait PlotModule(numberFormat: NumberFormat) {
             )
         )
     }
+  }
+  object Plot {
+
+    /** Utility constructor to create a `Plot` from a single layer. */
+    def apply[Alg <: Algebra](layer: Layer[?, Alg]): Plot[Alg] =
+      Plot(layers = List(layer))
   }
 }

@@ -25,7 +25,7 @@ import doodle.core.Point
 /** A `Layer` combines data with layout and other properties required to produce
   * a plot.
   */
-final case class Layer[A, Alg <: Algebra](
+final case class Layer[A, -Alg <: Algebra](
     data: Data[A],
     toPoint: A => Point,
     scale: Scale,
