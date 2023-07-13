@@ -44,7 +44,7 @@
             
             <h2 id="library-dependency" class="section">Library Dependency</h2>
             <p>To use Chartreuse in your project, add the following to your <code>build.sbt</code>:</p>
-            <pre><code class="nohighlight"><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %% </span><span class="string-literal">&quot;chartreuse&quot;</span><span> % </span><span class="string-literal">&quot;0.1-4edd9b8-SNAPSHOT&quot;</span></code></pre>
+            <pre><code class="nohighlight"><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %% </span><span class="string-literal">&quot;chartreuse&quot;</span><span> % </span><span class="string-literal">&quot;0.1-f84904f-SNAPSHOT&quot;</span></code></pre>
             
             <h2 id="creating-data" class="section">Creating Data</h2>
             <p>You need some data to create a visualization.
@@ -70,7 +70,28 @@
             <p>When we constructed the <code>Layer</code> we had to specify how to convert the data to <code>Points</code>. 
             In our case this is just the identity function.</p>
             <p>Now we add the layer to a plot, and we can set the title and other properties.</p>
-            <pre><code class="nohighlight"><span class="type-name">TODO</span></code></pre>
+            <pre><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">plot</span><span> = </span><span class="type-name">Plot</span><span>(</span><span class="identifier">layer</span><span>)
+  .</span><span class="identifier">withPlotTitle</span><span>(</span><span class="string-literal">&quot;Our Amazing Plot&quot;</span><span>)
+  .</span><span class="identifier">withXTitle</span><span>(</span><span class="string-literal">&quot;Awesomeness&quot;</span><span>)
+  .</span><span class="identifier">withYTitle</span><span>(</span><span class="string-literal">&quot;Marvellousness&quot;</span><span>)</span></code></pre>
+            <p>We can convert a <code>Plot</code> to a Doodle <code>Picture</code> using the <code>draw</code>, to which we pass the size of the output.</p>
+            <pre><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">picture</span><span> = </span><span class="identifier">plot</span><span>.</span><span class="identifier">draw</span><span>(</span><span class="number-literal">640</span><span>, </span><span class="number-literal">480</span><span>)</span></code></pre>
+            <p>Then we can render the <code>picture</code> in the usual way for Doodle, which depends on the backend in use. On the JVM we just call the <code>draw</code> method. On the JS backend we call <code>drawWithFrame</code> passing in the id of the DOM element (a <code>String</code>) where we should draw it.</p>
+            <p>Here are complete examples. Firstly for the JVM.</p>
+            <pre><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">cats</span><span>.</span><span class="identifier">effect</span><span>.</span><span class="identifier">unsafe</span><span>.</span><span class="identifier">implicits</span><span>.</span><span class="identifier">global</span><span>
+</span><span class="keyword">import</span><span> </span><span class="identifier">doodle</span><span>.</span><span class="identifier">java2d</span><span>.*
+</span><span class="keyword">import</span><span> </span><span class="identifier">doodle</span><span>.</span><span class="identifier">syntax</span><span>.</span><span class="identifier">all</span><span>.*
+
+</span><span class="identifier">picture</span><span>.</span><span class="identifier">draw</span><span>()</span></code></pre>
+            <p>Now for SVG output in the browser.</p>
+            <pre><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">cats</span><span>.</span><span class="identifier">effect</span><span>.</span><span class="identifier">unsafe</span><span>.</span><span class="identifier">implicits</span><span>.</span><span class="identifier">global</span><span>
+</span><span class="keyword">import</span><span> </span><span class="identifier">doodle</span><span>.</span><span class="identifier">svg</span><span>.*
+</span><span class="keyword">import</span><span> </span><span class="identifier">doodle</span><span>.</span><span class="identifier">syntax</span><span>.</span><span class="identifier">all</span><span>.*
+
+</span><span class="identifier">picture</span><span>.</span><span class="identifier">drawWithFrame</span><span>(</span><span class="string-literal">&quot;theId&quot;</span><span>)</span></code></pre>
+            <p>This will produce output like that shown below.</p>
+            <div class="doodle" id="quick-start-example"></div>
+            <script>QuickStartExample.draw("quick-start-example")</script>
             <div class="flex flex-row justify-between">
                 <a class="pageNavigation" href="index.html">←Chartreuse</a> <a class="pageNavigation" href="concepts.html">Core Concepts→</a>
             </div>
