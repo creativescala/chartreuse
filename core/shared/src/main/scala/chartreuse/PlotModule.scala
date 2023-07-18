@@ -85,12 +85,12 @@ trait PlotModule(numberFormat: NumberFormat) {
       val xTicksMapped = Ticks(
         scale(Point(xTicks.min, 0)).x,
         scale(Point(xTicks.max, 0)).x,
-        scale(Point(xTicks.size, 0)).x
+        xTicks.size
       )
       val yTicksMapped = Ticks(
         scale(Point(0, yTicks.min)).y,
         scale(Point(0, yTicks.max)).y,
-        scale(Point(0, yTicks.size)).y
+        yTicks.size
       )
 
       // Convert the Ticks to a sequence of points
@@ -138,7 +138,6 @@ trait PlotModule(numberFormat: NumberFormat) {
         toIntervalX,
         xMajorTickToMinorTick
       )
-
       val yMinorTicksSequence = convertToMinorTicks(
         yTicksSequence,
         toIntervalY,
