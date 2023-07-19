@@ -41,6 +41,7 @@ trait PlotModule(numberFormat: NumberFormat) {
     ]
 
     private val margin = 10
+    private val minorTickCount = 3
 
     def addLayer[Alg2 <: Algebra](layer: Layer[?, Alg2]): Plot[Alg & Alg2] = {
       copy(layers = layer :: layers)
@@ -122,15 +123,17 @@ trait PlotModule(numberFormat: NumberFormat) {
       }
 
       val toIntervalX: TicksSequence => Double = ticksSequence => {
-        val (screenCoordinate, _) = ticksSequence.head
-        val (screenCoordinate2, _) = ticksSequence.tail.head
-        (screenCoordinate2.x - screenCoordinate.x) / 4
+        val here +: neighbour +: _ = ticksSequence
+        val (screenCoordinateHere, _) = here
+        val (screenCoordinateNeighbour, _) = neighbour
+        (screenCoordinateNeighbour.x - screenCoordinateHere.x) / (minorTickCount + 1)
       }
 
       val toIntervalY: TicksSequence => Double = ticksSequence => {
-        val (screenCoordinate, _) = ticksSequence.head
-        val (screenCoordinate2, _) = ticksSequence.tail.head
-        (screenCoordinate2.y - screenCoordinate.y) / 4
+        val here +: neighbour +: _ = ticksSequence
+        val (screenCoordinateHere, _) = here
+        val (screenCoordinateNeighbour, _) = neighbour
+        (screenCoordinateNeighbour.y - screenCoordinateHere.y) / (minorTickCount + 1)
       }
 
       val xMinorTicksSequence = convertToMinorTicks(
@@ -255,7 +258,7 @@ trait PlotModule(numberFormat: NumberFormat) {
       val minorTickInterval = toInterval(ticksSequence)
 
       ticksSequence.tail.flatMap { (screenCoordinate, _) =>
-        val minorTicks = for (i <- 1 to 3) yield {
+        val minorTicks = for (i <- 1 to minorTickCount) yield {
           majorTickToMinor(screenCoordinate, minorTickInterval, i)
         }
 
