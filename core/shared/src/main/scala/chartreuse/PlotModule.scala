@@ -86,12 +86,16 @@ trait PlotModule(numberFormat: NumberFormat) {
       val xTicksMapped = Ticks(
         scale(Point(xTicks.min, 0)).x,
         scale(Point(xTicks.max, 0)).x,
-        xTicks.size
+        scale(Point(xTicks.min + xTicks.size, 0)).x - scale(
+          Point(xTicks.min, 0)
+        ).x
       )
       val yTicksMapped = Ticks(
         scale(Point(0, yTicks.min)).y,
         scale(Point(0, yTicks.max)).y,
-        yTicks.size
+        scale(Point(0, yTicks.min + yTicks.size)).y - scale(
+          Point(0, yTicks.min)
+        ).y
       )
 
       // Convert the Ticks to a sequence of points
@@ -122,28 +126,17 @@ trait PlotModule(numberFormat: NumberFormat) {
         )
       }
 
-      val toIntervalX: TicksSequence => Double = ticksSequence => {
-        val here +: neighbour +: _ = ticksSequence
-        val (screenCoordinateHere, _) = here
-        val (screenCoordinateNeighbour, _) = neighbour
-        (screenCoordinateNeighbour.x - screenCoordinateHere.x) / (minorTickCount + 1)
-      }
-
-      val toIntervalY: TicksSequence => Double = ticksSequence => {
-        val here +: neighbour +: _ = ticksSequence
-        val (screenCoordinateHere, _) = here
-        val (screenCoordinateNeighbour, _) = neighbour
-        (screenCoordinateNeighbour.y - screenCoordinateHere.y) / (minorTickCount + 1)
-      }
+      val xMinorTicksInterval = xTicksMapped.size / (minorTickCount + 1)
+      val yMinorTicksInterval = yTicksMapped.size / (minorTickCount + 1)
 
       val xMinorTicksSequence = convertToMinorTicks(
         xTicksSequence,
-        toIntervalX,
+        xMinorTicksInterval,
         xMajorTickToMinorTick
       )
       val yMinorTicksSequence = convertToMinorTicks(
         yTicksSequence,
-        toIntervalY,
+        yMinorTicksInterval,
         yMajorTickToMinorTick
       )
 
@@ -249,17 +242,15 @@ trait PlotModule(numberFormat: NumberFormat) {
 
     private def convertToMinorTicks(
         ticksSequence: TicksSequence,
-        toInterval: TicksSequence => Double,
+        interval: Double,
         majorTickToMinor: (ScreenCoordinate, Double, Int) => (
             ScreenCoordinate,
             DataCoordinate
         )
     ): TicksSequence = {
-      val minorTickInterval = toInterval(ticksSequence)
-
       ticksSequence.tail.flatMap { (screenCoordinate, _) =>
         val minorTicks = for (i <- 1 to minorTickCount) yield {
-          majorTickToMinor(screenCoordinate, minorTickInterval, i)
+          majorTickToMinor(screenCoordinate, interval, i)
         }
 
         minorTicks
