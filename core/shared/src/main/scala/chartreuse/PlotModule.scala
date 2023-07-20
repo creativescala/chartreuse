@@ -31,6 +31,7 @@ trait PlotModule(numberFormat: NumberFormat) {
       xTitle: String = "X data",
       yTitle: String = "Y data",
       grid: Boolean = false,
+      minorTicks: Boolean = false,
       tickSize: Int = 7
   ) {
     type TicksSequence = Seq[(ScreenCoordinate, DataCoordinate)]
@@ -40,6 +41,7 @@ trait PlotModule(numberFormat: NumberFormat) {
     ]
 
     private val margin = 10
+    private val minorTickCount = 3
 
     def addLayer[Alg2 <: Algebra](layer: Layer[?, Alg2]): Plot[Alg & Alg2] = {
       copy(layers = layer :: layers)
@@ -61,6 +63,10 @@ trait PlotModule(numberFormat: NumberFormat) {
       copy(grid = newGrid)
     }
 
+    def withMinorTicks(newMinorTicks: Boolean): Plot[Alg] = {
+      copy(minorTicks = newMinorTicks)
+    }
+
     def draw(width: Int, height: Int): PlotPicture = {
       val dataBoundingBox = layers.foldLeft(BoundingBox.empty) { (bb, layer) =>
         bb.on(layer.boundingBox)
@@ -80,12 +86,16 @@ trait PlotModule(numberFormat: NumberFormat) {
       val xTicksMapped = Ticks(
         scale(Point(xTicks.min, 0)).x,
         scale(Point(xTicks.max, 0)).x,
-        xTicks.size
+        scale(Point(xTicks.min + xTicks.size, 0)).x - scale(
+          Point(xTicks.min, 0)
+        ).x
       )
       val yTicksMapped = Ticks(
         scale(Point(0, yTicks.min)).y,
         scale(Point(0, yTicks.max)).y,
-        yTicks.size
+        scale(Point(0, yTicks.min + yTicks.size)).y - scale(
+          Point(0, yTicks.min)
+        ).y
       )
 
       // Convert the Ticks to a sequence of points
@@ -94,13 +104,49 @@ trait PlotModule(numberFormat: NumberFormat) {
       val xTicksSequence = ticksToSequence(xTicks, scale, asX)
       val yTicksSequence = ticksToSequence(yTicks, scale, asY)
 
+      val xMajorTickToMinorTick: (ScreenCoordinate, Double, Int) => (
+          ScreenCoordinate,
+          DataCoordinate
+      ) = (screenCoordinate, interval, i) => {
+        val x = screenCoordinate.x - interval * i
+        (
+          ScreenCoordinate(x, 0),
+          DataCoordinate(x, 0)
+        )
+      }
+
+      val yMajorTickToMinorTick: (ScreenCoordinate, Double, Int) => (
+          ScreenCoordinate,
+          DataCoordinate
+      ) = (screenCoordinate, interval, i) => {
+        val y = screenCoordinate.y - interval * i
+        (
+          ScreenCoordinate(0, y),
+          DataCoordinate(0, y)
+        )
+      }
+
+      val xMinorTicksInterval = xTicksMapped.size / (minorTickCount + 1)
+      val yMinorTicksInterval = yTicksMapped.size / (minorTickCount + 1)
+
+      val xMinorTicksSequence = convertToMinorTicks(
+        xTicksSequence,
+        xMinorTicksInterval,
+        xMajorTickToMinorTick
+      )
+      val yMinorTicksSequence = convertToMinorTicks(
+        yTicksSequence,
+        yMinorTicksInterval,
+        yMajorTickToMinorTick
+      )
+
       val allLayers =
         layers
           .map(_.draw(width, height))
           .foldLeft(empty[Alg & Layout & Shape])(_ on _)
 
-      val createXTick: ScreenCoordinate => OpenPath =
-        screenCoordinate =>
+      val createXTick: (ScreenCoordinate, Int) => OpenPath =
+        (screenCoordinate, tickSize) =>
           OpenPath.empty
             .moveTo(screenCoordinate.x, yTicksMapped.min - margin)
             .lineTo(screenCoordinate.x, yTicksMapped.min - margin - tickSize)
@@ -110,8 +156,8 @@ trait PlotModule(numberFormat: NumberFormat) {
           text(numberFormat.format(dataCoordinate.x))
             .at(screenCoordinate.x, yTicksMapped.min - 30)
 
-      val createYTick: ScreenCoordinate => OpenPath =
-        screenCoordinate =>
+      val createYTick: (ScreenCoordinate, Int) => OpenPath =
+        (screenCoordinate, tickSize) =>
           OpenPath.empty
             .moveTo(xTicksMapped.min - margin, screenCoordinate.y)
             .lineTo(xTicksMapped.min - margin - tickSize, screenCoordinate.y)
@@ -130,9 +176,31 @@ trait PlotModule(numberFormat: NumberFormat) {
       yTitle
         .beside(
           allLayers
-            .on(withTicks(xTicksSequence, createXTick, createXTickLabel))
-            .on(withTicks(yTicksSequence, createYTick, createYTickLabel))
+            .on(
+              withTicks(xTicksSequence, createXTick, createXTickLabel, tickSize)
+            )
+            .on(
+              withTicks(yTicksSequence, createYTick, createYTickLabel, tickSize)
+            )
             .on(withAxes(xTicksMapped, yTicksMapped))
+            .on(
+              if minorTicks then
+                withTicks(
+                  xMinorTicksSequence,
+                  createXTick,
+                  (_, _) => empty[Shape],
+                  tickSize / 2
+                )
+                  .on(
+                    withTicks(
+                      yMinorTicksSequence,
+                      createYTick,
+                      (_, _) => empty[Shape],
+                      tickSize / 2
+                    )
+                  )
+              else empty[Shape]
+            )
             .on(
               if grid then
                 withGrid(
@@ -172,10 +240,28 @@ trait PlotModule(numberFormat: NumberFormat) {
         .toList
     }
 
+    private def convertToMinorTicks(
+        ticksSequence: TicksSequence,
+        interval: Double,
+        majorTickToMinor: (ScreenCoordinate, Double, Int) => (
+            ScreenCoordinate,
+            DataCoordinate
+        )
+    ): TicksSequence = {
+      ticksSequence.tail.flatMap { (screenCoordinate, _) =>
+        val minorTicks = for (i <- 1 to minorTickCount) yield {
+          majorTickToMinor(screenCoordinate, interval, i)
+        }
+
+        minorTicks
+      }
+    }
+
     private def withTicks(
         ticksSequence: TicksSequence,
-        createTick: ScreenCoordinate => OpenPath,
-        createTickLabel: (ScreenCoordinate, DataCoordinate) => PlotPicture
+        createTick: (ScreenCoordinate, Int) => OpenPath,
+        createTickLabel: (ScreenCoordinate, DataCoordinate) => PlotPicture,
+        tickSize: Int
     ): PlotPicture = {
       ticksSequence
         .foldLeft(
@@ -187,7 +273,7 @@ trait PlotModule(numberFormat: NumberFormat) {
           val (screenCoordinate, dataCoordinate) = tick
 
           plot
-            .on(createTick(screenCoordinate).path)
+            .on(createTick(screenCoordinate, tickSize).path)
             .on(createTickLabel(screenCoordinate, dataCoordinate))
         )
     }
