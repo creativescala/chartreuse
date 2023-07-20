@@ -1,4 +1,4 @@
-let QuickStartExample,ScatterPlotExample,ChartreuseExamples,PlotExample;
+let QuickStartExample,BahamasPopulation,ScatterPlotExample,ChartreuseExamples,PlotExample;
 (function(){
 'use strict';
 var $linkingInfo = Object.freeze({
@@ -3162,6 +3162,115 @@ function $m_Lchartreuse_TickMarkCalculator$() {
   return $n_Lchartreuse_TickMarkCalculator$
 }
 /** @constructor */
+function $c_Lchartreuse_examples_BahamasPopulation$() {
+  this.Lchartreuse_examples_BahamasPopulation$__f_population = null;
+  this.Lchartreuse_examples_BahamasPopulation$__f_data = null;
+  this.Lchartreuse_examples_BahamasPopulation$__f_curve = null;
+  this.Lchartreuse_examples_BahamasPopulation$__f_line = null;
+  this.Lchartreuse_examples_BahamasPopulation$__f_plot = null;
+  $n_Lchartreuse_examples_BahamasPopulation$ = this;
+  var this$500 = $m_sci_ArraySeq$();
+  var xs = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Ldoodle_core_Point.getArrayOf().constr)([($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(0.0, 1148.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(100.0, 1252.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(200.0, 1366.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(300.0, 1490.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(400.0, 1626.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(500.0, 1774.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(600.0, 1935.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(700.0, 2111.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(800.0, 2303.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(900.0, 2513.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1000.0, 2741.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1100.0, 2990.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1200.0, 3262.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1300.0, 3559.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1400.0, 3882.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1500.0, 4235.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1600.0, 4620.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1700.0, 5040.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1710.0, 5535.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1720.0, 6077.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1730.0, 6673.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1740.0, 7327.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1750.0, 8046.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1760.0, 8835.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1770.0, 9701.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1780.0, 10652.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1790.0, 11696.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1800.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1801.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1802.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1803.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1804.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1805.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1806.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1807.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1808.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1809.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1810.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1811.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1812.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1813.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1814.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1815.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1816.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1817.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1818.0, 27350.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1819.0, 27354.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1820.0, 27363.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1821.0, 27376.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1822.0, 27393.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1823.0, 27414.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1824.0, 27436.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1825.0, 27457.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1826.0, 27479.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1827.0, 27500.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1828.0, 27522.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1829.0, 27543.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1830.0, 27565.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1831.0, 27587.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1832.0, 27608.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1833.0, 27630.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1834.0, 27651.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1835.0, 27673.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1836.0, 27695.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1837.0, 27716.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1838.0, 27738.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1839.0, 27760.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1840.0, 27782.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1841.0, 27803.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1842.0, 27825.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1843.0, 27847.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1844.0, 27869.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1845.0, 27891.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1846.0, 27912.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1847.0, 27934.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1848.0, 27956.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1849.0, 28100.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1850.0, 28369.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1851.0, 28820.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1852.0, 29403.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1853.0, 30124.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1854.0, 30861.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1855.0, 31617.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1856.0, 32391.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1857.0, 33184.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1858.0, 33996.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1859.0, 34745.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1860.0, 35428.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1861.0, 36041.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1862.0, 36583.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1863.0, 37049.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1864.0, 37521.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1865.0, 38000.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1866.0, 38484.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1867.0, 38974.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1868.0, 39470.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1869.0, 39983.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1870.0, 40512.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1871.0, 41059.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1872.0, 41623.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1873.0, 42204.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1874.0, 42794.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1875.0, 43392.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1876.0, 43998.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1877.0, 44612.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1878.0, 45235.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1879.0, 45835.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1880.0, 46411.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1881.0, 46962.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1882.0, 47489.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1883.0, 47989.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1884.0, 48495.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1885.0, 49006.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1886.0, 49522.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1887.0, 50043.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1888.0, 50570.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1889.0, 51134.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1890.0, 51736.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1891.0, 52378.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1892.0, 53060.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1893.0, 53782.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1894.0, 54515.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1895.0, 55257.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1896.0, 56010.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1897.0, 56772.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1898.0, 57544.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1899.0, 58230.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1900.0, 58828.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1901.0, 59335.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1902.0, 59751.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1903.0, 60072.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1904.0, 60394.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1905.0, 60718.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1906.0, 61044.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1907.0, 61371.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1908.0, 61700.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1909.0, 61917.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1910.0, 62021.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1911.0, 62013.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1912.0, 61891.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1913.0, 61655.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1914.0, 61420.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1915.0, 61186.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1916.0, 60953.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1917.0, 60720.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1918.0, 60387.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1919.0, 60270.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1920.0, 60371.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1921.0, 60692.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1922.0, 61233.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1923.0, 61998.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1924.0, 62772.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1925.0, 63555.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1926.0, 64348.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1927.0, 65152.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1928.0, 65965.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1929.0, 66810.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1930.0, 67687.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1931.0, 68598.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1932.0, 69542.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1933.0, 70521.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1934.0, 71513.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1935.0, 72520.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1936.0, 73540.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1937.0, 74575.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1938.0, 75625.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1939.0, 76504.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1940.0, 77209.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1941.0, 77738.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1942.0, 78088.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1943.0, 78256.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1944.0, 78425.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1945.0, 78593.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1946.0, 78762.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1947.0, 78932.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1948.0, 79101.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1949.0, 79993.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1950.0, 81651.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1951.0, 82915.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1952.0, 84605.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1953.0, 86752.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1954.0, 89364.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1955.0, 92458.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1956.0, 96021.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1957.0, 100016.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1958.0, 104423.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1959.0, 109247.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1960.0, 114512.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1961.0, 120227.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1962.0, 126320.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1963.0, 132655.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1964.0, 138798.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1965.0, 144862.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1966.0, 151343.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1967.0, 158210.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1968.0, 165469.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1969.0, 172761.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1970.0, 179149.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1971.0, 184447.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1972.0, 189194.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1973.0, 193577.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1974.0, 197771.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1975.0, 201900.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1976.0, 206106.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1977.0, 210540.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1978.0, 215032.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1979.0, 219437.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1980.0, 223761.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1981.0, 227971.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1982.0, 232184.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1983.0, 236595.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1984.0, 241176.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1985.0, 245945.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1986.0, 250815.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1987.0, 255626.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1988.0, 260458.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1989.0, 265505.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1990.0, 270690.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1991.0, 276072.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1992.0, 281982.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1993.0, 288172.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1994.0, 294006.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1995.0, 299567.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1996.0, 304944.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1997.0, 310183.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1998.0, 315410.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(1999.0, 320282.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2000.0, 325033.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2001.0, 329639.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2002.0, 334015.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2003.0, 338505.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2004.0, 343097.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2005.0, 347815.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2006.0, 352672.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2007.0, 357678.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2008.0, 362807.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2009.0, 368064.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2010.0, 373277.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2011.0, 377956.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2012.0, 382073.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2013.0, 385660.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2014.0, 389137.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2015.0, 392707.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2016.0, 395986.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2017.0, 399027.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2018.0, 401911.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2019.0, 404563.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2020.0, 406478.0)), ($m_Ldoodle_core_Point$(), new $c_Ldoodle_core_Point$Cartesian(2021.0, 407920.0))]));
+  if ((xs !== null)) {
+    var $$x1 = xs
+  } else {
+    var this$502 = $n(xs);
+    var n = this$502.length__I();
+    if ((n > (-1))) {
+      var elements = new ($d_Ldoodle_core_Point.getArrayOf().constr)(n);
+      var iterator = $n(xs).iterator__sc_Iterator();
+      var i = 0;
+      while ((i < n)) {
+        elements.set(i, $n(iterator).next__O());
+        i = ((1 + i) | 0)
+      };
+      var $$x2 = elements
+    } else {
+      var capacity = 0;
+      var jsElems = null;
+      capacity = 0;
+      jsElems = [];
+      var iterator$2 = $n(xs).iterator__sc_Iterator();
+      while ($n(iterator$2).hasNext__Z()) {
+        var elem = $n(iterator$2).next__O();
+        var unboxedElem = ((elem === null) ? null : elem);
+        jsElems.push(unboxedElem)
+      };
+      var $$x2 = new ($d_Ldoodle_core_Point.getArrayOf().constr)(jsElems)
+    };
+    var $$x1 = this$500.unsafeWrapArray__O__sci_ArraySeq($$x2)
+  };
+  this.Lchartreuse_examples_BahamasPopulation$__f_population = $$x1;
+  var data = this.Lchartreuse_examples_BahamasPopulation$__f_population;
+  this.Lchartreuse_examples_BahamasPopulation$__f_data = new $c_Lchartreuse_Data$FromIterable(data);
+  var strokeColor = $m_Ldoodle_core_Color$().Ldoodle_core_Color$__f_black;
+  var this$509 = new $c_Lchartreuse_layout_Curve(strokeColor, 1.0, 0.5);
+  var strokeColor$1 = $m_Ldoodle_core_Color$().Ldoodle_core_Color$__f_lawngreen;
+  var strokeWidth = this$509.Lchartreuse_layout_Curve__f_strokeWidth;
+  var tension = this$509.Lchartreuse_layout_Curve__f_tension;
+  var this$510 = new $c_Lchartreuse_layout_Curve(strokeColor$1, strokeWidth, tension);
+  var strokeColor$2 = this$510.Lchartreuse_layout_Curve__f_strokeColor;
+  var tension$1 = this$510.Lchartreuse_layout_Curve__f_tension;
+  this.Lchartreuse_examples_BahamasPopulation$__f_curve = new $c_Lchartreuse_layout_Curve(strokeColor$2, 7.0, tension$1);
+  var strokeColor$3 = $m_Ldoodle_core_Color$().Ldoodle_core_Color$__f_black;
+  var this$513 = new $c_Lchartreuse_layout_Line(strokeColor$3, 1.0);
+  var strokeColor$4 = $m_Ldoodle_core_Color$().Ldoodle_core_Color$__f_darkBlue;
+  var strokeWidth$1 = this$513.Lchartreuse_layout_Line__f_strokeWidth;
+  var this$514 = new $c_Lchartreuse_layout_Line(strokeColor$4, strokeWidth$1);
+  var strokeColor$5 = this$514.Lchartreuse_layout_Line__f_strokeColor;
+  this.Lchartreuse_examples_BahamasPopulation$__f_line = new $c_Lchartreuse_layout_Line(strokeColor$5, 3.0);
+  var $$x4 = $n(($m_Lchartreuse_Plot$package$(), $n($m_Lchartreuse_Plot$package$().Lchartreuse_Plot$package$__f_module).Plot__Lchartreuse_PlotModule$Plot$()));
+  var data$1 = this.Lchartreuse_examples_BahamasPopulation$__f_data;
+  var layout = this.Lchartreuse_examples_BahamasPopulation$__f_curve;
+  var toPoint = new $c_sjsr_AnonFunction1(((pt) => {
+    var pt$1 = $as_Ldoodle_core_Point(pt);
+    return pt$1
+  }));
+  var scale = new $c_Lchartreuse_Scale$$anon$1();
+  var $$x3 = $n($$x4).apply__Lchartreuse_Layer__Lchartreuse_PlotModule$Plot(new $c_Lchartreuse_Layer(data$1, toPoint, scale, layout));
+  var data$2 = this.Lchartreuse_examples_BahamasPopulation$__f_data;
+  var layout$1 = this.Lchartreuse_examples_BahamasPopulation$__f_line;
+  var toPoint$1 = new $c_sjsr_AnonFunction1(((pt$2) => {
+    var pt$3 = $as_Ldoodle_core_Point(pt$2);
+    return pt$3
+  }));
+  var scale$1 = new $c_Lchartreuse_Scale$$anon$1();
+  var this$523 = $n($n($$x3).addLayer__Lchartreuse_Layer__Lchartreuse_PlotModule$Plot(new $c_Lchartreuse_Layer(data$2, toPoint$1, scale$1, layout$1)));
+  var this$524 = $n(this$523.copy__sci_List__T__T__T__Z__Z__I__Lchartreuse_PlotModule$Plot(this$523.Lchartreuse_PlotModule$Plot__f_layers, "Bahamas Population", this$523.Lchartreuse_PlotModule$Plot__f_xTitle, this$523.Lchartreuse_PlotModule$Plot__f_yTitle, this$523.Lchartreuse_PlotModule$Plot__f_grid, this$523.Lchartreuse_PlotModule$Plot__f_minorTicks, this$523.Lchartreuse_PlotModule$Plot__f_tickSize));
+  var this$525 = $n(this$524.copy__sci_List__T__T__T__Z__Z__I__Lchartreuse_PlotModule$Plot(this$524.Lchartreuse_PlotModule$Plot__f_layers, this$524.Lchartreuse_PlotModule$Plot__f_plotTitle, this$524.Lchartreuse_PlotModule$Plot__f_xTitle, "Estimated Population", this$524.Lchartreuse_PlotModule$Plot__f_grid, this$524.Lchartreuse_PlotModule$Plot__f_minorTicks, this$524.Lchartreuse_PlotModule$Plot__f_tickSize));
+  this.Lchartreuse_examples_BahamasPopulation$__f_plot = this$525.copy__sci_List__T__T__T__Z__Z__I__Lchartreuse_PlotModule$Plot(this$525.Lchartreuse_PlotModule$Plot__f_layers, this$525.Lchartreuse_PlotModule$Plot__f_plotTitle, "Year", this$525.Lchartreuse_PlotModule$Plot__f_yTitle, this$525.Lchartreuse_PlotModule$Plot__f_grid, this$525.Lchartreuse_PlotModule$Plot__f_minorTicks, this$525.Lchartreuse_PlotModule$Plot__f_tickSize)
+}
+$c_Lchartreuse_examples_BahamasPopulation$.prototype = new $h_O();
+$c_Lchartreuse_examples_BahamasPopulation$.prototype.constructor = $c_Lchartreuse_examples_BahamasPopulation$;
+/** @constructor */
+function $h_Lchartreuse_examples_BahamasPopulation$() {
+  /*<skip>*/
+}
+$h_Lchartreuse_examples_BahamasPopulation$.prototype = $c_Lchartreuse_examples_BahamasPopulation$.prototype;
+$c_Lchartreuse_examples_BahamasPopulation$.prototype.draw__T__V = (function(id) {
+  var this$1 = $m_Ldoodle_syntax_package$all$();
+  var picture = $n(this.Lchartreuse_examples_BahamasPopulation$__f_plot).draw__I__I__Ldoodle_algebra_Picture(640, 480);
+  new $c_Ldoodle_syntax_AbstractRendererSyntax$RendererPictureOps(this$1, picture).drawWithFrame__O__Ldoodle_effect_Renderer__Lcats_effect_unsafe_IORuntime__V($n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Frame).apply__T__Ldoodle_svg_effect_Frame(id), $m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_svgRenderer, $m_Lcats_effect_unsafe_IORuntime$().global__Lcats_effect_unsafe_IORuntime())
+});
+$c_Lchartreuse_examples_BahamasPopulation$.prototype.draw = (function(arg) {
+  var prep0 = $as_T(arg);
+  this.draw__T__V(prep0)
+});
+var $d_Lchartreuse_examples_BahamasPopulation$ = new $TypeData().initClass({
+  Lchartreuse_examples_BahamasPopulation$: 0
+}, false, "chartreuse.examples.BahamasPopulation$", {
+  Lchartreuse_examples_BahamasPopulation$: 1,
+  O: 1
+});
+$c_Lchartreuse_examples_BahamasPopulation$.prototype.$classData = $d_Lchartreuse_examples_BahamasPopulation$;
+var $n_Lchartreuse_examples_BahamasPopulation$;
+function $m_Lchartreuse_examples_BahamasPopulation$() {
+  if ((!$n_Lchartreuse_examples_BahamasPopulation$)) {
+    $n_Lchartreuse_examples_BahamasPopulation$ = new $c_Lchartreuse_examples_BahamasPopulation$()
+  };
+  return $n_Lchartreuse_examples_BahamasPopulation$
+}
+/** @constructor */
 function $c_Lchartreuse_examples_Examples$() {
   /*<skip>*/
 }
@@ -3709,7 +3818,7 @@ function $f_Ldoodle_core_CommonColors__$init$__V($thiz) {
   var this$21 = $m_Ldoodle_core_Color$();
   this$21.rgba__I__I__I__D__Ldoodle_core_Color(0, 255, 255, 1.0);
   var this$22 = $m_Ldoodle_core_Color$();
-  this$22.rgba__I__I__I__D__Ldoodle_core_Color(0, 0, 139, 1.0);
+  $thiz.Ldoodle_core_Color$__f_darkBlue = this$22.rgba__I__I__I__D__Ldoodle_core_Color(0, 0, 139, 1.0);
   var this$23 = $m_Ldoodle_core_Color$();
   this$23.rgba__I__I__I__D__Ldoodle_core_Color(0, 139, 139, 1.0);
   var this$24 = $m_Ldoodle_core_Color$();
@@ -3797,7 +3906,7 @@ function $f_Ldoodle_core_CommonColors__$init$__V($thiz) {
   var this$65 = $m_Ldoodle_core_Color$();
   this$65.rgba__I__I__I__D__Ldoodle_core_Color(255, 240, 245, 1.0);
   var this$66 = $m_Ldoodle_core_Color$();
-  this$66.rgba__I__I__I__D__Ldoodle_core_Color(124, 252, 0, 1.0);
+  $thiz.Ldoodle_core_Color$__f_lawngreen = this$66.rgba__I__I__I__D__Ldoodle_core_Color(124, 252, 0, 1.0);
   var this$67 = $m_Ldoodle_core_Color$();
   this$67.rgba__I__I__I__D__Ldoodle_core_Color(255, 250, 205, 1.0);
   var this$68 = $m_Ldoodle_core_Color$();
@@ -4754,11 +4863,14 @@ $c_Ldoodle_svg_algebra_SvgModule$Svg$.prototype.toSvgPath__sci_List__Ldoodle_svg
         builder.addAll__T__scm_StringBuilder(s$1);
         break matchResult25
       };
-      if (false) {
+      if ((x$1 instanceof $c_Ldoodle_core_PathElement$BezierCurveTo)) {
         var x$1$3 = $as_Ldoodle_core_PathElement$BezierCurveTo(x$1);
-        var x92 = $n(x$1$3)._1__Ldoodle_core_Point();
-        var x93 = $n(x$1$3)._2__Ldoodle_core_Point();
-        var x94 = $n(x$1$3)._3__Ldoodle_core_Point();
+        var this$11 = $n(x$1$3);
+        var x92 = this$11.Ldoodle_core_PathElement$BezierCurveTo__f_cp1;
+        var this$12 = $n(x$1$3);
+        var x93 = this$12.Ldoodle_core_PathElement$BezierCurveTo__f_cp2;
+        var this$13 = $n(x$1$3);
+        var x94 = this$13.Ldoodle_core_PathElement$BezierCurveTo__f_to;
         var d$4 = $n(x92).Ldoodle_core_Point$Cartesian__f_x;
         var $$x7 = $f_T__replaceFirst__T__T__T(("" + d$4), "\\.0+$", "");
         var d$5 = $n(x92).Ldoodle_core_Point$Cartesian__f_y;
@@ -4782,8 +4894,8 @@ $c_Ldoodle_svg_algebra_SvgModule$Svg$.prototype.toSvgPath__sci_List__Ldoodle_svg
   if ((x === null)) {
     var $$x8 = (pathType === null)
   } else {
-    var this$17 = $n(x);
-    var $$x8 = (this$17 === pathType)
+    var this$20 = $n(x);
+    var $$x8 = (this$20 === pathType)
   };
   if ($$x8) {
     return $n(builder.scm_StringBuilder__f_underlying).jl_StringBuilder__f_java$lang$StringBuilder$$content
@@ -4792,12 +4904,12 @@ $c_Ldoodle_svg_algebra_SvgModule$Svg$.prototype.toSvgPath__sci_List__Ldoodle_svg
   if ((x$3 === null)) {
     var $$x9 = (pathType === null)
   } else {
-    var this$18 = $n(x$3);
-    var $$x9 = (this$18 === pathType)
+    var this$21 = $n(x$3);
+    var $$x9 = (this$21 === pathType)
   };
   if ($$x9) {
-    var this$19 = $n(builder.addOne__C__scm_StringBuilder(90));
-    return $n(this$19.scm_StringBuilder__f_underlying).jl_StringBuilder__f_java$lang$StringBuilder$$content
+    var this$22 = $n(builder.addOne__C__scm_StringBuilder(90));
+    return $n(this$22.scm_StringBuilder__f_underlying).jl_StringBuilder__f_java$lang$StringBuilder$$content
   };
   throw new $c_s_MatchError(pathType)
 });
@@ -24386,11 +24498,14 @@ function $f_Ldoodle_algebra_generic_GenericPath__boundingBox__sci_List__Ldoodle_
             elem$3 = ev$8;
             break matchResult1
           };
-          if (false) {
+          if ((hd instanceof $c_Ldoodle_core_PathElement$BezierCurveTo)) {
             var x$1$2 = $as_Ldoodle_core_PathElement$BezierCurveTo(hd);
-            var x4 = $n(x$1$2)._1__Ldoodle_core_Point();
-            var x5 = $n(x$1$2)._2__Ldoodle_core_Point();
-            var x6 = $n(x$1$2)._3__Ldoodle_core_Point();
+            var this$42 = $n(x$1$2);
+            var x4 = this$42.Ldoodle_core_PathElement$BezierCurveTo__f_cp1;
+            var this$43 = $n(x$1$2);
+            var x5 = this$43.Ldoodle_core_PathElement$BezierCurveTo__f_cp2;
+            var this$44 = $n(x$1$2);
+            var x6 = this$44.Ldoodle_core_PathElement$BezierCurveTo__f_to;
             var x$9 = $n(x6).Ldoodle_core_Point$Cartesian__f_x;
             var that$8 = $n(x5).Ldoodle_core_Point$Cartesian__f_x;
             var x$10 = $uD(Math.min(x$9, that$8));
@@ -24829,6 +24944,11 @@ $h_Ldoodle_core_OpenPath$.prototype = $c_Ldoodle_core_OpenPath$.prototype;
 $c_Ldoodle_core_OpenPath$.prototype.toString__T = (function() {
   return "OpenPath"
 });
+$c_Ldoodle_core_OpenPath$.prototype.catmulRom__sci_Seq__D__Ldoodle_core_OpenPath = (function(points, tension) {
+  $m_Ldoodle_core_OpenPath$();
+  var elts = $m_Ldoodle_core_PathElement$().catmulRom__sci_Seq__D__sci_List(points, tension);
+  return new $c_Ldoodle_core_OpenPath($n(elts).reverse__sci_List())
+});
 var $d_Ldoodle_core_OpenPath$ = new $TypeData().initClass({
   Ldoodle_core_OpenPath$: 0
 }, false, "doodle.core.OpenPath$", {
@@ -24845,6 +24965,47 @@ function $m_Ldoodle_core_OpenPath$() {
   };
   return $n_Ldoodle_core_OpenPath$
 }
+function $p_Ldoodle_core_PathElement$__toCurve$1__D__Ldoodle_core_Point__Ldoodle_core_Point__Ldoodle_core_Point__Ldoodle_core_Point__Ldoodle_core_PathElement($thiz, tension$1, pt0, pt1, pt2, pt3) {
+  return $m_Ldoodle_core_PathElement$().curveTo__D__D__D__D__D__D__Ldoodle_core_PathElement((((((-tension$1) * $n(pt0).Ldoodle_core_Point$Cartesian__f_x) + (3.0 * $n(pt1).Ldoodle_core_Point$Cartesian__f_x)) + (tension$1 * $n(pt2).Ldoodle_core_Point$Cartesian__f_x)) / 3.0), (((((-tension$1) * $n(pt0).Ldoodle_core_Point$Cartesian__f_y) + (3.0 * $n(pt1).Ldoodle_core_Point$Cartesian__f_y)) + (tension$1 * $n(pt2).Ldoodle_core_Point$Cartesian__f_y)) / 3.0), ((((tension$1 * $n(pt1).Ldoodle_core_Point$Cartesian__f_x) + (3.0 * $n(pt2).Ldoodle_core_Point$Cartesian__f_x)) - (tension$1 * $n(pt3).Ldoodle_core_Point$Cartesian__f_x)) / 3.0), ((((tension$1 * $n(pt1).Ldoodle_core_Point$Cartesian__f_y) + (3.0 * $n(pt2).Ldoodle_core_Point$Cartesian__f_y)) - (tension$1 * $n(pt3).Ldoodle_core_Point$Cartesian__f_y)) / 3.0), $n(pt2).Ldoodle_core_Point$Cartesian__f_x, $n(pt2).Ldoodle_core_Point$Cartesian__f_y)
+}
+function $p_Ldoodle_core_PathElement$__iter$1__D__sci_List__sci_List($thiz, tension$3, points) {
+  if ((points instanceof $c_sci_$colon$colon)) {
+    var x24 = $as_sci_$colon$colon(points);
+    var x25 = $as_Ldoodle_core_Point($n(x24).sci_$colon$colon__f_head);
+    var x26 = $n(x24).sci_$colon$colon__f_next;
+    if ((x26 instanceof $c_sci_$colon$colon)) {
+      var x27 = $as_sci_$colon$colon(x26);
+      var x28 = $as_Ldoodle_core_Point($n(x27).sci_$colon$colon__f_head);
+      var x29 = $n(x27).sci_$colon$colon__f_next;
+      if ((x29 instanceof $c_sci_$colon$colon)) {
+        var x30 = $as_sci_$colon$colon(x29);
+        var x31 = $as_Ldoodle_core_Point($n(x30).sci_$colon$colon__f_head);
+        var x32 = $n(x30).sci_$colon$colon__f_next;
+        if ((x32 instanceof $c_sci_$colon$colon)) {
+          var x33 = $as_sci_$colon$colon(x32);
+          var x35 = $n(x33).sci_$colon$colon__f_next;
+          var pt3 = $as_Ldoodle_core_Point($n(x33).sci_$colon$colon__f_head);
+          var elem$3 = $p_Ldoodle_core_PathElement$__toCurve$1__D__Ldoodle_core_Point__Ldoodle_core_Point__Ldoodle_core_Point__Ldoodle_core_Point__Ldoodle_core_PathElement($thiz, tension$3, x25, x28, x31, pt3);
+          var this$1 = $n(x35);
+          var this$2 = $n(this$1.prepended__O__sci_List(pt3));
+          var this$3 = $n(this$2.prepended__O__sci_List(x31));
+          var this$4 = $n($p_Ldoodle_core_PathElement$__iter$1__D__sci_List__sci_List($thiz, tension$3, this$3.prepended__O__sci_List(x28)));
+          return this$4.prepended__O__sci_List(elem$3)
+        };
+        if ((x32 !== null)) {
+          $n($m_s_package$().s_package$__f_Seq);
+          if (($n(x32).lengthCompare__I__I(0) === 0)) {
+            $n($m_s_package$().s_package$__f_List);
+            var elems = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Ldoodle_core_PathElement.getArrayOf().constr)([$p_Ldoodle_core_PathElement$__toCurve$1__D__Ldoodle_core_Point__Ldoodle_core_Point__Ldoodle_core_Point__Ldoodle_core_Point__Ldoodle_core_PathElement($thiz, tension$3, x25, x28, x31, x31)]));
+            return $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems)
+          }
+        }
+      }
+    }
+  };
+  $n($m_s_package$().s_package$__f_List);
+  return $m_sci_Nil$()
+}
 /** @constructor */
 function $c_Ldoodle_core_PathElement$() {
   $n_Ldoodle_core_PathElement$ = this;
@@ -24857,6 +25018,31 @@ function $h_Ldoodle_core_PathElement$() {
   /*<skip>*/
 }
 $h_Ldoodle_core_PathElement$.prototype = $c_Ldoodle_core_PathElement$.prototype;
+$c_Ldoodle_core_PathElement$.prototype.curveTo__D__D__D__D__D__D__Ldoodle_core_PathElement = (function(cp1X, cp1Y, cp2X, cp2Y, toX, toY) {
+  $m_Ldoodle_core_Point$();
+  var cp1 = new $c_Ldoodle_core_Point$Cartesian(cp1X, cp1Y);
+  $m_Ldoodle_core_Point$();
+  var cp2 = new $c_Ldoodle_core_Point$Cartesian(cp2X, cp2Y);
+  $m_Ldoodle_core_Point$();
+  var to = new $c_Ldoodle_core_Point$Cartesian(toX, toY);
+  return new $c_Ldoodle_core_PathElement$BezierCurveTo(cp1, cp2, to)
+});
+$c_Ldoodle_core_PathElement$.prototype.catmulRom__sci_Seq__D__sci_List = (function(points, tension) {
+  var this$1 = $n($n(points).headOption__s_Option());
+  if (this$1.isEmpty__Z()) {
+    $n($m_s_package$().s_package$__f_List);
+    var $$x1 = $m_sci_Nil$()
+  } else {
+    var arg1 = this$1.get__O();
+    var pt0 = $as_Ldoodle_core_Point(arg1);
+    $m_Ldoodle_core_PathElement$();
+    var elem$4 = new $c_Ldoodle_core_PathElement$MoveTo(pt0);
+    var this$5 = $n($n(points).toList__sci_List());
+    var this$6 = $n($p_Ldoodle_core_PathElement$__iter$1__D__sci_List__sci_List(this, tension, new $c_sci_$colon$colon(pt0, this$5)));
+    var $$x1 = new $c_sci_$colon$colon(elem$4, this$6)
+  };
+  return $as_sci_List($$x1)
+});
 var $d_Ldoodle_core_PathElement$ = new $TypeData().initClass({
   Ldoodle_core_PathElement$: 0
 }, false, "doodle.core.PathElement$", {
@@ -30299,6 +30485,10 @@ $c_Lchartreuse_PlotModule$Plot.prototype.productElement__I__O = (function(n) {
     }
   }
 });
+$c_Lchartreuse_PlotModule$Plot.prototype.addLayer__Lchartreuse_Layer__Lchartreuse_PlotModule$Plot = (function(layer) {
+  var this$1 = $n(this.Lchartreuse_PlotModule$Plot__f_layers);
+  return this.copy__sci_List__T__T__T__Z__Z__I__Lchartreuse_PlotModule$Plot(new $c_sci_$colon$colon(layer, this$1), this.Lchartreuse_PlotModule$Plot__f_plotTitle, this.Lchartreuse_PlotModule$Plot__f_xTitle, this.Lchartreuse_PlotModule$Plot__f_yTitle, this.Lchartreuse_PlotModule$Plot__f_grid, this.Lchartreuse_PlotModule$Plot__f_minorTicks, this.Lchartreuse_PlotModule$Plot__f_tickSize)
+});
 $c_Lchartreuse_PlotModule$Plot.prototype.draw__I__I__Ldoodle_algebra_Picture = (function(width, height) {
   var this$1 = $n(this.Lchartreuse_PlotModule$Plot__f_layers);
   var z = $m_Ldoodle_core_BoundingBox$().Ldoodle_core_BoundingBox$__f_empty;
@@ -31677,7 +31867,9 @@ function $asArrayOf_Ldoodle_core_Color(obj, depth) {
 function $c_Ldoodle_core_Color$() {
   this.Ldoodle_core_Color$__f_black = null;
   this.Ldoodle_core_Color$__f_cadetBlue = null;
+  this.Ldoodle_core_Color$__f_darkBlue = null;
   this.Ldoodle_core_Color$__f_gray = null;
+  this.Ldoodle_core_Color$__f_lawngreen = null;
   $n_Ldoodle_core_Color$ = this;
   $f_Ldoodle_core_CommonColors__$init$__V(this)
 }
@@ -31970,6 +32162,16 @@ function $isArrayOf_Ldoodle_core_PathElement(obj, depth) {
 function $asArrayOf_Ldoodle_core_PathElement(obj, depth) {
   return (($isArrayOf_Ldoodle_core_PathElement(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ldoodle.core.PathElement;", depth))
 }
+var $d_Ldoodle_core_PathElement = new $TypeData().initClass({
+  Ldoodle_core_PathElement: 0
+}, false, "doodle.core.PathElement", {
+  Ldoodle_core_PathElement: 1,
+  O: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Ldoodle_core_PathElement.prototype.$classData = $d_Ldoodle_core_PathElement;
 /** @constructor */
 function $c_Ldoodle_core_Point() {
   /*<skip>*/
@@ -31999,6 +32201,16 @@ function $isArrayOf_Ldoodle_core_Point(obj, depth) {
 function $asArrayOf_Ldoodle_core_Point(obj, depth) {
   return (($isArrayOf_Ldoodle_core_Point(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ldoodle.core.Point;", depth))
 }
+var $d_Ldoodle_core_Point = new $TypeData().initClass({
+  Ldoodle_core_Point: 0
+}, false, "doodle.core.Point", {
+  Ldoodle_core_Point: 1,
+  O: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Ldoodle_core_Point.prototype.$classData = $d_Ldoodle_core_Point;
 /** @constructor */
 function $c_Ldoodle_core_Transform(elements) {
   this.Ldoodle_core_Transform__f_elements = null;
@@ -38988,6 +39200,250 @@ $c_Lchartreuse_Data.prototype.foldLeft__O__F2__O = (function(z, f) {
   throw new $c_s_MatchError(this)
 });
 /** @constructor */
+function $c_Lchartreuse_layout_Curve(strokeColor, strokeWidth, tension) {
+  this.Lchartreuse_layout_Curve__f_strokeColor = null;
+  this.Lchartreuse_layout_Curve__f_strokeWidth = 0.0;
+  this.Lchartreuse_layout_Curve__f_tension = 0.0;
+  this.Lchartreuse_layout_Curve__f_strokeColor = strokeColor;
+  this.Lchartreuse_layout_Curve__f_strokeWidth = strokeWidth;
+  this.Lchartreuse_layout_Curve__f_tension = tension
+}
+$c_Lchartreuse_layout_Curve.prototype = new $h_O();
+$c_Lchartreuse_layout_Curve.prototype.constructor = $c_Lchartreuse_layout_Curve;
+/** @constructor */
+function $h_Lchartreuse_layout_Curve() {
+  /*<skip>*/
+}
+$h_Lchartreuse_layout_Curve.prototype = $c_Lchartreuse_layout_Curve.prototype;
+$c_Lchartreuse_layout_Curve.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_s_Product$$anon$1(this)
+});
+$c_Lchartreuse_layout_Curve.prototype.hashCode__I = (function() {
+  var acc = (-889275714);
+  var hash = acc;
+  var data = $f_T__hashCode__I("Curve");
+  acc = $m_sr_Statics$().mix__I__I__I(hash, data);
+  var hash$1 = acc;
+  var x = this.Lchartreuse_layout_Curve__f_strokeColor;
+  var data$1 = $m_sr_Statics$().anyHash__O__I(x);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$1, data$1);
+  var hash$2 = acc;
+  var dv = this.Lchartreuse_layout_Curve__f_strokeWidth;
+  var data$2 = $m_sr_Statics$().doubleHash__D__I(dv);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$2, data$2);
+  var hash$3 = acc;
+  var dv$1 = this.Lchartreuse_layout_Curve__f_tension;
+  var data$3 = $m_sr_Statics$().doubleHash__D__I(dv$1);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$3, data$3);
+  var hash$4 = acc;
+  return $m_sr_Statics$().finalizeHash__I__I__I(hash$4, 3)
+});
+$c_Lchartreuse_layout_Curve.prototype.equals__O__Z = (function(x$0) {
+  if ((this === x$0)) {
+    return true
+  } else if ((x$0 instanceof $c_Lchartreuse_layout_Curve)) {
+    var x$0$2 = $as_Lchartreuse_layout_Curve(x$0);
+    if (((this.Lchartreuse_layout_Curve__f_strokeWidth === $n(x$0$2).Lchartreuse_layout_Curve__f_strokeWidth) && (this.Lchartreuse_layout_Curve__f_tension === $n(x$0$2).Lchartreuse_layout_Curve__f_tension))) {
+      var x = this.Lchartreuse_layout_Curve__f_strokeColor;
+      var x$2 = $n(x$0$2).Lchartreuse_layout_Curve__f_strokeColor;
+      return ((x === null) ? (x$2 === null) : $n(x).equals__O__Z(x$2))
+    } else {
+      return false
+    }
+  } else {
+    return false
+  }
+});
+$c_Lchartreuse_layout_Curve.prototype.toString__T = (function() {
+  return $m_sr_ScalaRunTime$()._toString__s_Product__T(this)
+});
+$c_Lchartreuse_layout_Curve.prototype.productArity__I = (function() {
+  return 3
+});
+$c_Lchartreuse_layout_Curve.prototype.productPrefix__T = (function() {
+  return "Curve"
+});
+$c_Lchartreuse_layout_Curve.prototype.productElement__I__O = (function(n) {
+  switch (n) {
+    case 0: {
+      return this.Lchartreuse_layout_Curve__f_strokeColor;
+      break
+    }
+    case 1: {
+      return this.Lchartreuse_layout_Curve__f_strokeWidth;
+      break
+    }
+    case 2: {
+      return this.Lchartreuse_layout_Curve__f_tension;
+      break
+    }
+    default: {
+      throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
+    }
+  }
+});
+$c_Lchartreuse_layout_Curve.prototype.draw__Lchartreuse_Data__F1__F1__Ldoodle_algebra_Picture = (function(data, toPoint, scale) {
+  var this$7 = $m_Ldoodle_syntax_package$all$();
+  var this$5 = $m_Ldoodle_syntax_package$all$();
+  var this$3 = $m_Ldoodle_syntax_package$all$();
+  var openPath = $m_Ldoodle_core_OpenPath$().catmulRom__sci_Seq__D__Ldoodle_core_OpenPath($n($as_sci_List($n(data).foldLeft__O__F2__O(($n($m_s_package$().s_package$__f_List), $m_sci_Nil$()), new $c_sjsr_AnonFunction2(((path, a) => {
+    var path$1 = $as_sci_List(path);
+    var elem$1 = $as_Ldoodle_core_Point($n(scale).apply__O__O($n(toPoint).apply__O__O(a)));
+    var this$2 = $n(path$1);
+    return new $c_sci_$colon$colon(elem$1, this$2)
+  }))))).reverse__sci_List(), ($m_Ldoodle_core_OpenPath$(), 0.5));
+  var this$4 = new $c_Ldoodle_syntax_PathSyntax$OpenPathOps(this$3, openPath);
+  var picture = new $c_Ldoodle_syntax_PathSyntax$$anon$2(this$4);
+  var this$6 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$5, picture);
+  var strokeColor = this.Lchartreuse_layout_Curve__f_strokeColor;
+  var picture$1 = new $c_Ldoodle_syntax_StyleSyntax$$anon$3(strokeColor, this$6);
+  var this$8 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$7, picture$1);
+  var strokeWidth = this.Lchartreuse_layout_Curve__f_strokeWidth;
+  return new $c_Ldoodle_syntax_StyleSyntax$$anon$4(strokeWidth, this$8)
+});
+function $as_Lchartreuse_layout_Curve(obj) {
+  return (((obj instanceof $c_Lchartreuse_layout_Curve) || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.layout.Curve"))
+}
+function $isArrayOf_Lchartreuse_layout_Curve(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lchartreuse_layout_Curve)))
+}
+function $asArrayOf_Lchartreuse_layout_Curve(obj, depth) {
+  return (($isArrayOf_Lchartreuse_layout_Curve(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lchartreuse.layout.Curve;", depth))
+}
+var $d_Lchartreuse_layout_Curve = new $TypeData().initClass({
+  Lchartreuse_layout_Curve: 0
+}, false, "chartreuse.layout.Curve", {
+  Lchartreuse_layout_Curve: 1,
+  O: 1,
+  Lchartreuse_Layout: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lchartreuse_layout_Curve.prototype.$classData = $d_Lchartreuse_layout_Curve;
+/** @constructor */
+function $c_Lchartreuse_layout_Line(strokeColor, strokeWidth) {
+  this.Lchartreuse_layout_Line__f_strokeColor = null;
+  this.Lchartreuse_layout_Line__f_strokeWidth = 0.0;
+  this.Lchartreuse_layout_Line__f_strokeColor = strokeColor;
+  this.Lchartreuse_layout_Line__f_strokeWidth = strokeWidth
+}
+$c_Lchartreuse_layout_Line.prototype = new $h_O();
+$c_Lchartreuse_layout_Line.prototype.constructor = $c_Lchartreuse_layout_Line;
+/** @constructor */
+function $h_Lchartreuse_layout_Line() {
+  /*<skip>*/
+}
+$h_Lchartreuse_layout_Line.prototype = $c_Lchartreuse_layout_Line.prototype;
+$c_Lchartreuse_layout_Line.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_s_Product$$anon$1(this)
+});
+$c_Lchartreuse_layout_Line.prototype.hashCode__I = (function() {
+  var acc = (-889275714);
+  var hash = acc;
+  var data = $f_T__hashCode__I("Line");
+  acc = $m_sr_Statics$().mix__I__I__I(hash, data);
+  var hash$1 = acc;
+  var x = this.Lchartreuse_layout_Line__f_strokeColor;
+  var data$1 = $m_sr_Statics$().anyHash__O__I(x);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$1, data$1);
+  var hash$2 = acc;
+  var dv = this.Lchartreuse_layout_Line__f_strokeWidth;
+  var data$2 = $m_sr_Statics$().doubleHash__D__I(dv);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$2, data$2);
+  var hash$3 = acc;
+  return $m_sr_Statics$().finalizeHash__I__I__I(hash$3, 2)
+});
+$c_Lchartreuse_layout_Line.prototype.equals__O__Z = (function(x$0) {
+  if ((this === x$0)) {
+    return true
+  } else if ((x$0 instanceof $c_Lchartreuse_layout_Line)) {
+    var x$0$2 = $as_Lchartreuse_layout_Line(x$0);
+    if ((this.Lchartreuse_layout_Line__f_strokeWidth === $n(x$0$2).Lchartreuse_layout_Line__f_strokeWidth)) {
+      var x = this.Lchartreuse_layout_Line__f_strokeColor;
+      var x$2 = $n(x$0$2).Lchartreuse_layout_Line__f_strokeColor;
+      return ((x === null) ? (x$2 === null) : $n(x).equals__O__Z(x$2))
+    } else {
+      return false
+    }
+  } else {
+    return false
+  }
+});
+$c_Lchartreuse_layout_Line.prototype.toString__T = (function() {
+  return $m_sr_ScalaRunTime$()._toString__s_Product__T(this)
+});
+$c_Lchartreuse_layout_Line.prototype.productArity__I = (function() {
+  return 2
+});
+$c_Lchartreuse_layout_Line.prototype.productPrefix__T = (function() {
+  return "Line"
+});
+$c_Lchartreuse_layout_Line.prototype.productElement__I__O = (function(n) {
+  if ((n === 0)) {
+    return this.Lchartreuse_layout_Line__f_strokeColor
+  };
+  if ((n === 1)) {
+    return this.Lchartreuse_layout_Line__f_strokeWidth
+  };
+  throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
+});
+$c_Lchartreuse_layout_Line.prototype.draw__Lchartreuse_Data__F1__F1__Ldoodle_algebra_Picture = (function(data, toPoint, scale) {
+  var x8 = $as_s_Option($n(data).foldLeft__O__F2__O($m_s_None$(), new $c_sjsr_AnonFunction2(((path, a) => {
+    var path$1 = $as_s_Option(path);
+    var x = $m_s_None$();
+    if ((x === path$1)) {
+      var value = $n($m_Ldoodle_core_OpenPath$().Ldoodle_core_OpenPath$__f_empty).moveTo__Ldoodle_core_Point__Ldoodle_core_OpenPath($as_Ldoodle_core_Point($n(scale).apply__O__O($n(toPoint).apply__O__O(a))));
+      return new $c_s_Some(value)
+    };
+    if ((path$1 instanceof $c_s_Some)) {
+      var p = $as_Ldoodle_core_OpenPath($n($as_s_Some(path$1)).s_Some__f_value);
+      var value$1 = $n(p).lineTo__Ldoodle_core_Point__Ldoodle_core_OpenPath($as_Ldoodle_core_Point($n(scale).apply__O__O($n(toPoint).apply__O__O(a))));
+      return new $c_s_Some(value$1)
+    };
+    throw new $c_s_MatchError(path$1)
+  }))));
+  var x$1 = $m_s_None$();
+  if ((x$1 === x8)) {
+    return new $c_Ldoodle_syntax_ShapeSyntax$$anon$5()
+  };
+  if ((x8 instanceof $c_s_Some)) {
+    var path$2 = $as_Ldoodle_core_OpenPath($n($as_s_Some(x8)).s_Some__f_value);
+    var this$8 = $m_Ldoodle_syntax_package$all$();
+    var this$6 = $m_Ldoodle_syntax_package$all$();
+    var this$4 = $m_Ldoodle_syntax_package$all$();
+    var this$5 = new $c_Ldoodle_syntax_PathSyntax$OpenPathOps(this$4, path$2);
+    var picture = new $c_Ldoodle_syntax_PathSyntax$$anon$2(this$5);
+    var this$7 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$6, picture);
+    var strokeColor = this.Lchartreuse_layout_Line__f_strokeColor;
+    var picture$1 = new $c_Ldoodle_syntax_StyleSyntax$$anon$3(strokeColor, this$7);
+    var this$9 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$8, picture$1);
+    var strokeWidth = this.Lchartreuse_layout_Line__f_strokeWidth;
+    return new $c_Ldoodle_syntax_StyleSyntax$$anon$4(strokeWidth, this$9)
+  };
+  throw new $c_s_MatchError(x8)
+});
+function $as_Lchartreuse_layout_Line(obj) {
+  return (((obj instanceof $c_Lchartreuse_layout_Line) || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.layout.Line"))
+}
+function $isArrayOf_Lchartreuse_layout_Line(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lchartreuse_layout_Line)))
+}
+function $asArrayOf_Lchartreuse_layout_Line(obj, depth) {
+  return (($isArrayOf_Lchartreuse_layout_Line(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lchartreuse.layout.Line;", depth))
+}
+var $d_Lchartreuse_layout_Line = new $TypeData().initClass({
+  Lchartreuse_layout_Line: 0
+}, false, "chartreuse.layout.Line", {
+  Lchartreuse_layout_Line: 1,
+  O: 1,
+  Lchartreuse_Layout: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lchartreuse_layout_Line.prototype.$classData = $d_Lchartreuse_layout_Line;
+/** @constructor */
 function $c_Lchartreuse_layout_ScatterPlot(glyph, toSize) {
   this.Lchartreuse_layout_ScatterPlot__f_glyph = null;
   this.Lchartreuse_layout_ScatterPlot__f_toSize = null;
@@ -39507,8 +39963,81 @@ function $isArrayOf_Ldoodle_core_Gradient$Radial(obj, depth) {
 function $asArrayOf_Ldoodle_core_Gradient$Radial(obj, depth) {
   return (($isArrayOf_Ldoodle_core_Gradient$Radial(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ldoodle.core.Gradient$Radial;", depth))
 }
+/** @constructor */
+function $c_Ldoodle_core_PathElement$BezierCurveTo(cp1, cp2, to) {
+  this.Ldoodle_core_PathElement$BezierCurveTo__f_cp1 = null;
+  this.Ldoodle_core_PathElement$BezierCurveTo__f_cp2 = null;
+  this.Ldoodle_core_PathElement$BezierCurveTo__f_to = null;
+  this.Ldoodle_core_PathElement$BezierCurveTo__f_cp1 = cp1;
+  this.Ldoodle_core_PathElement$BezierCurveTo__f_cp2 = cp2;
+  this.Ldoodle_core_PathElement$BezierCurveTo__f_to = to
+}
+$c_Ldoodle_core_PathElement$BezierCurveTo.prototype = new $h_Ldoodle_core_PathElement();
+$c_Ldoodle_core_PathElement$BezierCurveTo.prototype.constructor = $c_Ldoodle_core_PathElement$BezierCurveTo;
+/** @constructor */
+function $h_Ldoodle_core_PathElement$BezierCurveTo() {
+  /*<skip>*/
+}
+$h_Ldoodle_core_PathElement$BezierCurveTo.prototype = $c_Ldoodle_core_PathElement$BezierCurveTo.prototype;
+$c_Ldoodle_core_PathElement$BezierCurveTo.prototype.hashCode__I = (function() {
+  var this$2 = $m_s_util_hashing_MurmurHash3$();
+  return this$2.productHash__s_Product__I__Z__I(this, (-889275714), false)
+});
+$c_Ldoodle_core_PathElement$BezierCurveTo.prototype.equals__O__Z = (function(x$0) {
+  if ((this === x$0)) {
+    return true
+  } else if ((x$0 instanceof $c_Ldoodle_core_PathElement$BezierCurveTo)) {
+    var x$0$2 = $as_Ldoodle_core_PathElement$BezierCurveTo(x$0);
+    var x = this.Ldoodle_core_PathElement$BezierCurveTo__f_cp1;
+    var x$2 = $n(x$0$2).Ldoodle_core_PathElement$BezierCurveTo__f_cp1;
+    if (((x === null) ? (x$2 === null) : $n(x).equals__O__Z(x$2))) {
+      var x$3 = this.Ldoodle_core_PathElement$BezierCurveTo__f_cp2;
+      var x$4 = $n(x$0$2).Ldoodle_core_PathElement$BezierCurveTo__f_cp2;
+      var $$x1 = ((x$3 === null) ? (x$4 === null) : $n(x$3).equals__O__Z(x$4))
+    } else {
+      var $$x1 = false
+    };
+    if ($$x1) {
+      var x$5 = this.Ldoodle_core_PathElement$BezierCurveTo__f_to;
+      var x$6 = $n(x$0$2).Ldoodle_core_PathElement$BezierCurveTo__f_to;
+      return ((x$5 === null) ? (x$6 === null) : $n(x$5).equals__O__Z(x$6))
+    } else {
+      return false
+    }
+  } else {
+    return false
+  }
+});
+$c_Ldoodle_core_PathElement$BezierCurveTo.prototype.toString__T = (function() {
+  return $m_sr_ScalaRunTime$()._toString__s_Product__T(this)
+});
+$c_Ldoodle_core_PathElement$BezierCurveTo.prototype.productArity__I = (function() {
+  return 3
+});
+$c_Ldoodle_core_PathElement$BezierCurveTo.prototype.productPrefix__T = (function() {
+  return "BezierCurveTo"
+});
+$c_Ldoodle_core_PathElement$BezierCurveTo.prototype.productElement__I__O = (function(n) {
+  switch (n) {
+    case 0: {
+      return this.Ldoodle_core_PathElement$BezierCurveTo__f_cp1;
+      break
+    }
+    case 1: {
+      return this.Ldoodle_core_PathElement$BezierCurveTo__f_cp2;
+      break
+    }
+    case 2: {
+      return this.Ldoodle_core_PathElement$BezierCurveTo__f_to;
+      break
+    }
+    default: {
+      throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
+    }
+  }
+});
 function $as_Ldoodle_core_PathElement$BezierCurveTo(obj) {
-  return ((false || (obj === null)) ? obj : $throwClassCastException(obj, "doodle.core.PathElement$BezierCurveTo"))
+  return (((obj instanceof $c_Ldoodle_core_PathElement$BezierCurveTo) || (obj === null)) ? obj : $throwClassCastException(obj, "doodle.core.PathElement$BezierCurveTo"))
 }
 function $isArrayOf_Ldoodle_core_PathElement$BezierCurveTo(obj, depth) {
   return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ldoodle_core_PathElement$BezierCurveTo)))
@@ -39516,6 +40045,17 @@ function $isArrayOf_Ldoodle_core_PathElement$BezierCurveTo(obj, depth) {
 function $asArrayOf_Ldoodle_core_PathElement$BezierCurveTo(obj, depth) {
   return (($isArrayOf_Ldoodle_core_PathElement$BezierCurveTo(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ldoodle.core.PathElement$BezierCurveTo;", depth))
 }
+var $d_Ldoodle_core_PathElement$BezierCurveTo = new $TypeData().initClass({
+  Ldoodle_core_PathElement$BezierCurveTo: 0
+}, false, "doodle.core.PathElement$BezierCurveTo", {
+  Ldoodle_core_PathElement$BezierCurveTo: 1,
+  Ldoodle_core_PathElement: 1,
+  O: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Ldoodle_core_PathElement$BezierCurveTo.prototype.$classData = $d_Ldoodle_core_PathElement$BezierCurveTo;
 /** @constructor */
 function $c_Ldoodle_core_PathElement$LineTo(to) {
   this.Ldoodle_core_PathElement$LineTo__f_to = null;
@@ -41448,6 +41988,9 @@ function $f_sc_IndexedSeqOps__drop__I__O($thiz, n) {
 function $f_sc_IndexedSeqOps__map__F1__O($thiz, f) {
   return $n($thiz.iterableFactory__sc_IterableFactory()).from__sc_IterableOnce__O(new $c_sc_IndexedSeqView$Map($thiz, f))
 }
+function $f_sc_IndexedSeqOps__headOption__s_Option($thiz) {
+  return ($thiz.isEmpty__Z() ? $m_s_None$() : new $c_s_Some($thiz.head__O()))
+}
 function $f_sc_Iterable__toString__T($thiz) {
   var start = ($thiz.className__T() + "(");
   return $f_sc_IterableOnceOps__mkString__T__T__T__T($thiz, start, ", ", ")")
@@ -41879,6 +42422,9 @@ var $d_sc_LinearSeqIterator = new $TypeData().initClass({
   sc_IterableOnceOps: 1
 });
 $c_sc_LinearSeqIterator.prototype.$classData = $d_sc_LinearSeqIterator;
+function $f_sc_LinearSeqOps__headOption__s_Option($thiz) {
+  return ($thiz.isEmpty__Z() ? $m_s_None$() : new $c_s_Some($thiz.head__O()))
+}
 function $f_sc_LinearSeqOps__iterator__sc_Iterator($thiz) {
   return (($thiz.knownSize__I() === 0) ? $m_sc_Iterator$().sc_Iterator$__f_scala$collection$Iterator$$_empty : new $c_sc_LinearSeqIterator($thiz))
 }
@@ -59625,6 +60171,9 @@ $c_sc_AbstractIndexedSeqView.prototype.drop__I__sc_IndexedSeqView = (function(n)
 $c_sc_AbstractIndexedSeqView.prototype.stringPrefix__T = (function() {
   return "IndexedSeqView"
 });
+$c_sc_AbstractIndexedSeqView.prototype.head__O = (function() {
+  return this.apply__I__O(0)
+});
 $c_sc_AbstractIndexedSeqView.prototype.lengthCompare__I__I = (function(len) {
   var x = this.length__I();
   return ((x === len) ? 0 : ((x < len) ? (-1) : 1))
@@ -59873,6 +60422,9 @@ $c_sc_IndexedSeqView$Drop.prototype.drop__I__sc_IndexedSeqView = (function(n) {
 $c_sc_IndexedSeqView$Drop.prototype.stringPrefix__T = (function() {
   return "IndexedSeqView"
 });
+$c_sc_IndexedSeqView$Drop.prototype.head__O = (function() {
+  return this.apply__I__O(0)
+});
 $c_sc_IndexedSeqView$Drop.prototype.lengthCompare__I__I = (function(len) {
   var x = this.length__I();
   return ((x === len) ? 0 : ((x < len) ? (-1) : 1))
@@ -59925,6 +60477,9 @@ $c_sc_IndexedSeqView$Id.prototype.iterator__sc_Iterator = (function() {
 });
 $c_sc_IndexedSeqView$Id.prototype.stringPrefix__T = (function() {
   return "IndexedSeqView"
+});
+$c_sc_IndexedSeqView$Id.prototype.head__O = (function() {
+  return this.apply__I__O(0)
 });
 $c_sc_IndexedSeqView$Id.prototype.lengthCompare__I__I = (function(len) {
   var x = this.length__I();
@@ -59979,6 +60534,9 @@ $c_sc_IndexedSeqView$Map.prototype.iterator__sc_Iterator = (function() {
 });
 $c_sc_IndexedSeqView$Map.prototype.stringPrefix__T = (function() {
   return "IndexedSeqView"
+});
+$c_sc_IndexedSeqView$Map.prototype.head__O = (function() {
+  return this.apply__I__O(0)
 });
 $c_sc_IndexedSeqView$Map.prototype.lengthCompare__I__I = (function(len) {
   var x = this.length__I();
@@ -61901,6 +62459,9 @@ $h_sci_LazyList.prototype = $c_sci_LazyList.prototype;
 $c_sci_LazyList.prototype.stringPrefix__T = (function() {
   return "LinearSeq"
 });
+$c_sci_LazyList.prototype.headOption__s_Option = (function() {
+  return $f_sc_LinearSeqOps__headOption__s_Option(this)
+});
 $c_sci_LazyList.prototype.length__I = (function() {
   return $f_sc_LinearSeqOps__length__I(this)
 });
@@ -62158,6 +62719,9 @@ $h_sci_Stream.prototype = $c_sci_Stream.prototype;
 $c_sci_Stream.prototype.stringPrefix__T = (function() {
   return "LinearSeq"
 });
+$c_sci_Stream.prototype.headOption__s_Option = (function() {
+  return $f_sc_LinearSeqOps__headOption__s_Option(this)
+});
 $c_sci_Stream.prototype.iterator__sc_Iterator = (function() {
   return $f_sc_LinearSeqOps__iterator__sc_Iterator(this)
 });
@@ -62302,6 +62866,9 @@ $c_sci_WrappedString.prototype.map__F1__O = (function(f) {
 $c_sci_WrappedString.prototype.head__O = (function() {
   var this$1 = $n(this.sci_WrappedString__f_scala$collection$immutable$WrappedString$$self);
   return $bC($charAt(this$1, 0))
+});
+$c_sci_WrappedString.prototype.headOption__s_Option = (function() {
+  return $f_sc_IndexedSeqOps__headOption__s_Option(this)
 });
 $c_sci_WrappedString.prototype.lengthCompare__I__I = (function(len) {
   var this$1 = $n(this.sci_WrappedString__f_scala$collection$immutable$WrappedString$$self);
@@ -62455,6 +63022,9 @@ $c_sjsr_WrappedVarArgs.prototype.drop__I__O = (function(n) {
 });
 $c_sjsr_WrappedVarArgs.prototype.head__O = (function() {
   return this.apply__I__O(0)
+});
+$c_sjsr_WrappedVarArgs.prototype.headOption__s_Option = (function() {
+  return $f_sc_IndexedSeqOps__headOption__s_Option(this)
 });
 $c_sjsr_WrappedVarArgs.prototype.lengthCompare__I__I = (function(len) {
   var x = this.length__I();
@@ -64136,6 +64706,9 @@ $c_sci_ArraySeq.prototype.stringPrefix__T = (function() {
 $c_sci_ArraySeq.prototype.head__O = (function() {
   return this.apply__I__O(0)
 });
+$c_sci_ArraySeq.prototype.headOption__s_Option = (function() {
+  return $f_sc_IndexedSeqOps__headOption__s_Option(this)
+});
 $c_sci_ArraySeq.prototype.lengthCompare__I__I = (function(len) {
   var x = this.length__I();
   return ((x === len) ? 0 : ((x < len) ? (-1) : 1))
@@ -64239,6 +64812,9 @@ $c_sci_Vector.prototype.sameElements__sc_IterableOnce__Z = (function(o) {
 });
 $c_sci_Vector.prototype.stringPrefix__T = (function() {
   return "IndexedSeq"
+});
+$c_sci_Vector.prototype.headOption__s_Option = (function() {
+  return $f_sc_IndexedSeqOps__headOption__s_Option(this)
 });
 $c_sci_Vector.prototype.lengthCompare__I__I = (function(len) {
   var x = this.length__I();
@@ -65670,6 +66246,9 @@ $c_sci_List.prototype.$colon$colon$colon__sci_List__sci_List = (function(prefix)
 $c_sci_List.prototype.isEmpty__Z = (function() {
   return (this === $m_sci_Nil$())
 });
+$c_sci_List.prototype.prepended__O__sci_List = (function(elem) {
+  return new $c_sci_$colon$colon(elem, this)
+});
 $c_sci_List.prototype.prependedAll__sc_IterableOnce__sci_List = (function(prefix) {
   if ((prefix instanceof $c_sci_List)) {
     var x2 = $as_sci_List(prefix);
@@ -65880,6 +66459,9 @@ $c_sci_Queue.prototype.flatMap__F1__O = (function(f) {
 });
 $c_sci_Queue.prototype.stringPrefix__T = (function() {
   return "LinearSeq"
+});
+$c_sci_Queue.prototype.headOption__s_Option = (function() {
+  return $f_sc_LinearSeqOps__headOption__s_Option(this)
 });
 $c_sci_Queue.prototype.lengthCompare__I__I = (function(len) {
   return $f_sc_LinearSeqOps__lengthCompare__I__I(this, len)
@@ -73026,6 +73608,7 @@ function $m_Lcats_implicits$() {
 $L0 = new $c_RTLong(0, 0);
 $d_J.zero = $L0;
 QuickStartExample = $m_Lchartreuse_examples_QuickStartExample$();
+BahamasPopulation = $m_Lchartreuse_examples_BahamasPopulation$();
 ScatterPlotExample = $m_Lchartreuse_examples_ScatterPlotExample$();
 ChartreuseExamples = $m_Lchartreuse_examples_Examples$();
 PlotExample = $m_Lchartreuse_examples_PlotExample$();
