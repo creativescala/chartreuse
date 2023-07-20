@@ -40,7 +40,9 @@ trait PlotModule(numberFormat: NumberFormat) {
       Unit
     ]
 
-    private val margin = 10
+    private val axisMargin = 10
+    private val textMargin = axisMargin + tickSize + 5
+    private val majorTickCount = 12
     private val minorTickCount = 3
 
     def addLayer[Alg2 <: Algebra](layer: Layer[?, Alg2]): Plot[Alg & Alg2] = {
@@ -79,8 +81,10 @@ trait PlotModule(numberFormat: NumberFormat) {
 
       val scale = Scale.linear.build(dataBoundingBox, width, height)
 
-      val xTicks = TickMarkCalculator.calculateTickScale(minX, maxX, 12)
-      val yTicks = TickMarkCalculator.calculateTickScale(minY, maxY, 12)
+      val xTicks =
+        TickMarkCalculator.calculateTickScale(minX, maxX, majorTickCount)
+      val yTicks =
+        TickMarkCalculator.calculateTickScale(minY, maxY, majorTickCount)
 
       // Map the Ticks to the screen coordinates
       val xTicksMapped = Ticks(
@@ -148,24 +152,32 @@ trait PlotModule(numberFormat: NumberFormat) {
       val createXTick: (ScreenCoordinate, Int) => OpenPath =
         (screenCoordinate, tickSize) =>
           OpenPath.empty
-            .moveTo(screenCoordinate.x, yTicksMapped.min - margin)
-            .lineTo(screenCoordinate.x, yTicksMapped.min - margin - tickSize)
+            .moveTo(screenCoordinate.x, yTicksMapped.min - axisMargin)
+            .lineTo(
+              screenCoordinate.x,
+              yTicksMapped.min - axisMargin - tickSize
+            )
 
       val createXTickLabel: (ScreenCoordinate, DataCoordinate) => PlotPicture =
         (screenCoordinate, dataCoordinate) =>
           text(numberFormat.format(dataCoordinate.x))
-            .at(screenCoordinate.x, yTicksMapped.min - 30)
+            .originAt(Landmark.percent(0, 100))
+            .at(screenCoordinate.x, yTicksMapped.min - textMargin)
 
       val createYTick: (ScreenCoordinate, Int) => OpenPath =
         (screenCoordinate, tickSize) =>
           OpenPath.empty
-            .moveTo(xTicksMapped.min - margin, screenCoordinate.y)
-            .lineTo(xTicksMapped.min - margin - tickSize, screenCoordinate.y)
+            .moveTo(xTicksMapped.min - axisMargin, screenCoordinate.y)
+            .lineTo(
+              xTicksMapped.min - axisMargin - tickSize,
+              screenCoordinate.y
+            )
 
       val createYTickLabel: (ScreenCoordinate, DataCoordinate) => PlotPicture =
         (screenCoordinate, dataCoordinate) =>
           text(numberFormat.format(dataCoordinate.y))
-            .at(xTicksMapped.min - 45, screenCoordinate.y)
+            .originAt(Landmark.percent(100, 0))
+            .at(xTicksMapped.min - textMargin, screenCoordinate.y)
 
       val plotTitle = text(this.plotTitle)
         .scale(2, 2)
@@ -283,10 +295,10 @@ trait PlotModule(numberFormat: NumberFormat) {
         yTicksMapped: Ticks
     ): PlotPicture = {
       ClosedPath.empty
-        .moveTo(xTicksMapped.min - margin, yTicksMapped.min - margin)
-        .lineTo(xTicksMapped.max + margin, yTicksMapped.min - margin)
-        .lineTo(xTicksMapped.max + margin, yTicksMapped.max + margin)
-        .lineTo(xTicksMapped.min - margin, yTicksMapped.max + margin)
+        .moveTo(xTicksMapped.min - axisMargin, yTicksMapped.min - axisMargin)
+        .lineTo(xTicksMapped.max + axisMargin, yTicksMapped.min - axisMargin)
+        .lineTo(xTicksMapped.max + axisMargin, yTicksMapped.max + axisMargin)
+        .lineTo(xTicksMapped.min - axisMargin, yTicksMapped.max + axisMargin)
         .path
     }
 
@@ -303,8 +315,8 @@ trait PlotModule(numberFormat: NumberFormat) {
           plot
             .on(
               OpenPath.empty
-                .moveTo(screenCoordinate.x, yTicksMapped.min - margin)
-                .lineTo(screenCoordinate.x, yTicksMapped.max + margin)
+                .moveTo(screenCoordinate.x, yTicksMapped.min - axisMargin)
+                .lineTo(screenCoordinate.x, yTicksMapped.max + axisMargin)
                 .path
                 .strokeColor(Color.gray)
                 .strokeWidth(0.5)
@@ -318,8 +330,8 @@ trait PlotModule(numberFormat: NumberFormat) {
               plot
                 .on(
                   OpenPath.empty
-                    .moveTo(xTicksMapped.min - margin, screenCoordinate.y)
-                    .lineTo(xTicksMapped.max + margin, screenCoordinate.y)
+                    .moveTo(xTicksMapped.min - axisMargin, screenCoordinate.y)
+                    .lineTo(xTicksMapped.max + axisMargin, screenCoordinate.y)
                     .path
                     .strokeColor(Color.gray)
                     .strokeWidth(0.5)
