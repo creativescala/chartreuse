@@ -31,6 +31,21 @@ trait Layout[A, -Alg <: Algebra] {
       toPoint: A => Point,
       scale: Point => Point
   ): Picture[Alg, Unit]
+
+  /** Convenience to convert to a Layer, by associating with data. */
+  def toLayer[F[_]](data: F[A])(toPoint: A => Point)(using
+      toData: ToData[F]
+  ): Layer[A, Alg] =
+    Layer(toData.toData(data))(toPoint).withLayout(this)
+
+  /** Convenience to convert directly to a Plot, by associating with data and
+    * creating a plot with a single layer.
+    */
+  def toLayer[F[_]](data: F[Point])(using
+      toData: ToData[F],
+      ev: A =:= Point
+  ): Layer[A, Alg] =
+    this.toLayer[F](ev.liftContra.apply(data))(a => ev.apply(a))(using toData)
 }
 object Layout {
   def empty[A]: Layout[A, Shape] =
