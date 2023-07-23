@@ -14,8 +14,12 @@ libraryDependencies += "org.creativescala" %% "chartreuse" % "@VERSION@"
 
 Then, in your code, import the library.
 
-```scala mdoc:silent
+```scala
 import chartreuse.{*, given}
+```
+```scala mdoc:invisible
+// Scala complains that the `given` import is unused
+import chartreuse.*
 ```
 
 
