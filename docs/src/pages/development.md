@@ -40,10 +40,3 @@ The builder pattern has the following details:
 * Builder methods always return a copy of the object. There is no mutable state.
 * Changing a parameter called `name` is done by a method called `withName`, which takes a new value for `name`.
 * Changing a nested object called `name` is done by a method called `forName`, which takes a `name => name` function.
-
-
-## Modules
-
-Modules are used to share code between the JS and JVM platform when the code depends on a platform specific feature. At the time of writing, this is platform-specific number formatting.
-
-A module is implemented as a Scala `trait`, with constructor arguments giving the dependencies of that module. Each platform specific code base will instantiate the module with the correct dependency, and export any values and types that should be user visible.
