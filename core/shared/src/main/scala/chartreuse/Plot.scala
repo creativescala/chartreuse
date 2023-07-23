@@ -23,7 +23,7 @@ import doodle.syntax.all.*
 /** A `Plot` is a collection of layers along with a title, legend, axes, and
   * grid.
   */
-final case class Plot[Alg <: Algebra](
+final case class Plot[-Alg <: Algebra](
     layers: List[Layer[?, Alg]],
     plotTitle: String = "Plot Title",
     xTitle: String = "X data",
@@ -33,10 +33,10 @@ final case class Plot[Alg <: Algebra](
     tickSize: Int = 7
 ) {
   type TicksSequence = Seq[(ScreenCoordinate, DataCoordinate)]
-  type PlotPicture = Picture[
-    Alg & Layout & Text & Path & Style & Shape & doodle.algebra.Transform,
-    Unit
-  ]
+  type AAlg >: Alg
+  type PlotAlg = AAlg & Layout & Text & Path & Style & Shape &
+    doodle.algebra.Transform
+  type PlotPicture = Picture[PlotAlg, Unit]
 
   private val axisMargin = 10
   private val textMargin = axisMargin + tickSize + 5
@@ -144,10 +144,12 @@ final case class Plot[Alg <: Algebra](
       yMajorTickToMinorTick
     )
 
-    val allLayers =
+    val allLayers: PlotPicture =
       layers
         .map(_.draw(width, height))
-        .foldLeft(empty[Alg & Layout & Shape])(_ on _)
+        .foldLeft(empty[PlotAlg])(
+          _ on _.asInstanceOf[PlotPicture]
+        )
 
     val createXTick: (ScreenCoordinate, Int) => OpenPath =
       (screenCoordinate, tickSize) =>
@@ -272,15 +274,14 @@ final case class Plot[Alg <: Algebra](
   private def withTicks(
       ticksSequence: TicksSequence,
       createTick: (ScreenCoordinate, Int) => OpenPath,
-      createTickLabel: (ScreenCoordinate, DataCoordinate) => PlotPicture,
+      createTickLabel: (
+          ScreenCoordinate,
+          DataCoordinate
+      ) => PlotPicture,
       tickSize: Int
   ): PlotPicture = {
     ticksSequence
-      .foldLeft(
-        empty[
-          Alg & Layout & Text & Path & Style & Shape & doodle.algebra.Transform
-        ]
-      )((plot, tick) =>
+      .foldLeft(empty[PlotAlg])((plot, tick) =>
         val (screenCoordinate, dataCoordinate) = tick
 
         plot

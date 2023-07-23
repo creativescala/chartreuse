@@ -23,7 +23,7 @@ import doodle.core.Point
 import doodle.language.Basic
 import doodle.syntax.all.*
 
-final case class ScatterPlot[
+final case class Scatter[
     A,
     Alg <: doodle.algebra.Layout & doodle.algebra.Shape
 ](
@@ -40,7 +40,7 @@ final case class ScatterPlot[
     }
   }
 }
-object ScatterPlot {
-  def default[A]: ScatterPlot[A, Basic] =
-    ScatterPlot(Glyph.circle.fillColor(Color.cadetBlue), _ => 5.0)
+object Scatter {
+  def default[A]: Scatter[A, Basic] =
+    Scatter(Glyph.circle.fillColor(Color.cadetBlue), _ => 5.0)
 }

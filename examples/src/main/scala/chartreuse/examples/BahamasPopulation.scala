@@ -284,15 +284,13 @@ object BahamasPopulation {
       Point(2021, 407920)
     )
 
-  val data = Data(population)
   val curve =
     Curve.default[Point].withStrokeColor(Color.lawngreen).withStrokeWidth(7.0)
   val line =
     Line.default[Point].withStrokeColor(Color.darkBlue).withStrokeWidth(3.0)
 
   val plot =
-    Plot(Layer(data, curve)(pt => pt))
-      .addLayer(Layer(data, line)(pt => pt))
+    Plot(List(curve.toLayer(population), line.toLayer(population)))
       .withPlotTitle("Bahamas Population")
       .withYTitle("Estimated Population")
       .withXTitle("Year")

@@ -17,7 +17,7 @@
 package chartreuse.examples
 
 import cats.effect.unsafe.implicits.global
-import chartreuse.layout.ScatterPlot
+import chartreuse.layout.Scatter
 import chartreuse.{*, given}
 import doodle.core.Point
 import doodle.language.Basic
@@ -35,7 +35,7 @@ object PlotExample {
       List.fill(100)(Point(Random.nextGaussian(), Random.nextGaussian()))
 
     val data = Data(points)
-    val layout = ScatterPlot.default[Point]
+    val layout = Scatter.default[Point]
     Layer(data, layout)(pt => pt)
   }
 

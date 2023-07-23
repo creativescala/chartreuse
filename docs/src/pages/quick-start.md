@@ -4,12 +4,18 @@ This section shows how to get started using Chartreuse.
 Refer to other sections for more details on how the library works.
 
 
-## Library Dependency
+## Using Chartreuse
 
 To use Chartreuse in your project, add the following to your `build.sbt`:
 
 ```scala
 libraryDependencies += "org.creativescala" %% "chartreuse" % "@VERSION@"
+```
+
+Then, in your code, import the library.
+
+```scala mdoc:silent
+import chartreuse.{*, given}
 ```
 
 
@@ -19,12 +25,11 @@ You need some data to create a visualization.
 You presumably have some real data but for this demonstration we'll create some simple fake data.
 
 ```scala mdoc:silent
-import chartreuse.{*, given}
 import doodle.core.Point
 import scala.util.Random
 
 val data =
-  Data(List.fill(100)(Point(Random.nextGaussian(), Random.nextGaussian())))
+  List.fill(100)(Point(Random.nextGaussian(), Random.nextGaussian()))
 ```
 
 Chartreuse can work with just about any collection class, so it probably doesn't matter how you've stored your data.
@@ -33,31 +38,29 @@ Chartreuse can work with just about any collection class, so it probably doesn't
 ## Creating a Plot
 
 Now we have data we can create a plot.
-We'll create a simple scatter plot from this data.
-In Chartreuse, a plot is made up of layers.
-Each layer associates some data with a layout.
-In our case the layout is a scatter plot.
+The simplest way to create a plot is to start with the `Layout`,
+which determines how the data will be drawn in the visualization.
+We'll create a simple scatter plot from our data.
+This uses the `Scatter` layout.
 
 ```scala mdoc:silent
-import chartreuse.layout.ScatterPlot
+import chartreuse.layout.Scatter
 
-val layout = ScatterPlot.default[Point]
-val layer = Layer(data, layout)(pt => pt)
+val layout = Scatter.default[Point]
 ```
 
-When we constructed the `Layer` we had to specify how to convert the data to `Points`. 
-In our case this is just the identity function.
-
-Now we add the layer to a plot, and we can set the title and other properties.
+We need to add our data to the a `Layout` to create a `Plot` that we can draw.
+Once we have a `Plot` we can set the title and other properties.
 
 ```scala mdoc:silent
-val plot = Plot(layer)
+val plot = layout
+  .toPlot(data)
   .withPlotTitle("Our Amazing Plot")
   .withXTitle("Awesomeness")
   .withYTitle("Marvellousness")
 ```
 
-We can convert a `Plot` to a Doodle `Picture` using the `draw`, to which we pass the size of the output.
+We can convert a `Plot` to a Doodle `Picture` using the `draw` method, to which we pass the size of the output.
 
 ```scala
 val picture = plot.draw(640, 480)
