@@ -19,7 +19,7 @@ package chartreuse
 import scala.scalajs.js
 import scala.scalajs.js.annotation.*
 
-object JsNumberFormat extends NumberFormat {
+given NumberFormat with {
   @js.native
   @JSGlobal("Intl.NumberFormat")
   class NumberFormat extends js.Object {
@@ -31,6 +31,3 @@ object JsNumberFormat extends NumberFormat {
   def format(value: Double): String =
     instance.format(value)
 }
-
-val module = new PlotModule(JsNumberFormat) {}
-export module.*

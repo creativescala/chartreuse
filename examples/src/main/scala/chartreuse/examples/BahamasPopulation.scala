@@ -17,8 +17,8 @@
 package chartreuse.examples
 
 import cats.effect.unsafe.implicits.global
-import chartreuse.*
 import chartreuse.layout.*
+import chartreuse.{*, given}
 import doodle.core.Color
 import doodle.core.Point
 import doodle.svg.*

@@ -16,12 +16,9 @@
 
 package chartreuse
 
-object JvmNumberFormat extends NumberFormat {
+given NumberFormat with {
   val instance = java.text.NumberFormat.getNumberInstance()
 
   def format(value: Double): String =
     instance.format(value)
 }
-
-val module = new PlotModule(JvmNumberFormat) {}
-export module.*

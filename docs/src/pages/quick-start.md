@@ -19,7 +19,7 @@ You need some data to create a visualization.
 You presumably have some real data but for this demonstration we'll create some simple fake data.
 
 ```scala mdoc:silent
-import chartreuse.*
+import chartreuse.{*, given}
 import doodle.core.Point
 import scala.util.Random
 
