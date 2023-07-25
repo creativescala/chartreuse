@@ -74,10 +74,6 @@
               <li>Changing a parameter called <code>name</code> is done by a method called <code>withName</code>, which takes a new value for <code>name</code>.</li>
               <li>Changing a nested object called <code>name</code> is done by a method called <code>forName</code>, which takes a <code>name =&gt; name</code> function.</li>
             </ul>
-            
-            <h2 id="modules" class="section">Modules</h2>
-            <p>Modules are used to share code between the JS and JVM platform when the code depends on a platform specific feature. At the time of writing, this is platform-specific number formatting.</p>
-            <p>A module is implemented as a Scala <code>trait</code>, with constructor arguments giving the dependencies of that module. Each platform specific code base will instantiate the module with the correct dependency, and export any values and types that should be user visible.</p>
             <div class="flex flex-row justify-between">
                 <a class="pageNavigation" href="examples.html">←Examples</a> 
             </div>

@@ -42,39 +42,39 @@
             <p>This section shows how to get started using Chartreuse. 
             Refer to other sections for more details on how the library works.</p>
             
-            <h2 id="library-dependency" class="section">Library Dependency</h2>
+            <h2 id="using-chartreuse" class="section">Using Chartreuse</h2>
             <p>To use Chartreuse in your project, add the following to your <code>build.sbt</code>:</p>
-            <pre><code class="nohighlight"><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %% </span><span class="string-literal">&quot;chartreuse&quot;</span><span> % </span><span class="string-literal">&quot;0.1-f26270c-SNAPSHOT&quot;</span></code></pre>
+            <pre><code class="nohighlight"><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %% </span><span class="string-literal">&quot;chartreuse&quot;</span><span> % </span><span class="string-literal">&quot;0.1-ccffe2a-SNAPSHOT&quot;</span></code></pre>
+            <p>Then, in your code, import the library.</p>
+            <pre><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">chartreuse</span><span>.{*, </span><span class="identifier">given</span><span>}</span></code></pre>
             
             <h2 id="creating-data" class="section">Creating Data</h2>
             <p>You need some data to create a visualization.
             You presumably have some real data but for this demonstration we&#39;ll create some simple fake data.</p>
-            <pre><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">chartreuse</span><span>.*
-</span><span class="keyword">import</span><span> </span><span class="identifier">doodle</span><span>.</span><span class="identifier">core</span><span>.</span><span class="type-name">Point</span><span>
+            <pre><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">doodle</span><span>.</span><span class="identifier">core</span><span>.</span><span class="type-name">Point</span><span>
 </span><span class="keyword">import</span><span> </span><span class="identifier">scala</span><span>.</span><span class="identifier">util</span><span>.</span><span class="type-name">Random</span><span>
 
 </span><span class="keyword">val</span><span> </span><span class="identifier">data</span><span> =
-  </span><span class="type-name">Data</span><span>(</span><span class="type-name">List</span><span>.</span><span class="identifier">fill</span><span>(</span><span class="number-literal">100</span><span>)(</span><span class="type-name">Point</span><span>(</span><span class="type-name">Random</span><span>.</span><span class="identifier">nextGaussian</span><span>(), </span><span class="type-name">Random</span><span>.</span><span class="identifier">nextGaussian</span><span>())))</span></code></pre>
+  </span><span class="type-name">List</span><span>.</span><span class="identifier">fill</span><span>(</span><span class="number-literal">100</span><span>)(</span><span class="type-name">Point</span><span>(</span><span class="type-name">Random</span><span>.</span><span class="identifier">nextGaussian</span><span>(), </span><span class="type-name">Random</span><span>.</span><span class="identifier">nextGaussian</span><span>()))</span></code></pre>
             <p>Chartreuse can work with just about any collection class, so it probably doesn&#39;t matter how you&#39;ve stored your data.</p>
             
             <h2 id="creating-a-plot" class="section">Creating a Plot</h2>
             <p>Now we have data we can create a plot.
-            We&#39;ll create a simple scatter plot from this data.
-            In Chartreuse, a plot is made up of layers.
-            Each layer associates some data with a layout.
-            In our case the layout is a scatter plot.</p>
-            <pre><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">chartreuse</span><span>.</span><span class="identifier">layout</span><span>.</span><span class="type-name">ScatterPlot</span><span>
+            The simplest way to create a plot is to start with the <code>Layout</code>,
+            which determines how the data will be drawn in the visualization.
+            We&#39;ll create a simple scatter plot from our data.
+            This uses the <code>Scatter</code> layout.</p>
+            <pre><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">chartreuse</span><span>.</span><span class="identifier">layout</span><span>.</span><span class="type-name">Scatter</span><span>
 
-</span><span class="keyword">val</span><span> </span><span class="identifier">layout</span><span> = </span><span class="type-name">ScatterPlot</span><span>.</span><span class="keyword">default</span><span>[</span><span class="type-name">Point</span><span>]
-</span><span class="keyword">val</span><span> </span><span class="identifier">layer</span><span> = </span><span class="type-name">Layer</span><span>(</span><span class="identifier">data</span><span>, </span><span class="identifier">layout</span><span>)(</span><span class="identifier">pt</span><span> =&gt; </span><span class="identifier">pt</span><span>)</span></code></pre>
-            <p>When we constructed the <code>Layer</code> we had to specify how to convert the data to <code>Points</code>. 
-            In our case this is just the identity function.</p>
-            <p>Now we add the layer to a plot, and we can set the title and other properties.</p>
-            <pre><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">plot</span><span> = </span><span class="type-name">Plot</span><span>(</span><span class="identifier">layer</span><span>)
+</span><span class="keyword">val</span><span> </span><span class="identifier">layout</span><span> = </span><span class="type-name">Scatter</span><span>.</span><span class="keyword">default</span><span>[</span><span class="type-name">Point</span><span>]</span></code></pre>
+            <p>We need to add our data to the a <code>Layout</code> to create a <code>Plot</code> that we can draw.
+            Once we have a <code>Plot</code> we can set the title and other properties.</p>
+            <pre><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">plot</span><span> = </span><span class="identifier">layout</span><span>
+  .</span><span class="identifier">toPlot</span><span>(</span><span class="identifier">data</span><span>)
   .</span><span class="identifier">withPlotTitle</span><span>(</span><span class="string-literal">&quot;Our Amazing Plot&quot;</span><span>)
   .</span><span class="identifier">withXTitle</span><span>(</span><span class="string-literal">&quot;Awesomeness&quot;</span><span>)
   .</span><span class="identifier">withYTitle</span><span>(</span><span class="string-literal">&quot;Marvellousness&quot;</span><span>)</span></code></pre>
-            <p>We can convert a <code>Plot</code> to a Doodle <code>Picture</code> using the <code>draw</code>, to which we pass the size of the output.</p>
+            <p>We can convert a <code>Plot</code> to a Doodle <code>Picture</code> using the <code>draw</code> method, to which we pass the size of the output.</p>
             <pre><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">picture</span><span> = </span><span class="identifier">plot</span><span>.</span><span class="identifier">draw</span><span>(</span><span class="number-literal">640</span><span>, </span><span class="number-literal">480</span><span>)</span></code></pre>
             <p>Then we can render the <code>picture</code> in the usual way for Doodle, which depends on the backend in use. On the JVM we just call the <code>draw</code> method. On the JS backend we call <code>drawWithFrame</code> passing in the id of the DOM element (a <code>String</code>) where we should draw it.</p>
             <p>Here are complete examples. Firstly for the JVM.</p>
