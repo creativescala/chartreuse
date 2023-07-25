@@ -16,12 +16,18 @@
 
 package chartreuse
 
-object JvmNumberFormat extends NumberFormat {
-  val instance = java.text.NumberFormat.getNumberInstance()
+import scala.scalajs.js
+import scala.scalajs.js.annotation.*
+
+given NumberFormat with {
+  @js.native
+  @JSGlobal("Intl.NumberFormat")
+  class NumberFormat extends js.Object {
+    def format(value: Double): String = js.native
+  }
+
+  val instance = new NumberFormat
 
   def format(value: Double): String =
     instance.format(value)
 }
-
-val module = new PlotModule(JvmNumberFormat) {}
-export module.*

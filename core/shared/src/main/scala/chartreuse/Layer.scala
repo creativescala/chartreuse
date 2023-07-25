@@ -41,6 +41,11 @@ final case class Layer[A, -Alg <: Algebra](
   def boundingBox: BoundingBox =
     data.boundingBox(toPoint)
 
+  /** Convenience to convert to a Plot with a single `Layer`.
+    */
+  def toPlot: Plot[Alg] =
+    Plot(this)
+
   // Builder methods -----------------------------------------------------------
 
   def withLayout[AAlg <: Algebra](layout: Layout[A, AAlg]): Layer[A, AAlg] =

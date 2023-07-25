@@ -17,8 +17,8 @@
 package chartreuse.examples
 
 import cats.effect.unsafe.implicits.global
-import chartreuse.*
-import chartreuse.layout.ScatterPlot
+import chartreuse.layout.Scatter
+import chartreuse.{*, given}
 import doodle.core.Point
 import doodle.svg.*
 import doodle.syntax.all.*
@@ -30,11 +30,11 @@ import scala.util.Random
 @JSExportTopLevel("QuickStartExample")
 object QuickStartExample {
   val data =
-    Data(List.fill(100)(Point(Random.nextGaussian(), Random.nextGaussian())))
+    List.fill(100)(Point(Random.nextGaussian(), Random.nextGaussian()))
 
-  val layout = ScatterPlot.default[Point]
-  val layer = Layer(data, layout)(pt => pt)
-  val plot = Plot(layer)
+  val layout = Scatter.default[Point]
+  val plot = layout
+    .toPlot(data)
     .withPlotTitle("Our Amazing Plot")
     .withXTitle("Awesomeness")
     .withYTitle("Marvellousness")

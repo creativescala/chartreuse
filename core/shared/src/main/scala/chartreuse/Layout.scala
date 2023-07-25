@@ -31,6 +31,42 @@ trait Layout[A, -Alg <: Algebra] {
       toPoint: A => Point,
       scale: Point => Point
   ): Picture[Alg, Unit]
+
+  /** Convenience to convert to a `Layer`, by associating this `Layout` with
+    * data and a function to convert data elements to `Point`.
+    */
+  def toLayer[F[_]](data: F[A])(toPoint: A => Point)(using
+      toData: ToData[F]
+  ): Layer[A, Alg] =
+    Layer(toData.toData(data))(toPoint).withLayout(this)
+
+  /** Convenience to convert directly to a `Layer`, by associating this `Layout`
+    * with data. Use this variant when the data already consists of `Points`.
+    */
+  def toLayer[F[_]](data: F[Point])(using
+      toData: ToData[F],
+      ev: A =:= Point
+  ): Layer[A, Alg] =
+    this.toLayer[F](ev.liftContra.apply(data))(a => ev.apply(a))(using toData)
+
+  /** Convenience to convert to a Plot, by associating this `Layout` with data
+    * and a function to convert data elements to `Point` and creating a `Plot`
+    * with a single `Layer`.
+    */
+  def toPlot[F[_]](data: F[A])(toPoint: A => Point)(using
+      toData: ToData[F]
+  ): Plot[Alg] =
+    Plot(toLayer(data)(toPoint)(using toData))
+
+  /** Convenience to convert to a Plot, by associating this `Layout` with data
+    * and creating a `Plot` with a single `Layer`. Use this variant when the
+    * data already consists of `Points`.
+    */
+  def toPlot[F[_]](data: F[Point])(using
+      toData: ToData[F],
+      ev: A =:= Point
+  ): Plot[Alg] =
+    Plot(toLayer(data)(using toData, ev))
 }
 object Layout {
   def empty[A]: Layout[A, Shape] =

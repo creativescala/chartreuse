@@ -16,21 +16,19 @@
 
 package chartreuse
 
-import scala.scalajs.js
-import scala.scalajs.js.annotation.*
+import cats.Traverse
 
-object JsNumberFormat extends NumberFormat {
-  @js.native
-  @JSGlobal("Intl.NumberFormat")
-  class NumberFormat extends js.Object {
-    def format(value: Double): String = js.native
+trait ToData[F[_]] {
+  def toData[A](data: F[A]): Data[A]
+}
+object ToData {
+  given fromIterable: ToData[Iterable] with {
+    def toData[A](data: Iterable[A]): Data[A] =
+      Data(data)
   }
 
-  val instance = new NumberFormat
-
-  def format(value: Double): String =
-    instance.format(value)
+  given fromTraverse[F[_]](using traverse: Traverse[F]): ToData[F] with {
+    def toData[A](data: F[A]): Data[A] =
+      Data(data)(using traverse)
+  }
 }
-
-val module = new PlotModule(JsNumberFormat) {}
-export module.*
