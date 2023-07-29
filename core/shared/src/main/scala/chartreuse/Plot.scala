@@ -147,9 +147,7 @@ final case class Plot[-Alg <: Algebra](
     val allLayers: PlotPicture =
       layers
         .map(_.draw(width, height))
-        .foldLeft(empty[PlotAlg])(
-          _ on _.asInstanceOf[PlotPicture]
-        )
+        .foldLeft(empty[PlotAlg])(_ on _)
 
     val createXTick: (ScreenCoordinate, Int) => OpenPath =
       (screenCoordinate, tickSize) =>
