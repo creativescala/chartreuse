@@ -33,10 +33,7 @@ final case class Plot[-Alg <: Algebra](
     tickSize: Int = 7
 ) {
   type TicksSequence = Seq[(ScreenCoordinate, DataCoordinate)]
-  type AAlg >: Alg
-  type PlotAlg = AAlg & Layout & Text & Path & Style & Shape &
-    doodle.algebra.Transform
-  type PlotPicture = Picture[PlotAlg, Unit]
+  type PlotAlg = Layout & Path & Style & Shape & Text & doodle.algebra.Transform
 
   private val axisMargin = 10
   private val textMargin = axisMargin + tickSize + 5
@@ -69,7 +66,7 @@ final case class Plot[-Alg <: Algebra](
 
   def draw(width: Int, height: Int)(using
       numberFormat: NumberFormat
-  ): PlotPicture = {
+  ): Picture[Alg & PlotAlg, Unit] = {
     val dataBoundingBox = layers.foldLeft(BoundingBox.empty) { (bb, layer) =>
       bb.on(layer.boundingBox)
     }
@@ -144,10 +141,10 @@ final case class Plot[-Alg <: Algebra](
       yMajorTickToMinorTick
     )
 
-    val allLayers: PlotPicture =
+    val allLayers: Picture[Alg & PlotAlg, Unit] =
       layers
         .map(_.draw(width, height))
-        .foldLeft(empty[PlotAlg])(_ on _)
+        .foldLeft(empty)(_ on _)
 
     val createXTick: (ScreenCoordinate, Int) => OpenPath =
       (screenCoordinate, tickSize) =>
@@ -158,7 +155,8 @@ final case class Plot[-Alg <: Algebra](
             yTicksMapped.min - axisMargin - tickSize
           )
 
-    val createXTickLabel: (ScreenCoordinate, DataCoordinate) => PlotPicture =
+    val createXTickLabel
+        : (ScreenCoordinate, DataCoordinate) => Picture[Alg & PlotAlg, Unit] =
       (screenCoordinate, dataCoordinate) =>
         text(numberFormat.format(dataCoordinate.x))
           .originAt(Landmark.percent(0, 100))
@@ -173,7 +171,8 @@ final case class Plot[-Alg <: Algebra](
             screenCoordinate.y
           )
 
-    val createYTickLabel: (ScreenCoordinate, DataCoordinate) => PlotPicture =
+    val createYTickLabel
+        : (ScreenCoordinate, DataCoordinate) => Picture[Alg & PlotAlg, Unit] =
       (screenCoordinate, dataCoordinate) =>
         text(numberFormat.format(dataCoordinate.y))
           .originAt(Landmark.percent(100, 0))
@@ -275,11 +274,11 @@ final case class Plot[-Alg <: Algebra](
       createTickLabel: (
           ScreenCoordinate,
           DataCoordinate
-      ) => PlotPicture,
+      ) => Picture[Alg & PlotAlg, Unit],
       tickSize: Int
-  ): PlotPicture = {
+  ): Picture[Alg & PlotAlg, Unit] = {
     ticksSequence
-      .foldLeft(empty[PlotAlg])((plot, tick) =>
+      .foldLeft(empty[Alg & PlotAlg])((plot, tick) =>
         val (screenCoordinate, dataCoordinate) = tick
 
         plot
@@ -291,7 +290,7 @@ final case class Plot[-Alg <: Algebra](
   private def withAxes(
       xTicksMapped: Ticks,
       yTicksMapped: Ticks
-  ): PlotPicture = {
+  ): Picture[Alg & PlotAlg, Unit] = {
     ClosedPath.empty
       .moveTo(xTicksMapped.min - axisMargin, yTicksMapped.min - axisMargin)
       .lineTo(xTicksMapped.max + axisMargin, yTicksMapped.min - axisMargin)
@@ -305,7 +304,7 @@ final case class Plot[-Alg <: Algebra](
       yTicksMapped: Ticks,
       xTicksSequence: TicksSequence,
       yTicksSequence: TicksSequence
-  ): PlotPicture = {
+  ): Picture[Alg & PlotAlg, Unit] = {
     xTicksSequence
       .foldLeft(empty[Layout & Path & Style & Shape])((plot, tick) =>
         val (screenCoordinate, _) = tick
