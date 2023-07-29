@@ -9,16 +9,13 @@ object Dependencies {
   val catsEffectVersion = "3.5.1"
   val fs2Version = "3.6.1"
 
-  val doodleVersion = "0.19.0"
-  val doodleSvgVersion = "0.16.1"
+  val doodleVersion = "0.20.0"
 
   val munitVersion = "0.7.29"
 
   // Libraries
   val doodle =
     Def.setting("org.creativescala" %%% "doodle" % doodleVersion)
-  val doodleSvg =
-    Def.setting("org.creativescala" %%% "doodle-svg" % doodleSvgVersion)
   val catsEffect =
     Def.setting("org.typelevel" %%% "cats-effect" % catsEffectVersion)
   val catsCore = Def.setting("org.typelevel" %%% "cats-core" % catsVersion)
