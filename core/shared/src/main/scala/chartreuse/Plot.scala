@@ -30,7 +30,9 @@ final case class Plot[-Alg <: Algebra](
     yTitle: String = "Y data",
     grid: Boolean = false,
     minorTicks: Boolean = false,
-    tickSize: Int = 7
+    tickSize: Int = 7,
+    xUserTicks: Option[List[Double]] = None,
+    yUserTicks: Option[List[Double]] = None
 ) {
   type TicksSequence = Seq[(ScreenCoordinate, DataCoordinate)]
   type AAlg >: Alg
@@ -65,6 +67,14 @@ final case class Plot[-Alg <: Algebra](
 
   def withMinorTicks(newMinorTicks: Boolean): Plot[Alg] = {
     copy(minorTicks = newMinorTicks)
+  }
+
+  def withXUserTicks(newXUserTicks: List[Double]): Plot[Alg] = {
+    copy(xUserTicks = Some(newXUserTicks))
+  }
+
+  def withYUserTicks(newYUserTicks: List[Double]): Plot[Alg] = {
+    copy(yUserTicks = Some(newYUserTicks))
   }
 
   def draw(width: Int, height: Int)(using
@@ -105,8 +115,15 @@ final case class Plot[-Alg <: Algebra](
     // Convert the Ticks to a sequence of points
     val asX: Double => Point = x => Point(x, 0)
     val asY: Double => Point = y => Point(0, y)
-    val xTicksSequence = ticksToSequence(xTicks, scale, asX)
-    val yTicksSequence = ticksToSequence(yTicks, scale, asY)
+    val xFilter: Double => Boolean = tick =>
+      tick >= xTicks.min && tick <= xTicks.max
+    val yFilter: Double => Boolean = tick =>
+      tick >= xTicks.min && tick <= yTicks.max
+
+    val xTicksSequence: TicksSequence =
+      ticksToSequence(xUserTicks, scale, asX, xFilter, xTicks)
+    val yTicksSequence: TicksSequence =
+      ticksToSequence(yUserTicks, scale, asY, yFilter, yTicks)
 
     val xMajorTickToMinorTick: (ScreenCoordinate, Double, Int) => (
         ScreenCoordinate,
@@ -232,6 +249,21 @@ final case class Plot[-Alg <: Algebra](
 
   }
 
+  private def ticksToSequence(
+      userTicks: Option[List[Double]],
+      scale: Bijection[Point, Point],
+      toPoint: Double => Point,
+      filter: Double => Boolean,
+      automaticTicks: Ticks
+  ): TicksSequence = {
+    userTicks match {
+      case Some(ticks) =>
+        userTicksToSequence(ticks, scale, toPoint, filter)
+      case None =>
+        automaticTicksToSequence(automaticTicks, scale, toPoint)
+    }
+  }
+
   /** Converts `Ticks` to a list of tuples. The first element is the mapped
     * coordinate of a tick, i.e. a screen coordinate - to place the tick on a
     * graph. The second one is the original coordinate, i.e. a data coordinate
@@ -239,7 +271,7 @@ final case class Plot[-Alg <: Algebra](
     * the coordinates of the graph rendered on the screen. Data coordinates are
     * the values in the data.
     */
-  private def ticksToSequence(
+  private def automaticTicksToSequence(
       ticks: Ticks,
       scale: Bijection[Point, Point],
       toPoint: Double => Point
@@ -252,6 +284,21 @@ final case class Plot[-Alg <: Algebra](
         )
       )
       .toList
+  }
+
+  private def userTicksToSequence(
+      ticks: List[Double],
+      scale: Bijection[Point, Point],
+      toPoint: Double => Point,
+      filter: Double => Boolean
+  ): TicksSequence = {
+    ticks
+      .filter { tick =>
+        filter(tick)
+      }
+      .map { tick =>
+        (ScreenCoordinate(scale(toPoint(tick))), DataCoordinate(toPoint(tick)))
+      }
   }
 
   private def convertToMinorTicks(
