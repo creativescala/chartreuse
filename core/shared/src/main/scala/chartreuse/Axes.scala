@@ -51,9 +51,9 @@ final case class Axes[-Alg <: Algebra](
     val asX: Double => Point = x => Point(x, 0)
     val asY: Double => Point = y => Point(0, y)
     val xFilter: Double => Boolean = tick =>
-      tick >= dataMinX - axisMargin && tick <= dataMaxX + axisMargin
+      tick >= dataMinX && tick <= dataMaxX
     val yFilter: Double => Boolean = tick =>
-      tick >= dataMinY - axisMargin && tick <= dataMaxY + axisMargin
+      tick >= dataMinY && tick <= dataMaxY
 
     val xTicksSequence: TicksSequence =
       majorTickLayoutToSequence(xTickLayout, scale, asX, xFilter, dataMinX, dataMaxX)
@@ -100,10 +100,10 @@ final case class Axes[-Alg <: Algebra](
     val (yTicksMinCoordinate, _) = yTicksSequence.head
     val (yTicksMaxCoordinate, _) = yTicksSequence.last
 
-    val xTicksMin = xTicksMinCoordinate.x
-    val xTicksMax = xTicksMaxCoordinate.x
-    val yTicksMin = yTicksMinCoordinate.y
-    val yTicksMax = yTicksMaxCoordinate.y
+    val xTicksMin = Math.min(xTicksMinCoordinate.x, scale(Point(dataMinX, 0)).x)
+    val xTicksMax = Math.max(xTicksMaxCoordinate.x, scale(Point(dataMaxX, 0)).x)
+    val yTicksMin = Math.min(yTicksMinCoordinate.y, scale(Point(0, dataMinY)).y)
+    val yTicksMax = Math.max(yTicksMaxCoordinate.y, scale(Point(0, dataMaxY)).y)
 
     val createXTick: (ScreenCoordinate, Int) => OpenPath =
       (screenCoordinate, tickSize) =>
