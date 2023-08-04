@@ -146,6 +146,6 @@ lazy val unidocs = project
 
 lazy val examples = project
   .in(file("examples"))
-  .settings(commonSettings, libraryDependencies += Dependencies.doodleSvg.value)
+  .settings(commonSettings)
   .dependsOn(core.js)
   .enablePlugins(ScalaJSPlugin)

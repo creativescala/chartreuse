@@ -62,7 +62,7 @@ final case class Plot[-Alg <: Algebra](
   def withXTicks(newXTicks: MajorTickLayout): Plot[Alg] = {
     copy(xTicks = newXTicks)
   }
-
+  
   def withYTicks(newYTicks: MajorTickLayout): Plot[Alg] = {
     copy(yTicks = newYTicks)
   }
