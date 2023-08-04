@@ -56,9 +56,23 @@ final case class Axes[-Alg <: Algebra](
       tick >= dataMinY && tick <= dataMaxY
 
     val xTicksSequence: TicksSequence =
-      majorTickLayoutToSequence(xTickLayout, scale, asX, xFilter, dataMinX, dataMaxX)
+      majorTickLayoutToSequence(
+        xTickLayout,
+        scale,
+        asX,
+        xFilter,
+        dataMinX,
+        dataMaxX
+      )
     val yTicksSequence: TicksSequence =
-      majorTickLayoutToSequence(yTickLayout, scale, asY, yFilter, dataMinY, dataMaxY)
+      majorTickLayoutToSequence(
+        yTickLayout,
+        scale,
+        asY,
+        yFilter,
+        dataMinY,
+        dataMaxY
+      )
 
     val xMajorTickToMinorTick: (ScreenCoordinate, Double, Int) => (
         ScreenCoordinate,
@@ -82,28 +96,45 @@ final case class Axes[-Alg <: Algebra](
       )
     }
 
-    val xMinorTicksSequence = minorTickLayoutToSequence(
-      minorTickLayout,
-      xTicksSequence,
-      xMajorTickToMinorTick,
-      coordinate => coordinate.x
-    )
-    val yMinorTicksSequence = minorTickLayoutToSequence(
-      minorTickLayout,
-      yTicksSequence,
-      yMajorTickToMinorTick,
-      coordinate => coordinate.y
-    )
+    val xMinorTicksSequence =
+      if xTickLayout != MajorTickLayout.NoTicks then
+        minorTickLayoutToSequence(
+          minorTickLayout,
+          xTicksSequence,
+          xMajorTickToMinorTick,
+          coordinate => coordinate.x
+        )
+      else List.empty
+    val yMinorTicksSequence =
+      if yTickLayout != MajorTickLayout.NoTicks then
+        minorTickLayoutToSequence(
+          minorTickLayout,
+          yTicksSequence,
+          yMajorTickToMinorTick,
+          coordinate => coordinate.y
+        )
+      else List.empty
 
-    val (xTicksMinCoordinate, _) = xTicksSequence.head
-    val (xTicksMaxCoordinate, _) = xTicksSequence.last
-    val (yTicksMinCoordinate, _) = yTicksSequence.head
-    val (yTicksMaxCoordinate, _) = yTicksSequence.last
-
-    val xTicksMin = Math.min(xTicksMinCoordinate.x, scale(Point(dataMinX, 0)).x)
-    val xTicksMax = Math.max(xTicksMaxCoordinate.x, scale(Point(dataMaxX, 0)).x)
-    val yTicksMin = Math.min(yTicksMinCoordinate.y, scale(Point(0, dataMinY)).y)
-    val yTicksMax = Math.max(yTicksMaxCoordinate.y, scale(Point(0, dataMaxY)).y)
+    val xTicksMin = Math.min(
+      if xTickLayout != MajorTickLayout.NoTicks then xTicksSequence.head._1.x
+      else Double.MaxValue,
+      scale(Point(dataMinX, 0)).x
+    )
+    val xTicksMax = Math.max(
+      if xTickLayout != MajorTickLayout.NoTicks then xTicksSequence.last._1.x
+      else Double.MinValue,
+      scale(Point(dataMaxX, 0)).x
+    )
+    val yTicksMin = Math.min(
+      if yTickLayout != MajorTickLayout.NoTicks then yTicksSequence.head._1.y
+      else Double.MaxValue,
+      scale(Point(0, dataMinY)).y
+    )
+    val yTicksMax = Math.max(
+      if yTickLayout != MajorTickLayout.NoTicks then yTicksSequence.last._1.y
+      else Double.MinValue,
+      scale(Point(0, dataMaxY)).y
+    )
 
     val createXTick: (ScreenCoordinate, Int) => OpenPath =
       (screenCoordinate, tickSize) =>
@@ -190,7 +221,7 @@ final case class Axes[-Alg <: Algebra](
           toPoint
         )
       case MajorTickLayout.NoTicks =>
-        List.empty[(ScreenCoordinate, DataCoordinate)]
+        List.empty
     }
   }
 
@@ -212,7 +243,7 @@ final case class Axes[-Alg <: Algebra](
           coordinateToDouble
         )
       case MinorTickLayout.NoTicks =>
-        List.empty[(ScreenCoordinate, DataCoordinate)]
+        List.empty
     }
   }
 
