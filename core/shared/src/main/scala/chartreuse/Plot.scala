@@ -20,6 +20,8 @@ import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
 
+import Plot.PlotAlg
+
 /** A `Plot` is a collection of layers along with a title, legend, axes, and
   * grid.
   */
@@ -96,6 +98,7 @@ final case class Plot[-Alg <: Algebra](
 }
 
 object Plot {
+  type PlotAlg = Layout & Path & Style & Shape & Text & doodle.algebra.Transform
 
   /** Utility constructor to create a `Plot` from a single layer. */
   def apply[Alg <: Algebra](layer: Layer[?, Alg]): Plot[Alg] =

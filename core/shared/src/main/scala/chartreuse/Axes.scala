@@ -20,6 +20,8 @@ import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
 
+import Plot.PlotAlg
+
 final case class Axes[-Alg <: Algebra](
     xTickLayout: MajorTickLayout,
     yTickLayout: MajorTickLayout,
@@ -29,6 +31,8 @@ final case class Axes[-Alg <: Algebra](
     width: Int,
     height: Int
 ) {
+  type TicksSequence = Seq[(ScreenCoordinate, DataCoordinate)]
+
   private val tickSize = 7
   private val axisMargin = 10
   private val textMargin = axisMargin + tickSize + 5

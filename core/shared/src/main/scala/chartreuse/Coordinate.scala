@@ -16,14 +16,11 @@
 
 package chartreuse
 
-import doodle.algebra.*
 import doodle.core.Point
 
 opaque type Coordinate = Point
 opaque type ScreenCoordinate <: Coordinate = Point
 opaque type DataCoordinate <: Coordinate = Point
-type TicksSequence = Seq[(ScreenCoordinate, DataCoordinate)]
-type PlotAlg = Layout & Path & Style & Shape & Text & doodle.algebra.Transform
 
 extension (coordinate: Coordinate) {
   def x: Double = coordinate.x
