@@ -120,22 +120,22 @@ final case class Axes[-Alg <: Algebra](
       else List.empty
 
     val xTicksMin = Math.min(
-      if xTickLayout != MajorTickLayout.NoTicks then xTicksSequence.head._1.x
+      if xTickLayout != MajorTickLayout.NoTicks then xTicksSequence.head(0).x
       else Double.MaxValue,
       scale(Point(dataMinX, 0)).x
     )
     val xTicksMax = Math.max(
-      if xTickLayout != MajorTickLayout.NoTicks then xTicksSequence.last._1.x
+      if xTickLayout != MajorTickLayout.NoTicks then xTicksSequence.last(0).x
       else Double.MinValue,
       scale(Point(dataMaxX, 0)).x
     )
     val yTicksMin = Math.min(
-      if yTickLayout != MajorTickLayout.NoTicks then yTicksSequence.head._1.y
+      if yTickLayout != MajorTickLayout.NoTicks then yTicksSequence.head(0).y
       else Double.MaxValue,
       scale(Point(0, dataMinY)).y
     )
     val yTicksMax = Math.max(
-      if yTickLayout != MajorTickLayout.NoTicks then yTicksSequence.last._1.y
+      if yTickLayout != MajorTickLayout.NoTicks then yTicksSequence.last(0).y
       else Double.MinValue,
       scale(Point(0, dataMaxY)).y
     )
