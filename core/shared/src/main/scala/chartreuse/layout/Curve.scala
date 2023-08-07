@@ -34,8 +34,6 @@ final case class Curve[
     strokeWidth: Double,
     tension: Double
 ) extends Layout[A, Alg] {
-  def withStrokeColor(strokeColor: Color): Curve[A, Alg] =
-    this.copy(strokeColor = strokeColor)
 
   def withStrokeWidth(strokeWidth: Double): Curve[A, Alg] =
     this.copy(strokeWidth = strokeWidth)
@@ -46,7 +44,8 @@ final case class Curve[
   def draw(
       data: Data[A],
       toPoint: A => Point,
-      scale: Point => Point
+      scale: Point => Point,
+      color: Color
   ): Picture[Alg, Unit] = {
     OpenPath
       .catmulRom(
@@ -57,7 +56,7 @@ final case class Curve[
           .reverse
       )
       .path
-      .strokeColor(strokeColor)
+      .strokeColor(color)
       .strokeWidth(strokeWidth)
   }
 }
