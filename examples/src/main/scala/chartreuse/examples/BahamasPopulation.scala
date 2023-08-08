@@ -285,9 +285,17 @@ object BahamasPopulation {
     )
 
   val line =
-    Line.default[Point].withStrokeWidth(3.0)
+    Line
+      .default[Point]
+      .forThemeable(theme =>
+        theme.withStrokeColor(Color.darkBlue).withStrokeWidth(3.0)
+      )
   val curve =
-    Curve.default[Point].withStrokeWidth(7.0)
+    Curve
+      .default[Point]
+      .forThemeable(theme =>
+        theme.withStrokeColor(Color.lawngreen).withStrokeWidth(7.0)
+      )
 
   val plot =
     Plot(

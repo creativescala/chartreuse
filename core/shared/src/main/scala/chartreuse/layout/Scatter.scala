@@ -16,7 +16,9 @@
 
 package chartreuse.layout
 
+import cats.Id
 import chartreuse.*
+import chartreuse.theme.LayoutTheme
 import doodle.algebra.Picture
 import doodle.core.Color
 import doodle.core.Point
@@ -25,7 +27,7 @@ import doodle.syntax.all.*
 
 final case class Scatter[
     A,
-    Alg <: doodle.algebra.Layout & doodle.algebra.Shape
+    Alg <: doodle.algebra.Layout & doodle.algebra.Shape & doodle.algebra.Style
 ](
     glyph: Glyph[Double, Alg],
     toSize: A => Double
@@ -34,11 +36,12 @@ final case class Scatter[
       data: Data[A],
       toPoint: A => Point,
       scale: Point => Point,
-      color: Color
+      theme: LayoutTheme[Id]
   ): Picture[Alg, Unit] = {
-    data.foldLeft(empty[Alg]) { (plot, a) =>
+    val plot = data.foldLeft(empty[Alg]) { (plot, a) =>
       glyph.draw(toSize(a)).at(scale(toPoint(a))).on(plot)
     }
+    theme(plot)
   }
 }
 object Scatter {

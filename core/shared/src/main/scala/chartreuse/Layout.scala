@@ -16,6 +16,8 @@
 
 package chartreuse
 
+import cats.Id
+import chartreuse.theme.LayoutTheme
 import doodle.algebra.Algebra
 import doodle.algebra.Picture
 import doodle.algebra.Shape
@@ -31,7 +33,7 @@ trait Layout[A, -Alg <: Algebra] {
       data: Data[A],
       toPoint: A => Point,
       scale: Point => Point,
-      color: Color
+      theme: LayoutTheme[Id]
   ): Picture[Alg, Unit]
 
   /** Convenience to convert to a `Layer`, by associating this `Layout` with
@@ -77,7 +79,7 @@ object Layout {
           data: Data[A],
           toPoint: A => Point,
           scale: Point => Point,
-          color: Color = Color.cadetBlue
+          theme: LayoutTheme[Id]
       ): Picture[Shape, Unit] =
         doodle.syntax.shape.empty[Shape]
     }

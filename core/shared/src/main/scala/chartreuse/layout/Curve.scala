@@ -16,9 +16,10 @@
 
 package chartreuse.layout
 
+import cats.Id
 import chartreuse.*
+import chartreuse.theme.LayoutTheme
 import doodle.algebra.Picture
-import doodle.core.Color
 import doodle.core.OpenPath
 import doodle.core.Point
 import doodle.syntax.all.*
@@ -30,13 +31,16 @@ final case class Curve[
     A,
     Alg <: doodle.algebra.Style & doodle.algebra.Path
 ](
-    strokeColor: Color,
-    strokeWidth: Double,
+    themeable: LayoutTheme[Themeable],
     tension: Double
 ) extends Layout[A, Alg] {
+  def forThemeable(
+      f: LayoutTheme[Themeable] => LayoutTheme[Themeable]
+  ): Curve[A, Alg] =
+    this.copy(themeable = f(themeable))
 
-  def withStrokeWidth(strokeWidth: Double): Curve[A, Alg] =
-    this.copy(strokeWidth = strokeWidth)
+  def withThemeable(themeable: LayoutTheme[Themeable]): Curve[A, Alg] =
+    this.copy(themeable = themeable)
 
   def withTension(tension: Double): Curve[A, Alg] =
     this.copy(tension = tension)
@@ -45,9 +49,9 @@ final case class Curve[
       data: Data[A],
       toPoint: A => Point,
       scale: Point => Point,
-      color: Color
+      theme: LayoutTheme[Id]
   ): Picture[Alg, Unit] = {
-    OpenPath
+    val curve = OpenPath
       .catmulRom(
         data
           .foldLeft(List.empty[Point]) { (path, a) =>
@@ -56,11 +60,11 @@ final case class Curve[
           .reverse
       )
       .path
-      .strokeColor(color)
-      .strokeWidth(strokeWidth)
+
+    theme(curve)
   }
 }
 object Curve {
   def default[A]: Curve[A, doodle.algebra.Style & doodle.algebra.Path] =
-    Curve(Color.black, 1.0, 0.5)
+    Curve(LayoutTheme.default[Themeable], 0.5)
 }
