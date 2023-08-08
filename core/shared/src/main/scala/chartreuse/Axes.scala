@@ -207,8 +207,7 @@ final case class Axes[-Alg <: Algebra](
           )
       )
       .under(
-        if legend then
-          withLegend.originAt(Landmark.topRight).at(xTicksMax, yTicksMax)
+        if legend then withLegend(xTicksMax, yTicksMax)
         else empty[Shape]
       )
   }
@@ -385,24 +384,35 @@ final case class Axes[-Alg <: Algebra](
       )
   }
 
-  private def withLegend: Picture[Alg & PlotAlg, Unit] = {
+  private def withLegend(x: Double, y: Double): Picture[Alg & PlotAlg, Unit] = {
+    val circleRadius = 8
+    val legendMargin = 6
+
     val legendContent =
       layers.foldLeft(empty[Alg & PlotAlg])((content, layer) => {
         content.above(
-          circle(8)
+          circle(circleRadius)
             .fillColor(layer.color)
-            .margin(0, 5, 0, 0)
+            .margin(0, legendMargin, 0, 0)
             .beside(text(layer.label))
+            .originAt(Landmark.topLeft)
         )
       })
 
     val contentBox =
       legendContent.boundingBox
         .flatMap(bb =>
-          rectangle(bb.width + textMargin / 2, bb.height + textMargin / 2)
+          rectangle(bb.width + legendMargin * 2, bb.height + legendMargin * 2)
             .fillColor(Color.whiteSmoke)
         )
 
-    legendContent.on(contentBox)
+    legendContent
+      .originAt(Landmark.topRight)
+      .at(x - legendMargin, y - legendMargin)
+      .on(
+        contentBox
+          .originAt(Landmark.topRight)
+          .at(x, y)
+      )
   }
 }
