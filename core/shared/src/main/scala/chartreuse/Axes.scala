@@ -27,6 +27,7 @@ final case class Axes[-Alg <: Algebra](
     yTickLayout: MajorTickLayout,
     minorTickLayout: MinorTickLayout,
     grid: Boolean,
+    legend: Boolean,
     layers: Seq[Layer[?, Alg]],
     width: Int,
     height: Int
@@ -205,6 +206,11 @@ final case class Axes[-Alg <: Algebra](
             )
           )
       )
+      .under(
+        if legend then
+          withLegend.originAt(Landmark.topRight).at(xTicksMax, yTicksMax)
+        else empty[Shape]
+      )
   }
 
   private def majorTickLayoutToSequence(
@@ -377,5 +383,26 @@ final case class Axes[-Alg <: Algebra](
               )
           )
       )
+  }
+
+  private def withLegend: Picture[Alg & PlotAlg, Unit] = {
+    val legendContent =
+      layers.foldLeft(empty[Alg & PlotAlg])((content, layer) => {
+        content.above(
+          circle(8)
+            .fillColor(layer.color)
+            .margin(0, 5, 0, 0)
+            .beside(text(layer.label))
+        )
+      })
+
+    val contentBox =
+      legendContent.boundingBox
+        .flatMap(bb =>
+          rectangle(bb.width + textMargin / 2, bb.height + textMargin / 2)
+            .fillColor(Color.whiteSmoke)
+        )
+
+    legendContent.on(contentBox)
   }
 }

@@ -292,13 +292,14 @@ object BahamasPopulation {
   val plot =
     Plot(
       List(
-        line.toLayer(population).withColor(Color.darkBlue),
-        curve.toLayer(population).withColor(Color.lawngreen)
+        line.toLayer(population).withColor(Color.darkBlue).withLabel("Line"),
+        curve.toLayer(population).withColor(Color.lawngreen).withLabel("Curve")
       )
     )
       .withPlotTitle("Bahamas Population")
       .withYTitle("Estimated Population")
       .withXTitle("Year")
+      .withLegend(true)
 
   @JSExport
   def draw(id: String): Unit =
