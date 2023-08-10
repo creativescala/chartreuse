@@ -31,6 +31,7 @@ final case class Plot[-Alg <: Algebra](
     xTitle: String = "X data",
     yTitle: String = "Y data",
     grid: Boolean = false,
+    legend: Boolean = false,
     xTicks: MajorTickLayout = MajorTickLayout.Algorithmic(12),
     yTicks: MajorTickLayout = MajorTickLayout.Algorithmic(12),
     minorTicks: MinorTickLayout = MinorTickLayout.NoTicks
@@ -55,6 +56,10 @@ final case class Plot[-Alg <: Algebra](
     copy(grid = newGrid)
   }
 
+  def withLegend(newLegend: Boolean): Plot[Alg] = {
+    copy(legend = newLegend)
+  }
+
   def withMinorTicks(
       newMinorTicks: MinorTickLayout = MinorTickLayout.Algorithmic(3)
   ): Plot[Alg] = {
@@ -70,7 +75,8 @@ final case class Plot[-Alg <: Algebra](
   }
 
   def draw(width: Int, height: Int): Picture[Alg & PlotAlg, Unit] = {
-    val axes = Axes(xTicks, yTicks, minorTicks, grid, layers, width, height)
+    val axes =
+      Axes(xTicks, yTicks, minorTicks, grid, legend, layers, width, height)
     val plotAttributes = axes.build
 
     val allLayers: Picture[Alg & PlotAlg, Unit] =
@@ -87,7 +93,7 @@ final case class Plot[-Alg <: Algebra](
     yTitle
       .beside(
         allLayers
-          .on(
+          .under(
             plotAttributes
           )
           .margin(5)
@@ -98,7 +104,8 @@ final case class Plot[-Alg <: Algebra](
 }
 
 object Plot {
-  type PlotAlg = Layout & Path & Style & Shape & Text & doodle.algebra.Transform
+  type PlotAlg = Layout & Path & Style & Shape & Text &
+    doodle.algebra.Transform & Size
 
   /** Utility constructor to create a `Plot` from a single layer. */
   def apply[Alg <: Algebra](layer: Layer[?, Alg]): Plot[Alg] =

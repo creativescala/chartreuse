@@ -285,15 +285,21 @@ object BahamasPopulation {
     )
 
   val line =
-    Line.default[Point].withStrokeColor(Color.darkBlue).withStrokeWidth(3.0)
+    Line.default[Point].withStrokeWidth(3.0)
   val curve =
-    Curve.default[Point].withStrokeColor(Color.lawngreen).withStrokeWidth(7.0)
+    Curve.default[Point].withStrokeWidth(7.0)
 
   val plot =
-    Plot(List(line.toLayer(population), curve.toLayer(population)))
+    Plot(
+      List(
+        line.toLayer(population).withColor(Color.darkBlue).withLabel("Line"),
+        curve.toLayer(population).withColor(Color.lawngreen).withLabel("Curve")
+      )
+    )
       .withPlotTitle("Bahamas Population")
       .withYTitle("Estimated Population")
       .withXTitle("Year")
+      .withLegend(true)
 
   @JSExport
   def draw(id: String): Unit =

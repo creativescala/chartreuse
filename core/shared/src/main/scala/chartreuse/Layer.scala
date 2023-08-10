@@ -20,6 +20,7 @@ import doodle.algebra.Algebra
 import doodle.algebra.Picture
 import doodle.algebra.Shape
 import doodle.core.BoundingBox
+import doodle.core.Color
 import doodle.core.Point
 
 /** A `Layer` combines data with layout and other properties required to produce
@@ -29,13 +30,15 @@ final case class Layer[A, -Alg <: Algebra](
     data: Data[A],
     toPoint: A => Point,
     scale: Scale,
-    layout: Layout[A, Alg]
+    layout: Layout[A, Alg],
+    label: String,
+    color: Color
 ) {
   def draw(width: Int, height: Int): Picture[Alg, Unit] = {
     val bb = data.boundingBox(toPoint)
     val s = scale.build(bb, width, height)
 
-    layout.draw(data, toPoint, s)
+    layout.draw(data, toPoint, s, color)
   }
 
   def boundingBox: BoundingBox =
@@ -56,13 +59,23 @@ final case class Layer[A, -Alg <: Algebra](
 
   def withToPoint(toPoint: A => Point): Layer[A, Alg] =
     this.copy(toPoint = toPoint)
+
+  def withColor(color: Color): Layer[A, Alg] =
+    this.copy(color = color)
+
+  def withLabel(label: String): Layer[A, Alg] =
+    this.copy(label = label)
 }
 object Layer {
-  def apply[A](data: Data[A])(toPoint: A => Point): Layer[A, Shape] =
-    Layer(data, toPoint, Scale.linear, Layout.empty)
+  def apply[A](
+      data: Data[A],
+      label: String = "Layer Label",
+      color: Color = Color.cadetBlue
+  )(toPoint: A => Point): Layer[A, Shape] =
+    Layer(data, toPoint, Scale.linear, Layout.empty, label, color)
 
   def apply[A, Alg <: Algebra](data: Data[A], layout: Layout[A, Alg])(
       toPoint: A => Point
   ): Layer[A, Alg] =
-    Layer(data, toPoint, Scale.linear, layout)
+    Layer(data, toPoint, Scale.linear, layout, "Layer Label", Color.cadetBlue)
 }

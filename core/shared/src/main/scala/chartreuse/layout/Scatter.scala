@@ -33,7 +33,8 @@ final case class Scatter[
   def draw(
       data: Data[A],
       toPoint: A => Point,
-      scale: Point => Point
+      scale: Point => Point,
+      color: Color
   ): Picture[Alg, Unit] = {
     data.foldLeft(empty[Alg]) { (plot, a) =>
       glyph.draw(toSize(a)).at(scale(toPoint(a))).on(plot)

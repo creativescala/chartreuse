@@ -33,8 +33,6 @@ final case class Line[
     strokeColor: Color,
     strokeWidth: Double
 ) extends Layout[A, Alg] {
-  def withStrokeColor(strokeColor: Color): Line[A, Alg] =
-    this.copy(strokeColor = strokeColor)
 
   def withStrokeWidth(strokeWidth: Double): Line[A, Alg] =
     this.copy(strokeWidth = strokeWidth)
@@ -42,7 +40,8 @@ final case class Line[
   def draw(
       data: Data[A],
       toPoint: A => Point,
-      scale: Point => Point
+      scale: Point => Point,
+      color: Color
   ): Picture[Alg, Unit] = {
     data
       .foldLeft(None: Option[OpenPath]) { (path, a) =>
@@ -55,7 +54,7 @@ final case class Line[
       } match {
       case None => empty
       case Some(path) =>
-        path.path.strokeColor(strokeColor).strokeWidth(strokeWidth)
+        path.path.strokeColor(color).strokeWidth(strokeWidth)
     }
   }
 }
