@@ -28,6 +28,7 @@ final case class Axes[-Alg <: Algebra](
     minorTickLayout: MinorTickLayout,
     grid: Boolean,
     legend: Boolean,
+    rotatedLabels: Boolean,
     layers: Seq[Layer[?, Alg]],
     width: Int,
     height: Int
@@ -154,7 +155,11 @@ final case class Axes[-Alg <: Algebra](
         : (ScreenCoordinate, DataCoordinate) => Picture[Alg & PlotAlg, Unit] =
       (screenCoordinate, dataCoordinate) =>
         text(numberFormat.format(dataCoordinate.x))
-          .originAt(Landmark.percent(0, 100))
+          .rotate(Angle(if rotatedLabels then 0.523599 else 0))
+          .originAt(
+            if rotatedLabels then Landmark.topRight
+            else Landmark.percent(0, 100)
+          )
           .at(screenCoordinate.x, yTicksMin - textMargin)
 
     val createYTick: (ScreenCoordinate, Int) => OpenPath =

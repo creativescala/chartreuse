@@ -32,6 +32,7 @@ final case class Plot[-Alg <: Algebra](
     yTitle: String = "Y data",
     grid: Boolean = false,
     legend: Boolean = false,
+    rotatedLabels: Boolean = false,
     xTicks: MajorTickLayout = MajorTickLayout.Algorithmic(12),
     yTicks: MajorTickLayout = MajorTickLayout.Algorithmic(12),
     minorTicks: MinorTickLayout = MinorTickLayout.NoTicks
@@ -60,6 +61,10 @@ final case class Plot[-Alg <: Algebra](
     copy(legend = newLegend)
   }
 
+  def withRotatedLabels(newRotatedLabels: Boolean): Plot[Alg] = {
+    copy(rotatedLabels = newRotatedLabels)
+  }
+
   def withMinorTicks(
       newMinorTicks: MinorTickLayout = MinorTickLayout.Algorithmic(3)
   ): Plot[Alg] = {
@@ -76,7 +81,17 @@ final case class Plot[-Alg <: Algebra](
 
   def draw(width: Int, height: Int): Picture[Alg & PlotAlg, Unit] = {
     val axes =
-      Axes(xTicks, yTicks, minorTicks, grid, legend, layers, width, height)
+      Axes(
+        xTicks,
+        yTicks,
+        minorTicks,
+        grid,
+        legend,
+        rotatedLabels,
+        layers,
+        width,
+        height
+      )
     val plotAttributes = axes.build
 
     val allLayers: Picture[Alg & PlotAlg, Unit] =
