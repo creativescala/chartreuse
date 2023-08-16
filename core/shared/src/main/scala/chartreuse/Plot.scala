@@ -16,11 +16,13 @@
 
 package chartreuse
 
+import chartreuse.component.Axis.axisMargin
+import chartreuse.component.*
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
+
 import Plot.PlotAlg
-import chartreuse.component.{Axis, Grid, Legend, PlotBox}
 
 /** A `Plot` is a collection of layers along with a title, legend, axes, and
   * grid.
@@ -118,10 +120,10 @@ final case class Plot[-Alg <: Algebra](
     val createXTick: (ScreenCoordinate, Int, Double) => OpenPath =
       (screenCoordinate, tickSize, anchorPoint) =>
         OpenPath.empty
-          .moveTo(screenCoordinate.x, anchorPoint - 10)
+          .moveTo(screenCoordinate.x, anchorPoint - axisMargin)
           .lineTo(
             screenCoordinate.x,
-            anchorPoint - 10 - tickSize
+            anchorPoint - axisMargin - tickSize
           )
 
     val createXTickLabel: (
@@ -141,9 +143,9 @@ final case class Plot[-Alg <: Algebra](
     val createYTick: (ScreenCoordinate, Int, Double) => OpenPath =
       (screenCoordinate, tickSize, anchorPoint) =>
         OpenPath.empty
-          .moveTo(anchorPoint - 10, screenCoordinate.y)
+          .moveTo(anchorPoint - axisMargin, screenCoordinate.y)
           .lineTo(
-            anchorPoint - 10 - tickSize,
+            anchorPoint - axisMargin - tickSize,
             screenCoordinate.y
           )
 
@@ -169,6 +171,7 @@ final case class Plot[-Alg <: Algebra](
       dataMinX,
       dataMaxX
     )
+
     val yAxis = Axis(
       yTicks,
       minorTicks,
@@ -185,9 +188,11 @@ final case class Plot[-Alg <: Algebra](
     val xMajorTicksSequence = xAxis.majorTickLayoutToSequence
     val xMinorTicksSequence =
       xAxis.minorTickLayoutToSequence(xMajorTicksSequence)
+
     val yMajorTicksSequence = yAxis.majorTickLayoutToSequence
     val yMinorTicksSequence =
-      yAxis.minorTickLayoutToSequence(xMajorTicksSequence)
+      yAxis.minorTickLayoutToSequence(yMajorTicksSequence)
+
     val xTicksBounds = xAxis.getTicksBounds(xMajorTicksSequence)
     val yTicksBounds = yAxis.getTicksBounds(yMajorTicksSequence)
 

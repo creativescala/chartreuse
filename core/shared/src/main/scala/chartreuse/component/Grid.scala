@@ -19,19 +19,19 @@ package chartreuse.component
 import chartreuse.TicksBounds
 import chartreuse.component.Axis.TicksSequence
 import chartreuse.component.Axis.axisMargin
+import chartreuse.x
+import chartreuse.y
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
-import chartreuse.x
-import chartreuse.y
 
-case class Grid(
+final case class Grid(
     xTicksBounds: TicksBounds,
     yTicksBounds: TicksBounds,
     xTicksSequence: TicksSequence,
     yTicksSequence: TicksSequence
 ) {
-  def build = {
+  def build: Picture[Layout & Path & Style & Shape, Unit] = {
     xTicksSequence
       .foldLeft(empty[Layout & Path & Style & Shape])((plot, tick) =>
         val (screenCoordinate, _) = tick

@@ -16,4 +16,5 @@
 
 package chartreuse
 
+/** Represents min and max tick marks values of an `Axis`. */
 final case class TicksBounds(min: Double, max: Double)

@@ -22,7 +22,7 @@ import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
 
-case class Legend[-Alg <: Algebra](layers: Seq[Layer[?, Alg]]) {
+final case class Legend[-Alg <: Algebra](layers: Seq[Layer[?, Alg]]) {
   def build(x: Double, y: Double): Picture[Alg & PlotAlg, Unit] = {
     val circleRadius = 8
     val legendMargin = 6

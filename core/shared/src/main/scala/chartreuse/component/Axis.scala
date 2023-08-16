@@ -16,14 +16,14 @@
 
 package chartreuse.component
 
-import chartreuse.*
 import chartreuse.Plot.PlotAlg
+import chartreuse.*
 import chartreuse.component.Axis.TicksSequence
-import chartreuse.component.Axis.tickSize
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
 
+/** An `Axis` is used to build the plot tick marks. */
 final case class Axis[-Alg <: Algebra](
     majorTickLayout: MajorTickLayout,
     minorTickLayout: MinorTickLayout,
@@ -43,7 +43,14 @@ final case class Axis[-Alg <: Algebra](
     dataMin: Double,
     dataMax: Double
 ) {
+  val tickSize = 7
 
+  /** Draw the ticks, using major and minor tick sequences and bounds of the
+    * opposite `Axis`. That is, before using this method, it's necessary to
+    * create an `Axis` object for the opposite axis and get its tick bounds
+    * (e.g. to build the X-axis, you first need to create an `Axis` object for
+    * the Y-axis).
+    */
   def build(
       majorTicksSequence: TicksSequence,
       minorTicksSequence: TicksSequence,
@@ -67,6 +74,7 @@ final case class Axis[-Alg <: Algebra](
       )
   }
 
+  /** A convenience to convert [[MajorTickLayout]] to [[TicksSequence]]. */
   def majorTickLayoutToSequence: TicksSequence = {
     val filter: Double => Boolean = tick => tick >= dataMin && tick <= dataMax
 
@@ -84,6 +92,7 @@ final case class Axis[-Alg <: Algebra](
     }
   }
 
+  /** A convenience to convert [[MinorTickLayout]] to [[TicksSequence]]. */
   def minorTickLayoutToSequence(
       majorTicksSequence: TicksSequence
   ): TicksSequence = {
@@ -98,6 +107,26 @@ final case class Axis[-Alg <: Algebra](
       case MinorTickLayout.NoTicks =>
         List.empty
     }
+  }
+
+  /** Returns [[TicksBounds]] of the current [[Axis]]. This is needed to build
+    * such plot attributes, as axes, legends, grids, etc.
+    */
+  def getTicksBounds(majorTicksSequence: TicksSequence): TicksBounds = {
+    val ticksMin = Math.min(
+      if majorTickLayout != MajorTickLayout.NoTicks then
+        toDouble(ScreenCoordinate.unapply(majorTicksSequence.head(0)).get)
+      else Double.MaxValue,
+      toDouble(scale(toPoint(dataMin)))
+    )
+    val ticksMax = Math.max(
+      if majorTickLayout != MajorTickLayout.NoTicks then
+        toDouble(ScreenCoordinate.unapply(majorTicksSequence.last(0)).get)
+      else Double.MinValue,
+      toDouble(scale(toPoint(dataMax)))
+    )
+
+    TicksBounds(ticksMin, ticksMax)
   }
 
   private def algorithmicTicksToSequence(
@@ -157,23 +186,6 @@ final case class Axis[-Alg <: Algebra](
     }
   }
 
-  def getTicksBounds(majorTicksSequence: TicksSequence): TicksBounds = {
-    val ticksMin = Math.min(
-      if majorTickLayout != MajorTickLayout.NoTicks then
-        toDouble(ScreenCoordinate.unapply(majorTicksSequence.head(0)).get)
-      else Double.MaxValue,
-      toDouble(scale(toPoint(dataMin)))
-    )
-    val ticksMax = Math.max(
-      if majorTickLayout != MajorTickLayout.NoTicks then
-        toDouble(ScreenCoordinate.unapply(majorTicksSequence.last(0)).get)
-      else Double.MinValue,
-      toDouble(scale(toPoint(dataMax)))
-    )
-
-    TicksBounds(ticksMin, ticksMax)
-  }
-
   private def withTicks(
       ticksSequence: TicksSequence,
       createTick: (ScreenCoordinate, Int, Double) => OpenPath,
@@ -197,8 +209,10 @@ final case class Axis[-Alg <: Algebra](
 }
 
 object Axis {
-  type TicksSequence = Seq[(ScreenCoordinate, DataCoordinate)]
 
-  val tickSize = 7
+  /** Utility type to build tick marks. [[ScreenCoordinate]] is used to place a
+    * tick mark, and [[DataCoordinate]] is used to give the tick a label.
+    */
+  type TicksSequence = Seq[(ScreenCoordinate, DataCoordinate)]
   val axisMargin = 10
 }
