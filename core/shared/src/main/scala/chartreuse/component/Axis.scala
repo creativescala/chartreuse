@@ -19,6 +19,7 @@ package chartreuse.component
 import chartreuse.Plot.PlotAlg
 import chartreuse.*
 import chartreuse.component.Axis.TicksSequence
+import chartreuse.component.Axis.tickSize
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
@@ -43,7 +44,6 @@ final case class Axis[-Alg <: Algebra](
     dataMin: Double,
     dataMax: Double
 ) {
-  val tickSize = 7
 
   /** Draw the ticks, using major and minor tick sequences and bounds of the
     * opposite `Axis`. That is, before using this method, it's necessary to
@@ -215,4 +215,6 @@ object Axis {
     */
   type TicksSequence = Seq[(ScreenCoordinate, DataCoordinate)]
   val axisMargin = 10
+  val tickSize = 7
+  val textMargin = axisMargin + tickSize + 5
 }

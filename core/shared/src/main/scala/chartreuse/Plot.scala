@@ -17,6 +17,7 @@
 package chartreuse
 
 import chartreuse.component.Axis.axisMargin
+import chartreuse.component.Axis.textMargin
 import chartreuse.component.*
 import doodle.algebra.*
 import doodle.core.*
@@ -138,7 +139,7 @@ final case class Plot[-Alg <: Algebra](
             if rotatedLabels then Landmark.topRight
             else Landmark.percent(0, 100)
           )
-          .at(screenCoordinate.x, anchorPoint - 22)
+          .at(screenCoordinate.x, anchorPoint - textMargin)
 
     val createYTick: (ScreenCoordinate, Int, Double) => OpenPath =
       (screenCoordinate, tickSize, anchorPoint) =>
@@ -157,7 +158,7 @@ final case class Plot[-Alg <: Algebra](
       (screenCoordinate, dataCoordinate, anchorPoint) =>
         text(numberFormat.format(dataCoordinate.y))
           .originAt(Landmark.percent(100, 0))
-          .at(anchorPoint - 22, screenCoordinate.y)
+          .at(anchorPoint - textMargin, screenCoordinate.y)
 
     val xAxis = Axis(
       xTicks,
@@ -166,7 +167,7 @@ final case class Plot[-Alg <: Algebra](
       xMajorTickToMinorTick,
       createXTick,
       createXTickLabel,
-      point => point.x,
+      p => p.x,
       d => Point(d, 0),
       dataMinX,
       dataMaxX
@@ -179,7 +180,7 @@ final case class Plot[-Alg <: Algebra](
       yMajorTickToMinorTick,
       createYTick,
       createYTickLabel,
-      point => point.y,
+      p => p.y,
       d => Point(0, d),
       dataMinY,
       dataMaxY
