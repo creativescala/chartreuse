@@ -114,15 +114,19 @@ final case class Axis[-Alg <: Algebra](
     */
   def getTicksBounds(majorTicksSequence: TicksSequence): TicksBounds = {
     val ticksMin = Math.min(
-      if majorTickLayout != MajorTickLayout.NoTicks then
-        toDouble(ScreenCoordinate.unapply(majorTicksSequence.head(0)).get)
-      else Double.MaxValue,
+      majorTickLayout match {
+        case MajorTickLayout.NoTicks => Double.MaxValue
+        case _ =>
+          toDouble(ScreenCoordinate.unapply(majorTicksSequence.head(0)).get)
+      },
       toDouble(scale(toPoint(dataMin)))
     )
     val ticksMax = Math.max(
-      if majorTickLayout != MajorTickLayout.NoTicks then
-        toDouble(ScreenCoordinate.unapply(majorTicksSequence.last(0)).get)
-      else Double.MinValue,
+      majorTickLayout match {
+        case MajorTickLayout.NoTicks => Double.MinValue
+        case _ =>
+          toDouble(ScreenCoordinate.unapply(majorTicksSequence.last(0)).get)
+      },
       toDouble(scale(toPoint(dataMax)))
     )
 
