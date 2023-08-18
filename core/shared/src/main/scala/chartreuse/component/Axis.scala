@@ -221,4 +221,72 @@ object Axis {
   val axisMargin = 10
   val tickSize = 7
   val textMargin = axisMargin + tickSize + 5
+
+  // Functions for building tick marks ----------------------------------------
+
+  val xMajorTickToMinorTick: (ScreenCoordinate, Double, Int) => (
+      ScreenCoordinate,
+      DataCoordinate
+  ) = (screenCoordinate, interval, i) => {
+    val x = screenCoordinate.x - interval * i
+    (
+      ScreenCoordinate(x, 0),
+      DataCoordinate(x, 0)
+    )
+  }
+
+  val yMajorTickToMinorTick: (ScreenCoordinate, Double, Int) => (
+      ScreenCoordinate,
+      DataCoordinate
+  ) = (screenCoordinate, interval, i) => {
+    val y = screenCoordinate.y - interval * i
+    (
+      ScreenCoordinate(0, y),
+      DataCoordinate(0, y)
+    )
+  }
+
+  val createXTick: (ScreenCoordinate, Int, Double) => OpenPath =
+    (screenCoordinate, tickSize, anchorPoint) =>
+      OpenPath.empty
+        .moveTo(screenCoordinate.x, anchorPoint - axisMargin)
+        .lineTo(
+          screenCoordinate.x,
+          anchorPoint - axisMargin - tickSize
+        )
+
+  val createYTick: (ScreenCoordinate, Int, Double) => OpenPath =
+    (screenCoordinate, tickSize, anchorPoint) =>
+      OpenPath.empty
+        .moveTo(anchorPoint - axisMargin, screenCoordinate.y)
+        .lineTo(
+          anchorPoint - axisMargin - tickSize,
+          screenCoordinate.y
+        )
+
+  def createXTickLabel[Alg <: Algebra](
+      rotatedLabels: Boolean
+  )(using numberFormat: NumberFormat): (
+      ScreenCoordinate,
+      DataCoordinate,
+      Double
+  ) => Picture[Alg & PlotAlg, Unit] =
+    (screenCoordinate, dataCoordinate, anchorPoint) =>
+      text(numberFormat.format(dataCoordinate.x))
+        .rotate(Angle(if rotatedLabels then 0.523599 else 0))
+        .originAt(
+          if rotatedLabels then Landmark.topRight
+          else Landmark.percent(0, 100)
+        )
+        .at(screenCoordinate.x, anchorPoint - textMargin)
+
+  def createYTickLabel[Alg <: Algebra](using numberFormat: NumberFormat): (
+      ScreenCoordinate,
+      DataCoordinate,
+      Double
+  ) => Picture[Alg & PlotAlg, Unit] =
+    (screenCoordinate, dataCoordinate, anchorPoint) =>
+      text(numberFormat.format(dataCoordinate.y))
+        .originAt(Landmark.percent(100, 0))
+        .at(anchorPoint - textMargin, screenCoordinate.y)
 }

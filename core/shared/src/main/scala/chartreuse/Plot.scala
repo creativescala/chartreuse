@@ -16,8 +16,7 @@
 
 package chartreuse
 
-import chartreuse.component.Axis.axisMargin
-import chartreuse.component.Axis.textMargin
+import chartreuse.component.Axis.*
 import chartreuse.component.*
 import doodle.algebra.*
 import doodle.core.*
@@ -82,9 +81,7 @@ final case class Plot[-Alg <: Algebra](
     copy(yTicks = newYTicks)
   }
 
-  def draw(width: Int, height: Int)(using
-      numberFormat: NumberFormat
-  ): Picture[Alg & PlotAlg, Unit] = {
+  def draw(width: Int, height: Int): Picture[Alg & PlotAlg, Unit] = {
     val dataBoundingBox = layers.foldLeft(BoundingBox.empty) { (bb, layer) =>
       bb.on(layer.boundingBox)
     }
@@ -96,77 +93,13 @@ final case class Plot[-Alg <: Algebra](
 
     val scale = Scale.linear.build(dataBoundingBox, width, height)
 
-    val xMajorTickToMinorTick: (ScreenCoordinate, Double, Int) => (
-        ScreenCoordinate,
-        DataCoordinate
-    ) = (screenCoordinate, interval, i) => {
-      val x = screenCoordinate.x - interval * i
-      (
-        ScreenCoordinate(x, 0),
-        DataCoordinate(x, 0)
-      )
-    }
-
-    val yMajorTickToMinorTick: (ScreenCoordinate, Double, Int) => (
-        ScreenCoordinate,
-        DataCoordinate
-    ) = (screenCoordinate, interval, i) => {
-      val y = screenCoordinate.y - interval * i
-      (
-        ScreenCoordinate(0, y),
-        DataCoordinate(0, y)
-      )
-    }
-
-    val createXTick: (ScreenCoordinate, Int, Double) => OpenPath =
-      (screenCoordinate, tickSize, anchorPoint) =>
-        OpenPath.empty
-          .moveTo(screenCoordinate.x, anchorPoint - axisMargin)
-          .lineTo(
-            screenCoordinate.x,
-            anchorPoint - axisMargin - tickSize
-          )
-
-    val createXTickLabel: (
-        ScreenCoordinate,
-        DataCoordinate,
-        Double
-    ) => Picture[Alg & PlotAlg, Unit] =
-      (screenCoordinate, dataCoordinate, anchorPoint) =>
-        text(numberFormat.format(dataCoordinate.x))
-          .rotate(Angle(if rotatedLabels then 0.523599 else 0))
-          .originAt(
-            if rotatedLabels then Landmark.topRight
-            else Landmark.percent(0, 100)
-          )
-          .at(screenCoordinate.x, anchorPoint - textMargin)
-
-    val createYTick: (ScreenCoordinate, Int, Double) => OpenPath =
-      (screenCoordinate, tickSize, anchorPoint) =>
-        OpenPath.empty
-          .moveTo(anchorPoint - axisMargin, screenCoordinate.y)
-          .lineTo(
-            anchorPoint - axisMargin - tickSize,
-            screenCoordinate.y
-          )
-
-    val createYTickLabel: (
-        ScreenCoordinate,
-        DataCoordinate,
-        Double
-    ) => Picture[Alg & PlotAlg, Unit] =
-      (screenCoordinate, dataCoordinate, anchorPoint) =>
-        text(numberFormat.format(dataCoordinate.y))
-          .originAt(Landmark.percent(100, 0))
-          .at(anchorPoint - textMargin, screenCoordinate.y)
-
     val xAxis = Axis(
       xTicks,
       minorTicks,
       scale,
       xMajorTickToMinorTick,
       createXTick,
-      createXTickLabel,
+      createXTickLabel(rotatedLabels),
       p => p.x,
       d => Point(d, 0),
       dataMinX,
