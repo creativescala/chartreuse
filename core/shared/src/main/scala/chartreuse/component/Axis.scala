@@ -35,7 +35,7 @@ final case class Axis[-Alg <: Algebra](
         DataCoordinate
     ),
     createTick: (ScreenCoordinate, Int, Double) => OpenPath,
-    createTickLabel: (
+    createTickLabels: (
         TicksSequence,
         Double
     ) => Picture[Alg & PlotAlg, Unit],
@@ -59,7 +59,7 @@ final case class Axis[-Alg <: Algebra](
     withTicks(
       majorTicksSequence,
       createTick,
-      createTickLabel,
+      createTickLabels,
       tickSize,
       oppositeTicksBounds.min
     )
