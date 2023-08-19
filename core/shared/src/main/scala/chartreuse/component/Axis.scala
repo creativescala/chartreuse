@@ -16,6 +16,7 @@
 
 package chartreuse.component
 
+import cats.syntax.all.*
 import chartreuse.Plot.PlotAlg
 import chartreuse.*
 import chartreuse.component.Axis.TicksSequence
@@ -35,8 +36,7 @@ final case class Axis[-Alg <: Algebra](
     ),
     createTick: (ScreenCoordinate, Int, Double) => OpenPath,
     createTickLabel: (
-        ScreenCoordinate,
-        DataCoordinate,
+        TicksSequence,
         Double
     ) => Picture[Alg & PlotAlg, Unit],
     toDouble: Point => Double,
@@ -67,7 +67,7 @@ final case class Axis[-Alg <: Algebra](
         withTicks(
           minorTicksSequence,
           createTick,
-          (_, _, _) => empty,
+          (_, _) => empty,
           tickSize / 2,
           oppositeTicksBounds.min
         )
@@ -193,9 +193,8 @@ final case class Axis[-Alg <: Algebra](
   private def withTicks(
       ticksSequence: TicksSequence,
       createTick: (ScreenCoordinate, Int, Double) => OpenPath,
-      createTickLabel: (
-          ScreenCoordinate,
-          DataCoordinate,
+      createTickLabels: (
+          TicksSequence,
           Double
       ) => Picture[Alg & PlotAlg, Unit],
       tickSize: Int,
@@ -203,12 +202,11 @@ final case class Axis[-Alg <: Algebra](
   ): Picture[Alg & PlotAlg, Unit] = {
     ticksSequence
       .foldLeft(empty[Alg & PlotAlg])((plot, tick) =>
-        val (screenCoordinate, dataCoordinate) = tick
-
+        val (screenCoordinate, _) = tick
         plot
           .on(createTick(screenCoordinate, tickSize, anchorPoint).path)
-          .on(createTickLabel(screenCoordinate, dataCoordinate, anchorPoint))
       )
+      .on(createTickLabels(ticksSequence, anchorPoint))
   }
 }
 
@@ -264,29 +262,50 @@ object Axis {
           screenCoordinate.y
         )
 
-  def createXTickLabel[Alg <: Algebra](
-      rotatedLabels: Boolean
-  )(using numberFormat: NumberFormat): (
-      ScreenCoordinate,
-      DataCoordinate,
+  def createXTickLabels[Alg <: Algebra](using numberFormat: NumberFormat): (
+      TicksSequence,
       Double
   ) => Picture[Alg & PlotAlg, Unit] =
-    (screenCoordinate, dataCoordinate, anchorPoint) =>
-      text(numberFormat.format(dataCoordinate.x))
-        .rotate(Angle(if rotatedLabels then 0.523599 else 0))
-        .originAt(
-          if rotatedLabels then Landmark.topRight
-          else Landmark.percent(0, 100)
-        )
-        .at(screenCoordinate.x, anchorPoint - textMargin)
+    (ticksSequence, anchorPoint) =>
+      val labels = ticksSequence.map((_, data) => text(data.x.toString))
 
-  def createYTickLabel[Alg <: Algebra](using numberFormat: NumberFormat): (
-      ScreenCoordinate,
-      DataCoordinate,
+      val labelsSequence = labels.map(_.boundingBox).sequence
+      labelsSequence.flatMap(boundingBoxes =>
+        var doLabelsOverlap = false
+        for (i <- 1 until boundingBoxes.size) {
+          val (prevTick, _) = ticksSequence(i - 1)
+          val (currTick, _) = ticksSequence(i)
+          val prevBBWidth = boundingBoxes(i - 1).width
+          val currBBWidth = boundingBoxes(i).width
+          doLabelsOverlap =
+            doLabelsOverlap || prevTick.x + prevBBWidth / 2 > currTick.x - currBBWidth / 2
+        }
+
+        ticksSequence.foldLeft(empty[Alg & PlotAlg]) { (labels, ticks) =>
+          val (screenCoordinate, dataCoordinate) = ticks
+          labels.on(
+            text(numberFormat.format(dataCoordinate.x))
+              .rotate(Angle(if doLabelsOverlap then 0.523599 else 0))
+              .originAt(
+                if doLabelsOverlap then Landmark.topRight
+                else Landmark.percent(0, 100)
+              )
+              .at(screenCoordinate.x, anchorPoint - textMargin)
+          )
+        }
+      )
+
+  def createYTickLabels[Alg <: Algebra](using numberFormat: NumberFormat): (
+      TicksSequence,
       Double
   ) => Picture[Alg & PlotAlg, Unit] =
-    (screenCoordinate, dataCoordinate, anchorPoint) =>
-      text(numberFormat.format(dataCoordinate.y))
-        .originAt(Landmark.percent(100, 0))
-        .at(anchorPoint - textMargin, screenCoordinate.y)
+    (ticksSequence, anchorPoint) =>
+      ticksSequence.foldLeft(empty[Alg & PlotAlg]) { (labels, ticks) =>
+        val (screenCoordinate, dataCoordinate) = ticks
+        labels.on(
+          text(numberFormat.format(dataCoordinate.y))
+            .originAt(Landmark.percent(100, 0))
+            .at(anchorPoint - textMargin, screenCoordinate.y)
+        )
+      }
 }

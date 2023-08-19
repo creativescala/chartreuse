@@ -34,7 +34,6 @@ final case class Plot[-Alg <: Algebra](
     yTitle: String = "Y data",
     grid: Boolean = false,
     legend: Boolean = false,
-    rotatedLabels: Boolean = false,
     xTicks: MajorTickLayout = MajorTickLayout.Algorithmic(12),
     yTicks: MajorTickLayout = MajorTickLayout.Algorithmic(12),
     minorTicks: MinorTickLayout = MinorTickLayout.NoTicks
@@ -61,10 +60,6 @@ final case class Plot[-Alg <: Algebra](
 
   def withLegend(newLegend: Boolean): Plot[Alg] = {
     copy(legend = newLegend)
-  }
-
-  def withRotatedLabels(newRotatedLabels: Boolean): Plot[Alg] = {
-    copy(rotatedLabels = newRotatedLabels)
   }
 
   def withMinorTicks(
@@ -99,7 +94,7 @@ final case class Plot[-Alg <: Algebra](
       scale,
       xMajorTickToMinorTick,
       createXTick,
-      createXTickLabel(rotatedLabels),
+      createXTickLabels,
       p => p.x,
       d => Point(d, 0),
       dataMinX,
@@ -112,7 +107,7 @@ final case class Plot[-Alg <: Algebra](
       scale,
       yMajorTickToMinorTick,
       createYTick,
-      createYTickLabel,
+      createYTickLabels,
       p => p.y,
       d => Point(0, d),
       dataMinY,
