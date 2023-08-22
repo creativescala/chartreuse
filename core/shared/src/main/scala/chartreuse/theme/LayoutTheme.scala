@@ -67,7 +67,7 @@ final case class LayoutTheme[F[_]: Applicative](
       themeable.fillColor.theme(fillColor.extract).pure[Id]
     )
 
-  /** Apply the style in this theme to a [[doodle.algebra.Picture]] */
+  /** Apply the style of this theme to a [[doodle.algebra.Picture]] */
   def apply[Alg <: Algebra, A](
       picture: Picture[Alg, A]
   )(using Comonad[F]): Picture[Alg & Style, A] = {
