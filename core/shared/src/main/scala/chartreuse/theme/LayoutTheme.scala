@@ -36,7 +36,7 @@ import doodle.syntax.all.*
   *   - [[cats.Id]] for values that have combined [[chartreuse.Themeable]] with
   *     a theme.
   */
-// This doesn't cover all the possibilities for themeing layouts. For example,
+// This doesn't cover all the possibilities for theming layouts. For example,
 // there is no stroke dash specified. This is a first pass. Extend it if needed.
 final case class LayoutTheme[F[_]: Applicative](
     strokeColor: F[Option[Color]],
