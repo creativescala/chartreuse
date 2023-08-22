@@ -16,6 +16,8 @@
 
 package chartreuse
 
+import cats.Id
+import chartreuse.theme.PlotTheme
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
@@ -74,14 +76,19 @@ final case class Plot[-Alg <: Algebra](
     copy(yTicks = newYTicks)
   }
 
-  def draw(width: Int, height: Int): Picture[Alg & PlotAlg, Unit] = {
+  def draw(
+      width: Int,
+      height: Int,
+      theme: PlotTheme[Id] = PlotTheme.default
+  ): Picture[Alg & PlotAlg, Unit] = {
     val axes =
       Axes(xTicks, yTicks, minorTicks, grid, legend, layers, width, height)
     val plotAttributes = axes.build
 
     val allLayers: Picture[Alg & PlotAlg, Unit] =
       layers
-        .map(_.draw(width, height))
+        .zip(theme.layerThemesIterator)
+        .map((layer, theme) => layer.draw(width, height, theme))
         .foldLeft(empty)(_ on _)
 
     val plotTitle = text(this.plotTitle)

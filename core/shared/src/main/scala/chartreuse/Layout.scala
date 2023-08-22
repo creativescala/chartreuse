@@ -21,7 +21,6 @@ import chartreuse.theme.LayoutTheme
 import doodle.algebra.Algebra
 import doodle.algebra.Picture
 import doodle.algebra.Shape
-import doodle.core.Color
 import doodle.core.Point
 
 trait Layout[A, -Alg <: Algebra] {

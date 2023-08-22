@@ -33,13 +33,10 @@ final case class Line[
 ](
     themeable: LayoutTheme[Themeable]
 ) extends Layout[A, Alg] {
-<<<<<<< HEAD
-=======
   def forThemeable(
       f: LayoutTheme[Themeable] => LayoutTheme[Themeable]
   ): Line[A, Alg] =
     this.copy(themeable = f(themeable))
->>>>>>> 70d793c (Basic sketch of theme implementation)
 
   def withThemeable(themeable: LayoutTheme[Themeable]): Line[A, Alg] =
     this.copy(themeable = themeable)
@@ -48,23 +45,6 @@ final case class Line[
       data: Data[A],
       toPoint: A => Point,
       scale: Point => Point,
-<<<<<<< HEAD
-      color: Color
-  ): Picture[Alg, Unit] = {
-    data
-      .foldLeft(None: Option[OpenPath]) { (path, a) =>
-        path match {
-          case None =>
-            Some(OpenPath.empty.moveTo(scale(toPoint(a))))
-          case Some(p) =>
-            Some(p.lineTo(scale(toPoint(a))))
-        }
-      } match {
-      case None => empty
-      case Some(path) =>
-        path.path.strokeColor(color).strokeWidth(strokeWidth)
-    }
-=======
       theme: LayoutTheme[Id]
   ): Picture[Alg, Unit] = {
     val line =
@@ -83,7 +63,6 @@ final case class Line[
       }
 
     theme(line)
->>>>>>> 70d793c (Basic sketch of theme implementation)
   }
 }
 object Line {

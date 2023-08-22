@@ -16,6 +16,7 @@
 
 package chartreuse
 
+import cats.Id
 import chartreuse.theme.LayoutTheme
 import doodle.algebra.Algebra
 import doodle.algebra.Picture
@@ -35,12 +36,15 @@ final case class Layer[A, -Alg <: Algebra](
     label: String,
     color: Color
 ) {
-  def draw(width: Int, height: Int): Picture[Alg, Unit] = {
+  def draw(
+      width: Int,
+      height: Int,
+      theme: LayoutTheme[Id]
+  ): Picture[Alg, Unit] = {
     val bb = data.boundingBox(toPoint)
     val s = scale.build(bb, width, height)
 
-    // TODO: pass in a real theme
-    layout.draw(data, toPoint, s, LayoutTheme.default)
+    layout.draw(data, toPoint, s, theme)
   }
 
   def boundingBox: BoundingBox =

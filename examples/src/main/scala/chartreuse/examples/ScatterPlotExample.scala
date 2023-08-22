@@ -19,6 +19,7 @@ package chartreuse.examples
 import cats.effect.unsafe.implicits.global
 import chartreuse.*
 import chartreuse.layout.Scatter
+import chartreuse.theme.LayoutTheme
 import doodle.core.Point
 import doodle.svg.*
 import doodle.syntax.all.*
@@ -38,5 +39,5 @@ object ScatterPlotExample {
 
   @JSExport
   def draw(id: String): Unit =
-    layer.draw(640, 480).drawWithFrame(Frame(id))
+    layer.draw(640, 480, LayoutTheme.default).drawWithFrame(Frame(id))
 }
