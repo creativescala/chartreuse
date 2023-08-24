@@ -20,7 +20,7 @@ There are a small number of predefined `PlotThemes` available in Chartreuse:
 ## Themeable Values
 
 Where settings in Chartreuse can be themed they are represented as @:api(chartreuse.Themeable) values.
-For example, @:api(chartreuse.layout.Curve) contains a @:api(chartreuse.theme.LayouTheme) which in turn contains `Themeable` values for `strokeColor`, `fillColor`, and so on.
+For example, @:api(chartreuse.layout.Curve) contains a @:api(chartreuse.theme.LayoutTheme) which in turn contains `Themeable` values for `strokeColor`, `fillColor`, and so on.
 
 @:api(chartreuse.Themeable) values allow theme choices to be overriden. A `Themeable` value specifies either a @:api(chartreuse.Themeable.Default), which will be overriden by the theme's value, if there is one, or a  @:api(chartreuse.Themeable.Override), which will override the theme's value.
 
