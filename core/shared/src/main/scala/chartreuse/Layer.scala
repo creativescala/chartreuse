@@ -16,11 +16,12 @@
 
 package chartreuse
 
+import cats.Id
+import chartreuse.theme.LayoutTheme
 import doodle.algebra.Algebra
 import doodle.algebra.Picture
 import doodle.algebra.Shape
 import doodle.core.BoundingBox
-import doodle.core.Color
 import doodle.core.Point
 
 /** A `Layer` combines data with layout and other properties required to produce
@@ -31,14 +32,17 @@ final case class Layer[A, -Alg <: Algebra](
     toPoint: A => Point,
     scale: Scale,
     layout: Layout[A, Alg],
-    label: String,
-    color: Color
+    label: String
 ) {
-  def draw(width: Int, height: Int): Picture[Alg, Unit] = {
+  def draw(
+      width: Int,
+      height: Int,
+      theme: LayoutTheme[Id]
+  ): Picture[Alg, Unit] = {
     val bb = data.boundingBox(toPoint)
     val s = scale.build(bb, width, height)
 
-    layout.draw(data, toPoint, s, color)
+    layout.draw(data, toPoint, s, theme)
   }
 
   def boundingBox: BoundingBox =
@@ -60,22 +64,18 @@ final case class Layer[A, -Alg <: Algebra](
   def withToPoint(toPoint: A => Point): Layer[A, Alg] =
     this.copy(toPoint = toPoint)
 
-  def withColor(color: Color): Layer[A, Alg] =
-    this.copy(color = color)
-
   def withLabel(label: String): Layer[A, Alg] =
     this.copy(label = label)
 }
 object Layer {
   def apply[A](
       data: Data[A],
-      label: String = "Layer Label",
-      color: Color = Color.cadetBlue
+      label: String = "Layer Label"
   )(toPoint: A => Point): Layer[A, Shape] =
-    Layer(data, toPoint, Scale.linear, Layout.empty, label, color)
+    Layer(data, toPoint, Scale.linear, Layout.empty, label)
 
   def apply[A, Alg <: Algebra](data: Data[A], layout: Layout[A, Alg])(
       toPoint: A => Point
   ): Layer[A, Alg] =
-    Layer(data, toPoint, Scale.linear, layout, "Layer Label", Color.cadetBlue)
+    Layer(data, toPoint, Scale.linear, layout, "Layer Label")
 }

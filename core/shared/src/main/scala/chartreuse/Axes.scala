@@ -16,6 +16,8 @@
 
 package chartreuse
 
+import cats.Id
+import chartreuse.theme.PlotTheme
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
@@ -30,7 +32,8 @@ final case class Axes[-Alg <: Algebra](
     legend: Boolean,
     layers: Seq[Layer[?, Alg]],
     width: Int,
-    height: Int
+    height: Int,
+    theme: PlotTheme[Id]
 ) {
   type TicksSequence = Seq[(ScreenCoordinate, DataCoordinate)]
 
@@ -153,7 +156,9 @@ final case class Axes[-Alg <: Algebra](
     val createXTickLabel
         : (ScreenCoordinate, DataCoordinate) => Picture[Alg & PlotAlg, Unit] =
       (screenCoordinate, dataCoordinate) =>
+        // TODO: take fill from style
         text(numberFormat.format(dataCoordinate.x))
+          .fillColor(Color.black)
           .originAt(Landmark.percent(0, 100))
           .at(screenCoordinate.x, yTicksMin - textMargin)
 
@@ -169,7 +174,9 @@ final case class Axes[-Alg <: Algebra](
     val createYTickLabel
         : (ScreenCoordinate, DataCoordinate) => Picture[Alg & PlotAlg, Unit] =
       (screenCoordinate, dataCoordinate) =>
+        // TODO: take fill from style
         text(numberFormat.format(dataCoordinate.y))
+          .fillColor(Color.black)
           .originAt(Landmark.percent(100, 0))
           .at(xTicksMin - textMargin, screenCoordinate.y)
 
@@ -389,15 +396,29 @@ final case class Axes[-Alg <: Algebra](
     val legendMargin = 6
 
     val legendContent =
-      layers.foldLeft(empty[Alg & PlotAlg])((content, layer) => {
-        content.above(
-          circle(circleRadius)
-            .fillColor(layer.color)
-            .margin(0, legendMargin, 0, 0)
-            .beside(text(layer.label))
-            .originAt(Landmark.topLeft)
-        )
-      })
+      (layers
+        .zip(theme.layerThemesIterator))
+        .foldLeft(empty[Alg & PlotAlg])((content, layerAndTheme) => {
+          // This code is not ideal, because we're recreating the themed value here,
+          // which is created by the layer when it draws.
+          //
+          // Also, I don't think the legend should be inside the axes
+          val (layer, theme) = layerAndTheme
+          val themed = theme.theme(layer.layout.themeable)
+
+          // TODO: take text fill from style
+          content.above(
+            circle(circleRadius)
+              .fillColor(
+                themed.strokeColor
+                  .orElse(themed.fillColor)
+                  .getOrElse(Color.white)
+              )
+              .margin(0, legendMargin, 0, 0)
+              .beside(text(layer.label).fillColor(Color.black))
+              .originAt(Landmark.topLeft)
+          )
+        })
 
     val contentBox =
       legendContent.boundingBox

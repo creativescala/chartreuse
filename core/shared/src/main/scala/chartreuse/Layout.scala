@@ -16,22 +16,28 @@
 
 package chartreuse
 
+import cats.Id
+import chartreuse.theme.LayoutTheme
 import doodle.algebra.Algebra
 import doodle.algebra.Picture
 import doodle.algebra.Shape
-import doodle.core.Color
 import doodle.core.Point
 
 trait Layout[A, -Alg <: Algebra] {
 
+  def themeable: LayoutTheme[Themeable]
+
   /** Plot the given data, using the scale to convert from data coordinates to
     * screen coordinates.
+    *
+    * The `theme` has not been combined with this `Layouts` `themeable` value.
+    * The `Layout` should do that itself.
     */
   def draw(
       data: Data[A],
       toPoint: A => Point,
       scale: Point => Point,
-      color: Color
+      theme: LayoutTheme[Id]
   ): Picture[Alg, Unit]
 
   /** Convenience to convert to a `Layer`, by associating this `Layout` with
@@ -73,11 +79,12 @@ trait Layout[A, -Alg <: Algebra] {
 object Layout {
   def empty[A]: Layout[A, Shape] =
     new Layout[A, Shape] {
+      val themeable = LayoutTheme.default[Themeable]
       def draw(
           data: Data[A],
           toPoint: A => Point,
           scale: Point => Point,
-          color: Color = Color.cadetBlue
+          theme: LayoutTheme[Id]
       ): Picture[Shape, Unit] =
         doodle.syntax.shape.empty[Shape]
     }

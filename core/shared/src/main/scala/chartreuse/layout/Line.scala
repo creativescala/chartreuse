@@ -16,9 +16,10 @@
 
 package chartreuse.layout
 
+import cats.Id
 import chartreuse.*
+import chartreuse.theme.LayoutTheme
 import doodle.algebra.Picture
-import doodle.core.Color
 import doodle.core.OpenPath
 import doodle.core.Point
 import doodle.syntax.all.*
@@ -30,32 +31,38 @@ final case class Line[
     A,
     Alg <: doodle.algebra.Shape & doodle.algebra.Style & doodle.algebra.Path
 ](
-    strokeColor: Color,
-    strokeWidth: Double
+    themeable: LayoutTheme[Themeable]
 ) extends Layout[A, Alg] {
+  def forThemeable(
+      f: LayoutTheme[Themeable] => LayoutTheme[Themeable]
+  ): Line[A, Alg] =
+    this.copy(themeable = f(themeable))
 
-  def withStrokeWidth(strokeWidth: Double): Line[A, Alg] =
-    this.copy(strokeWidth = strokeWidth)
+  def withThemeable(themeable: LayoutTheme[Themeable]): Line[A, Alg] =
+    this.copy(themeable = themeable)
 
   def draw(
       data: Data[A],
       toPoint: A => Point,
       scale: Point => Point,
-      color: Color
+      theme: LayoutTheme[Id]
   ): Picture[Alg, Unit] = {
-    data
-      .foldLeft(None: Option[OpenPath]) { (path, a) =>
-        path match {
-          case None =>
-            Some(OpenPath.empty.moveTo(scale(toPoint(a))))
-          case Some(p) =>
-            Some(p.lineTo(scale(toPoint(a))))
-        }
-      } match {
-      case None => empty
-      case Some(path) =>
-        path.path.strokeColor(color).strokeWidth(strokeWidth)
-    }
+    val line =
+      data
+        .foldLeft(None: Option[OpenPath]) { (path, a) =>
+          path match {
+            case None =>
+              Some(OpenPath.empty.moveTo(scale(toPoint(a))))
+            case Some(p) =>
+              Some(p.lineTo(scale(toPoint(a))))
+          }
+        } match {
+        case None => empty
+        case Some(path) =>
+          path.path
+      }
+
+    theme.theme(themeable)(line)
   }
 }
 object Line {
@@ -63,5 +70,8 @@ object Line {
     A,
     doodle.algebra.Shape & doodle.algebra.Style & doodle.algebra.Path
   ] =
-    Line(Color.black, 1.0)
+    Line(
+      // Disable fill to avoid filling the open path
+      LayoutTheme.default[Themeable].withFillColor(Themeable.Override(None))
+    )
 }
