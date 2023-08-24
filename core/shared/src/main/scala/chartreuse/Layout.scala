@@ -25,8 +25,13 @@ import doodle.core.Point
 
 trait Layout[A, -Alg <: Algebra] {
 
+  def themeable: LayoutTheme[Themeable]
+
   /** Plot the given data, using the scale to convert from data coordinates to
     * screen coordinates.
+    *
+    * The `theme` has not been combined with this `Layouts` `themeable` value.
+    * The `Layout` should do that itself.
     */
   def draw(
       data: Data[A],
@@ -74,6 +79,7 @@ trait Layout[A, -Alg <: Algebra] {
 object Layout {
   def empty[A]: Layout[A, Shape] =
     new Layout[A, Shape] {
+      val themeable = LayoutTheme.default[Themeable]
       def draw(
           data: Data[A],
           toPoint: A => Point,

@@ -304,8 +304,8 @@ object BahamasPopulation {
   val plot =
     Plot(
       List(
-        line.toLayer(population).withColor(Color.darkBlue).withLabel("Line"),
-        curve.toLayer(population).withColor(Color.lawngreen).withLabel("Curve")
+        line.toLayer(population).withLabel("Line"),
+        curve.toLayer(population).withLabel("Curve")
       )
     )
       .withPlotTitle("Bahamas Population")

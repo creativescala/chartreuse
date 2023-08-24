@@ -16,6 +16,8 @@
 
 package chartreuse
 
+import cats.Id
+import chartreuse.theme.PlotTheme
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
@@ -30,7 +32,8 @@ final case class Axes[-Alg <: Algebra](
     legend: Boolean,
     layers: Seq[Layer[?, Alg]],
     width: Int,
-    height: Int
+    height: Int,
+    theme: PlotTheme[Id]
 ) {
   type TicksSequence = Seq[(ScreenCoordinate, DataCoordinate)]
 
@@ -389,15 +392,28 @@ final case class Axes[-Alg <: Algebra](
     val legendMargin = 6
 
     val legendContent =
-      layers.foldLeft(empty[Alg & PlotAlg])((content, layer) => {
-        content.above(
-          circle(circleRadius)
-            .fillColor(layer.color)
-            .margin(0, legendMargin, 0, 0)
-            .beside(text(layer.label))
-            .originAt(Landmark.topLeft)
-        )
-      })
+      (layers
+        .zip(theme.layerThemesIterator))
+        .foldLeft(empty[Alg & PlotAlg])((content, layerAndTheme) => {
+          // This code is not ideal, because we're recreating the themed value here,
+          // which is created by the layer when it draws.
+          //
+          // Also, I don't think the legend should be inside the axes
+          val (layer, theme) = layerAndTheme
+          val themed = theme.theme(layer.layout.themeable)
+
+          content.above(
+            circle(circleRadius)
+              .fillColor(
+                themed.strokeColor
+                  .orElse(themed.fillColor)
+                  .getOrElse(Color.white)
+              )
+              .margin(0, legendMargin, 0, 0)
+              .beside(text(layer.label))
+              .originAt(Landmark.topLeft)
+          )
+        })
 
     val contentBox =
       legendContent.boundingBox

@@ -20,31 +20,45 @@ import cats.Id
 import chartreuse.*
 import chartreuse.theme.LayoutTheme
 import doodle.algebra.Picture
-import doodle.core.Color
 import doodle.core.Point
-import doodle.language.Basic
 import doodle.syntax.all.*
 
 final case class Scatter[
     A,
-    Alg <: doodle.algebra.Layout & doodle.algebra.Shape & doodle.algebra.Style
+    Alg <: doodle.algebra.Algebra
 ](
+    themeable: LayoutTheme[Themeable],
     glyph: Glyph[Double, Alg],
     toSize: A => Double
-) extends Layout[A, Alg] {
+) extends Layout[A, Alg & doodle.algebra.Layout & doodle.algebra.Shape] {
+  def withThemeable(themeable: LayoutTheme[Themeable]): Scatter[A, Alg] =
+    this.copy(themeable = themeable)
+
   def draw(
       data: Data[A],
       toPoint: A => Point,
       scale: Point => Point,
       theme: LayoutTheme[Id]
-  ): Picture[Alg, Unit] = {
-    val plot = data.foldLeft(empty[Alg]) { (plot, a) =>
-      glyph.draw(toSize(a)).at(scale(toPoint(a))).on(plot)
-    }
-    theme(plot)
+  ): Picture[Alg & doodle.algebra.Layout & doodle.algebra.Shape, Unit] = {
+    val plot =
+      data.foldLeft(empty[Alg & doodle.algebra.Layout & doodle.algebra.Shape]) {
+        (plot, a) =>
+          glyph
+            .draw(toSize(a), theme.theme(themeable))
+            .at(scale(toPoint(a)))
+            .on(plot)
+      }
+    plot
   }
 }
 object Scatter {
-  def default[A]: Scatter[A, Basic] =
-    Scatter(Glyph.circle.fillColor(Color.cadetBlue), _ => 5.0)
+  def default[A]: Scatter[
+    A,
+    doodle.algebra.Shape & doodle.algebra.Style
+  ] =
+    Scatter(
+      LayoutTheme.default[Themeable],
+      Glyph.circle,
+      _ => 5.0
+    )
 }

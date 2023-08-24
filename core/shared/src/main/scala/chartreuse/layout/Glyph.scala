@@ -16,11 +16,12 @@
 
 package chartreuse.layout
 
+import cats.Id
+import chartreuse.theme.LayoutTheme
 import doodle.algebra.Algebra
 import doodle.algebra.Picture
-import doodle.core.Color
-import doodle.language.Basic
-import doodle.syntax.all.*
+import doodle.algebra.Shape
+import doodle.algebra.Style
 
 /** Glyph describes how to turn a data point into a graphical mark (a "glyph")
   * in the plot.
@@ -31,52 +32,21 @@ import doodle.syntax.all.*
   * companion object for commonly used cases. Note that `Glyph` instances should
   * not position the glyph. That is, they should not call `at` or other methods
   * that change the position of the `Picture` origin or bounding box unless that
-  * is essential to correctly producing the glyph.
+  * is essential to correctly producing the glyph. However, they should style
+  * the glyph using the information contained in the the `theme`.
   */
 trait Glyph[-A, Alg <: Algebra] {
 
   /** Given a data point, turn it into a glyph */
-  def draw(data: A): Picture[Alg, Unit]
+  def draw(data: A, theme: LayoutTheme[Id]): Picture[Alg, Unit]
 }
 object Glyph {
-
-  /** Little algebra for constructing Glyph instances that supports the common
-    * operations.
-    */
-  enum Simple[A] extends Glyph[A, Basic] {
-    case Contramap[A, B](source: Simple[A], f: B => A) extends Simple[B]
-    case Shape(glyph: A => Picture[Basic, Unit])
-    case Style(
-        source: Simple[A],
-        style: Picture[Basic, Unit] => Picture[Basic, Unit]
-    )
-
-    def contramap[B](f: B => A): Simple[B] =
-      Contramap(this, f)
-
-    def draw(data: A): Picture[Basic, Unit] =
-      this match {
-        case Contramap(source, f) => source.draw(f(data))
-        case Shape(glyph)         => glyph(data)
-        case Style(source, style) => style(source.draw(data))
-      }
-
-    def fillColor(color: Color): Simple[A] =
-      Style(this, picture => picture.fillColor(color))
-
-    def noFill: Simple[A] =
-      Style(this, picture => picture.noFill)
-
-    def strokeColor(color: Color): Simple[A] =
-      Style(this, picture => picture.strokeColor(color))
-
-    def noStroke: Simple[A] =
-      Style(this, picture => picture.noStroke)
-
-    def strokeWidth(width: Double): Simple[A] =
-      Style(this, picture => picture.strokeWidth(width))
-  }
-
-  val circle: Simple[Double] =
-    Simple.Shape(diameter => doodle.syntax.shape.circle[Basic](diameter))
+  val circle: Glyph[Double, Shape & Style] =
+    new Glyph {
+      def draw(
+          data: Double,
+          theme: LayoutTheme[Id]
+      ): Picture[Shape & Style, Unit] =
+        theme(doodle.syntax.shape.circle(data))
+    }
 }

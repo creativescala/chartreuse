@@ -82,7 +82,17 @@ final case class Plot[-Alg <: Algebra](
       theme: PlotTheme[Id] = PlotTheme.default
   ): Picture[Alg & PlotAlg, Unit] = {
     val axes =
-      Axes(xTicks, yTicks, minorTicks, grid, legend, layers, width, height)
+      Axes(
+        xTicks,
+        yTicks,
+        minorTicks,
+        grid,
+        legend,
+        layers,
+        width,
+        height,
+        theme
+      )
     val plotAttributes = axes.build
 
     val allLayers: Picture[Alg & PlotAlg, Unit] =
@@ -92,9 +102,12 @@ final case class Plot[-Alg <: Algebra](
         .foldLeft(empty)(_ on _)
 
     val plotTitle = text(this.plotTitle)
+      .fillColor(Color.black)
       .scale(2, 2)
     val xTitle = text(this.xTitle)
+      .fillColor(Color.black)
     val yTitle = text(this.yTitle)
+      .fillColor(Color.black)
       .rotate(Angle(1.5708))
 
     yTitle
