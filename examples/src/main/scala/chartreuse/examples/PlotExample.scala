@@ -19,6 +19,7 @@ package chartreuse.examples
 import cats.effect.unsafe.implicits.global
 import chartreuse.*
 import chartreuse.layout.Scatter
+import chartreuse.theme.PlotTheme
 import doodle.core.Point
 import doodle.language.Basic
 import doodle.svg.*
@@ -47,4 +48,24 @@ object PlotExample {
   @JSExport
   def draw(id: String): Unit =
     plot.draw(640, 480).drawWithFrame(Frame(id))
+
+  @JSExport
+  def drawDefault(id: String): Unit =
+    plot.draw(320, 240, PlotTheme.default).drawWithFrame(Frame(id))
+
+  @JSExport
+  def drawBmh(id: String): Unit =
+    plot.draw(320, 240, PlotTheme.bmh).drawWithFrame(Frame(id))
+
+  @JSExport
+  def drawFiveThirtyEight(id: String): Unit =
+    plot.draw(320, 240, PlotTheme.fiveThirtyEight).drawWithFrame(Frame(id))
+
+  @JSExport
+  def drawBase16DefaultLight(id: String): Unit =
+    plot.draw(320, 240, PlotTheme.base16.defaultLight).drawWithFrame(Frame(id))
+
+  @JSExport
+  def drawBase16Ocean(id: String): Unit =
+    plot.draw(320, 240, PlotTheme.base16.ocean).drawWithFrame(Frame(id))
 }
