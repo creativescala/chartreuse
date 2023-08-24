@@ -98,6 +98,65 @@ object PlotTheme {
       )
     )
 
+  /** FiveThirtyEight theme, modeled after https://fivethirtyeight.com/
+    *
+    * Taken from
+    * https://github.com/matplotlib/matplotlib/blob/main/lib/matplotlib/mpl-data/stylelib/fivethirtyeight.mplstyle
+    * Copyright (c) 2012- Matplotlib Development Team; All Rights Reserved
+    */
+  val fiveThirtyEight: PlotTheme[Id] =
+    fromColors(
+      NonEmptySeq
+        .of("008fd5", "fc4f30", "e5ae38", "6d904f", "8b8b8b", "810f7c")
+        .map(hexToColor)
+    )
+
+  /** Bayesian Methods for Hackers theme, modeled after
+    * https://dataorigami.net/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/
+    *
+    * Taken from
+    * https://github.com/matplotlib/matplotlib/blob/main/lib/matplotlib/mpl-data/stylelib/bmh.mplstyle
+    * Copyright (c) 2012- Matplotlib Development Team; All Rights Reserved
+    */
+  val bmh: PlotTheme[Id] =
+    fromColors(
+      NonEmptySeq
+        .of(
+          "348ABD",
+          "A60628",
+          "7A68A6",
+          "467821",
+          "D55E00",
+          "CC79A7",
+          "56B4E9",
+          "009E73",
+          "F0E442",
+          "0072B2"
+        )
+        .map(hexToColor)
+    )
+
+  /** ggplot theme
+    *
+    * Taken from
+    * https://github.com/matplotlib/matplotlib/blob/main/lib/matplotlib/mpl-data/stylelib/ggplot.mplstyle
+    * Copyright (c) 2012- Matplotlib Development Team; All Rights Reserved
+    */
+  val ggplot: PlotTheme[Id] =
+    fromColors(
+      NonEmptySeq
+        .of(
+          "E24A33",
+          "348ABD",
+          "988ED5",
+          "777777",
+          "FBC15E",
+          "8EBA42",
+          "FFB5B8"
+        )
+        .map(hexToColor)
+    )
+
   /** Base 16 themes taken from
     * https://github.com/chriskempson/base16-default-schemes
     */
