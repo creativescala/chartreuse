@@ -31,8 +31,7 @@ final case class Scatter[
     glyph: Glyph[Double, Alg],
     toSize: A => Double
 ) extends Layout[A, Alg & doodle.algebra.Layout & doodle.algebra.Shape] {
-  def withThemeable(themeable: LayoutTheme[Themeable]): Scatter[A, Alg] =
-    this.copy(themeable = themeable)
+  type Self = Scatter[A, Alg]
 
   def forThemeable(
       f: LayoutTheme[Themeable] => LayoutTheme[Themeable]

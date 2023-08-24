@@ -33,13 +33,12 @@ final case class Line[
 ](
     themeable: LayoutTheme[Themeable]
 ) extends Layout[A, Alg] {
+  type Self = Line[A, Alg]
+
   def forThemeable(
       f: LayoutTheme[Themeable] => LayoutTheme[Themeable]
   ): Line[A, Alg] =
     this.copy(themeable = f(themeable))
-
-  def withThemeable(themeable: LayoutTheme[Themeable]): Line[A, Alg] =
-    this.copy(themeable = themeable)
 
   def draw(
       data: Data[A],
