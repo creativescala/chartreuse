@@ -34,6 +34,11 @@ final case class Scatter[
   def withThemeable(themeable: LayoutTheme[Themeable]): Scatter[A, Alg] =
     this.copy(themeable = themeable)
 
+  def forThemeable(
+      f: LayoutTheme[Themeable] => LayoutTheme[Themeable]
+  ): Scatter[A, Alg] =
+    this.copy(themeable = f(themeable))
+
   def draw(
       data: Data[A],
       toPoint: A => Point,
