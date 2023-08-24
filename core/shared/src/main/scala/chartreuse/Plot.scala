@@ -17,6 +17,8 @@
 package chartreuse
 
 import cats.Id
+import chartreuse.component.Axis.*
+import chartreuse.component.*
 import chartreuse.theme.PlotTheme
 import doodle.algebra.*
 import doodle.core.*
@@ -36,7 +38,8 @@ final case class Plot[-Alg <: Algebra](
     legend: Boolean = false,
     xTicks: MajorTickLayout = MajorTickLayout.Algorithmic(12),
     yTicks: MajorTickLayout = MajorTickLayout.Algorithmic(12),
-    minorTicks: MinorTickLayout = MinorTickLayout.NoTicks
+    minorTicks: MinorTickLayout = MinorTickLayout.NoTicks,
+    theme: PlotTheme[Id] = PlotTheme.default
 ) {
   def addLayer[Alg2 <: Algebra](layer: Layer[?, Alg2]): Plot[Alg & Alg2] = {
     copy(layers = layer :: layers)
@@ -81,19 +84,55 @@ final case class Plot[-Alg <: Algebra](
       height: Int,
       theme: PlotTheme[Id] = PlotTheme.default
   ): Picture[Alg & PlotAlg, Unit] = {
-    val axes =
-      Axes(
-        xTicks,
-        yTicks,
-        minorTicks,
-        grid,
-        legend,
-        layers,
-        width,
-        height,
-        theme
-      )
-    val plotAttributes = axes.build
+    val dataBoundingBox = layers.foldLeft(BoundingBox.empty) { (bb, layer) =>
+      bb.on(layer.boundingBox)
+    }
+
+    val dataMinX = dataBoundingBox.left
+    val dataMaxX = dataBoundingBox.right
+    val dataMinY = dataBoundingBox.bottom
+    val dataMaxY = dataBoundingBox.top
+
+    val scale = Scale.linear.build(dataBoundingBox, width, height)
+
+    val xAxis = Axis(
+      xTicks,
+      minorTicks,
+      scale,
+      xMajorTickToMinorTick,
+      createXTick,
+      createXTickLabels,
+      p => p.x,
+      d => Point(d, 0),
+      dataMinX,
+      dataMaxX,
+      theme
+    )
+
+    val yAxis = Axis(
+      yTicks,
+      minorTicks,
+      scale,
+      yMajorTickToMinorTick,
+      createYTick,
+      createYTickLabels,
+      p => p.y,
+      d => Point(0, d),
+      dataMinY,
+      dataMaxY,
+      theme
+    )
+
+    val xMajorTicksSequence = xAxis.majorTickLayoutToSequence
+    val xMinorTicksSequence =
+      xAxis.minorTickLayoutToSequence(xMajorTicksSequence)
+
+    val yMajorTicksSequence = yAxis.majorTickLayoutToSequence
+    val yMinorTicksSequence =
+      yAxis.minorTickLayoutToSequence(yMajorTicksSequence)
+
+    val xTicksBounds = xAxis.getTicksBounds(xMajorTicksSequence)
+    val yTicksBounds = yAxis.getTicksBounds(yMajorTicksSequence)
 
     val allLayers: Picture[Alg & PlotAlg, Unit] =
       layers
@@ -116,8 +155,29 @@ final case class Plot[-Alg <: Algebra](
     yTitle
       .beside(
         allLayers
+          .on(
+            xAxis
+              .build(xMajorTicksSequence, xMinorTicksSequence, yTicksBounds)
+              .on(
+                yAxis
+                  .build(yMajorTicksSequence, yMinorTicksSequence, xTicksBounds)
+              )
+          )
+          .on(PlotBox(xTicksBounds, yTicksBounds).build)
+          .on(
+            if grid then
+              Grid(
+                xTicksBounds,
+                yTicksBounds,
+                xMajorTicksSequence,
+                yMajorTicksSequence
+              ).build
+            else empty
+          )
           .under(
-            plotAttributes
+            if legend then
+              Legend(layers, theme).build(xTicksBounds.max, yTicksBounds.max)
+            else empty
           )
           .margin(5)
           .below(plotTitle)
