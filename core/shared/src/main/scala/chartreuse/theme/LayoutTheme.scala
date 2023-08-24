@@ -43,21 +43,67 @@ final case class LayoutTheme[F[_]: Applicative](
     strokeWidth: F[Double],
     fillColor: F[Option[Color]]
 ) {
+
+  /** Builder method to set the fillColor of this [[LayoutTheme]]. */
+  def withFillColor(fillColor: F[Option[Color]]): LayoutTheme[F] =
+    this.copy(fillColor = fillColor)
+
+  /** Convenience builder method to set the fillColor of this [[LayoutTheme]].
+    * This will call the `pure` method on `F` to construct an instance of
+    * `F[Option[Color]]`. For a [[chartreuse.Themeable]] value this will be
+    * `Default` value, not an `Override`, which is probably not what you want.
+    * Use the other overloaded `withFillColor` method instead.
+    */
   def withFillColor(fillColor: Color): LayoutTheme[F] =
     this.copy(fillColor = fillColor.some.pure[F])
 
+  /** Convenience builder method to set the fillColor of this [[LayoutTheme]] to
+    * `None`. This will call the `pure` method on `F` to construct an instance
+    * of `F[Option[Color]]`. For a [[chartreuse.Themeable]] value this will be
+    * `Default` value, not an `Override`, which is probably not what you want.
+    * Use the `withFillColor` method instead.
+    */
   def withNoFill: LayoutTheme[F] =
     this.copy(fillColor = none.pure[F])
 
+  /** Builder method to set the strokeColor of this [[LayoutTheme]]. */
   def withStrokeColor(strokeColor: Color): LayoutTheme[F] =
     this.copy(strokeColor = strokeColor.some.pure[F])
 
+  /** Convenience builder method to set the strokeColor of this [[LayoutTheme]].
+    * This will call the `pure` method on `F` to construct an instance of
+    * `F[Option[Color]]`. For a [[chartreuse.Themeable]] value this will be
+    * `Default` value, not an `Override`, which is probably not what you want.
+    * Use the other overloaded `withStrokeColor` method instead.
+    */
+  def withStrokeColor(strokeColor: F[Option[Color]]): LayoutTheme[F] =
+    this.copy(strokeColor = strokeColor)
+
+  /** Convenience builder method to set the strokeColor of this [[LayoutTheme]]
+    * to `None`. This will call the `pure` method on `F` to construct an
+    * instance of `F[Option[Color]]`. For a [[chartreuse.Themeable]] value this
+    * will be `Default` value, not an `Override`, which is probably not what you
+    * want. Use the `withStrokeColor` method instead.
+    */
   def withNoStroke: LayoutTheme[F] =
     this.copy(strokeColor = none.pure[F])
 
+  /** Builder method to set the strokeWidth of this [[LayoutTheme]]. */
+  def withStrokeWidth(strokeWidth: F[Double]): LayoutTheme[F] =
+    this.copy(strokeWidth = strokeWidth)
+
+  /** Convenience builder method to set the strokeWidth of this [[LayoutTheme]].
+    * This will call the `pure` method on `F` to construct an instance of
+    * `F[Double]`. For a [[chartreuse.Themeable]] value this will be `Default`
+    * value, not an `Override`, which is probably not what you want. Use the
+    * other overloaded `withStrokeWidth` method instead.
+    */
   def withStrokeWidth(strokeWidth: Double): LayoutTheme[F] =
     this.copy(strokeWidth = strokeWidth.pure[F])
 
+  /** Combine this `LayoutTheme` with the Themeable values in the theme in the
+    * argument.
+    */
   def theme(themeable: LayoutTheme[Themeable])(using
       Comonad[F]
   ): LayoutTheme[Id] =
