@@ -61,10 +61,14 @@ final case class Curve[
       )
       .path
 
-    theme(curve)
+    theme.theme(themeable)(curve)
   }
 }
 object Curve {
   def default[A]: Curve[A, doodle.algebra.Style & doodle.algebra.Path] =
-    Curve(LayoutTheme.default[Themeable], 0.5)
+    Curve(
+      // Disable fill to avoid filling the open path
+      LayoutTheme.default[Themeable].withFillColor(Themeable.Override(None)),
+      0.5
+    )
 }

@@ -62,7 +62,7 @@ final case class Line[
           path.path
       }
 
-    theme(line)
+    theme.theme(themeable)(line)
   }
 }
 object Line {
@@ -70,5 +70,8 @@ object Line {
     A,
     doodle.algebra.Shape & doodle.algebra.Style & doodle.algebra.Path
   ] =
-    Line(LayoutTheme.default[Themeable])
+    Line(
+      // Disable fill to avoid filling the open path
+      LayoutTheme.default[Themeable].withFillColor(Themeable.Override(None))
+    )
 }
