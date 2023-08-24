@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Laika 0.19.0" />
+    <title>Theming Plots</title>
+    
+    
+    <meta name="description" content="docs" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Source+Sans+Pro:300,400,600"
+        rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Pro:400" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="creative-scala.css" />
+    <script src="solution.js"></script>
+    <script src="toc.js"></script>
+    <script src="main.js"></script>
+    <script> /* for avoiding page load transitions */</script>
+</head>
+
+<body>
+    <nav id="topbar"><p><a href="creating-visualizations.html">←</a></p>
+<p><a href="../">Chartreuse</a></p>
+<p><a href="examples.html">→</a></p></nav>
+    <nav id="sidebar">
+        <ul class="nav-list">
+          <li class="level1 nav-leaf"><a href="index.html">Chartreuse</a></li>
+          <li class="level1 nav-leaf"><a href="quick-start.html">Quick Start</a></li>
+          <li class="level1 nav-leaf"><a href="concepts.html">Core Concepts</a></li>
+          <li class="level1 nav-leaf"><a href="creating-visualizations.html">Creating Visualizations</a></li>
+          <li class="level1 active nav-leaf"><a href="#">Theming Plots</a></li>
+          <li class="level1 nav-leaf"><a href="examples.html">Examples</a></li>
+          <li class="level1 nav-leaf"><a href="development.html">Development</a></li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        <main class="content">
+            <h1 id="theming-plots" class="title">Theming Plots</h1>
+            <p>Theming controls colors, fills, and other aspects of the visual appearance of plots.
+            There are two concepts in Chartreuse&#39;s theme system:</p>
+            <ul>
+              <li>themes, which specify collections of values that control the visual appearance of plots; and</li>
+              <li><a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/Themeable.html">Themeable</a> values, which allow the user to override the theme values with settings of their own choice.</li>
+            </ul>
+            
+            <h2 id="themes" class="section">Themes</h2>
+            <p>Themes are found within the <code>chartreuse.theme</code> package.
+            Most users will apply a theme to a whole plot, using a <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/theme/PlotTheme.html">PlotTheme</a>.
+            There are a small number of predefined <code>PlotThemes</code> available in Chartreuse:</p>
+            <ul>
+              <li><a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/theme/PlotTheme/default.html">default</a>, the default theme;</li>
+              <li>the themes defined within <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/theme/PlotTheme/base16.html">base16</a>: <code>defaultLight</code>, <code>defaultDark</code>, and so on.</li>
+              <li><a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/theme/PlotTheme/fiveThirtyEight.html">fiveThirtyEight</a>;</li>
+              <li><a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/theme/PlotTheme/bmh.html">bmh</a>; and</li>
+              <li><a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/theme/PlotTheme/ggplot.html">ggplot</a>.</li>
+            </ul>
+            <p>To apply a theme to a <code>Plot</code>, pass it to the <code>draw</code> method. For example, instead of calling</p>
+            <pre><code class="nohighlight"><span class="identifier">aPlot</span><span>.</span><span class="identifier">draw</span><span>(</span><span class="number-literal">640</span><span>, </span><span class="number-literal">480</span><span>)</span></code></pre>
+            <p>call</p>
+            <pre><code class="nohighlight"><span class="identifier">aPlot</span><span>.</span><span class="identifier">draw</span><span>(</span><span class="number-literal">640</span><span>, </span><span class="number-literal">480</span><span>, </span><span class="type-name">PlotTheme</span><span>.</span><span class="identifier">base16</span><span>.</span><span class="identifier">defaultLight</span><span>)</span></code></pre>
+            
+            <h2 id="themeable-values" class="section">Themeable Values</h2>
+            <p>Where a value in Chartreuse can be themed it is represented as a <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/Themeable.html">Themeable</a> value.
+            For example, <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/layout/Curve.html">Curve</a> contains a <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/theme/LayoutTheme.html">LayoutTheme</a> which in turn contains <code>Themeable</code> values for <code>strokeColor</code>, <code>fillColor</code>, and so on.</p>
+            <p>A <code>Themeable</code> value specifies either a <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/Themeable/Default.html">Default</a>, which will be overriden by the theme&#39;s value, if there is one, or an <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/Themeable/Override.html">Override</a>, which will override the theme&#39;s value. So, for example, if a <code>Themeable</code> <code>strokeColor</code> is <code>Themeable.Default(Color.red)</code>, this value will be overriden by the theme&#39;s <code>strokeColor</code>. However, if the value is <code>Themeable.Override(Color.red)</code> it will override the theme.</p>
+            <p>When changing <code>Themeable</code> values it&#39;s usually the case you want to override the theme. Here&#39;s an example creating a <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/layout/Line.html">Line</a> layout and overriding the theme with custom stroke color and width.</p>
+            <pre><code class="nohighlight"><span class="type-name">Line</span><span>
+  .</span><span class="keyword">default</span><span>[</span><span class="type-name">Point</span><span>]
+  .</span><span class="identifier">forThemeable</span><span>(</span><span class="identifier">theme</span><span> =&gt;
+    </span><span class="identifier">theme</span><span>
+      .</span><span class="identifier">withStrokeColor</span><span>(</span><span class="type-name">Themeable</span><span>.</span><span class="type-name">Override</span><span>(</span><span class="type-name">Some</span><span>(</span><span class="type-name">Color</span><span>.</span><span class="identifier">darkBlue</span><span>)))
+      .</span><span class="identifier">withStrokeWidth</span><span>(</span><span class="type-name">Themeable</span><span>.</span><span class="type-name">Override</span><span>(</span><span class="number-literal">3.0</span><span>))
+  )</span></code></pre>
+            
+            <h2 id="theme-gallery" class="section">Theme Gallery</h2>
+            <p>Here are examples of some of the available themes.</p>
+            
+            <h3 id="default-theme" class="section">Default Theme</h3>
+            <div class="doodle" id="theme-default"></div>
+            <script>PlotExample.drawDefault("theme-default")</script>
+            
+            <h3 id="bmh-theme" class="section">BMH Theme</h3>
+            <div class="doodle" id="theme-bmh"></div>
+            <script>PlotExample.drawBmh("theme-bmh")</script>
+            
+            <h3 id="fivethirtyeight-theme" class="section">FiveThirtyEight Theme</h3>
+            <div class="doodle" id="theme-fivethirtyeight"></div>
+            <script>PlotExample.drawFiveThirtyEight("theme-fivethirtyeight")</script>
+            
+            <h3 id="base16-default-light-theme" class="section">Base16 Default Light Theme</h3>
+            <div class="doodle" id="theme-base16-default-light"></div>
+            <script>PlotExample.drawBase16DefaultLight("theme-base16-default-light")</script>
+            
+            <h3 id="base16-ocean-theme" class="section">Base16 Ocean Theme</h3>
+            <div class="doodle" id="theme-base16-ocean"></div>
+            <script>PlotExample.drawBase16Ocean("theme-base16-ocean")</script>
+            <div class="flex flex-row justify-between">
+                <a class="pageNavigation" href="creating-visualizations.html">←Creating Visualizations</a> <a class="pageNavigation" href="examples.html">Examples→</a>
+            </div>
+        </main>
+        <footer>Creative Scala is copyright Noel Welsh</footer>
+    </div>
+
+    </div>
+</body>
+
+</html>
