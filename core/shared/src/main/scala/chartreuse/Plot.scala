@@ -16,8 +16,10 @@
 
 package chartreuse
 
+import cats.Id
 import chartreuse.component.Axis.*
 import chartreuse.component.*
+import chartreuse.theme.PlotTheme
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
@@ -36,7 +38,8 @@ final case class Plot[-Alg <: Algebra](
     legend: Boolean = false,
     xTicks: MajorTickLayout = MajorTickLayout.Algorithmic(12),
     yTicks: MajorTickLayout = MajorTickLayout.Algorithmic(12),
-    minorTicks: MinorTickLayout = MinorTickLayout.NoTicks
+    minorTicks: MinorTickLayout = MinorTickLayout.NoTicks,
+    theme: PlotTheme[Id] = PlotTheme.default
 ) {
   def addLayer[Alg2 <: Algebra](layer: Layer[?, Alg2]): Plot[Alg & Alg2] = {
     copy(layers = layer :: layers)
@@ -76,7 +79,11 @@ final case class Plot[-Alg <: Algebra](
     copy(yTicks = newYTicks)
   }
 
-  def draw(width: Int, height: Int): Picture[Alg & PlotAlg, Unit] = {
+  def draw(
+      width: Int,
+      height: Int,
+      theme: PlotTheme[Id] = PlotTheme.default
+  ): Picture[Alg & PlotAlg, Unit] = {
     val dataBoundingBox = layers.foldLeft(BoundingBox.empty) { (bb, layer) =>
       bb.on(layer.boundingBox)
     }
@@ -98,7 +105,8 @@ final case class Plot[-Alg <: Algebra](
       p => p.x,
       d => Point(d, 0),
       dataMinX,
-      dataMaxX
+      dataMaxX,
+      theme
     )
 
     val yAxis = Axis(
@@ -111,7 +119,8 @@ final case class Plot[-Alg <: Algebra](
       p => p.y,
       d => Point(0, d),
       dataMinY,
-      dataMaxY
+      dataMaxY,
+      theme
     )
 
     val xMajorTicksSequence = xAxis.majorTickLayoutToSequence
@@ -127,13 +136,20 @@ final case class Plot[-Alg <: Algebra](
 
     val allLayers: Picture[Alg & PlotAlg, Unit] =
       layers
-        .map(_.draw(width, height))
+        .zip(theme.layerThemesIterator)
+        .map((layer, theme) => layer.draw(width, height, theme))
         .foldLeft(empty)(_ on _)
 
+    // TODO: take fill from style
+    // This is a bit of a hack to fill in the text (by default, text on SVG is not filled)
+    // It should be taken from the theme
     val plotTitle = text(this.plotTitle)
+      .fillColor(Color.black)
       .scale(2, 2)
     val xTitle = text(this.xTitle)
+      .fillColor(Color.black)
     val yTitle = text(this.yTitle)
+      .fillColor(Color.black)
       .rotate(Angle(1.5708))
 
     yTitle
@@ -160,7 +176,7 @@ final case class Plot[-Alg <: Algebra](
           )
           .under(
             if legend then
-              Legend(layers).build(xTicksBounds.max, yTicksBounds.max)
+              Legend(layers, theme).build(xTicksBounds.max, yTicksBounds.max)
             else empty
           )
           .margin(5)

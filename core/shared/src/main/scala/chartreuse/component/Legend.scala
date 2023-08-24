@@ -16,27 +16,44 @@
 
 package chartreuse.component
 
+import cats.Id
 import chartreuse.Layer
 import chartreuse.Plot.PlotAlg
+import chartreuse.theme.PlotTheme
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
 
-final case class Legend[-Alg <: Algebra](layers: Seq[Layer[?, Alg]]) {
+final case class Legend[-Alg <: Algebra](
+    layers: Seq[Layer[?, Alg]],
+    theme: PlotTheme[Id]
+) {
   def build(x: Double, y: Double): Picture[Alg & PlotAlg, Unit] = {
     val circleRadius = 8
     val legendMargin = 6
 
     val legendContent =
-      layers.foldLeft(empty[Alg & PlotAlg])((content, layer) => {
-        content.above(
-          circle(circleRadius)
-            .fillColor(layer.color)
-            .margin(0, legendMargin, 0, 0)
-            .beside(text(layer.label))
-            .originAt(Landmark.topLeft)
-        )
-      })
+      (layers
+        .zip(theme.layerThemesIterator))
+        .foldLeft(empty[Alg & PlotAlg])((content, layerAndTheme) => {
+          // This code is not ideal, because we're recreating the themed value here,
+          // which is created by the layer when it draws.
+          val (layer, theme) = layerAndTheme
+          val themed = theme.theme(layer.layout.themeable)
+
+          // TODO: take text fill from style
+          content.above(
+            circle(circleRadius)
+              .fillColor(
+                themed.strokeColor
+                  .orElse(themed.fillColor)
+                  .getOrElse(Color.white)
+              )
+              .margin(0, legendMargin, 0, 0)
+              .beside(text(layer.label).fillColor(Color.black))
+              .originAt(Landmark.topLeft)
+          )
+        })
 
     val contentBox =
       legendContent.boundingBox

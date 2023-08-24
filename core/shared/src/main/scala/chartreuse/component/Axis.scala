@@ -16,11 +16,13 @@
 
 package chartreuse.component
 
+import cats.Id
 import cats.syntax.all.*
 import chartreuse.Plot.PlotAlg
 import chartreuse.*
 import chartreuse.component.Axis.TicksSequence
 import chartreuse.component.Axis.tickSize
+import chartreuse.theme.PlotTheme
 import doodle.algebra.*
 import doodle.core.*
 import doodle.syntax.all.*
@@ -42,7 +44,8 @@ final case class Axis[-Alg <: Algebra](
     toDouble: Point => Double,
     toPoint: Double => Point,
     dataMin: Double,
-    dataMax: Double
+    dataMax: Double,
+    theme: PlotTheme[Id]
 ) {
 
   /** Draw the ticks, using major and minor tick sequences and bounds of the
@@ -284,7 +287,9 @@ object Axis {
         ticksSequence.foldLeft(empty[Alg & PlotAlg]) { (labels, ticks) =>
           val (screenCoordinate, dataCoordinate) = ticks
           labels.on(
+            // TODO: take fill from style
             text(numberFormat.format(dataCoordinate.x))
+              .fillColor(Color.black)
               .rotate(Angle(if doLabelsOverlap then 0.523599 else 0))
               .originAt(
                 if doLabelsOverlap then Landmark.topRight
@@ -303,7 +308,9 @@ object Axis {
       ticksSequence.foldLeft(empty[Alg & PlotAlg]) { (labels, ticks) =>
         val (screenCoordinate, dataCoordinate) = ticks
         labels.on(
+          // TODO: take fill from style
           text(numberFormat.format(dataCoordinate.y))
+            .fillColor(Color.black)
             .originAt(Landmark.percent(100, 0))
             .at(anchorPoint - textMargin, screenCoordinate.y)
         )
