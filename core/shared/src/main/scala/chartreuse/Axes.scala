@@ -156,7 +156,9 @@ final case class Axes[-Alg <: Algebra](
     val createXTickLabel
         : (ScreenCoordinate, DataCoordinate) => Picture[Alg & PlotAlg, Unit] =
       (screenCoordinate, dataCoordinate) =>
+        // TODO: take fill from style
         text(numberFormat.format(dataCoordinate.x))
+          .fillColor(Color.black)
           .originAt(Landmark.percent(0, 100))
           .at(screenCoordinate.x, yTicksMin - textMargin)
 
@@ -172,7 +174,9 @@ final case class Axes[-Alg <: Algebra](
     val createYTickLabel
         : (ScreenCoordinate, DataCoordinate) => Picture[Alg & PlotAlg, Unit] =
       (screenCoordinate, dataCoordinate) =>
+        // TODO: take fill from style
         text(numberFormat.format(dataCoordinate.y))
+          .fillColor(Color.black)
           .originAt(Landmark.percent(100, 0))
           .at(xTicksMin - textMargin, screenCoordinate.y)
 
@@ -402,6 +406,7 @@ final case class Axes[-Alg <: Algebra](
           val (layer, theme) = layerAndTheme
           val themed = theme.theme(layer.layout.themeable)
 
+          // TODO: take text fill from style
           content.above(
             circle(circleRadius)
               .fillColor(
@@ -410,7 +415,7 @@ final case class Axes[-Alg <: Algebra](
                   .getOrElse(Color.white)
               )
               .margin(0, legendMargin, 0, 0)
-              .beside(text(layer.label))
+              .beside(text(layer.label).fillColor(Color.black))
               .originAt(Landmark.topLeft)
           )
         })

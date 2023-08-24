@@ -101,6 +101,9 @@ final case class Plot[-Alg <: Algebra](
         .map((layer, theme) => layer.draw(width, height, theme))
         .foldLeft(empty)(_ on _)
 
+    // TODO: take fill from style
+    // This is a bit of a hack to fill in the text (by default, text on SVG is not filled)
+    // It should be taken from the theme
     val plotTitle = text(this.plotTitle)
       .fillColor(Color.black)
       .scale(2, 2)
