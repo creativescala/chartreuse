@@ -34,6 +34,20 @@ enum Themeable[A] {
   /** A value that overrides the theme's value */
   case Override(value: A)
 
+  /** True if this is a Default value */
+  def isDefault: Boolean =
+    this match {
+      case Default(_)  => true
+      case Override(_) => false
+    }
+
+  /** True if this is an Override value */
+  def isOverride: Boolean =
+    this match {
+      case Default(_)  => false
+      case Override(_) => true
+    }
+
   /** Convert the value within this [[chartreuse.Themeable]] while keeping the
     * status of default or override the same.
     */
