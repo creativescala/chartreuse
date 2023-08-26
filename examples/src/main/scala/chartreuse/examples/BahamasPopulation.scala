@@ -17,8 +17,8 @@
 package chartreuse.examples
 
 import cats.effect.unsafe.implicits.global
+import chartreuse.*
 import chartreuse.layout.*
-import chartreuse.{*, given}
 import doodle.core.Color
 import doodle.core.Point
 import doodle.svg.*
@@ -285,15 +285,27 @@ object BahamasPopulation {
     )
 
   val line =
-    Line.default[Point].withStrokeWidth(3.0)
+    Line
+      .default[Point]
+      .forThemeable(theme =>
+        theme
+          .withStrokeColor(Themeable.Override(Some(Color.darkBlue)))
+          .withStrokeWidth(Themeable.Override(3.0))
+      )
   val curve =
-    Curve.default[Point].withStrokeWidth(7.0)
+    Curve
+      .default[Point]
+      .forThemeable(theme =>
+        theme
+          .withStrokeColor(Themeable.Override(Some(Color.lawngreen)))
+          .withStrokeWidth(Themeable.Override(7.0))
+      )
 
   val plot =
     Plot(
       List(
-        line.toLayer(population).withColor(Color.darkBlue).withLabel("Line"),
-        curve.toLayer(population).withColor(Color.lawngreen).withLabel("Curve")
+        line.toLayer(population).withLabel("Line"),
+        curve.toLayer(population).withLabel("Curve")
       )
     )
       .withPlotTitle("Bahamas Population")
