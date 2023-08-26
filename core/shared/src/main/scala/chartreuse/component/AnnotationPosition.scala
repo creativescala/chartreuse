@@ -16,9 +16,14 @@
 
 package chartreuse.component
 
-enum AnnotationType {
-  case Circle(radius: Double)
-  case CircleWithText(radius: Double, text: String)
-  case Text(text: String)
-  case TextWithBox(text: String)
+enum AnnotationPosition {
+  case Center
+  case Top
+  case Bottom
+  case Left
+  case Right
+  case TopLeft
+  case TopRight
+  case BottomLeft
+  case BottomRight
 }
