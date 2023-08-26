@@ -32,8 +32,7 @@ final case class Annotation(
     strokeWidth: Double
 ) {
   val textMargin = 5
-  val arrowWidth = 35
-  val annotationMargin = (if arrow then arrowWidth else 5) + textMargin
+  val annotationMargin = (if arrow then 35 else 5) + textMargin
 
   def draw(
       scale: Bijection[Point, Point]
@@ -42,9 +41,15 @@ final case class Annotation(
 
     val annotation = annotationType match {
       case AnnotationType.Circle(radius) =>
-          circle(radius).strokeWidth(strokeWidth).strokeColor(strokeColor).at(mappedPointOfInterest)
+        circle(radius)
+          .strokeWidth(strokeWidth)
+          .strokeColor(strokeColor)
+          .at(mappedPointOfInterest)
       case AnnotationType.CircleWithText(radius, content) =>
-        circle(radius).strokeWidth(strokeWidth).strokeColor(strokeColor).at(mappedPointOfInterest)
+        circle(radius)
+          .strokeWidth(strokeWidth)
+          .strokeColor(strokeColor)
+          .at(mappedPointOfInterest)
           .on(adjustPosition(text(content), mappedPointOfInterest))
       case AnnotationType.Text(content) =>
         adjustPosition(text(content), mappedPointOfInterest)
@@ -66,105 +71,30 @@ final case class Annotation(
   }
 
   private def withArrow(
-      mappedPointOfInterest: Point
+      pointOfInterest: Point
   ): Picture[PlotAlg, Unit] = {
-    val rotatedArrowWidth = Math.sqrt(Math.pow(arrowWidth, 2) * 2)
+    val annotationPoint =
+      annotationPosition.toPoint(pointOfInterest, annotationMargin)
+    val arrowWidth = Math.sqrt(
+      Math.pow(annotationPoint.x - pointOfInterest.x, 2) +
+        Math.pow(annotationPoint.y - pointOfInterest.y, 2)
+    ) - textMargin
     val arrowHeight = 7
-    val degree90 = 1.5708
     val arrow = OpenPath.rightArrow(arrowWidth, arrowHeight).path
-    val rotatedArrow = OpenPath.rightArrow(rotatedArrowWidth, arrowHeight).path
 
-    annotationPosition match
-      case AnnotationPosition.Center => empty
-      case AnnotationPosition.Top =>
-        arrow
-          .rotate(Angle(degree90 * 3))
-          .originAt(Landmark.percent(0, -100))
-          .at(mappedPointOfInterest)
-      case AnnotationPosition.Bottom =>
-        arrow
-          .rotate(Angle(degree90))
-          .originAt(Landmark.percent(0, 100))
-          .at(mappedPointOfInterest)
-      case AnnotationPosition.Left =>
-        arrow.originAt(Landmark.percent(100, 0)).at(mappedPointOfInterest)
-      case AnnotationPosition.Right =>
-        arrow
-          .rotate(Angle(degree90 * 2))
-          .originAt(Landmark.percent(-100, 0))
-          .at(mappedPointOfInterest)
-      case AnnotationPosition.TopLeft =>
-        rotatedArrow
-          .rotate(Angle(degree90 * 3.5))
-          .originAt(Landmark.bottomRight)
-          .at(mappedPointOfInterest)
-      case AnnotationPosition.TopRight =>
-        rotatedArrow
-          .rotate(Angle(degree90 * 2.5))
-          .originAt(Landmark.bottomLeft)
-          .at(mappedPointOfInterest)
-      case AnnotationPosition.BottomLeft =>
-        rotatedArrow
-          .rotate(Angle(degree90 / 2))
-          .originAt(Landmark.topRight)
-          .at(mappedPointOfInterest)
-      case AnnotationPosition.BottomRight =>
-        rotatedArrow
-          .rotate(Angle(degree90 * 1.5))
-          .originAt(Landmark.topLeft)
-          .at(mappedPointOfInterest)
+    arrow
+      .rotate(annotationPosition.arrowAngle)
+      .originAt(annotationPosition.landmark)
+      .at(pointOfInterest)
   }
 
   private def adjustPosition(
       picture: Picture[PlotAlg, Unit],
       pointOfInterest: Point
   ): Picture[PlotAlg, Unit] = {
-    annotationPosition match
-      case AnnotationPosition.Center => picture.at(pointOfInterest)
-      case AnnotationPosition.Top =>
-        picture
-          .originAt(Landmark.percent(0, -100))
-          .at(pointOfInterest.x, pointOfInterest.y + annotationMargin)
-      case AnnotationPosition.Bottom =>
-        picture
-          .originAt(Landmark.percent(0, 100))
-          .at(pointOfInterest.x, pointOfInterest.y - annotationMargin)
-      case AnnotationPosition.Left =>
-        picture
-          .originAt(Landmark.percent(100, 0))
-          .at(pointOfInterest.x - annotationMargin, pointOfInterest.y)
-      case AnnotationPosition.Right =>
-        picture
-          .originAt(Landmark.percent(-100, 0))
-          .at(pointOfInterest.x + annotationMargin, pointOfInterest.y)
-      case AnnotationPosition.TopLeft =>
-        picture
-          .originAt(Landmark.bottomRight)
-          .at(
-            pointOfInterest.x - annotationMargin,
-            pointOfInterest.y + annotationMargin
-          )
-      case AnnotationPosition.TopRight =>
-        picture
-          .originAt(Landmark.bottomLeft)
-          .at(
-            pointOfInterest.x + annotationMargin,
-            pointOfInterest.y + annotationMargin
-          )
-      case AnnotationPosition.BottomLeft =>
-        picture
-          .originAt(Landmark.topRight)
-          .at(
-            pointOfInterest.x - annotationMargin,
-            pointOfInterest.y - annotationMargin
-          )
-      case AnnotationPosition.BottomRight =>
-        picture
-          .originAt(Landmark.topLeft)
-          .at(
-            pointOfInterest.x + annotationMargin,
-            pointOfInterest.y - annotationMargin
-          )
+    picture
+      .originAt(annotationPosition.landmark)
+      .at(annotationPosition.toPoint(pointOfInterest, annotationMargin))
   }
 
   def withFillColor(fillColor: Color): Annotation = {
@@ -206,7 +136,7 @@ object Annotation {
     Annotation(
       pointOfInterest,
       annotationType,
-      AnnotationPosition.Center,
+      AnnotationPosition.center,
       false,
       Color.whiteSmoke,
       Color.black,
@@ -221,7 +151,7 @@ object Annotation {
     Annotation(
       Point(x, y),
       annotationType,
-      AnnotationPosition.Center,
+      AnnotationPosition.center,
       false,
       Color.whiteSmoke,
       Color.black,
