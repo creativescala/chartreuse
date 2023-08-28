@@ -34,13 +34,12 @@ final case class Curve[
     themeable: LayoutTheme[Themeable],
     tension: Double
 ) extends Layout[A, Alg] {
+  type Self = Curve[A, Alg]
+
   def forThemeable(
       f: LayoutTheme[Themeable] => LayoutTheme[Themeable]
   ): Curve[A, Alg] =
     this.copy(themeable = f(themeable))
-
-  def withThemeable(themeable: LayoutTheme[Themeable]): Curve[A, Alg] =
-    this.copy(themeable = themeable)
 
   def withTension(tension: Double): Curve[A, Alg] =
     this.copy(tension = tension)

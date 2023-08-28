@@ -25,7 +25,25 @@ import doodle.core.Point
 
 trait Layout[A, -Alg <: Algebra] {
 
+  /** This should be the type of the concrete subclass that extends `Layout`. We
+    * use this instead of F-bound polymorphism to avoid putting a confusing type
+    * in the type signature of `Layout`. This means that `Self` is not
+    * constrained in the same way as it would be using F-bound polymorphism but
+    * in practice an issue is not likely to arise.
+    */
+  type Self <: Layout[A, Alg]
+
+  /** The themeable values associated with this `Layout`. */
   def themeable: LayoutTheme[Themeable]
+
+  /** Builder method to change the themeable values of this `Layout`. */
+  def forThemeable(
+      f: LayoutTheme[Themeable] => LayoutTheme[Themeable]
+  ): Self
+
+  /** Convenience builder to change all themeable values in one go. */
+  def withThemeable(themeable: LayoutTheme[Themeable]): Self =
+    forThemeable(_ => themeable)
 
   /** Plot the given data, using the scale to convert from data coordinates to
     * screen coordinates.
@@ -77,15 +95,25 @@ trait Layout[A, -Alg <: Algebra] {
     Plot(toLayer(data)(using toData, ev))
 }
 object Layout {
-  def empty[A]: Layout[A, Shape] =
-    new Layout[A, Shape] {
-      val themeable = LayoutTheme.default[Themeable]
-      def draw(
-          data: Data[A],
-          toPoint: A => Point,
-          scale: Point => Point,
-          theme: LayoutTheme[Id]
-      ): Picture[Shape, Unit] =
-        doodle.syntax.shape.empty[Shape]
-    }
+  final case class Empty[A](
+      themeable: LayoutTheme[Themeable] = LayoutTheme.default[Themeable]
+  ) extends Layout[A, Shape] {
+    type Self = Empty[A]
+    def forThemeable(
+        f: LayoutTheme[chartreuse.Themeable] => LayoutTheme[
+          chartreuse.Themeable
+        ]
+    ): Empty[A] =
+      this.copy(themeable = f(themeable))
+    def draw(
+        data: Data[A],
+        toPoint: A => Point,
+        scale: Point => Point,
+        theme: LayoutTheme[Id]
+    ): Picture[Shape, Unit] =
+      doodle.syntax.shape.empty[Shape]
+  }
+
+  /** The `Layout` that draws nothing. */
+  def empty[A]: Layout[A, Shape] = Empty()
 }
