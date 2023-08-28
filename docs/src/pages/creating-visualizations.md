@@ -1,6 +1,6 @@
 # Creating Visualizations
 
-Visualization in Chartreuse are built out of small components. The most important components are:
+Visualizations in Chartreuse are built from small components. The most important components are:
 
 1. Layouts, which define a way to layout data. For example, a layout can be a line or curve, or a scatterplot.
 2. Layers, which associate a layout with data, and metadata like a name and a scale.
@@ -73,12 +73,12 @@ layout
 ```
 
 Builder methods *always* return a modified copy of the object they're called on, 
-so it's always safe to a call a builder method even if you used a component in another place.
+so it's always safe to call a builder method even if you used a component in another place.
 This is a core part of Chartreuse's design philosophy, as described in [Core Concepts](concepts.md)
 
 In the example above we used `toLayer` and `toPlot` to convert types. These are convenience methods.
-You can, for example, construct a `Plot` by calling it's constructor but it's much simpler to type `.` and follow the auto-complete to turn a `Layer` into a `Plot`.
+You can, for example, construct a `Plot` by calling its constructor but it's much simpler to type `.` and follow the auto-complete to turn a `Layer` into a `Plot`.
 
 Most types have other convenience constructors on their companion object.
 For example, you usually don't construct a `Scatter` layout by calling it's constructor. 
-Instead you call `Scatter.default` convenience constructor, and perhaps change the few metadata settings you're interested in using the builder methods.
+Instead you call the `Scatter.default` convenience constructor, and then perhaps change the few metadata settings using the builder methods.
