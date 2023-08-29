@@ -39,10 +39,15 @@ final case class Plot[-Alg <: Algebra](
     xTicks: MajorTickLayout = MajorTickLayout.Algorithmic(12),
     yTicks: MajorTickLayout = MajorTickLayout.Algorithmic(12),
     minorTicks: MinorTickLayout = MinorTickLayout.NoTicks,
-    theme: PlotTheme[Id] = PlotTheme.default
+    theme: PlotTheme[Id] = PlotTheme.default,
+    annotations: List[Annotation] = List.empty[Annotation]
 ) {
   def addLayer[Alg2 <: Algebra](layer: Layer[?, Alg2]): Plot[Alg & Alg2] = {
     copy(layers = layer :: layers)
+  }
+
+  def addAnnotation(annotation: Annotation): Plot[Alg] = {
+    copy(annotations = annotation :: annotations)
   }
 
   def withPlotTitle(newPlotTitle: String): Plot[Alg] = {
@@ -140,6 +145,10 @@ final case class Plot[-Alg <: Algebra](
         .map((layer, theme) => layer.draw(width, height, theme))
         .foldLeft(empty)(_ on _)
 
+    val allAnnotations: Picture[Alg & PlotAlg, Unit] =
+      annotations
+        .foldLeft(empty)((acc, annotation) => acc.on(annotation.draw(scale)))
+
     // TODO: take fill from style
     // This is a bit of a hack to fill in the text (by default, text on SVG is not filled)
     // It should be taken from the theme
@@ -179,6 +188,7 @@ final case class Plot[-Alg <: Algebra](
               Legend(layers, theme).build(xTicksBounds.max, yTicksBounds.max)
             else empty
           )
+          .under(allAnnotations)
           .margin(5)
           .below(plotTitle)
           .above(xTitle)
