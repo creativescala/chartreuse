@@ -17,64 +17,85 @@
 package chartreuse.component
 
 import doodle.core.*
+import doodle.syntax.all.*
 
+/** Represents a specific positioning for annotations along with an arrow angle
+  * and placement logic.
+  *
+  * @param landmark
+  *   The landmark used as the reference point for annotation placement.
+  * @param arrowAngle
+  *   The angle of the arrow indicating the annotation.
+  * @param toPoint
+  *   A function that takes a base point and a margin offset, and returns the
+  *   final annotation point. For example, `(pt, offset) => Point(pt.x - margin,
+  *   pt.y + margin)` will place the annotation diagonally above and to the left
+  *   of the point of interest.
+  */
 final case class AnnotationPosition(
     landmark: Landmark,
     arrowAngle: Angle,
     toPoint: (Point, Double) => Point
 )
 
+/** Provides predefined annotation positioning options for ease of use */
 object AnnotationPosition {
-  val degree90 = 1.5708
+  val center: AnnotationPosition =
+    AnnotationPosition(Landmark.origin, 0.degrees, (pt, _) => pt)
 
-  val center =
-    AnnotationPosition(Landmark.origin, Angle(0), (pt, _) => pt)
-  val top =
+  val top: AnnotationPosition =
     AnnotationPosition(
       Landmark.percent(0, -100),
-      Angle(degree90 * 3),
+      270.degrees,
       (pt, margin) => Point(pt.x, pt.y + margin)
     )
-  val bottom =
+
+  val bottom: AnnotationPosition =
     AnnotationPosition(
       Landmark.percent(0, 100),
-      Angle(degree90),
+      90.degrees,
       (pt, margin) => Point(pt.x, pt.y - margin)
     )
-  val left =
+
+  val left: AnnotationPosition =
     AnnotationPosition(
       Landmark.percent(100, 0),
-      Angle(0),
+      0.degrees,
       (pt, margin) => Point(pt.x - margin, pt.y)
     )
-  val right =
+
+  val right: AnnotationPosition =
     AnnotationPosition(
       Landmark.percent(-100, 0),
-      Angle(degree90 * 2),
+      180.degrees,
       (pt, margin) => Point(pt.x + margin, pt.y)
     )
-  val topLeft =
+
+  val topLeft: AnnotationPosition =
     AnnotationPosition(
       Landmark.bottomRight,
-      Angle(degree90 * 3.5),
+      315.degrees,
       (pt, margin) => Point(pt.x - margin, pt.y + margin)
     )
-  val topRight =
+
+  val topRight: AnnotationPosition =
     AnnotationPosition(
       Landmark.bottomLeft,
-      Angle(degree90 * 2.5),
+      225.degrees,
       (pt, margin) => Point(pt.x + margin, pt.y + margin)
     )
-  val bottomLeft =
+
+  val bottomLeft: AnnotationPosition =
     AnnotationPosition(
       Landmark.topRight,
-      Angle(degree90 / 2),
+      45.degrees,
       (pt, margin) => Point(pt.x - margin, pt.y - margin)
     )
-  val bottomRight =
+
+  val bottomRight: AnnotationPosition =
     AnnotationPosition(
       Landmark.topLeft,
-      Angle(degree90 * 1.5),
+      135.degrees,
       (pt, margin) => Point(pt.x + margin, pt.y - margin)
     )
 }
