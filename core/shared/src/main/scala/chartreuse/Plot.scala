@@ -142,7 +142,7 @@ final case class Plot[-Alg <: Algebra](
     val allLayers: Picture[Alg & PlotAlg, Unit] =
       layers
         .zip(theme.layerThemesIterator)
-        .map((layer, theme) => layer.draw(width, height, theme))
+        .map((layer, theme) => layer.draw(width, height, scale, theme))
         .foldLeft(empty)(_ on _)
 
     val allAnnotations: Picture[Alg & PlotAlg, Unit] =

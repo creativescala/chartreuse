@@ -30,19 +30,16 @@ import doodle.core.Point
 final case class Layer[A, -Alg <: Algebra](
     data: Data[A],
     toPoint: A => Point,
-    scale: Scale,
     layout: Layout[A, Alg],
     label: String
 ) {
   def draw(
       width: Int,
       height: Int,
+      scale: Bijection[Point, Point],
       theme: LayoutTheme[Id]
   ): Picture[Alg, Unit] = {
-    val bb = data.boundingBox(toPoint)
-    val s = scale.build(bb, width, height)
-
-    layout.draw(data, toPoint, s, theme)
+    layout.draw(data, toPoint, scale, theme)
   }
 
   def boundingBox: BoundingBox =
@@ -58,9 +55,6 @@ final case class Layer[A, -Alg <: Algebra](
   def withLayout[AAlg <: Algebra](layout: Layout[A, AAlg]): Layer[A, AAlg] =
     this.copy(layout = layout)
 
-  def withScale(scale: Scale): Layer[A, Alg] =
-    this.copy(scale = scale)
-
   def withToPoint(toPoint: A => Point): Layer[A, Alg] =
     this.copy(toPoint = toPoint)
 
@@ -72,10 +66,10 @@ object Layer {
       data: Data[A],
       label: String = "Layer Label"
   )(toPoint: A => Point): Layer[A, Shape] =
-    Layer(data, toPoint, Scale.linear, Layout.empty, label)
+    Layer(data, toPoint, Layout.empty, label)
 
   def apply[A, Alg <: Algebra](data: Data[A], layout: Layout[A, Alg])(
       toPoint: A => Point
   ): Layer[A, Alg] =
-    Layer(data, toPoint, Scale.linear, layout, "Layer Label")
+    Layer(data, toPoint, layout, "Layer Label")
 }
