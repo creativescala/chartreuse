@@ -8,7 +8,7 @@ Visualizations in Chartreuse are built from small components. The most important
 
 So creating a plot consists of creating each of the above components and combining them together. There are some shortcuts that simplify common cases.
 
-Here's an example, taken from the [Quick Start](quick-start.md). We start with some data, which is always needed for a visualization.
+Here's an example, taken from the [Quick Start](../quick-start.md). We start with some data, which is always needed for a visualization.
 
 ```scala mdoc:silent
 import doodle.core.Point
@@ -74,7 +74,7 @@ layout
 
 Builder methods *always* return a modified copy of the object they're called on, 
 so it's always safe to call a builder method even if you used a component in another place.
-This is a core part of Chartreuse's design philosophy, as described in [Core Concepts](concepts.md)
+This is a core part of Chartreuse's design philosophy, as described in [Core Concepts](../concepts.md)
 
 In the example above we used `toLayer` and `toPlot` to convert types. These are convenience methods.
 You can, for example, construct a `Plot` by calling its constructor but it's much simpler to type `.` and follow the auto-complete to turn a `Layer` into a `Plot`.
