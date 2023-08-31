@@ -13,4 +13,4 @@
 
 ## Plot with an annotation 
 
-@:doodle("annotations", "Annotations.draw")
+@:doodle("annotations", "Annotations.drawWithPositioningAndArrow")
