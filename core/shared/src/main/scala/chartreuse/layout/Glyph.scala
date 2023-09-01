@@ -41,12 +41,17 @@ trait Glyph[-A, Alg <: Algebra] {
   def draw(data: A, theme: LayoutTheme[Id]): Picture[Alg, Unit]
 }
 object Glyph {
-  val circle: Glyph[Double, Shape & Style] =
-    new Glyph {
-      def draw(
-          data: Double,
-          theme: LayoutTheme[Id]
-      ): Picture[Shape & Style, Unit] =
-        theme(doodle.syntax.shape.circle(data))
+
+  /** Create a `Glyph` from a function that produces a `Picture` given some
+    * input. The function does not need to do any themeing of its output.
+    */
+  def apply[A, Alg <: Algebra](f: A => Picture[Alg, Unit]) =
+    new Glyph[A, Alg & Style] {
+      def draw(data: A, theme: LayoutTheme[Id]): Picture[Alg & Style, Unit] =
+        theme(f(data))
     }
+
+  /** Create a `Glyph` that draws a circle of the given size. */
+  val circle: Glyph[Double, Shape & Style] =
+    apply((size: Double) => doodle.syntax.shape.circle(data))
 }
