@@ -23,6 +23,7 @@ import doodle.algebra.Picture
 import doodle.algebra.Shape
 import doodle.core.Point
 
+/** A `Layout` determines the visual appearance of data. */
 trait Layout[A, -Alg <: Algebra] {
 
   /** This should be the type of the concrete subclass that extends `Layout`. We
