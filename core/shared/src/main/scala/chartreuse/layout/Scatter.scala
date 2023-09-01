@@ -45,6 +45,12 @@ final case class Scatter[
   ): Scatter[A, Alg] =
     this.copy(themeable = f(themeable))
 
+  /** Change the function that determines the size of a data point to the given
+    * function.
+    */
+  def withToSize(toSize: A => Double): Scatter[A, Alg] =
+    this.copy(toSize = toSize)
+
   def draw(
       data: Data[A],
       toPoint: A => Point,
