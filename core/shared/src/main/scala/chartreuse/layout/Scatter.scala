@@ -23,6 +23,13 @@ import doodle.algebra.Picture
 import doodle.core.Point
 import doodle.syntax.all.*
 
+/** A [[chartreuse.Layout]] that represents each data point as a small graphical
+  * mark, known as a [[chartreuse.layout.Glyph]].
+  *
+  * It is typically used to create scatter plots, but because the `Glyph` is
+  * parameterized by a `Double` value, which is interpreted as some measure of
+  * size, it can also be used to create bubble plots.
+  */
 final case class Scatter[
     A,
     Alg <: doodle.algebra.Algebra
