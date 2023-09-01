@@ -53,5 +53,5 @@ object Glyph {
 
   /** Create a `Glyph` that draws a circle of the given size. */
   val circle: Glyph[Double, Shape & Style] =
-    apply((size: Double) => doodle.syntax.shape.circle(data))
+    apply((size: Double) => doodle.syntax.shape.circle(size))
 }
