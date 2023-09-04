@@ -30,8 +30,10 @@
           <li class="level1 active nav-leaf"><a href="#">Chartreuse</a></li>
           <li class="level1 nav-leaf"><a href="quick-start.html">Quick Start</a></li>
           <li class="level1 nav-leaf"><a href="concepts.html">Core Concepts</a></li>
-          <li class="level1 nav-leaf"><a href="creating-visualizations.html">Creating Visualizations</a></li>
-          <li class="level1 nav-leaf"><a href="themes.html">Theming Plots</a></li>
+          <li class="level1 nav-node"><a href="creating/">Creating Visualizations</a></li>
+          <li class="level2 nav-leaf"><a href="creating/layouts.html">Layouts</a></li>
+          <li class="level2 nav-leaf"><a href="creating/annotations.html">Annotations</a></li>
+          <li class="level2 nav-leaf"><a href="creating/themes.html">Theming Plots</a></li>
           <li class="level1 nav-leaf"><a href="examples.html">Examples</a></li>
           <li class="level1 nav-leaf"><a href="development.html">Development</a></li>
         </ul>
@@ -40,14 +42,16 @@
     <div id="content">
         <main class="content">
             <h1 id="chartreuse" class="title">Chartreuse</h1>
-            <p>Compositional data visualization for a functional world.</p>
+            <p>Chartreuse is a <a href="https://scala-lang.org/">Scala</a> library for creating visualizations like the one below. Chartreuse builds on <a href="https://creativescala.org/doodle">Doodle</a>, and provides a functional and compositional interface to quickly assembly visualizations from small reusable pieces.</p>
+            <div class="doodle" id="temperature"></div>
+            <script>TemperatureAnomaly.draw("temperature")</script>
             
-            <h2 id="related-work" class="section">Related Work</h2>
-            <ul>
-              <li><a href="https://ggplot2.tidyverse.org/">ggplot2</a></li>
-              <li><a href="https://aog.makie.org/stable/">AlgebraOfGraphics</a></li>
-              <li><a href="https://matplotlib.org/stable/gallery/showcase/anatomy.html">Matplotlib anatomy of a figure</a></li>
-            </ul>
+            <h2 id="getting-started" class="section">Getting Started</h2>
+            <p>To use Chartreuse in your project, add the following to your <code>build.sbt</code>:</p>
+            <pre><code class="nohighlight"><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %% </span><span class="string-literal">&quot;chartreuse&quot;</span><span> % </span><span class="string-literal">&quot;0.1-9a2c9c0-SNAPSHOT&quot;</span></code></pre>
+            
+            <h2 id="api-documentation" class="section">API Documentation</h2>
+            <p>See the ScalaDoc <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/index.html">index</a> for API documentation.</p>
             <div class="flex flex-row justify-between">
                  <a class="pageNavigation" href="quick-start.html">Quick Start→</a>
             </div>

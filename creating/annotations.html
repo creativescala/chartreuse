@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Laika 0.19.0" />
+    <title>Annotations</title>
+    
+    
+    <meta name="description" content="docs" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Source+Sans+Pro:300,400,600"
+        rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Pro:400" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../creative-scala.css" />
+    <script src="../solution.js"></script>
+    <script src="../toc.js"></script>
+    <script src="../main.js"></script>
+    <script> /* for avoiding page load transitions */</script>
+</head>
+
+<body>
+    <nav id="topbar"><p><a href="layouts.html">←</a></p>
+<p><a href="../../">Chartreuse</a></p>
+<p><a href="themes.html">→</a></p></nav>
+    <nav id="sidebar">
+        <ul class="nav-list">
+          <li class="level1 nav-leaf"><a href="../">Chartreuse</a></li>
+          <li class="level1 nav-leaf"><a href="../quick-start.html">Quick Start</a></li>
+          <li class="level1 nav-leaf"><a href="../concepts.html">Core Concepts</a></li>
+          <li class="level1 nav-node"><a href="index.html">Creating Visualizations</a></li>
+          <li class="level2 nav-leaf"><a href="layouts.html">Layouts</a></li>
+          <li class="level2 active nav-leaf"><a href="#">Annotations</a></li>
+          <li class="level2 nav-leaf"><a href="themes.html">Theming Plots</a></li>
+          <li class="level1 nav-leaf"><a href="../examples.html">Examples</a></li>
+          <li class="level1 nav-leaf"><a href="../development.html">Development</a></li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        <main class="content">
+            <h1 id="annotations" class="title">Annotations</h1>
+            <p>Annotations allow you to highlight particular parts of the data.
+            There are two concepts in Chartreuse&#39;s annotation system:</p>
+            <ul>
+              <li><a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/component/AnnotationType.html">AnnotationType</a>, which defines various types of annotations, each with its specific characteristics; and</li>
+              <li><a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/component/AnnotationPosition.html">AnnotationPosition</a>, which represents a specific positioning for annotations along with an arrow angle and placement logic.</li>
+            </ul>
+            
+            <h2 id="types-of-annotations" class="section">Types of annotations</h2>
+            <p>Annotation types are found within the <code>chartreuse.component</code> package.
+            Currently, there are four different types of annotations:</p>
+            <ul>
+              <li><a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/component/AnnotationType/Circle.html">Circle</a>, a circle with user-specified radius;</li>
+              <li><a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/component/AnnotationType/CircleWithText.html">CircleWithText</a>, text along with a circle with user-specified radius;</li>
+              <li><a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/component/AnnotationType/Text.html">Text</a>, plain text; and</li>
+              <li><a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/component/AnnotationType/TextWithBox.html">TextWithBox</a>, text in a box.</li>
+            </ul>
+            <p>An example of creating an <code>AnnotationType</code>:</p>
+            <pre><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">annotationType</span><span> = </span><span class="type-name">AnnotationType</span><span>.</span><span class="type-name">CircleWithText</span><span>(</span><span class="number-literal">15</span><span>, </span><span class="string-literal">&quot;Something interesting happened here&quot;</span><span>)</span></code></pre>
+            
+            <h2 id="positioning-the-annotations" class="section">Positioning the annotations</h2>
+            <p>Each annotation in Chartreuse uses <code>AnnotationPosition</code> for positioning.</p>
+            <p><code>AnnotationPosition</code> uses <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/doodle/core/Landmark.html">Landmark</a>, <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/doodle/core/Angle.html">Angle</a> and (<a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/doodle/core/Point.html">Point</a>, Double) =&gt; <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/doodle/core/Point.html">Point</a> to place an annotation:</p>
+            <ul>
+              <li>The <code>Landmark</code> is used as the reference point for annotation placement;</li>
+              <li>The <code>Angle</code> is used to properly rotate the arrow indicating the annotation (More on the arrows in the following block); and</li>
+              <li>The <code>(Point, Double) =&gt; Point</code> is a function that takes a base point and a margin offset, and returns the final annotation point. For example, <code>(pt, offset) =&gt; Point(pt.x - offset, pt.y + offset)</code> will place the annotation diagonally above and to the left of the point of interest.</li>
+            </ul>
+            <p>Most users will use predefined annotation positioning options for ease of use (e.g. <code>AnnotationPosition.topLeft</code>).
+            But for more precise positioning it is possible to define all the parameters manually.</p>
+            
+            <h2 id="creating-annotations" class="section">Creating annotations</h2>
+            <p>To create an annotation, it&#39;s enough to use the <code>apply</code> method of <code>Annotation</code>, which takes the point of interest and the <code>AnnotationType</code>:</p>
+            <pre><code class="nohighlight"><span class="type-name">Annotation</span><span>(
+  </span><span class="type-name">Point</span><span>(</span><span class="number-literal">1950</span><span>, </span><span class="number-literal">81651</span><span>),
+  </span><span class="type-name">AnnotationType</span><span>.</span><span class="type-name">Text</span><span>(</span><span class="string-literal">&quot;Rapid growth began here&quot;</span><span>)
+)</span></code></pre>
+            <p>Annotations can be added to a plot with the <code>addAnnotation</code> method:</p>
+            <pre><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">annotatedPlot</span><span> = </span><span class="identifier">plot</span><span>
+      .</span><span class="identifier">addAnnotation</span><span>(</span><span class="identifier">annotation</span><span>)</span></code></pre>
+            <p>By default, each annotation is placed in the center of the point of interest:</p>
+            <div class="doodle" id="annotation-default"></div>
+            <script>Annotations.drawDefault("annotation-default")</script>
+            <p>But the position can be adjusted using the <code>withAnnotationPosition</code> method:</p>
+            <pre><code class="nohighlight"><span class="type-name">Annotation</span><span>(
+  </span><span class="type-name">Point</span><span>(</span><span class="number-literal">1950</span><span>, </span><span class="number-literal">81651</span><span>),
+  </span><span class="type-name">AnnotationType</span><span>.</span><span class="type-name">Text</span><span>(</span><span class="string-literal">&quot;Rapid growth began here&quot;</span><span>)
+)
+  .</span><span class="identifier">withAnnotationPosition</span><span>(</span><span class="type-name">AnnotationPosition</span><span>.</span><span class="identifier">bottomRight</span><span>)</span></code></pre>
+            <p>Which will produce</p>
+            <div class="doodle" id="annotation-with-positioning"></div>
+            <script>Annotations.drawWithPositioning("annotation-with-positioning")</script>
+            <p>In addition, it&#39;s possible to draw an arrow between the text and the point of interest. <code>withArrow</code> method is used for this.
+            Arrows are placed automatically:</p>
+            <pre><code class="nohighlight"><span class="type-name">Annotation</span><span>(
+  </span><span class="type-name">Point</span><span>(</span><span class="number-literal">1950</span><span>, </span><span class="number-literal">81651</span><span>),
+  </span><span class="type-name">AnnotationType</span><span>.</span><span class="type-name">Text</span><span>(</span><span class="string-literal">&quot;Rapid growth began here&quot;</span><span>)
+)
+  .</span><span class="identifier">withAnnotationPosition</span><span>(</span><span class="type-name">AnnotationPosition</span><span>.</span><span class="identifier">bottomRight</span><span>)
+  .</span><span class="identifier">withArrow</span><span>()</span></code></pre>
+            <p>Which will produce</p>
+            <div class="doodle" id="annotation-with-positioning-and-arrow"></div>
+            <script>Annotations.drawWithPositioningAndArrow("annotation-with-positioning-and-arrow")</script>
+            <div class="flex flex-row justify-between">
+                <a class="pageNavigation" href="layouts.html">←Layouts</a> <a class="pageNavigation" href="themes.html">Theming Plots→</a>
+            </div>
+        </main>
+        <footer>Creative Scala is copyright Noel Welsh</footer>
+    </div>
+
+    </div>
+</body>
+
+</html>

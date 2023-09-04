@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Laika 0.19.0" />
+    <title>Creating Visualizations</title>
+    
+    
+    <meta name="description" content="docs" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Source+Sans+Pro:300,400,600"
+        rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Pro:400" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../creative-scala.css" />
+    <script src="../solution.js"></script>
+    <script src="../toc.js"></script>
+    <script src="../main.js"></script>
+    <script> /* for avoiding page load transitions */</script>
+</head>
+
+<body>
+    <nav id="topbar"><p><a href="../concepts.html">←</a></p>
+<p><a href="../../">Chartreuse</a></p>
+<p><a href="layouts.html">→</a></p></nav>
+    <nav id="sidebar">
+        <ul class="nav-list">
+          <li class="level1 nav-leaf"><a href="../">Chartreuse</a></li>
+          <li class="level1 nav-leaf"><a href="../quick-start.html">Quick Start</a></li>
+          <li class="level1 nav-leaf"><a href="../concepts.html">Core Concepts</a></li>
+          <li class="level1 active nav-node"><a href="#">Creating Visualizations</a></li>
+          <li class="level2 nav-leaf"><a href="layouts.html">Layouts</a></li>
+          <li class="level2 nav-leaf"><a href="annotations.html">Annotations</a></li>
+          <li class="level2 nav-leaf"><a href="themes.html">Theming Plots</a></li>
+          <li class="level1 nav-leaf"><a href="../examples.html">Examples</a></li>
+          <li class="level1 nav-leaf"><a href="../development.html">Development</a></li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        <main class="content">
+            <h1 id="creating-visualizations" class="title">Creating Visualizations</h1>
+            <p>Visualizations in Chartreuse are built from small components. The most important components are:</p>
+            <ol class="arabic">
+              <li>Layouts, which define a way to layout data. For example, a layout can be a line or curve, or a scatterplot.</li>
+              <li>Layers, which associate a layout with data, and metadata like a name and a scale.</li>
+              <li>Plots, which consist of one or more layers, and metadata like axes and title.</li>
+            </ol>
+            <p>So creating a plot consists of creating each of the above components and combining them together. There are some shortcuts that simplify common cases.</p>
+            <p>Here&#39;s an example, taken from the <a href="../quick-start.html">Quick Start</a>. We start with some data, which is always needed for a visualization.</p>
+            <pre><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">doodle</span><span>.</span><span class="identifier">core</span><span>.</span><span class="type-name">Point</span><span>
+</span><span class="keyword">import</span><span> </span><span class="identifier">scala</span><span>.</span><span class="identifier">util</span><span>.</span><span class="type-name">Random</span><span>
+
+</span><span class="keyword">val</span><span> </span><span class="identifier">data</span><span> =
+  </span><span class="type-name">List</span><span>.</span><span class="identifier">fill</span><span>(</span><span class="number-literal">100</span><span>)(</span><span class="type-name">Point</span><span>(</span><span class="type-name">Random</span><span>.</span><span class="identifier">nextGaussian</span><span>(), </span><span class="type-name">Random</span><span>.</span><span class="identifier">nextGaussian</span><span>()))</span></code></pre>
+            <p>Now we create a <code>Layout</code>, the first component described above.</p>
+            <pre><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">chartreuse</span><span>.*
+</span><span class="keyword">import</span><span> </span><span class="identifier">chartreuse</span><span>.</span><span class="identifier">layout</span><span>.</span><span class="type-name">Scatter</span><span>
+
+</span><span class="keyword">val</span><span> </span><span class="identifier">layout</span><span> = </span><span class="type-name">Scatter</span><span>.</span><span class="keyword">default</span><span>[</span><span class="type-name">Point</span><span>]</span></code></pre>
+            <p>The next component is a <code>Layer</code>, which associates the layout and the data.
+            The easiest way to create a <code>Layer</code> is with the <code>toLayer</code> method on <code>Layout</code>.</p>
+            <pre><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">layer</span><span> = </span><span class="identifier">layout</span><span>.</span><span class="identifier">toLayer</span><span>(</span><span class="identifier">data</span><span>)</span></code></pre>
+            <p>If we want to set metadata we call methods on <code>Layer</code>, such as <code>withLabel</code> to give a name to this layer, or <code>withScale</code> to use a scale different to the normal linear scale.</p>
+            <p>Now we can create a <code>Plot</code>. We can convert a <code>Layer</code> to a <code>Plot</code> using the <code>toPlot</code> method.</p>
+            <pre><code class="nohighlight"><span class="keyword">val</span><span> </span><span class="identifier">plot</span><span> = </span><span class="identifier">layer</span><span>.</span><span class="identifier">toPlot</span></code></pre>
+            
+            <h2 id="builders-and-constructors" class="section">Builders and Constructors</h2>
+            <p>Builder methods are any method starting with </p>
+            <ul>
+              <li><code>with</code>, such as <code>withLabel</code> on <code>Layer</code>; or</li>
+              <li><code>for</code>, such as <code>forThemeable</code>, on <code>Layout</code>.</li>
+            </ul>
+            <p>These methods are used to set metadata. 
+            A method beginning with <code>with</code> will accept a new value for metadata. 
+            So <code>withLabel</code> will allow you to change the label of a <code>Layer</code> by passing it the new label.
+            The example below shows the effect of changing the label of the <code>Layer</code> we created above.</p>
+            <pre><code class="nohighlight"><span class="identifier">layer</span><span>.</span><span class="identifier">label</span><span>
+</span><span class="comment">// res0: String = &quot;Layer Label&quot;
+</span><span>
+</span><span class="identifier">layer</span><span>.</span><span class="identifier">withLabel</span><span>(</span><span class="string-literal">&quot;The New Label&quot;</span><span>).</span><span class="identifier">label</span><span>
+</span><span class="comment">// res1: String = &quot;The New Label&quot;</span></code></pre>
+            <p>A method beginning with <code>for</code> accepts a function that is passed the current value of the metdata, and returns the updated value.
+            This allows you to update just the values of interest within a nested object.
+            The example below shows how we can modify just the <code>strokeColor</code> of a <code>Layout&#39;s</code> themeable values using <code>forThemeable</code>.</p>
+            <pre><code class="nohighlight"><span class="keyword">import</span><span> </span><span class="identifier">doodle</span><span>.</span><span class="identifier">core</span><span>.</span><span class="type-name">Color</span><span>
+
+</span><span class="identifier">layout</span><span>
+  .</span><span class="identifier">forThemeable</span><span>(</span><span class="identifier">themeable</span><span> =&gt; </span><span class="identifier">themeable</span><span>.</span><span class="identifier">withStrokeColor</span><span>(</span><span class="type-name">Themeable</span><span>.</span><span class="type-name">Override</span><span>(</span><span class="type-name">Some</span><span>(</span><span class="type-name">Color</span><span>.</span><span class="identifier">chartreuse</span><span>))))</span></code></pre>
+            <p>Builder methods <em>always</em> return a modified copy of the object they&#39;re called on, 
+            so it&#39;s always safe to call a builder method even if you used a component in another place.
+            This is a core part of Chartreuse&#39;s design philosophy, as described in <a href="../concepts.html">Core Concepts</a></p>
+            <p>In the example above we used <code>toLayer</code> and <code>toPlot</code> to convert types. These are convenience methods.
+            You can, for example, construct a <code>Plot</code> by calling its constructor but it&#39;s much simpler to type <code>.</code> and follow the auto-complete to turn a <code>Layer</code> into a <code>Plot</code>.</p>
+            <p>Most types have other convenience constructors on their companion object.
+            For example, you usually don&#39;t construct a <code>Scatter</code> layout by calling it&#39;s constructor. 
+            Instead you call the <code>Scatter.default</code> convenience constructor, and then perhaps change the few metadata settings using the builder methods.</p>
+            <div class="flex flex-row justify-between">
+                <a class="pageNavigation" href="../concepts.html">←Core Concepts</a> <a class="pageNavigation" href="layouts.html">Layouts→</a>
+            </div>
+        </main>
+        <footer>Creative Scala is copyright Noel Welsh</footer>
+    </div>
+
+    </div>
+</body>
+
+</html>

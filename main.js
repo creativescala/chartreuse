@@ -1,4 +1,4 @@
-let QuickStartExample,BahamasPopulation,ScatterPlotExample,ChartreuseExamples,Annotations,PlotExample;
+let QuickStartExample,TemperatureAnomaly,BahamasPopulation,ChartreuseExamples,Annotations,PlotExample;
 (function(){
 'use strict';
 var $linkingInfo = Object.freeze({
@@ -187,6 +187,28 @@ function $dp_codePointAt__I__I(instance, x0) {
     return $f_T__codePointAt__I__I(instance, x0)
   } else {
     return instance.codePointAt__I__I(x0)
+  }
+}
+function $dp_compareTo__O__I(instance, x0) {
+  switch ((typeof instance)) {
+    case "string": {
+      return $f_T__compareTo__O__I(instance, x0)
+    }
+    case "number": {
+      return $f_jl_Double__compareTo__O__I(instance, x0)
+    }
+    case "boolean": {
+      return $f_jl_Boolean__compareTo__O__I(instance, x0)
+    }
+    default: {
+      if ((instance instanceof $c_RTLong)) {
+        return $f_jl_Long__compareTo__O__I(instance, x0)
+      } else if ((instance instanceof $Char)) {
+        return $f_jl_Character__compareTo__O__I($uC(instance), x0)
+      } else {
+        return instance.compareTo__O__I(x0)
+      }
+    }
   }
 }
 function $dp_compareTo__T__I(instance, x0) {
@@ -3194,15 +3216,13 @@ function $f_Lchartreuse_Layout__toLayer__O__F1__Lchartreuse_ToData__Lchartreuse_
   var this$1 = $n(toData);
   var traverse = this$1.Lchartreuse_ToData$fromTraverse__f_traverse;
   var data$1 = new $c_Lchartreuse_Data$FromTraverse(data, traverse);
-  var scale = new $c_Lchartreuse_Scale$$anon$1();
   var themeable = $m_Lchartreuse_theme_LayoutTheme$().default__Lcats_Applicative__Lchartreuse_theme_LayoutTheme($m_Lchartreuse_Themeable$given\uff3fApplicative\uff3fThemeable$());
   var layout = new $c_Lchartreuse_Layout$Empty(themeable);
-  var this$10 = new $c_Lchartreuse_Layer(data$1, toPoint, scale, layout, "Layer Label");
-  var data$2 = this$10.Lchartreuse_Layer__f_data;
-  var toPoint$1 = this$10.Lchartreuse_Layer__f_toPoint;
-  var scale$1 = this$10.Lchartreuse_Layer__f_scale;
-  var label = this$10.Lchartreuse_Layer__f_label;
-  return new $c_Lchartreuse_Layer(data$2, toPoint$1, scale$1, $thiz, label)
+  var this$9 = new $c_Lchartreuse_Layer(data$1, toPoint, layout, "Layer Label");
+  var data$2 = this$9.Lchartreuse_Layer__f_data;
+  var toPoint$1 = this$9.Lchartreuse_Layer__f_toPoint;
+  var label = this$9.Lchartreuse_Layer__f_label;
+  return new $c_Lchartreuse_Layer(data$2, toPoint$1, $thiz, label)
 }
 function $f_Lchartreuse_Layout__toLayer__O__Lchartreuse_ToData__s_$eq$colon$eq__Lchartreuse_Layer($thiz, data, toData, ev) {
   $n(ev);
@@ -3293,84 +3313,185 @@ function $m_Lchartreuse_TickMarkCalculator$() {
 }
 /** @constructor */
 function $c_Lchartreuse_examples_Annotations$() {
-  this.Lchartreuse_examples_Annotations$__f_line = null;
+  this.Lchartreuse_examples_Annotations$__f_xData = null;
+  this.Lchartreuse_examples_Annotations$__f_yData = null;
+  this.Lchartreuse_examples_Annotations$__f_chargeData = null;
+  this.Lchartreuse_examples_Annotations$__f_scatter = null;
+  this.Lchartreuse_examples_Annotations$__f_error = null;
+  this.Lchartreuse_examples_Annotations$__f_annotation = null;
   this.Lchartreuse_examples_Annotations$__f_plot = null;
   $n_Lchartreuse_examples_Annotations$ = this;
-  var this$1 = $n($m_Lchartreuse_layout_Line$().default__Lchartreuse_layout_Line());
-  var arg1 = this$1.Lchartreuse_layout_Line__f_themeable;
-  var value = $m_Ldoodle_core_Color$().Ldoodle_core_Color$__f_orchid;
-  var value$1 = new $c_s_Some(value);
-  var themeable = $n($n(arg1).withStrokeColor__O__Lchartreuse_theme_LayoutTheme(new $c_Lchartreuse_Themeable$Override(value$1))).withStrokeWidth__O__Lchartreuse_theme_LayoutTheme(new $c_Lchartreuse_Themeable$Override(4.0));
-  this.Lchartreuse_examples_Annotations$__f_line = new $c_Lchartreuse_layout_Line(themeable);
-  var $$x1 = $m_Lchartreuse_Plot$();
-  var this$9 = $n(this.Lchartreuse_examples_Annotations$__f_line);
-  var data = $m_Lchartreuse_examples_BahamasPopulation$().Lchartreuse_examples_BahamasPopulation$__f_population;
-  $m_Lcats_UnorderedFoldable$();
-  var traverse = $as_Lcats_Traverse($m_Lcats_instances_ArraySeqInstances$().Lcats_instances_ArraySeqInstances$__f_cats$instances$ArraySeqInstances$$$stdInstances);
-  var toData = new $c_Lchartreuse_ToData$fromTraverse(traverse);
-  var this$8 = $m_s_$less$colon$less$();
-  var ev = this$8.s_$less$colon$less$__f_singleton;
-  var this$10 = $n($f_Lchartreuse_Layout__toLayer__O__Lchartreuse_ToData__s_$eq$colon$eq__Lchartreuse_Layer(this$9, data, toData, ev));
-  var data$1 = this$10.Lchartreuse_Layer__f_data;
-  var toPoint = this$10.Lchartreuse_Layer__f_toPoint;
-  var scale = this$10.Lchartreuse_Layer__f_scale;
-  var layout = this$10.Lchartreuse_Layer__f_layout;
-  var this$11 = $n($n($$x1).apply__Lchartreuse_Layer__Lchartreuse_Plot(new $c_Lchartreuse_Layer(data$1, toPoint, scale, layout, "Line")));
-  var layers = this$11.Lchartreuse_Plot__f_layers;
-  var xTitle = this$11.Lchartreuse_Plot__f_xTitle;
-  var yTitle = this$11.Lchartreuse_Plot__f_yTitle;
-  var grid = this$11.Lchartreuse_Plot__f_grid;
-  var legend = this$11.Lchartreuse_Plot__f_legend;
-  var xTicks = this$11.Lchartreuse_Plot__f_xTicks;
-  var yTicks = this$11.Lchartreuse_Plot__f_yTicks;
-  var minorTicks = this$11.Lchartreuse_Plot__f_minorTicks;
-  var theme = this$11.Lchartreuse_Plot__f_theme;
-  var annotations = this$11.Lchartreuse_Plot__f_annotations;
-  var this$12 = new $c_Lchartreuse_Plot(layers, "Bahamas Population", xTitle, yTitle, grid, legend, xTicks, yTicks, minorTicks, theme, annotations);
-  var layers$1 = this$12.Lchartreuse_Plot__f_layers;
-  var plotTitle = this$12.Lchartreuse_Plot__f_plotTitle;
-  var xTitle$1 = this$12.Lchartreuse_Plot__f_xTitle;
-  var grid$1 = this$12.Lchartreuse_Plot__f_grid;
-  var legend$1 = this$12.Lchartreuse_Plot__f_legend;
-  var xTicks$1 = this$12.Lchartreuse_Plot__f_xTicks;
-  var yTicks$1 = this$12.Lchartreuse_Plot__f_yTicks;
-  var minorTicks$1 = this$12.Lchartreuse_Plot__f_minorTicks;
-  var theme$1 = this$12.Lchartreuse_Plot__f_theme;
-  var annotations$1 = this$12.Lchartreuse_Plot__f_annotations;
-  var this$13 = new $c_Lchartreuse_Plot(layers$1, plotTitle, xTitle$1, "Estimated Population", grid$1, legend$1, xTicks$1, yTicks$1, minorTicks$1, theme$1, annotations$1);
-  var layers$2 = this$13.Lchartreuse_Plot__f_layers;
-  var plotTitle$1 = this$13.Lchartreuse_Plot__f_plotTitle;
-  var yTitle$1 = this$13.Lchartreuse_Plot__f_yTitle;
-  var grid$2 = this$13.Lchartreuse_Plot__f_grid;
-  var legend$2 = this$13.Lchartreuse_Plot__f_legend;
-  var xTicks$2 = this$13.Lchartreuse_Plot__f_xTicks;
-  var yTicks$2 = this$13.Lchartreuse_Plot__f_yTicks;
-  var minorTicks$2 = this$13.Lchartreuse_Plot__f_minorTicks;
-  var theme$2 = this$13.Lchartreuse_Plot__f_theme;
-  var annotations$2 = this$13.Lchartreuse_Plot__f_annotations;
-  var $$x2 = new $c_Lchartreuse_Plot(layers$2, plotTitle$1, "Year", yTitle$1, grid$2, legend$2, xTicks$2, yTicks$2, minorTicks$2, theme$2, annotations$2);
-  $m_Ldoodle_core_Point$();
-  var pointOfInterest = new $c_Ldoodle_core_Point$Cartesian(1950.0, 81651.0);
-  var annotationType = new $c_Lchartreuse_component_AnnotationType$Text("Rapid growth began here");
+  var this$2 = $m_sci_ArraySeq$();
+  var it = $m_s_Predef$().wrapRefArray__AO__scm_ArraySeq$ofRef($f_T__split__T__I__AT("7.78\n9.74\n6.76\n6.17\n0.93\n2.14\n0.3\n1.82\n0.81\n1.98\n4.56\n2.05\n5.3\n0\n7.85\n8.49\n7.52\n5.38\n3.42\n0.09\n12.14\n11.74\n2.48\n4.65\n6.29\n3.1\n20.95\n8.26\n17.95\n3.02\n7.84\n0.88\n4.56\n2.11\n11.48\n10.52\n9.61\n7.24\n12.96\n9.17\n19.01\n0.04\n9.52\n6.6\n4.62\n3.83\n1.07\n7.32\n13.5\n4.71\n5.58\n0.78\n4.1\n0.03\n16.2\n7.73\n7.04\n2.13\n6.51\n6.67\n5.47\n7.71\n7.3\n7.88\n3.79\n1.93\n6.11\n5.36\n11.36\n5.07\n6.41\n5.49\n11\n5.49\n2.46\n14.18\n4.35\n4.87\n20.02\n8.82\n12.09\n11.81\n13.6\n16.41\n11.4\n14.09\n4.97\n5.21\n6.93\n9.75\n8.1\n14.53\n1.66\n6.78\n1.37\n6.79\n0\n4.96\n3.87\n6.67\n6.63\n3.72\n4.37\n6.78\n6.21\n4.45\n4.59\n7.39\n3.84\n3.48\n4.38\n4.92\n4.72\n6.5\n4.08\n0.76\n4.6\n4.35\n5.25\n4.14\n6.59\n7.11\n4.17\n4.77\n7.47\n5.64\n4\n3.93\n7.01\n6.4\n1.02\n7.12\n1.2\n3.01\n3.79\n7.29\n6.56\n1.81\n4.6\n4.16\n5.47\n1.38\n4.3\n6.13\n5.88\n5.16\n6.66\n0.31\n1.73\n3.97\n4.77\n3.79\n6.56\n5.07\n4.17\n2.87\n10.01\n6.33\n1.3\n4.16\n5.68\n4.27\n6.31\n6.58\n2.27\n6.35\n4.21\n1.97\n3.43\n6.27\n6.89\n6.28\n2.76\n4.1\n7.21\n7.02\n8.38\n6.38\n7.52\n6.22\n7.9\n11.61\n7.97\n6.11\n3.11\n6.92\n9.31\n7.89\n6.66\n0.89\n6.3\n2.52\n0.02\n5.54\n4.34\n2.91\n6.21\n5.16\n0.1\n4.64\n5.47\n5.48\n5.42\n6.58\n5.62\n5.07\n4.6\n2.69\n6.18\n6.65\n5.81\n6.13\n7.08\n6.28\n6.51\n6.54\n7\n6.34\n7.7\n6.37\n6.19\n2.71\n0\n7.13\n3.57\n1.72\n5.9\n3.8\n6.46\n5.42\n5.97\n7.55\n5.02\n4.06\n6.36\n5.03\n5.23\n5.26\n0.86\n6.78\n6.66\n6.63\n7.35\n5.54\n6.73\n6.62\n6.46\n8.41\n7.84\n5.88\n4.57\n6.5\n5.86\n5.5\n5.8\n7.16\n1.39\n8.23\n4.67\n2.16\n5.02\n0.05\n5.29\n3.09\n5.83\n5.56\n4.89\n1.98\n3.17\n6.11\n2.35\n6.35\n3.28\n6.23\n5.09\n4.68\n5.42\n4.67\n2.76\n3.24\n0.63\n4.95\n4.4\n0.03\n4.64\n4.94\n0.79\n2.68\n2.22\n5.17\n4.99\n3.47\n6.3\n5.46\n4.66\n1.84\n1.26\n3.97\n2.33\n1.1\n6.53\n1.23\n6.28\n6.17\n4.84\n3.11\n3.04\n3.05\n5\n1.25\n4.65\n3.41\n1.03\n5.92\n4.06\n6.13\n5.4\n6.83\n7.2\n6.88\n6.65\n6.8\n7.03\n3.07\n1.07\n2.66\n6.55\n3.6\n5.21\n1.27\n3.49\n3.85\n4.01\n0.93\n0.75\n2.26\n0.7\n6.06\n2.86\n5.94\n6.31\n4.76\n6.47\n5.61\n9.03\n6.95\n7.38\n6.69\n6.96\n6.86\n7.1\n4.66\n8.31\n6.64\n8.18\n3.36\n7.8\n1.83\n5.06\n6.95\n5.61\n4.87\n7.06\n2.34\n4.27\n7.08\n3.04\n1.88\n6.57\n4.88\n2.08\n4.17\n5.67\n3.7\n3.57\n4.4\n3.66\n4.56\n3.63\n0\n0\n4.16\n2.54\n3.49\n1.4\n2.28\n1.4\n0.46\n2.5\n2.32\n6.19\n6.93\n6.76\n6.83\n6.77\n6.54\n6.85\n7.08\n6.57\n6.87\n6.76\n6.73\n6.81\n6.26\n6.85\n6.2\n6.78\n6.92\n6.91\n6.84\n4.51\n6.93\n6.93\n6.92\n6.96\n6.14\n6.73\n6.81\n6.83\n7.13\n5.71\n6.97\n6.91\n6.71\n5.79\n6.93\n6.99\n7.03\n6.96\n5.94\n6.71\n6.94\n6.96\n6.93\n5.71\n6.98\n5.72\n6.23\n5.9\n5.94\n6.02\n6.25\n6.04\n6.3\n5.9\n5.55\n6.41\n6.63\n6.56\n6.3\n5.81\n5.74\n5.83\n6.63\n6.89\n6.87\n5.78\n5.66\n6.03\n6.21\n5.77\n6.08\n6.24\n6.08\n6.57\n5.57\n6.57\n5.52\n6.32\n5.65\n6.12\n6.7\n6.9\n6.19\n6.51\n6.28\n6.22\n6.05\n6.68\n6.41\n6.14\n6.97\n6.93\n6.93\n6.89\n6.28\n6.98\n7.02\n7.03\n7.03\n6.83\n7.12\n6.72\n6.9\n6.94\n6.92\n6.84\n7.11\n6.73\n6.84", "\n", 0));
+  if ((it instanceof $c_sci_ArraySeq)) {
+    var x2 = $as_sci_ArraySeq(it);
+    var $$x1 = x2
+  } else {
+    var this$4 = $n(it);
+    var n = this$4.length__I();
+    if ((n > (-1))) {
+      var elements = new ($d_T.getArrayOf().constr)(n);
+      var this$5 = $n(it);
+      var iterator = $ct_sc_ArrayOps$ArrayIterator__O__(new $c_sc_ArrayOps$ArrayIterator(), this$5.scm_ArraySeq$ofRef__f_array);
+      var i = 0;
+      while ((i < n)) {
+        elements.set(i, iterator.next__O());
+        i = ((1 + i) | 0)
+      };
+      var $$x2 = elements
+    } else {
+      var capacity = 0;
+      var jsElems = null;
+      capacity = 0;
+      jsElems = [];
+      var this$8 = $n(it);
+      var iterator$2 = $ct_sc_ArrayOps$ArrayIterator__O__(new $c_sc_ArrayOps$ArrayIterator(), this$8.scm_ArraySeq$ofRef__f_array);
+      while (iterator$2.hasNext__Z()) {
+        var elem = iterator$2.next__O();
+        var unboxedElem = ((elem === null) ? null : elem);
+        jsElems.push(unboxedElem)
+      };
+      var $$x2 = new ($d_T.getArrayOf().constr)(jsElems)
+    };
+    var $$x1 = this$2.unsafeWrapArray__O__sci_ArraySeq($$x2)
+  };
+  this.Lchartreuse_examples_Annotations$__f_xData = $$x1;
+  var this$10 = $m_sci_ArraySeq$();
+  var it$1 = $m_s_Predef$().wrapRefArray__AO__scm_ArraySeq$ofRef($f_T__split__T__I__AT("1.510555556\n2.177222222\n4.671666667\n1.768333333\n0.298611111\n0.422222222\n0.64\n1.010833333\n0.179166667\n0.387777778\n2.419444444\n0.690833333\n3.019444444\n0.365\n4.141111111\n1.658055556\n2.157222222\n2.294166667\n0.841944444\n0.032222222\n2.134166667\n2.886111111\n2.436944444\n1.505555556\n3.114722222\n0.595833333\n3.658333333\n3.460555556\n3.543611111\n0.709722222\n4.953055556\n0.3475\n2.161111111\n1.487222222\n1.998333333\n3.685555556\n3.028055556\n3.803333333\n3.755833333\n3.053888889\n3.315555556\n0.033333333\n1.914722222\n1.405555556\n1.151666667\n0.885277778\n0.367222222\n1.527222222\n2.549722222\n1.074722222\n1.247222222\n0.241111111\n1.03\n0.021111111\n2.934722222\n1.651111111\n2.568611111\n0.828611111\n2.320833333\n4.082222222\n1.961388889\n3.696111111\n3.531388889\n3.363333333\n4.147222222\n0.998055556\n2.003888889\n3.470555556\n2.311944444\n3.3375\n2.395555556\n2.971111111\n1.894444444\n2.801666667\n0.8025\n3.964444444\n3.0975\n0.865277778\n3.610555556\n3.551666667\n3.708333333\n2.093055556\n2.681388889\n3.776388889\n4.437777778\n3.643055556\n0.891388889\n1.646388889\n3.39\n3.046388889\n1.538333333\n3.69\n0.313611111\n3.231388889\n1.932777778\n2.981388889\n0.208888889\n3.185277778\n2.426111111\n3.805\n3.613333333\n4.049444444\n3.788888889\n2.585\n2.127777778\n2.473611111\n3.652777778\n2.544444444\n3.805277778\n1.244722222\n2.551944444\n2.144722222\n3.881388889\n2.665833333\n1.468333333\n0.263611111\n3.771666667\n3.986944444\n2.526388889\n2.178888889\n3.727222222\n2.335277778\n1.356388889\n2.771666667\n3.498055556\n3.431388889\n2.575555556\n3.980555556\n3.440555556\n3.618611111\n4.056944444\n3.983611111\n0.401388889\n0.989444444\n2.571944444\n3.592777778\n3.5325\n3.805555556\n3.796388889\n3.208333333\n3.293888889\n3.680555556\n3.47\n2.751388889\n1.890555556\n2.881111111\n3.178055556\n1.846111111\n0.578333333\n1.311666667\n3.406666667\n2.088611111\n3.940555556\n3.983611111\n2.016388889\n3.966666667\n3.018055556\n3.591944444\n3.461944444\n3.081111111\n2.894444444\n4.144166667\n3.543055556\n3.320833333\n0.527777778\n2.434444444\n2\n0.652222222\n1.426666667\n2.291666667\n3.619722222\n2.4475\n4.057222222\n55.23805556\n5.545\n2.406111111\n3.414166667\n4.266388889\n2.507222222\n2.394166667\n3.575555556\n3.900833333\n2.901388889\n3.258055556\n5.142222222\n3.090555556\n5.278333333\n5.3325\n3.495833333\n0.305\n5.699166667\n0.810277778\n0.040555556\n2.731388889\n1.373333333\n0.936388889\n3.309722222\n2.709444444\n0.056666667\n1.434722222\n2.24\n4.051388889\n2.312777778\n4.7025\n2.935555556\n2.595833333\n2.603611111\n0.909722222\n3.215555556\n4.683055556\n2.453888889\n1.936388889\n2.533611111\n6.431666667\n4.811944444\n4.633055556\n2.559722222\n4.770277778\n4.715833333\n5.851111111\n4.843888889\n2.830555556\n2.034166667\n2.717777778\n1.362222222\n3.228333333\n2.2925\n1.211944444\n2.484722222\n1.769444444\n2.128888889\n4.105833333\n3.878611111\n1.894444444\n3.225277778\n2.274166667\n5.021666667\n3.684722222\n4.394444444\n4.247777778\n4.000277778\n3.31\n5.597222222\n4.304722222\n5.718055556\n4.476111111\n4.751388889\n3.080277778\n5.924722222\n4.701111111\n1.624166667\n2.371666667\n2.741111111\n3.410277778\n2.7825\n2.897222222\n1.059722222\n4.961111111\n2.707777778\n2.993055556\n2.743888889\n2.7125\n3.136388889\n1.789722222\n4.828888889\n2.511111111\n4.941111111\n0.655833333\n2.920833333\n1.952777778\n1.155\n3.046944444\n1.075277778\n3.077222222\n6.0525\n2.746111111\n5.501944444\n2.830833333\n0.873055556\n1.47\n3.604444444\n3.078611111\n4.66\n1.292222222\n1.91\n1.765277778\n2.613611111\n1.903888889\n0.729444444\n1.638611111\n1.700555556\n5.408611111\n5.258333333\n8.659722222\n1.871666667\n0.761388889\n2.421944444\n1.247222222\n0.738611111\n5.046666667\n2.330277778\n4.665\n2.253611111\n8.845555556\n2.864444444\n4.438888889\n4.811111111\n4.861666667\n2.780833333\n4.065277778\n2.813333333\n1.227222222\n2.474166667\n4.397222222\n1.321666667\n3.918055556\n3.180555556\n2.872222222\n2.936388889\n2.235\n2.1575\n2.252777778\n3.877777778\n1.411388889\n0.351666667\n2.429166667\n2.298333333\n3.634166667\n3.629444444\n1.245555556\n3.039444444\n2.763888889\n1.846666667\n2.365277778\n1.611944444\n3.851944444\n3.658611111\n3.189166667\n3.894722222\n2.954166667\n3.472222222\n2.911111111\n6.602777778\n3.413055556\n3.140277778\n2.455277778\n2.483055556\n2.245833333\n4.738333333\n3.580277778\n3.724444444\n3.179722222\n3.830277778\n2.188611111\n3.791944444\n1.1\n2.905833333\n0.645555556\n7.072777778\n2.506388889\n1.878333333\n1.822222222\n2.358611111\n1.533333333\n1.463611111\n2.867777778\n0.970277778\n1.301388889\n3.6975\n1.576944444\n0.726111111\n1.379166667\n2.029722222\n1.219166667\n1.149444444\n1.431111111\n1.1925\n1.511666667\n1.207222222\n0.014722222\n0.024722222\n1.439722222\n0.881111111\n1.141666667\n0.481388889\n1.188055556\n0.803888889\n1.213055556\n0.832777778\n0.791111111\n2.345833333\n2.854444444\n2.728055556\n2.680555556\n2.867222222\n2.863055556\n2.180555556\n2.927777778\n2.958055556\n3.407222222\n4.591388889\n3.650555556\n3.285\n3.314166667\n3.2075\n3.704166667\n4.896944444\n3.515555556\n2.901666667\n2.910555556\n1.681944444\n4.260277778\n3.617222222\n4.618888889\n3.319722222\n3.069166667\n3.272222222\n3.139166667\n3.595833333\n3.493888889\n4.517222222\n3.234444444\n3.895277778\n3.236944444\n3.220277778\n3.965\n3.01\n2.895\n3.689722222\n3.354166667\n3.279166667\n3.099722222\n2.601388889\n2.737777778\n3.648888889\n2.873888889\n3.420833333\n3.838611111\n3.48\n3.309722222\n3.531388889\n3.732222222\n3.286944444\n3.454444444\n3.896666667\n3.061944444\n3.445\n3.0725\n3.429722222\n3.493333333\n3.949166667\n3.036944444\n3.5025\n4.174444444\n2.351666667\n3.669166667\n2.051666667\n2.265\n2.755833333\n2.459166667\n3.181388889\n2.946111111\n2.3525\n4.2075\n2.503055556\n3.225555556\n2.775555556\n3.193611111\n3.411944444\n2.620555556\n4.318888889\n3.826388889\n3.128611111\n3.520833333\n2.580833333\n2.627222222\n2.714444444\n3.173333333\n2.823055556\n3.058055556\n6.293888889\n3.2575\n3.793888889\n3\n3.269722222\n3.428055556\n3.113611111\n2.631111111\n2.958333333\n3.289722222\n3.370833333\n3.436944444\n2.9725\n2.588888889\n3.293611111\n2.821111111\n3.196388889\n3.213055556\n3.121944444\n3.106111111", "\n", 0));
+  if ((it$1 instanceof $c_sci_ArraySeq)) {
+    var x2$1 = $as_sci_ArraySeq(it$1);
+    var $$x3 = x2$1
+  } else {
+    var this$12 = $n(it$1);
+    var n$1 = this$12.length__I();
+    if ((n$1 > (-1))) {
+      var elements$1 = new ($d_T.getArrayOf().constr)(n$1);
+      var this$13 = $n(it$1);
+      var iterator$1 = $ct_sc_ArrayOps$ArrayIterator__O__(new $c_sc_ArrayOps$ArrayIterator(), this$13.scm_ArraySeq$ofRef__f_array);
+      var i$1 = 0;
+      while ((i$1 < n$1)) {
+        elements$1.set(i$1, iterator$1.next__O());
+        i$1 = ((1 + i$1) | 0)
+      };
+      var $$x4 = elements$1
+    } else {
+      var capacity$1 = 0;
+      var jsElems$1 = null;
+      capacity$1 = 0;
+      jsElems$1 = [];
+      var this$16 = $n(it$1);
+      var iterator$2$1 = $ct_sc_ArrayOps$ArrayIterator__O__(new $c_sc_ArrayOps$ArrayIterator(), this$16.scm_ArraySeq$ofRef__f_array);
+      while (iterator$2$1.hasNext__Z()) {
+        var elem$1 = iterator$2$1.next__O();
+        var unboxedElem$1 = ((elem$1 === null) ? null : elem$1);
+        jsElems$1.push(unboxedElem$1)
+      };
+      var $$x4 = new ($d_T.getArrayOf().constr)(jsElems$1)
+    };
+    var $$x3 = this$10.unsafeWrapArray__O__sci_ArraySeq($$x4)
+  };
+  this.Lchartreuse_examples_Annotations$__f_yData = $$x3;
+  var this$17 = $n($n(this.Lchartreuse_examples_Annotations$__f_xData).zip__sc_IterableOnce__sci_ArraySeq(this.Lchartreuse_examples_Annotations$__f_yData));
+  var a = new $ac_O(this$17.length__I());
+  var i$2 = 0;
+  while ((i$2 < $n(a).u.length)) {
+    var $$x7 = $n(a);
+    var $$x6 = i$2;
+    var arg1 = this$17.apply__I__O(i$2);
+    var x$1 = $as_T2(arg1);
+    matchResult1: {
+      var $$x5;
+      if ((x$1 !== null)) {
+        var x = $as_T($n(x$1).T2__f__1);
+        var y = $as_T($n(x$1).T2__f__2);
+        $m_Ldoodle_core_Point$();
+        $m_sc_StringOps$();
+        var x$2 = $m_jl_Double$().parseDouble__T__D(x);
+        $m_sc_StringOps$();
+        var y$1 = $m_jl_Double$().parseDouble__T__D(y);
+        var $$x5 = new $c_Ldoodle_core_Point$Cartesian(x$2, y$1);
+        break matchResult1
+      };
+      throw new $c_s_MatchError(x$1)
+    };
+    $$x7.set($$x6, $$x5);
+    i$2 = ((1 + i$2) | 0)
+  };
+  this.Lchartreuse_examples_Annotations$__f_chargeData = $m_sci_ArraySeq$().unsafeWrapArray__O__sci_ArraySeq(a);
+  this.Lchartreuse_examples_Annotations$__f_scatter = $m_Lchartreuse_layout_Scatter$().default__Lchartreuse_layout_Scatter();
+  var this$24 = $n(this.Lchartreuse_examples_Annotations$__f_chargeData);
+  var this$25 = $m_sci_ArraySeq$();
+  var evidence$12 = this$24.elemTag__s_reflect_ClassTag();
+  var b = this$25.newBuilder__s_reflect_ClassTag__scm_Builder(evidence$12);
+  var it$2 = this$24.iterator__sc_Iterator();
+  while ($n(it$2).hasNext__Z()) {
+    var elem$2 = $n(it$2).next__O();
+    var _$1 = $as_Ldoodle_core_Point(elem$2);
+    if ((($n(_$1).Ldoodle_core_Point$Cartesian__f_y > 50.0) !== false)) {
+      var this$26 = $n(b);
+      this$26.addOne__O__scm_Growable(elem$2)
+    }
+  };
+  this.Lchartreuse_examples_Annotations$__f_error = $as_Ldoodle_core_Point($n($as_sc_IndexedSeqOps($n(b).result__O())).head__O());
+  var pointOfInterest = this.Lchartreuse_examples_Annotations$__f_error;
+  var annotationType = new $c_Lchartreuse_component_AnnotationType$CircleWithText(15.0, "Bad battery");
   var annotationPosition = $m_Lchartreuse_component_AnnotationPosition$().Lchartreuse_component_AnnotationPosition$__f_center;
   var fillColor = $m_Ldoodle_core_Color$().Ldoodle_core_Color$__f_whiteSmoke;
   var strokeColor = $m_Ldoodle_core_Color$().Ldoodle_core_Color$__f_black;
-  var this$19 = new $c_Lchartreuse_component_Annotation(pointOfInterest, annotationType, annotationPosition, false, fillColor, strokeColor, 1.0);
-  var annotationPosition$1 = $m_Lchartreuse_component_AnnotationPosition$().Lchartreuse_component_AnnotationPosition$__f_topLeft;
-  var pointOfInterest$1 = this$19.Lchartreuse_component_Annotation__f_pointOfInterest;
-  var annotationType$1 = this$19.Lchartreuse_component_Annotation__f_annotationType;
-  var arrow = this$19.Lchartreuse_component_Annotation__f_arrow;
-  var fillColor$1 = this$19.Lchartreuse_component_Annotation__f_fillColor;
-  var strokeColor$1 = this$19.Lchartreuse_component_Annotation__f_strokeColor;
-  var strokeWidth = this$19.Lchartreuse_component_Annotation__f_strokeWidth;
-  var \u03b41$ = new $c_Lchartreuse_component_Annotation(pointOfInterest$1, annotationType$1, annotationPosition$1, arrow, fillColor$1, strokeColor$1, strokeWidth);
-  var pointOfInterest$2 = \u03b41$.Lchartreuse_component_Annotation__f_pointOfInterest;
-  var annotationType$2 = \u03b41$.Lchartreuse_component_Annotation__f_annotationType;
-  var annotationPosition$2 = \u03b41$.Lchartreuse_component_Annotation__f_annotationPosition;
-  var fillColor$2 = \u03b41$.Lchartreuse_component_Annotation__f_fillColor;
-  var strokeColor$2 = \u03b41$.Lchartreuse_component_Annotation__f_strokeColor;
-  var strokeWidth$1 = \u03b41$.Lchartreuse_component_Annotation__f_strokeWidth;
-  this.Lchartreuse_examples_Annotations$__f_plot = $$x2.addAnnotation__Lchartreuse_component_Annotation__Lchartreuse_Plot(new $c_Lchartreuse_component_Annotation(pointOfInterest$2, annotationType$2, annotationPosition$2, true, fillColor$2, strokeColor$2, strokeWidth$1))
+  this.Lchartreuse_examples_Annotations$__f_annotation = new $c_Lchartreuse_component_Annotation(pointOfInterest, annotationType, annotationPosition, false, fillColor, strokeColor, 1.0);
+  var $$x8 = $m_Lchartreuse_Plot$();
+  var this$34 = $n(this.Lchartreuse_examples_Annotations$__f_scatter);
+  var data = this.Lchartreuse_examples_Annotations$__f_chargeData;
+  $m_Lcats_UnorderedFoldable$();
+  var traverse = $as_Lcats_Traverse($m_Lcats_instances_ArraySeqInstances$().Lcats_instances_ArraySeqInstances$__f_cats$instances$ArraySeqInstances$$$stdInstances);
+  var toData = new $c_Lchartreuse_ToData$fromTraverse(traverse);
+  var this$33 = $m_s_$less$colon$less$();
+  var ev = this$33.s_$less$colon$less$__f_singleton;
+  var this$35 = $n($n($$x8).apply__Lchartreuse_Layer__Lchartreuse_Plot($f_Lchartreuse_Layout__toLayer__O__Lchartreuse_ToData__s_$eq$colon$eq__Lchartreuse_Layer(this$34, data, toData, ev)));
+  var layers = this$35.Lchartreuse_Plot__f_layers;
+  var xTitle = this$35.Lchartreuse_Plot__f_xTitle;
+  var yTitle = this$35.Lchartreuse_Plot__f_yTitle;
+  var grid = this$35.Lchartreuse_Plot__f_grid;
+  var legend = this$35.Lchartreuse_Plot__f_legend;
+  var xTicks = this$35.Lchartreuse_Plot__f_xTicks;
+  var yTicks = this$35.Lchartreuse_Plot__f_yTicks;
+  var minorTicks = this$35.Lchartreuse_Plot__f_minorTicks;
+  var theme = this$35.Lchartreuse_Plot__f_theme;
+  var annotations = this$35.Lchartreuse_Plot__f_annotations;
+  var this$36 = new $c_Lchartreuse_Plot(layers, "EV Charging", xTitle, yTitle, grid, legend, xTicks, yTicks, minorTicks, theme, annotations);
+  var layers$1 = this$36.Lchartreuse_Plot__f_layers;
+  var plotTitle = this$36.Lchartreuse_Plot__f_plotTitle;
+  var xTitle$1 = this$36.Lchartreuse_Plot__f_xTitle;
+  var grid$1 = this$36.Lchartreuse_Plot__f_grid;
+  var legend$1 = this$36.Lchartreuse_Plot__f_legend;
+  var xTicks$1 = this$36.Lchartreuse_Plot__f_xTicks;
+  var yTicks$1 = this$36.Lchartreuse_Plot__f_yTicks;
+  var minorTicks$1 = this$36.Lchartreuse_Plot__f_minorTicks;
+  var theme$1 = this$36.Lchartreuse_Plot__f_theme;
+  var annotations$1 = this$36.Lchartreuse_Plot__f_annotations;
+  var this$37 = new $c_Lchartreuse_Plot(layers$1, plotTitle, xTitle$1, "Charge Time (in hours)", grid$1, legend$1, xTicks$1, yTicks$1, minorTicks$1, theme$1, annotations$1);
+  var layers$2 = this$37.Lchartreuse_Plot__f_layers;
+  var plotTitle$1 = this$37.Lchartreuse_Plot__f_plotTitle;
+  var yTitle$1 = this$37.Lchartreuse_Plot__f_yTitle;
+  var grid$2 = this$37.Lchartreuse_Plot__f_grid;
+  var legend$2 = this$37.Lchartreuse_Plot__f_legend;
+  var xTicks$2 = this$37.Lchartreuse_Plot__f_xTicks;
+  var yTicks$2 = this$37.Lchartreuse_Plot__f_yTicks;
+  var minorTicks$2 = this$37.Lchartreuse_Plot__f_minorTicks;
+  var theme$2 = this$37.Lchartreuse_Plot__f_theme;
+  var annotations$2 = this$37.Lchartreuse_Plot__f_annotations;
+  var this$38 = new $c_Lchartreuse_Plot(layers$2, plotTitle$1, "kwhTotal", yTitle$1, grid$2, legend$2, xTicks$2, yTicks$2, minorTicks$2, theme$2, annotations$2);
+  var layers$3 = this$38.Lchartreuse_Plot__f_layers;
+  var plotTitle$2 = this$38.Lchartreuse_Plot__f_plotTitle;
+  var xTitle$2 = this$38.Lchartreuse_Plot__f_xTitle;
+  var yTitle$2 = this$38.Lchartreuse_Plot__f_yTitle;
+  var legend$3 = this$38.Lchartreuse_Plot__f_legend;
+  var xTicks$3 = this$38.Lchartreuse_Plot__f_xTicks;
+  var yTicks$3 = this$38.Lchartreuse_Plot__f_yTicks;
+  var minorTicks$3 = this$38.Lchartreuse_Plot__f_minorTicks;
+  var theme$3 = this$38.Lchartreuse_Plot__f_theme;
+  var annotations$3 = this$38.Lchartreuse_Plot__f_annotations;
+  this.Lchartreuse_examples_Annotations$__f_plot = new $c_Lchartreuse_Plot(layers$3, plotTitle$2, xTitle$2, yTitle$2, true, legend$3, xTicks$3, yTicks$3, minorTicks$3, theme$3, annotations$3)
 }
 $c_Lchartreuse_examples_Annotations$.prototype = new $h_O();
 $c_Lchartreuse_examples_Annotations$.prototype.constructor = $c_Lchartreuse_examples_Annotations$;
@@ -3379,14 +3500,57 @@ function $h_Lchartreuse_examples_Annotations$() {
   /*<skip>*/
 }
 $h_Lchartreuse_examples_Annotations$.prototype = $c_Lchartreuse_examples_Annotations$.prototype;
-$c_Lchartreuse_examples_Annotations$.prototype.draw__T__V = (function(id) {
+$c_Lchartreuse_examples_Annotations$.prototype.drawDefault__T__V = (function(id) {
+  var this$1 = $m_Ldoodle_syntax_package$all$();
+  var picture = $n($n(this.Lchartreuse_examples_Annotations$__f_plot).addAnnotation__Lchartreuse_component_Annotation__Lchartreuse_Plot(this.Lchartreuse_examples_Annotations$__f_annotation)).draw__I__I__Lchartreuse_theme_PlotTheme__Ldoodle_algebra_Picture(640, 480, $m_Lchartreuse_theme_PlotTheme$().Lchartreuse_theme_PlotTheme$__f_fiveThirtyEight);
+  new $c_Ldoodle_syntax_AbstractRendererSyntax$RendererPictureOps(this$1, picture).drawWithFrame__O__Ldoodle_effect_Renderer__Lcats_effect_unsafe_IORuntime__V($n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Frame).apply__T__Ldoodle_svg_effect_Frame(id), $m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_svgRenderer, $m_Lcats_effect_unsafe_IORuntime$().global__Lcats_effect_unsafe_IORuntime())
+});
+$c_Lchartreuse_examples_Annotations$.prototype.drawWithPositioning__T__V = (function(id) {
   var this$2 = $m_Ldoodle_syntax_package$all$();
-  var picture = $n(this.Lchartreuse_examples_Annotations$__f_plot).draw__I__I__Lchartreuse_theme_PlotTheme__Ldoodle_algebra_Picture(640, 480, ($n(this.Lchartreuse_examples_Annotations$__f_plot), $m_Lchartreuse_theme_PlotTheme$().Lchartreuse_theme_PlotTheme$__f_default));
+  var $$x1 = this.Lchartreuse_examples_Annotations$__f_plot;
+  var this$1 = $n(this.Lchartreuse_examples_Annotations$__f_annotation);
+  var annotationPosition = $m_Lchartreuse_component_AnnotationPosition$().Lchartreuse_component_AnnotationPosition$__f_bottomRight;
+  var pointOfInterest = this$1.Lchartreuse_component_Annotation__f_pointOfInterest;
+  var annotationType = this$1.Lchartreuse_component_Annotation__f_annotationType;
+  var arrow = this$1.Lchartreuse_component_Annotation__f_arrow;
+  var fillColor = this$1.Lchartreuse_component_Annotation__f_fillColor;
+  var strokeColor = this$1.Lchartreuse_component_Annotation__f_strokeColor;
+  var strokeWidth = this$1.Lchartreuse_component_Annotation__f_strokeWidth;
+  var picture = $n($n($$x1).addAnnotation__Lchartreuse_component_Annotation__Lchartreuse_Plot(new $c_Lchartreuse_component_Annotation(pointOfInterest, annotationType, annotationPosition, arrow, fillColor, strokeColor, strokeWidth))).draw__I__I__Lchartreuse_theme_PlotTheme__Ldoodle_algebra_Picture(640, 480, $m_Lchartreuse_theme_PlotTheme$().Lchartreuse_theme_PlotTheme$__f_fiveThirtyEight);
   new $c_Ldoodle_syntax_AbstractRendererSyntax$RendererPictureOps(this$2, picture).drawWithFrame__O__Ldoodle_effect_Renderer__Lcats_effect_unsafe_IORuntime__V($n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Frame).apply__T__Ldoodle_svg_effect_Frame(id), $m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_svgRenderer, $m_Lcats_effect_unsafe_IORuntime$().global__Lcats_effect_unsafe_IORuntime())
 });
-$c_Lchartreuse_examples_Annotations$.prototype.draw = (function(arg) {
+$c_Lchartreuse_examples_Annotations$.prototype.drawWithPositioningAndArrow__T__V = (function(id) {
+  var this$2 = $m_Ldoodle_syntax_package$all$();
+  var $$x1 = this.Lchartreuse_examples_Annotations$__f_plot;
+  var this$1 = $n(this.Lchartreuse_examples_Annotations$__f_annotation);
+  var annotationPosition = $m_Lchartreuse_component_AnnotationPosition$().Lchartreuse_component_AnnotationPosition$__f_bottomRight;
+  var pointOfInterest = this$1.Lchartreuse_component_Annotation__f_pointOfInterest;
+  var annotationType = this$1.Lchartreuse_component_Annotation__f_annotationType;
+  var arrow = this$1.Lchartreuse_component_Annotation__f_arrow;
+  var fillColor = this$1.Lchartreuse_component_Annotation__f_fillColor;
+  var strokeColor = this$1.Lchartreuse_component_Annotation__f_strokeColor;
+  var strokeWidth = this$1.Lchartreuse_component_Annotation__f_strokeWidth;
+  var \u03b41$ = new $c_Lchartreuse_component_Annotation(pointOfInterest, annotationType, annotationPosition, arrow, fillColor, strokeColor, strokeWidth);
+  var pointOfInterest$1 = \u03b41$.Lchartreuse_component_Annotation__f_pointOfInterest;
+  var annotationType$1 = \u03b41$.Lchartreuse_component_Annotation__f_annotationType;
+  var annotationPosition$1 = \u03b41$.Lchartreuse_component_Annotation__f_annotationPosition;
+  var fillColor$1 = \u03b41$.Lchartreuse_component_Annotation__f_fillColor;
+  var strokeColor$1 = \u03b41$.Lchartreuse_component_Annotation__f_strokeColor;
+  var strokeWidth$1 = \u03b41$.Lchartreuse_component_Annotation__f_strokeWidth;
+  var picture = $n($n($$x1).addAnnotation__Lchartreuse_component_Annotation__Lchartreuse_Plot(new $c_Lchartreuse_component_Annotation(pointOfInterest$1, annotationType$1, annotationPosition$1, true, fillColor$1, strokeColor$1, strokeWidth$1))).draw__I__I__Lchartreuse_theme_PlotTheme__Ldoodle_algebra_Picture(640, 480, $m_Lchartreuse_theme_PlotTheme$().Lchartreuse_theme_PlotTheme$__f_fiveThirtyEight);
+  new $c_Ldoodle_syntax_AbstractRendererSyntax$RendererPictureOps(this$2, picture).drawWithFrame__O__Ldoodle_effect_Renderer__Lcats_effect_unsafe_IORuntime__V($n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Frame).apply__T__Ldoodle_svg_effect_Frame(id), $m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_svgRenderer, $m_Lcats_effect_unsafe_IORuntime$().global__Lcats_effect_unsafe_IORuntime())
+});
+$c_Lchartreuse_examples_Annotations$.prototype.drawWithPositioningAndArrow = (function(arg) {
   var prep0 = $as_T(arg);
-  this.draw__T__V(prep0)
+  this.drawWithPositioningAndArrow__T__V(prep0)
+});
+$c_Lchartreuse_examples_Annotations$.prototype.drawDefault = (function(arg) {
+  var prep0 = $as_T(arg);
+  this.drawDefault__T__V(prep0)
+});
+$c_Lchartreuse_examples_Annotations$.prototype.drawWithPositioning = (function(arg) {
+  var prep0 = $as_T(arg);
+  this.drawWithPositioning__T__V(prep0)
 });
 var $d_Lchartreuse_examples_Annotations$ = new $TypeData().initClass({
   Lchartreuse_examples_Annotations$: 0
@@ -3466,9 +3630,8 @@ function $c_Lchartreuse_examples_BahamasPopulation$() {
   var this$518 = $n($f_Lchartreuse_Layout__toLayer__O__Lchartreuse_ToData__s_$eq$colon$eq__Lchartreuse_Layer(this$517, data, toData, ev));
   var data$1 = this$518.Lchartreuse_Layer__f_data;
   var toPoint = this$518.Lchartreuse_Layer__f_toPoint;
-  var scale = this$518.Lchartreuse_Layer__f_scale;
   var layout = this$518.Lchartreuse_Layer__f_layout;
-  var $$x3 = new $c_Lchartreuse_Layer(data$1, toPoint, scale, layout, "Line");
+  var $$x3 = new $c_Lchartreuse_Layer(data$1, toPoint, layout, "Line");
   var this$523 = $n(this.Lchartreuse_examples_BahamasPopulation$__f_curve);
   var data$2 = this.Lchartreuse_examples_BahamasPopulation$__f_population;
   $m_Lcats_UnorderedFoldable$();
@@ -3479,9 +3642,8 @@ function $c_Lchartreuse_examples_BahamasPopulation$() {
   var this$524 = $n($f_Lchartreuse_Layout__toLayer__O__Lchartreuse_ToData__s_$eq$colon$eq__Lchartreuse_Layer(this$523, data$2, toData$1, ev$1));
   var data$3 = this$524.Lchartreuse_Layer__f_data;
   var toPoint$1 = this$524.Lchartreuse_Layer__f_toPoint;
-  var scale$1 = this$524.Lchartreuse_Layer__f_scale;
   var layout$1 = this$524.Lchartreuse_Layer__f_layout;
-  var elems = $n($$x4).wrapRefArray__AO__sci_ArraySeq(new ($d_Lchartreuse_Layer.getArrayOf().constr)([$$x3, new $c_Lchartreuse_Layer(data$3, toPoint$1, scale$1, layout$1, "Curve")]));
+  var elems = $n($$x4).wrapRefArray__AO__sci_ArraySeq(new ($d_Lchartreuse_Layer.getArrayOf().constr)([$$x3, new $c_Lchartreuse_Layer(data$3, toPoint$1, layout$1, "Curve")]));
   var layers = $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems);
   var xTicks = new $c_Lchartreuse_MajorTickLayout$Algorithmic(12);
   var yTicks = new $c_Lchartreuse_MajorTickLayout$Algorithmic(12);
@@ -3596,6 +3758,88 @@ function $m_Lchartreuse_examples_Examples$() {
   return $n_Lchartreuse_examples_Examples$
 }
 /** @constructor */
+function $c_Lchartreuse_examples_HadCrut5$() {
+  this.Lchartreuse_examples_HadCrut5$__f_dateRe = null;
+  this.Lchartreuse_examples_HadCrut5$__f_data = null;
+  $n_Lchartreuse_examples_HadCrut5$ = this;
+  this.Lchartreuse_examples_HadCrut5$__f_dateRe = ($m_sc_StringOps$(), $ct_s_util_matching_Regex__T__sci_Seq__(new $c_s_util_matching_Regex(), "(\\d{4})-(\\d{2})", $m_sci_Nil$()));
+  var this$4 = $m_sci_ArraySeq$();
+  var xs = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lchartreuse_examples_HadCrut5$Record.getArrayOf().constr)([this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1850-01", (-0.67456436), (-0.98177195), (-0.3673568)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1850-02", (-0.333416), (-0.700901), 0.034069024), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1850-03", (-0.59132266), (-0.9339191), (-0.2487262)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1850-04", (-0.58872116), (-0.8982594), (-0.27918297)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1850-05", (-0.5081851), (-0.7612137), (-0.2551565)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1850-06", (-0.34424013), (-0.60947233), (-0.079007894)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1850-07", (-0.15979019), (-0.39714956), 0.07756917), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1850-08", (-0.2076543), (-0.4648224), 0.04951382), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1850-09", (-0.3847069), (-0.6477238), (-0.121690065)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1850-10", (-0.53312653), (-0.78265744), (-0.28359562)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1850-11", (-0.2825075), (-0.54502493), (-0.01999013)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1850-12", (-0.40367043), (-0.6826584), (-0.12468251)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1851-01", (-0.20073938), (-0.51260436), 0.11112556), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1851-02", (-0.46933234), (-0.8057982), (-0.13286653)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1851-03", (-0.6460531), (-0.95056796), (-0.34153816)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1851-04", (-0.5421326), (-0.8318831), (-0.25238213)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1851-05", (-0.19762275), (-0.47129744), 0.07605195), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1851-06", (-0.13670355), (-0.41463488), 0.1412278), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1851-07", (-0.0968156), (-0.3358151), 0.1421839), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1851-08", (-0.10175375), (-0.36319193), 0.15968445), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1851-09", (-0.091244884), (-0.36001372), 0.17752396), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1851-10", (-0.00836263), (-0.26999545), 0.2532702), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1851-11", (-0.08189084), (-0.38667485), 0.22289316), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1851-12", (-0.22754622), (-0.551656), 0.09656359), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1852-01", (-0.37509567), (-0.6837687), (-0.06642263)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1852-02", (-0.47672674), (-0.82690173), (-0.12655175)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1852-03", (-0.5597683), (-0.8769547), (-0.24258201)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1852-04", (-0.5853704), (-0.8682941), (-0.30244678)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1852-05", (-0.12741269), (-0.39380231), 0.13897693), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1852-06", (-0.083659135), (-0.33952817), 0.17220989), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1852-07", 0.005029385, (-0.22846359), 0.23852237), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1852-08", (-0.13558698), (-0.39293692), 0.121762976), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1852-09", (-0.0019016695), (-0.26057866), 0.25677535), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1852-10", (-0.172434), (-0.41274902), 0.06788101), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1852-11", (-0.3052479), (-0.58084655), (-0.029649276)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1852-12", 0.065385304, (-0.21881793), 0.34958854), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1853-01", (-0.23259853), (-0.51683515), 0.0516381), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1853-02", (-0.40372267), (-0.70065147), (-0.10679385)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1853-03", (-0.28042167), (-0.5714255), 0.010582115), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1853-04", (-0.38631994), (-0.65944624), (-0.11319364)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1853-05", (-0.2678886), (-0.5075292), (-0.02824804)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1853-06", (-0.1423762), (-0.3862959), 0.101543516), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1853-07", (-0.08344058), (-0.297061), 0.13017985), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1853-08", (-0.056647103), (-0.28783756), 0.17454337), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1853-09", (-0.2502504), (-0.47014314), (-0.030357674)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1853-10", (-0.391768), (-0.6159777), (-0.16755827)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1853-11", (-0.41142052), (-0.67802095), (-0.14482014)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1853-12", (-0.33739907), (-0.6387964), (-0.036001712)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1854-01", (-0.3813734), (-0.6314074), (-0.1313394)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1854-02", (-0.36109406), (-0.6438892), (-0.078298904)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1854-03", (-0.24269956), (-0.5189016), 0.033502445), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1854-04", (-0.3338324), (-0.55951685), (-0.10814798)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1854-05", (-0.29079238), (-0.49502686), (-0.08655792)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1854-06", (-0.29902688), (-0.5297665), (-0.068287276)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1854-07", (-0.17864197), (-0.38943616), 0.03215221), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1854-08", (-0.23944739), (-0.4525426), (-0.026352169)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1854-09", (-0.21674344), (-0.42721775), (-0.006269128)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1854-10", (-0.09526511), (-0.27856913), 0.08803892), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1854-11", (-0.41029203), (-0.680082), (-0.14050205)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1854-12", (-0.4503518), (-0.72317326), (-0.17753038)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1855-01", (-0.15919624), (-0.42137975), 0.102987275), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1855-02", (-0.31344938), (-0.59707975), (-0.02981898)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1855-03", (-0.34401497), (-0.6289762), (-0.059053726)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1855-04", (-0.21820337), (-0.44758487), 0.011178128), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1855-05", (-0.3877071), (-0.6007164), (-0.17469783)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1855-06", (-0.3329626), (-0.5576329), (-0.108292304)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1855-07", (-0.3329893), (-0.53221554), (-0.1337631)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1855-08", (-0.19952463), (-0.40983552), 0.010786269), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1855-09", (-0.27071294), (-0.45980525), (-0.0816206)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1855-10", (-0.19544719), (-0.40497714), 0.0140827345), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1855-11", (-0.38930947), (-0.6501514), (-0.1284676)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1855-12", (-0.41989732), (-0.6853395), (-0.15445511)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1856-01", (-0.075628236), (-0.31484526), 0.16358879), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1856-02", (-0.33713824), (-0.60642755), (-0.0678489)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1856-03", (-0.35769272), (-0.63118136), (-0.08420405)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1856-04", (-0.3159384), (-0.531346), (-0.100530796)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1856-05", (-0.28508008), (-0.49249765), (-0.07766249)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1856-06", (-0.21416615), (-0.4383176), 0.009985293), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1856-07", (-0.22469248), (-0.42359686), (-0.02578809)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1856-08", (-0.23770598), (-0.45777294), (-0.01763901)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1856-09", (-0.38821492), (-0.5981285), (-0.17830133)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1856-10", (-0.4381357), (-0.6417849), (-0.2344865)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1856-11", (-0.55232793), (-0.80731004), (-0.29734582)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1856-12", (-0.4175237), (-0.7001903), (-0.13485713)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1857-01", (-0.49476224), (-0.7212615), (-0.26826298)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1857-02", (-0.43487996), (-0.7002412), (-0.16951871)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1857-03", (-0.47860673), (-0.7623405), (-0.19487299)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1857-04", (-0.6443354), (-0.8869147), (-0.40175614)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1857-05", (-0.65871185), (-0.86846006), (-0.4489636)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1857-06", (-0.30414528), (-0.5227023), (-0.085588254)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1857-07", (-0.4113695), (-0.6166561), (-0.2060829)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1857-08", (-0.36897412), (-0.5925666), (-0.14538166)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1857-09", (-0.37968943), (-0.5874363), (-0.17194258)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1857-10", (-0.47263545), (-0.6786636), (-0.2666073)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1857-11", (-0.6851335), (-0.9487671), (-0.42149988)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1857-12", (-0.27351704), (-0.5484415), 0.0014074869), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1858-01", (-0.29548538), (-0.56474644), (-0.026224334)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1858-02", (-0.47690183), (-0.7623272), (-0.19147645)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1858-03", (-0.5476575), (-0.84601724), (-0.24929774)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1858-04", (-0.42799428), (-0.6573944), (-0.19859417)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1858-05", (-0.5320951), (-0.74805903), (-0.31613111)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1858-06", (-0.37952122), (-0.60970783), (-0.14933462)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1858-07", (-0.3355508), (-0.54754287), (-0.12355878)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1858-08", (-0.27754986), (-0.4933736), (-0.0617261)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1858-09", (-0.28318587), (-0.49380964), (-0.07256212)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1858-10", (-0.2887329), (-0.4937586), (-0.083707206)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1858-11", (-0.36552474), (-0.6381552), (-0.09289427)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1858-12", (-0.4549887), (-0.7361435), (-0.17383386)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1859-01", (-0.38148466), (-0.62637764), (-0.1365917)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1859-02", (-0.34352297), (-0.6039441), (-0.08310183)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1859-03", (-0.31371728), (-0.590663), (-0.036771517)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1859-04", (-0.15715948), (-0.3835844), 0.06926547), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1859-05", (-0.15164812), (-0.35725668), 0.053960454), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1859-06", (-0.24957645), (-0.46606663), (-0.033086263)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1859-07", (-0.31209), (-0.49856845), (-0.12561159)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1859-08", (-0.24464844), (-0.46309808), (-0.026198825)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1859-09", (-0.393858), (-0.5993753), (-0.18834068)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1859-10", (-0.25472045), (-0.4681661), (-0.04127479)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1859-11", (-0.2875482), (-0.54473567), (-0.030360727)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1859-12", (-0.28437135), (-0.56793344), (-8.092772E-4)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1860-01", (-0.39058298), (-0.6584608), (-0.12270518)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1860-02", (-0.4682912), (-0.7842476), (-0.15233481)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1860-03", (-0.7864609), (-1.1232259), (-0.44969583)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1860-04", (-0.30610728), (-0.5380226), (-0.074192025)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1860-05", (-0.36362675), (-0.5794941), (-0.14775938)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1860-06", (-0.21145956), (-0.45290247), 0.029983336), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1860-07", (-0.1847646), (-0.40834823), 0.038819034), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1860-08", (-0.1142386), (-0.37883177), 0.15035456), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1860-09", (-0.13131975), (-0.36443615), 0.10179664), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1860-10", (-0.3459595), (-0.5577351), (-0.13418393)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1860-11", (-0.60494), (-0.8451416), (-0.36473843)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1860-12", (-0.774231), (-1.0370945), (-0.51136756)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1861-01", (-0.91803956), (-1.1972613), (-0.6388177)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1861-02", (-0.6245886), (-0.99098545), (-0.25819176)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1861-03", (-0.41567025), (-0.8173928), (-0.0139476545)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1861-04", (-0.38623625), (-0.7137754), (-0.05869713)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1861-05", (-0.6607519), (-0.9770289), (-0.34447485)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1861-06", (-0.25202128), (-0.53403753), 0.029994994), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1861-07", (-0.29750192), (-0.550664), (-0.044339824)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1861-08", (-0.041093126), (-0.29339635), 0.2112101), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1861-09", (-0.27033228), (-0.5080883), (-0.03257631)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1861-10", (-0.47664645), (-0.67291355), (-0.28037935)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1861-11", (-0.45758948), (-0.70344317), (-0.21173581)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1861-12", (-0.35085425), (-0.6705306), (-0.031177888)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1862-01", (-0.82483715), (-1.1399956), (-0.5096788)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1862-02", (-0.7155356), (-1.0883836), (-0.34268767)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1862-03", (-0.5353963), (-0.9173056), (-0.15348701)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1862-04", (-0.52208453), (-0.8259743), (-0.21819483)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1862-05", (-0.3478659), (-0.6414074), (-0.054324463)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1862-06", (-0.3066114), (-0.554004), (-0.05921875)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1862-07", (-0.3448706), (-0.5859212), (-0.10381997)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1862-08", (-0.4561808), (-0.72345316), (-0.18890849)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1862-09", (-0.3624242), (-0.58751315), (-0.13733529)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1862-10", (-0.44867027), (-0.66414434), (-0.23319624)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1862-11", (-0.6777555), (-0.93400127), (-0.42150965)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1862-12", (-0.8945406), (-1.2084035), (-0.58067775)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1863-01", (-0.07634223), (-0.40096194), 0.24827747), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1863-02", (-0.24953309), (-0.66414887), 0.16508271), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1863-03", (-0.3549987), (-0.7145881), 0.004590684), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1863-04", (-0.28827205), (-0.5977736), 0.021229519), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1863-05", (-0.3840041), (-0.66699326), (-0.10101496)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1863-06", (-0.36912903), (-0.6320461), (-0.106212005)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1863-07", (-0.3123347), (-0.5947716), (-0.029897762)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1863-08", (-0.29738235), (-0.57519704), (-0.019567715)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1863-09", (-0.35204113), (-0.61949664), (-0.08458564)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1863-10", (-0.5043272), (-0.742704), (-0.26595044)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1863-11", (-0.44055805), (-0.68936455), (-0.19175154)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1863-12", (-0.50319576), (-0.817736), (-0.1886555)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1864-01", (-0.8532364), (-1.2133667), (-0.493106)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1864-02", (-0.5934415), (-1.0275025), (-0.15938036)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1864-03", (-0.49939686), (-0.8818438), (-0.11694993)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1864-04", (-0.54358864), (-0.87270206), (-0.21447514)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1864-05", (-0.32347065), (-0.6318895), (-0.015051826)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1864-06", (-0.11254485), (-0.38457897), 0.15948927), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1864-07", (-0.25960582), (-0.530554), 0.011342296), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1864-08", (-0.3079488), (-0.57993907), (-0.035958502)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1864-09", (-0.4425317), (-0.6966836), (-0.18837978)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1864-10", (-0.6029094), (-0.8257851), (-0.38003364)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1864-11", (-0.45623875), (-0.70915705), (-0.20332046)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1864-12", (-0.5903272), (-0.9233383), (-0.25731608)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1865-01", (-0.17609702), (-0.4980693), 0.14587525), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1865-02", (-0.46668038), (-0.926016), (-0.0073448196)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1865-03", (-0.66122115), (-1.0886513), (-0.23379107)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1865-04", (-0.4481533), (-0.77840537), (-0.117901206)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1865-05", (-0.37767282), (-0.678569), (-0.07677658)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1865-06", (-0.1958778), (-0.45268297), 0.060927358), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1865-07", (-0.21560228), (-0.49204847), 0.06084391), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1865-08", (-0.21177977), (-0.47747025), 0.053910702), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1865-09", (-0.17093047), (-0.43420225), 0.0923413), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1865-10", (-0.26942545), (-0.51537), (-0.023480851)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1865-11", (-0.33705235), (-0.59656864), (-0.077536084)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1865-12", (-0.4605614), (-0.79645264), (-0.124670126)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1866-01", (-0.1320992), (-0.47347298), 0.2092746), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1866-02", (-0.40108874), (-0.778535), (-0.023642521)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1866-03", (-0.6821522), (-1.0710651), (-0.29323936)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1866-04", (-0.4543501), (-0.7766433), (-0.132057)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1866-05", (-0.5719213), (-0.8795296), (-0.26431298)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1866-06", (-0.0985114), (-0.35920775), 0.16218495), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1866-07", (-0.00851037), (-0.26040974), 0.24338901), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1866-08", (-0.2494715), (-0.49963456), 6.9158967E-4), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1866-09", (-0.37775257), (-0.62569046), (-0.12981468)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1866-10", (-0.4206272), (-0.6282327), (-0.21302171)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1866-11", (-0.29829076), (-0.52906585), (-0.06751567)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1866-12", (-0.40035242), (-0.7012374), (-0.09946747)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1867-01", (-0.40518752), (-0.74488693), (-0.065488115)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1867-02", (-0.3535976), (-0.78066856), 0.07347331), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1867-03", (-0.6812089), (-1.0579066), (-0.3045111)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1867-04", (-0.4213023), (-0.7407834), (-0.1018212)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1867-05", (-0.57436174), (-0.8913324), (-0.25739112)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1867-06", (-0.35023195), (-0.6303714), (-0.07009248)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1867-07", (-0.25301105), (-0.5183183), 0.01229622), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1867-08", (-0.33047715), (-0.60988814), (-0.051066175)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1867-09", (-0.14789358), (-0.40636784), 0.11058068), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1867-10", (-0.12525536), (-0.35672548), 0.106214754), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1867-11", (-0.19566038), (-0.43645424), 0.045133475), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1867-12", (-0.44537255), (-0.7262891), (-0.16445602)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1868-01", (-0.6848776), (-1.044338), (-0.32541716)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1868-02", (-0.69327545), (-1.1240178), (-0.2625332)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1868-03", (-0.33465612), (-0.727329), 0.058016773), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1868-04", (-0.36299402), (-0.66513675), (-0.06085131)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1868-05", (-0.28559557), (-0.5878955), 0.016704334), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1868-06", (-0.29764694), (-0.54980946), (-0.045484435)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1868-07", (-0.059621982), (-0.30119848), 0.18195452), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1868-08", (-0.1932709), (-0.45685738), 0.070315555), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1868-09", (-0.34477365), (-0.5571461), (-0.13240121)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1868-10", (-0.22966905), (-0.4261849), (-0.033153232)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1868-11", (-0.42318085), (-0.66923624), (-0.17712545)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1868-12", (-0.31396636), (-0.57192636), (-0.05600635)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1869-01", (-0.33569098), (-0.6297284), (-0.041653544)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1869-02", 0.13131645, (-0.19830833), 0.46094123), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1869-03", (-0.6257712), (-0.955734), (-0.29580843)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1869-04", (-0.40569928), (-0.7054616), (-0.10593699)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1869-05", (-0.3099707), (-0.57051814), (-0.049423277)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1869-06", (-0.38451383), (-0.6465563), (-0.12247129)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1869-07", (-0.41707024), (-0.6630914), (-0.17104907)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1869-08", (-0.16793925), (-0.4234084), 0.08752989), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1869-09", (-0.17162752), (-0.3800871), 0.036832076), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1869-10", (-0.2934824), (-0.4622508), (-0.124713965)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1869-11", (-0.2818132), (-0.47505817), (-0.08856823)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1869-12", (-0.5365831), (-0.7834703), (-0.289696)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1870-01", (-0.21106681), (-0.4358849), 0.013751276), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1870-02", (-0.4544139), (-0.6885369), (-0.22029088)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1870-03", (-0.4983347), (-0.75912595), (-0.23754346)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1870-04", (-0.33294073), (-0.56307286), (-0.102808595)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1870-05", (-0.2977442), (-0.54020154), (-0.055286862)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1870-06", (-0.23123583), (-0.4569157), (-0.005555956)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1870-07", (-0.073357955), (-0.2875345), 0.1408186), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1870-08", (-0.2582274), (-0.5095156), (-0.0069392435)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1870-09", (-0.2023172), (-0.4136001), 0.0089657), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1870-10", (-0.44285795), (-0.65396285), (-0.2317531)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1870-11", (-0.2658218), (-0.48923132), (-0.042412296)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1870-12", (-0.6663718), (-0.9382973), (-0.3944463)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1871-01", (-0.55831134), (-0.82570755), (-0.29091513)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1871-02", (-0.6715548), (-0.9617495), (-0.3813601)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1871-03", (-0.17169894), (-0.47935697), 0.13595909), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1871-04", (-0.22192766), (-0.45470837), 0.010853066), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1871-05", (-0.3622017), (-0.61092186), (-0.113481514)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1871-06", (-0.2864155), (-0.5228108), (-0.05002018)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1871-07", (-0.082433164), (-0.3044722), 0.13960588), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1871-08", (-0.32236677), (-0.5468733), (-0.09786023)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1871-09", (-0.36107233), (-0.5652693), (-0.15687534)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1871-10", (-0.37327537), (-0.55728364), (-0.18926708)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1871-11", (-0.5226968), (-0.75467384), (-0.29071972)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1871-12", (-0.48901418), (-0.7645088), (-0.21351954)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1872-01", (-0.59878874), (-0.85335076), (-0.3442267)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1872-02", (-0.61987036), (-0.89861023), (-0.34113047)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1872-03", (-0.523702), (-0.8182255), (-0.22917853)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1872-04", (-0.3854148), (-0.6421561), (-0.12867345)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1872-05", (-0.14151993), (-0.37056223), 0.08752235), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1872-06", (-0.27950048), (-0.5010192), (-0.057981815)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1872-07", (-0.14631678), (-0.35728696), 0.064653404), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1872-08", 0.008637112, (-0.22310326), 0.24037747), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1872-09", (-0.17648244), (-0.37449455), 0.021529682), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1872-10", (-0.2035192), (-0.37991014), (-0.027128257)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1872-11", (-0.32202852), (-0.5166016), (-0.12745541)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1872-12", (-0.5479975), (-0.78612375), (-0.30987123)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1873-01", (-0.26165044), (-0.48202783), (-0.04127305)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1873-02", (-0.28293252), (-0.57342094), 0.0075558876), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1873-03", (-0.4087238), (-0.65150857), (-0.16593905)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1873-04", (-0.4805553), (-0.6951894), (-0.26592112)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1873-05", (-0.3509207), (-0.5651311), (-0.13671026)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1873-06", (-0.32054913), (-0.53528905), (-0.10580918)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1873-07", (-0.17570111), (-0.39297614), 0.04157393), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1873-08", (-0.22783396), (-0.4349165), (-0.020751415)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1873-09", (-0.40525547), (-0.60818976), (-0.20232113)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1873-10", (-0.3906487), (-0.57215583), (-0.20914152)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1873-11", (-0.46331128), (-0.66464955), (-0.261973)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1873-12", (-0.3279057), (-0.59806544), (-0.057746004)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1874-01", (-0.19854628), (-0.45300004), 0.055907503), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1874-02", (-0.43842116), (-0.6789994), (-0.1978429)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1874-03", (-0.6729315), (-0.92940164), (-0.4164614)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1874-04", (-0.4370358), (-0.6482773), (-0.22579432)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1874-05", (-0.33399135), (-0.5918376), (-0.07614513)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1874-06", (-0.56584716), (-0.79844147), (-0.33325285)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1874-07", (-0.16706698), (-0.38213357), 0.047999617), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1874-08", (-0.2960711), (-0.52731186), (-0.064830355)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1874-09", (-0.16819394), (-0.35974884), 0.023360983), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1874-10", (-0.47115755), (-0.6433688), (-0.29894635)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1874-11", (-0.41774487), (-0.6313548), (-0.20413499)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1874-12", (-0.31200656), (-0.5668208), (-0.057192285)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1875-01", (-0.5711182), (-0.79736364), (-0.3448727)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1875-02", (-0.4792721), (-0.71974623), (-0.23879792)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1875-03", (-0.56430274), (-0.7930157), (-0.33558974)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1875-04", (-0.35805592), (-0.5733307), (-0.14278117)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1875-05", (-0.2728362), (-0.47623995), (-0.069432504)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1875-06", (-0.27996176), (-0.4962079), (-0.06371561)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1875-07", (-0.18206008), (-0.38412824), 0.02000808), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1875-08", (-0.24648568), (-0.4747995), (-0.018171854)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1875-09", (-0.23427878), (-0.44139335), (-0.027164232)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1875-10", (-0.23321441), (-0.40914226), (-0.057286542)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1875-11", (-0.50920546), (-0.7304494), (-0.28796157)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1875-12", (-0.57672006), (-0.8087105), (-0.3447295)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1876-01", (-0.51370406), (-0.732396), (-0.29501218)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1876-02", (-0.33739862), (-0.56518865), (-0.10960863)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1876-03", (-0.36232424), (-0.6376168), (-0.08703163)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1876-04", (-0.42427677), (-0.65553075), (-0.19302277)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1876-05", (-0.59042513), (-0.8079633), (-0.3728869)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1876-06", (-0.35227904), (-0.57574004), (-0.12881808)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1876-07", (-0.21372749), (-0.41223747), (-0.015217529)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1876-08", (-0.32724735), (-0.5655297), (-0.08896501)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1876-09", (-0.41784137), (-0.63995034), (-0.19573241)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1876-10", (-0.29983562), (-0.47799063), (-0.12168063)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1876-11", (-0.60684675), (-0.8142865), (-0.39940697)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1876-12", (-0.64341265), (-0.89493567), (-0.3918896)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1877-01", (-0.41108242), (-0.6209636), (-0.20120125)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1877-02", (-0.20926146), (-0.4276892), 0.009166266), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1877-03", (-0.091358565), (-0.31345627), 0.13073914), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1877-04", (-0.3459171), (-0.5490583), (-0.14277588)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1877-05", (-0.41127652), (-0.61740625), (-0.20514679)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1877-06", (-0.13819988), (-0.35527813), 0.078878365), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1877-07", (-0.016253214), (-0.22757587), 0.19506943), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1877-08", 0.21073052, (-0.011481554), 0.4329426), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1877-09", 0.10758122, (-0.07691583), 0.29207826), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1877-10", 0.11331653, (-0.0732508), 0.29988387), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1877-11", 0.03397783, (-0.15571973), 0.2236754), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1877-12", (-0.05556291), (-0.2958206), 0.18469477), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1878-01", (-0.06979711), (-0.26203996), 0.12244575), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1878-02", 0.22940955, 0.011935646, 0.44688344), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1878-03", 0.36132926, 0.11839555, 0.604263), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1878-04", 0.18853739, (-0.0070909946), 0.38416576), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1878-05", (-0.122401394), (-0.33232173), 0.08751895), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1878-06", 0.010291125, (-0.20308198), 0.22366422), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1878-07", (-0.0772364), (-0.28020662), 0.12573381), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1878-08", (-0.04655335), (-0.26132223), 0.16821553), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1878-09", 0.020835022, (-0.16271828), 0.20438832), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1878-10", (-0.1650159), (-0.33420274), 0.0041709216), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1878-11", (-0.14255811), (-0.34657767), 0.061461445), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1878-12", (-0.3226224), (-0.5510177), (-0.09422704)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1879-01", (-0.23778471), (-0.4489502), (-0.026619231)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1879-02", (-0.26602048), (-0.49155372), (-0.040487222)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1879-03", (-0.2583884), (-0.48758295), (-0.029193843)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1879-04", (-0.38240048), (-0.5881249), (-0.17667612)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1879-05", (-0.34387106), (-0.53022873), (-0.15751341)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1879-06", (-0.28325993), (-0.47607452), (-0.09044534)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1879-07", (-0.2641225), (-0.46030587), (-0.0679391)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1879-08", (-0.26534295), (-0.48025763), (-0.05042825)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1879-09", (-0.23556925), (-0.42141894), (-0.04971956)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1879-10", (-0.15905875), (-0.33532667), 0.017209174), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1879-11", (-0.397338), (-0.6246113), (-0.17006464)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1879-12", (-0.55045533), (-0.81308776), (-0.2878229)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1880-01", (-0.39386344), (-0.60645384), (-0.181273)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1880-02", (-0.4498938), (-0.6612949), (-0.23849276)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1880-03", (-0.19438674), (-0.4402409), 0.051467415), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1880-04", (-0.33803284), (-0.56909233), (-0.106973305)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1880-05", (-0.3253502), (-0.5249128), (-0.1257876)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1880-06", (-0.38053036), (-0.57394856), (-0.18711212)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1880-07", (-0.3148068), (-0.5000183), (-0.12959526)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1880-08", (-0.10718303), (-0.31699923), 0.10263317), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1880-09", (-0.29703382), (-0.48228338), (-0.11178426)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1880-10", (-0.39094922), (-0.54256344), (-0.23933502)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1880-11", (-0.28068957), (-0.48973435), (-0.07164481)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1880-12", (-0.3172651), (-0.57946), (-0.055070166)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1881-01", (-0.21463032), (-0.42456862), (-0.004692002)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1881-02", (-0.22458804), (-0.4410218), (-0.008154285)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1881-03", (-0.24820606), (-0.4754435), (-0.02096861)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1881-04", (-0.06252021), (-0.24772863), 0.1226882), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1881-05", (-0.12189843), (-0.31805423), 0.074257374), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1881-06", (-0.39908272), (-0.60632294), (-0.19184254)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1881-07", (-0.19404487), (-0.38651505), (-0.0015747005)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1881-08", (-0.13816847), (-0.34755346), 0.07121651), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1881-09", (-0.3007603), (-0.48109457), (-0.120426044)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1881-10", (-0.2305081), (-0.3861735), (-0.0748427)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1881-11", (-0.38121367), (-0.57584876), (-0.18657859)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1881-12", (-0.27132502), (-0.49155435), (-0.05109568)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1882-01", (-0.025385773), (-0.21284647), 0.16207492), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1882-02", (-0.11726177), (-0.29848227), 0.06395874), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1882-03", (-0.17708035), (-0.37251085), 0.018350175), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1882-04", (-0.31474164), (-0.4901041), (-0.13937919)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1882-05", (-0.32572997), (-0.50725716), (-0.14420277)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1882-06", (-0.39225483), (-0.5854527), (-0.19905701)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1882-07", (-0.34102684), (-0.524619), (-0.15743467)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1882-08", (-0.24510053), (-0.45590413), (-0.03429691)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1882-09", (-0.15044588), (-0.33297318), 0.03208143), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1882-10", (-0.3990836), (-0.56060207), (-0.23756516)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1882-11", (-0.40350994), (-0.59063745), (-0.2163824)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1882-12", (-0.65474), (-0.8827449), (-0.426735)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1883-01", (-0.47277278), (-0.6465994), (-0.2989461)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1883-02", (-0.4854322), (-0.6739853), (-0.29687917)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1883-03", (-0.26636964), (-0.44524446), (-0.08749482)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1883-04", (-0.43903488), (-0.6062966), (-0.27177316)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1883-05", (-0.3400283), (-0.5237819), (-0.15627469)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1883-06", (-0.1901544), (-0.38033026), 2.1439157E-5), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1883-07", (-0.21858145), (-0.38680118), (-0.05036173)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1883-08", (-0.28788334), (-0.48319572), (-0.092570975)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1883-09", (-0.3062682), (-0.46854252), (-0.14399385)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1883-10", (-0.3400996), (-0.49213037), (-0.1880688)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1883-11", (-0.39625064), (-0.58992153), (-0.20257974)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1883-12", (-0.41481745), (-0.6323676), (-0.19726728)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1884-01", (-0.44355372), (-0.63514644), (-0.25196096)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1884-02", (-0.33285657), (-0.5167038), (-0.14900933)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1884-03", (-0.50546813), (-0.7000096), (-0.31092662)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1884-04", (-0.5089616), (-0.67386585), (-0.34405738)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1884-05", (-0.56562126), (-0.7247028), (-0.40653968)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1884-06", (-0.5137893), (-0.6937361), (-0.3338425)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1884-07", (-0.5658637), (-0.7341247), (-0.39760268)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1884-08", (-0.429122), (-0.6203238), (-0.23792021)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1884-09", (-0.5043303), (-0.6659263), (-0.34273428)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1884-10", (-0.463346), (-0.614259), (-0.31243297)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1884-11", (-0.5852065), (-0.7801215), (-0.3902915)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1884-12", (-0.4897219), (-0.7129149), (-0.2665289)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1885-01", (-0.65614164), (-0.83794105), (-0.47434217)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1885-02", (-0.5527572), (-0.73603135), (-0.36948302)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1885-03", (-0.42101642), (-0.5955314), (-0.24650145)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1885-04", (-0.63497037), (-0.78652006), (-0.4834207)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1885-05", (-0.60631216), (-0.77378696), (-0.43883735)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1885-06", (-0.63664883), (-0.8227926), (-0.45050508)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1885-07", (-0.42047033), (-0.5939572), (-0.24698347)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1885-08", (-0.4050678), (-0.5947867), (-0.21534885)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1885-09", (-0.35673314), (-0.52351606), (-0.18995023)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1885-10", (-0.36150765), (-0.51169276), (-0.21132258)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1885-11", (-0.38425598), (-0.55152065), (-0.2169913)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1885-12", (-0.21760142), (-0.4325158), (-0.0026870253)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1886-01", (-0.479745), (-0.6322591), (-0.3272309)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1886-02", (-0.47879001), (-0.62834597), (-0.32923406)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1886-03", (-0.48723003), (-0.63084835), (-0.34361172)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1886-04", (-0.3615867), (-0.5048325), (-0.21834087)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1886-05", (-0.29257125), (-0.45943964), (-0.1257029)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1886-06", (-0.5019767), (-0.6763906), (-0.32756293)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1886-07", (-0.3021988), (-0.45671389), (-0.14768374)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1886-08", (-0.45738658), (-0.6496851), (-0.26508808)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1886-09", (-0.39079213), (-0.54562986), (-0.2359544)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1886-10", (-0.41297862), (-0.56080145), (-0.26515582)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1886-11", (-0.49078947), (-0.65871966), (-0.3228593)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1886-12", (-0.39479798), (-0.6054431), (-0.18415283)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1887-01", (-0.74377), (-0.90897405), (-0.57856596)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1887-02", (-0.65888214), (-0.81991065), (-0.49785364)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1887-03", (-0.44538546), (-0.60558623), (-0.28518468)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1887-04", (-0.48280382), (-0.63975), (-0.32585767)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1887-05", (-0.52945954), (-0.7083593), (-0.35055977)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1887-06", (-0.52584267), (-0.7173657), (-0.33431968)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1887-07", (-0.38890877), (-0.55927885), (-0.21853866)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1887-08", (-0.44554248), (-0.64114463), (-0.24994037)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1887-09", (-0.3885525), (-0.55485785), (-0.22224714)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1887-10", (-0.4446146), (-0.59794164), (-0.29128754)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1887-11", (-0.43516165), (-0.6090515), (-0.26127174)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1887-12", (-0.49650568), (-0.70510846), (-0.2879029)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1888-01", (-0.6184704), (-0.7836917), (-0.45324904)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1888-02", (-0.58728784), (-0.76135224), (-0.41322348)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1888-03", (-0.59725916), (-0.77896965), (-0.41554868)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1888-04", (-0.35193178), (-0.5080489), (-0.19581465)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1888-05", (-0.41130793), (-0.5864251), (-0.23619075)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1888-06", (-0.3217171), (-0.50169754), (-0.14173672)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1888-07", (-0.3386262), (-0.5072375), (-0.17001486)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1888-08", (-0.31051376), (-0.5074154), (-0.11361212)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1888-09", (-0.32469457), (-0.49043873), (-0.15895042)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1888-10", (-0.16644995), (-0.32206133), (-0.010838576)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1888-11", (-0.26496226), (-0.4413725), (-0.08855199)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1888-12", (-0.2593257), (-0.47495842), (-0.043693)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1889-01", (-0.2966627), (-0.47627586), (-0.11704954)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1889-02", (-0.006579389), (-0.19397688), 0.1808181), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1889-03", (-0.08734918), (-0.28068063), 0.10598228), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1889-04", (-0.08679018), (-0.25234994), 0.078769594), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1889-05", (-0.15811297), (-0.3331547), 0.016928775), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1889-06", (-0.21282648), (-0.40597382), (-0.019679131)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1889-07", (-0.28090227), (-0.46454594), (-0.09725862)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1889-08", (-0.30713442), (-0.5067254), (-0.10754347)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1889-09", (-0.34166074), (-0.51179236), (-0.17152908)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1889-10", (-0.37001047), (-0.5306747), (-0.20934623)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1889-11", (-0.5064449), (-0.67347455), (-0.3394152)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1889-12", (-0.34427297), (-0.55167353), (-0.1368724)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1890-01", (-0.53390056), (-0.68983096), (-0.37797013)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1890-02", (-0.46501267), (-0.64362186), (-0.28640348)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1890-03", (-0.6111193), (-0.79531926), (-0.42691922)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1890-04", (-0.49407724), (-0.6826467), (-0.3055078)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1890-05", (-0.53646934), (-0.71954244), (-0.3533962)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1890-06", (-0.49480304), (-0.6899875), (-0.2996186)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1890-07", (-0.48914096), (-0.6675704), (-0.31071147)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1890-08", (-0.46699485), (-0.6746316), (-0.25935808)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1890-09", (-0.482208), (-0.65571135), (-0.30870467)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1890-10", (-0.4391856), (-0.60413635), (-0.27423483)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1890-11", (-0.67008716), (-0.8370257), (-0.5031486)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1890-12", (-0.3992993), (-0.5958885), (-0.20271009)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1891-01", (-0.580199), (-0.77196914), (-0.3884289)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1891-02", (-0.59757084), (-0.80028284), (-0.3948589)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1891-03", (-0.36251077), (-0.55440897), (-0.1706126)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1891-04", (-0.4480748), (-0.64362466), (-0.25252488)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1891-05", (-0.34619382), (-0.5355189), (-0.15686876)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1891-06", (-0.375095), (-0.57121325), (-0.17897676)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1891-07", (-0.39966992), (-0.5892808), (-0.21005905)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1891-08", (-0.3548557), (-0.5726065), (-0.13710487)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1891-09", (-0.25669602), (-0.44973028), (-0.06366173)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1891-10", (-0.3429681), (-0.5111194), (-0.17481679)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1891-11", (-0.5339126), (-0.708038), (-0.35978726)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1891-12", (-0.21803272), (-0.42916322), (-0.0069021964)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1892-01", (-0.4647994), (-0.65507704), (-0.2745218)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1892-02", (-0.2896702), (-0.4841962), (-0.095144175)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1892-03", (-0.532998), (-0.72427106), (-0.34172493)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1892-04", (-0.5456076), (-0.75018156), (-0.34103373)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1892-05", (-0.4568904), (-0.64939237), (-0.2643884)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1892-06", (-0.43644238), (-0.63285375), (-0.24003102)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1892-07", (-0.5867592), (-0.790647), (-0.3828715)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1892-08", (-0.508325), (-0.72042894), (-0.296221)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1892-09", (-0.3824375), (-0.5656438), (-0.19923118)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1892-10", (-0.43382177), (-0.6145778), (-0.25306576)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1892-11", (-0.66069424), (-0.84201086), (-0.47937757)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1892-12", (-0.7922568), (-1.000348), (-0.5841656)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1893-01", (-1.0448953), (-1.2234055), (-0.86638504)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1893-02", (-0.84499276), (-1.0261025), (-0.6638829)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1893-03", (-0.42680097), (-0.62173426), (-0.23186766)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1893-04", (-0.5148424), (-0.7004083), (-0.32927647)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1893-05", (-0.5721378), (-0.76604015), (-0.3782353)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1893-06", (-0.44231105), (-0.6416443), (-0.24297778)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1893-07", (-0.24375539), (-0.43675295), (-0.050757837)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1893-08", (-0.2869543), (-0.5068631), (-0.06704551)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1893-09", (-0.36513734), (-0.5501072), (-0.18016747)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1893-10", (-0.30426577), (-0.47791195), (-0.13061959)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1893-11", (-0.404811), (-0.5897336), (-0.21988842)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1893-12", (-0.4845268), (-0.70177835), (-0.26727527)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1894-01", (-0.6276136), (-0.8077845), (-0.44744277)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1894-02", (-0.42949706), (-0.6282197), (-0.2307744)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1894-03", (-0.51159126), (-0.71238536), (-0.3107972)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1894-04", (-0.53747475), (-0.7314728), (-0.34347677)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1894-05", (-0.5191684), (-0.7246258), (-0.3137109)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1894-06", (-0.583648), (-0.7914774), (-0.3758187)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1894-07", (-0.39212567), (-0.59586215), (-0.1883892)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1894-08", (-0.35357937), (-0.570022), (-0.13713676)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1894-09", (-0.4396966), (-0.6310632), (-0.24833001)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1894-10", (-0.3990114), (-0.5790243), (-0.21899848)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1894-11", (-0.460066), (-0.64320624), (-0.27692574)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1894-12", (-0.551695), (-0.75928974), (-0.3441002)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1895-01", (-0.6359875), (-0.8076031), (-0.46437198)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1895-02", (-0.6417986), (-0.83066016), (-0.45293707)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1895-03", (-0.6178789), (-0.82091254), (-0.4148453)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1895-04", (-0.46109405), (-0.67555755), (-0.24663055)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1895-05", (-0.48253113), (-0.68159723), (-0.28346506)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1895-06", (-0.4253601), (-0.62747884), (-0.22324134)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1895-07", (-0.3349007), (-0.52899164), (-0.14080974)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1895-08", (-0.37724775), (-0.5895025), (-0.16499303)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1895-09", (-0.39428148), (-0.57385796), (-0.21470495)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1895-10", (-0.3257419), (-0.48164272), (-0.16984108)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1895-11", (-0.3213687), (-0.48260084), (-0.16013654)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1895-12", (-0.36682844), (-0.5629477), (-0.1707092)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1896-01", (-0.3152051), (-0.49154812), (-0.13886207)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1896-02", (-0.33662146), (-0.5216296), (-0.1516134)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1896-03", (-0.58836246), (-0.7725723), (-0.40415257)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1896-04", (-0.5460314), (-0.7311858), (-0.3608771)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1896-05", (-0.35611972), (-0.57647145), (-0.13576801)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1896-06", (-0.23009133), (-0.434404), (-0.025778683)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1896-07", (-0.18243536), (-0.36182913), (-0.0030415945)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1896-08", (-0.1715636), (-0.3854166), 0.042289402), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1896-09", (-0.15527536), (-0.34389502), 0.033344295), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1896-10", (-0.117941946), (-0.2807071), 0.044823196), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1896-11", (-0.31405124), (-0.48207262), (-0.14602986)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1896-12", (-0.094388485), (-0.3038262), 0.115049236), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1897-01", (-0.3000984), (-0.49080732), (-0.10938945)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1897-02", (-0.3486073), (-0.5483834), (-0.14883117)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1897-03", (-0.41547), (-0.61278546), (-0.21815456)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1897-04", (-0.1176401), (-0.3024626), 0.0671824), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1897-05", (-0.11408224), (-0.3108811), 0.08271663), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1897-06", (-0.1627357), (-0.36229974), 0.036828335), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1897-07", (-0.18704693), (-0.37309894), (-9.949328E-4)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1897-08", (-0.1854231), (-0.40435466), 0.03350848), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1897-09", (-0.18626954), (-0.36248967), (-0.010049412)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1897-10", (-0.21232262), (-0.39015022), (-0.03449505)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1897-11", (-0.4227442), (-0.5879673), (-0.25752115)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1897-12", (-0.46516183), (-0.6517685), (-0.27855515)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1898-01", (-0.19924784), (-0.38865504), (-0.009840637)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1898-02", (-0.55612665), (-0.71944946), (-0.39280388)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1898-03", (-0.8427487), (-1.0089464), (-0.676551)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1898-04", (-0.663013), (-0.84589446), (-0.4801315)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1898-05", (-0.55958927), (-0.7435597), (-0.37561888)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1898-06", (-0.33471388), (-0.52292496), (-0.1465028)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1898-07", (-0.39475092), (-0.58443546), (-0.20506638)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1898-08", (-0.3894281), (-0.59876347), (-0.18009277)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1898-09", (-0.37076962), (-0.5485977), (-0.19294158)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1898-10", (-0.5009573), (-0.6702813), (-0.3316333)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1898-11", (-0.5286319), (-0.68540967), (-0.3718542)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1898-12", (-0.4895283), (-0.67102706), (-0.30802953)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1899-01", (-0.3598041), (-0.5269037), (-0.1927045)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1899-02", (-0.5540309), (-0.7154645), (-0.39259735)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1899-03", (-0.5889544), (-0.7476041), (-0.43030468)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1899-04", (-0.4393416), (-0.61094743), (-0.26773578)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1899-05", (-0.35891113), (-0.5424037), (-0.17541856)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1899-06", (-0.5010004), (-0.69523287), (-0.306768)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1899-07", (-0.36553654), (-0.55425465), (-0.17681848)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1899-08", (-0.23979759), (-0.45446852), (-0.025126649)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1899-09", (-0.1515833), (-0.32894266), 0.025776051), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1899-10", (-0.18313703), (-0.35176262), (-0.014511443)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1899-11", (-0.056940768), (-0.2123845), 0.09850298), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1899-12", (-0.466166), (-0.6495811), (-0.28275096)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1900-01", (-0.5065199), (-0.6711187), (-0.34192112)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1900-02", (-0.2028605), (-0.3608538), (-0.044867214)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1900-03", (-0.19967249), (-0.36565012), (-0.03369488)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1900-04", (-0.22413696), (-0.4042493), (-0.044024616)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1900-05", (-0.30258486), (-0.48975345), (-0.11541622)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1900-06", (-0.21710625), (-0.4151495), (-0.019062985)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1900-07", (-0.19088483), (-0.37040052), (-0.01136914)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1900-08", (-0.21078074), (-0.42371136), 0.002149894), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1900-09", (-0.19568677), (-0.38076556), (-0.010607976)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1900-10", (-0.0647567), (-0.23704362), 0.10753022), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1900-11", (-0.26252335), (-0.42287436), (-0.10217235)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1900-12", (-0.23623504), (-0.41886643), (-0.053603664)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1901-01", (-0.28059345), (-0.43856356), (-0.122623324)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1901-02", (-0.26819772), (-0.42274347), (-0.113651976)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1901-03", (-0.20081724), (-0.36103362), (-0.040600866)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1901-04", (-0.1753031), (-0.35032505), (-2.8113974E-4)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1901-05", (-0.24934465), (-0.44425672), (-0.05443258)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1901-06", (-0.23662645), (-0.43364984), (-0.039603047)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1901-07", (-0.3289457), (-0.51798207), (-0.13990928)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1901-08", (-0.2050631), (-0.42178407), 0.0116578685), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1901-09", (-0.35517338), (-0.53581136), (-0.1745354)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1901-10", (-0.3407429), (-0.5152294), (-0.16625641)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1901-11", (-0.39582872), (-0.5590094), (-0.23264809)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1901-12", (-0.48450628), (-0.65788275), (-0.3111298)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1902-01", (-0.43956748), (-0.6000706), (-0.27906436)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1902-02", (-0.23221202), (-0.38552827), (-0.078895785)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1902-03", (-0.47400042), (-0.63162196), (-0.31637895)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1902-04", (-0.4305058), (-0.6007136), (-0.260298)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1902-05", (-0.43023685), (-0.6306319), (-0.22984181)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1902-06", (-0.44518706), (-0.6403324), (-0.25004172)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1902-07", (-0.38915876), (-0.56928974), (-0.2090278)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1902-08", (-0.42510903), (-0.63204134), (-0.21817671)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1902-09", (-0.37280047), (-0.5562161), (-0.18938479)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1902-10", (-0.5005036), (-0.67379946), (-0.32720774)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1902-11", (-0.56261593), (-0.72212607), (-0.40310577)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1902-12", (-0.565914), (-0.7425985), (-0.38922948)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1903-01", (-0.4344225), (-0.58624995), (-0.282595)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1903-02", (-0.24027054), (-0.38465306), (-0.095888)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1903-03", (-0.39843398), (-0.5441603), (-0.25270766)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1903-04", (-0.58799607), (-0.7538771), (-0.42211506)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1903-05", (-0.5160877), (-0.7040209), (-0.3281545)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1903-06", (-0.5476815), (-0.73070943), (-0.3646535)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1903-07", (-0.5052094), (-0.6767439), (-0.33367482)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1903-08", (-0.60140806), (-0.81704575), (-0.3857704)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1903-09", (-0.55975336), (-0.73646456), (-0.38304216)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1903-10", (-0.66481555), (-0.8263604), (-0.50327075)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1903-11", (-0.62978834), (-0.781631), (-0.4779457)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1903-12", (-0.71404976), (-0.8792802), (-0.5488193)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1904-01", (-0.806605), (-0.9617955), (-0.6514145)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1904-02", (-0.769914), (-0.92639124), (-0.61343676)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1904-03", (-0.6964779), (-0.8489669), (-0.5439888)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1904-04", (-0.6468306), (-0.81834394), (-0.47531733)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1904-05", (-0.6093934), (-0.7907733), (-0.4280136)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1904-06", (-0.5641545), (-0.7518275), (-0.37648153)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1904-07", (-0.5530446), (-0.72540253), (-0.38068676)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1904-08", (-0.4784086), (-0.68795663), (-0.26886058)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1904-09", (-0.59661376), (-0.78148705), (-0.41174045)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1904-10", (-0.55304295), (-0.72068864), (-0.3853973)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1904-11", (-0.39660597), (-0.5533854), (-0.23982657)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1904-12", (-0.49964583), (-0.6772394), (-0.32205227)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1905-01", (-0.46341595), (-0.6148158), (-0.31201616)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1905-02", (-0.72016865), (-0.8743835), (-0.5659538)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1905-03", (-0.52405393), (-0.6707999), (-0.377308)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1905-04", (-0.5589943), (-0.7221077), (-0.3958809)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1905-05", (-0.43423653), (-0.6155831), (-0.25288996)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1905-06", (-0.34258264), (-0.52910966), (-0.15605558)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1905-07", (-0.37310305), (-0.5452026), (-0.20100348)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1905-08", (-0.30447677), (-0.51597244), (-0.09298106)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1905-09", (-0.34519514), (-0.5172048), (-0.17318553)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1905-10", (-0.3351493), (-0.49376118), (-0.17653738)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1905-11", (-0.21728525), (-0.37075344), (-0.06381706)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1905-12", (-0.27435452), (-0.45295084), (-0.09575821)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1906-01", (-0.29668435), (-0.45274007), (-0.14062859)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1906-02", (-0.3885811), (-0.534501), (-0.24266116)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1906-03", (-0.289529), (-0.4427584), (-0.1362996)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1906-04", (-0.10402012), (-0.27304992), 0.06500969), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1906-05", (-0.3765242), (-0.55912966), (-0.19391878)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1906-06", (-0.23253845), (-0.4197746), (-0.045302324)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1906-07", (-0.34295923), (-0.52357775), (-0.1623407)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1906-08", (-0.27118164), (-0.48389447), (-0.05846878)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1906-09", (-0.35302594), (-0.5320011), (-0.17405081)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1906-10", (-0.32229662), (-0.47954115), (-0.16505207)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1906-11", (-0.53179437), (-0.68340665), (-0.38018218)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1906-12", (-0.32053673), (-0.48989052), (-0.15118293)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1907-01", (-0.52930236), (-0.67252135), (-0.3860834)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1907-02", (-0.6185913), (-0.76509285), (-0.4720898)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1907-03", (-0.43793064), (-0.5846249), (-0.29123637)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1907-04", (-0.4779983), (-0.63595945), (-0.32003713)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1907-05", (-0.6450355), (-0.8174265), (-0.47264454)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1907-06", (-0.5440585), (-0.7285098), (-0.35960725)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1907-07", (-0.42508972), (-0.5989156), (-0.25126383)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1907-08", (-0.4910157), (-0.7048997), (-0.2771317)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1907-09", (-0.3986793), (-0.56648517), (-0.2308734)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1907-10", (-0.33594123), (-0.4869077), (-0.18497479)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1907-11", (-0.55637306), (-0.7036612), (-0.40908492)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1907-12", (-0.58987683), (-0.7728595), (-0.40689418)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1908-01", (-0.46647665), (-0.6135111), (-0.3194422)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1908-02", (-0.4139059), (-0.55907226), (-0.26873952)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1908-03", (-0.7040725), (-0.84940577), (-0.55873924)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1908-04", (-0.5884082), (-0.7462024), (-0.43061388)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1908-05", (-0.45306396), (-0.6383044), (-0.26782355)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1908-06", (-0.41279954), (-0.60589045), (-0.21970867)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1908-07", (-0.40103948), (-0.5724443), (-0.22963466)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1908-08", (-0.48125657), (-0.7003825), (-0.26213074)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1908-09", (-0.3872215), (-0.5591857), (-0.21525727)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1908-10", (-0.5747282), (-0.7261497), (-0.42330676)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1908-11", (-0.6453218), (-0.7852707), (-0.5053729)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1908-12", (-0.63815445), (-0.80027384), (-0.476035)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1909-01", (-0.7629406), (-0.8951454), (-0.6307358)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1909-02", (-0.53553337), (-0.67432994), (-0.39673677)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1909-03", (-0.6521415), (-0.79210275), (-0.5121803)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1909-04", (-0.63281554), (-0.7831975), (-0.48243353)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1909-05", (-0.5918205), (-0.77018195), (-0.413459)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1909-06", (-0.50006735), (-0.6869661), (-0.31316864)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1909-07", (-0.5237631), (-0.6864449), (-0.36108136)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1909-08", (-0.3369181), (-0.5479727), (-0.12586349)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1909-09", (-0.4156719), (-0.58178246), (-0.24956137)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1909-10", (-0.49451607), (-0.64189625), (-0.34713593)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1909-11", (-0.38665202), (-0.5246769), (-0.24862713)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1909-12", (-0.59633845), (-0.7501332), (-0.44254363)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1910-01", (-0.4327842), (-0.5747264), (-0.29084206)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1910-02", (-0.5290626), (-0.67527723), (-0.38284808)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1910-03", (-0.6189373), (-0.771704), (-0.46617064)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1910-04", (-0.5349184), (-0.6914202), (-0.37841663)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1910-05", (-0.5368389), (-0.71915257), (-0.35452524)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1910-06", (-0.5593434), (-0.7473471), (-0.37133965)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1910-07", (-0.43475804), (-0.6054494), (-0.2640667)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1910-08", (-0.38878688), (-0.6054517), (-0.17212208)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1910-09", (-0.4229382), (-0.59759563), (-0.24828072)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1910-10", (-0.48481956), (-0.63360226), (-0.33603686)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1910-11", (-0.672429), (-0.81315607), (-0.531702)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1910-12", (-0.7566741), (-0.91549015), (-0.59785813)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1911-01", (-0.66804653), (-0.8043503), (-0.5317427)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1911-02", (-0.70603365), (-0.838752), (-0.5733153)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1911-03", (-0.7639851), (-0.89808047), (-0.62988967)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1911-04", (-0.64364564), (-0.80100137), (-0.48628986)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1911-05", (-0.6272078), (-0.805938), (-0.44847766)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1911-06", (-0.55432284), (-0.74320203), (-0.36544362)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1911-07", (-0.49260998), (-0.6690713), (-0.3161486)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1911-08", (-0.5064451), (-0.7171781), (-0.29571208)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1911-09", (-0.4982411), (-0.680748), (-0.3157342)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1911-10", (-0.34511527), (-0.49507046), (-0.19516012)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1911-11", (-0.34931326), (-0.49439368), (-0.20423283)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1911-12", (-0.315495), (-0.47613657), (-0.1548535)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1912-01", (-0.32940087), (-0.4633201), (-0.19548161)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1912-02", (-0.31491742), (-0.43766788), (-0.19216692)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1912-03", (-0.5543457), (-0.68546075), (-0.4232307)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1912-04", (-0.33788237), (-0.4915007), (-0.184264)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1912-05", (-0.3352509), (-0.503716), (-0.1667858)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1912-06", (-0.28508794), (-0.4639832), (-0.106192656)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1912-07", (-0.50730854), (-0.6681659), (-0.34645116)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1912-08", (-0.57247293), (-0.78099567), (-0.36395016)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1912-09", (-0.6437677), (-0.80863905), (-0.47889635)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1912-10", (-0.6791174), (-0.82347953), (-0.53475523)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1912-11", (-0.55792326), (-0.6956708), (-0.42017576)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1912-12", (-0.59060127), (-0.74457186), (-0.43663067)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1913-01", (-0.5636491), (-0.70592016), (-0.42137802)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1913-02", (-0.55008626), (-0.6813429), (-0.41882965)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1913-03", (-0.60579985), (-0.7407136), (-0.47088605)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1913-04", (-0.5340449), (-0.69886494), (-0.36922488)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1913-05", (-0.54116863), (-0.717569), (-0.36476827)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1913-06", (-0.5514844), (-0.73894113), (-0.36402768)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1913-07", (-0.47697932), (-0.649064), (-0.30489463)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1913-08", (-0.39560005), (-0.605102), (-0.18609805)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1913-09", (-0.41690665), (-0.5830773), (-0.25073597)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1913-10", (-0.43836418), (-0.5882755), (-0.28845286)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1913-11", (-0.36772293), (-0.50663286), (-0.22881301)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1913-12", (-0.16402407), (-0.3207319), (-0.007316216)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1914-01", (-0.078474745), (-0.21613824), 0.05918875), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1914-02", (-0.27010897), (-0.4004639), (-0.13975406)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1914-03", (-0.39748344), (-0.5322073), (-0.26275954)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1914-04", (-0.4089052), (-0.5571737), (-0.26063666)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1914-05", (-0.30789974), (-0.47892362), (-0.13687588)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1914-06", (-0.30798316), (-0.49093956), (-0.12502678)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1914-07", (-0.2969515), (-0.4692706), (-0.124632396)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1914-08", (-0.24459992), (-0.4556622), (-0.033537664)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1914-09", (-0.30140656), (-0.48765177), (-0.11516135)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1914-10", (-0.110274434), (-0.2672808), 0.046731923), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1914-11", (-0.19029672), (-0.33736014), (-0.04323329)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1914-12", (-0.23672462), (-0.39467424), (-0.078774974)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1915-01", (-0.28745866), (-0.43606412), (-0.13885316)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1915-02", (-0.22042616), (-0.37010035), (-0.070751965)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1915-03", (-0.19399805), (-0.35105386), (-0.036942244)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1915-04", (-0.082622275), (-0.24781929), 0.08257474), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1915-05", (-0.16808057), (-0.36465895), 0.028497813), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1915-06", (-0.17210917), (-0.37255874), 0.028340416), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1915-07", (-0.16903177), (-0.36015847), 0.02209495), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1915-08", (-0.06681827), (-0.29493347), 0.16129693), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1915-09", (-0.120297745), (-0.30047518), 0.05987967), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1915-10", (-0.28610688), (-0.44976383), (-0.12244993)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1915-11", (-0.17281866), (-0.3218076), (-0.023829734)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1915-12", (-0.3623588), (-0.50942546), (-0.21529216)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1916-01", (-0.33786005), (-0.4876082), (-0.1881119)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1916-02", (-0.26403636), (-0.41823655), (-0.10983616)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1916-03", (-0.43909237), (-0.5887705), (-0.28941423)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1916-04", (-0.37517795), (-0.5474576), (-0.20289832)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1916-05", (-0.41811523), (-0.62675697), (-0.20947349)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1916-06", (-0.49483928), (-0.70778334), (-0.28189525)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1916-07", (-0.38488427), (-0.58387554), (-0.18589298)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1916-08", (-0.29676017), (-0.52024907), (-0.07327126)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1916-09", (-0.3218673), (-0.5078389), (-0.13589564)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1916-10", (-0.3744158), (-0.54190564), (-0.20692603)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1916-11", (-0.5142024), (-0.6644174), (-0.3639875)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1916-12", (-0.8212685), (-0.9761314), (-0.6664057)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1917-01", (-0.6892141), (-0.84988326), (-0.528545)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1917-02", (-0.715982), (-0.8849225), (-0.54704154)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1917-03", (-0.78429514), (-0.94445986), (-0.6241304)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1917-04", (-0.5461108), (-0.726568), (-0.3656537)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1917-05", (-0.6442835), (-0.8495297), (-0.43903726)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1917-06", (-0.47886908), (-0.698331), (-0.2594072)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1917-07", (-0.24527456), (-0.455212), (-0.035337124)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1917-08", (-0.33282208), (-0.5884459), (-0.07719827)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1917-09", (-0.2979707), (-0.49015912), (-0.10578233)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1917-10", (-0.53561026), (-0.7070309), (-0.36418962)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1917-11", (-0.45924768), (-0.6210569), (-0.29743847)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1917-12", (-0.7865544), (-0.9670814), (-0.6060274)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1918-01", (-0.5179739), (-0.6850022), (-0.3509456)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1918-02", (-0.67216516), (-0.8356719), (-0.5086584)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1918-03", (-0.57906806), (-0.751414), (-0.4067221)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1918-04", (-0.6234592), (-0.8156268), (-0.4312916)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1918-05", (-0.5252177), (-0.75086904), (-0.29956633)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1918-06", (-0.38651752), (-0.6103386), (-0.16269644)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1918-07", (-0.36958522), (-0.56567657), (-0.17349385)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1918-08", (-0.42982036), (-0.66980463), (-0.18983606)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1918-09", (-0.25825897), (-0.4637045), (-0.052813478)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1918-10", (-0.11888721), (-0.31273952), 0.07496512), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1918-11", (-0.18980259), (-0.38338757), 0.0037823957), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1918-12", (-0.42425612), (-0.6094721), (-0.23904014)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1919-01", (-0.25126135), (-0.435014), (-0.067508675)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1919-02", (-0.24207273), (-0.416542), (-0.06760347)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1919-03", (-0.39209825), (-0.58520657), (-0.19898996)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1919-04", (-0.21141803), (-0.41892788), (-0.0039082)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1919-05", (-0.30793867), (-0.5225244), (-0.093352936)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1919-06", (-0.35769194), (-0.5655215), (-0.14986245)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1919-07", (-0.29989257), (-0.51161784), (-0.08816732)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1919-08", (-0.2381391), (-0.4837357), 0.0074575483), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1919-09", (-0.28606114), (-0.48273113), (-0.08939117)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1919-10", (-0.25880492), (-0.44467), (-0.07293986)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1919-11", (-0.5575256), (-0.71599007), (-0.39906105)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1919-12", (-0.5033144), (-0.67652005), (-0.3301087)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1920-01", (-0.25863704), (-0.43835065), (-0.07892343)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1920-02", (-0.545883), (-0.69912046), (-0.39264554)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1920-03", (-0.17207259), (-0.3437741), (-3.7105498E-4)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1920-04", (-0.33658424), (-0.5365327), (-0.13663577)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1920-05", (-0.25627613), (-0.46498504), (-0.047567245)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1920-06", (-0.23811027), (-0.45812166), (-0.018098898)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1920-07", (-0.30046934), (-0.5018703), (-0.09906845)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1920-08", (-0.22659715), (-0.45900223), 0.005807938), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1920-09", (-0.1964555), (-0.3914321), (-0.0014788725)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1920-10", (-0.21776049), (-0.38453242), (-0.050988548)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1920-11", (-0.3456471), (-0.52150667), (-0.16978753)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1920-12", (-0.4884766), (-0.6523202), (-0.32463297)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1921-01", (-0.21760732), (-0.37502497), (-0.06018965)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1921-02", (-0.29521245), (-0.44902927), (-0.14139564)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1921-03", (-0.34263408), (-0.50093555), (-0.18433265)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1921-04", (-0.29096943), (-0.46709645), (-0.11484241)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1921-05", (-0.30159548), (-0.5012052), (-0.10198575)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1921-06", (-0.15440017), (-0.3658895), 0.057089157), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1921-07", (-0.15540703), (-0.3545471), 0.043733045), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1921-08", (-0.32134694), (-0.5458187), (-0.09687517)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1921-09", (-0.20710628), (-0.39442888), (-0.019783666)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1921-10", (-0.13444184), (-0.30367956), 0.034795877), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1921-11", (-0.19592439), (-0.3460785), (-0.04577027)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1921-12", (-0.27147904), (-0.424055), (-0.11890304)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1922-01", (-0.419077), (-0.56817025), (-0.2699838)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1922-02", (-0.40880406), (-0.5457496), (-0.2718585)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1922-03", (-0.344148), (-0.4943077), (-0.19398831)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1922-04", (-0.29111138), (-0.45628148), (-0.12594129)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1922-05", (-0.46964964), (-0.6579521), (-0.28134724)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1922-06", (-0.29270366), (-0.48048604), (-0.104921274)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1922-07", (-0.2590808), (-0.44124886), (-0.07691275)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1922-08", (-0.355893), (-0.5667185), (-0.14506747)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1922-09", (-0.32432133), (-0.49675274), (-0.15188992)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1922-10", (-0.34514487), (-0.49858475), (-0.19170502)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1922-11", (-0.25539744), (-0.39435166), (-0.116443194)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1922-12", (-0.30540624), (-0.4507393), (-0.16007322)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1923-01", (-0.40372258), (-0.54395944), (-0.26348573)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1923-02", (-0.4944323), (-0.6337809), (-0.3550837)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1923-03", (-0.45562357), (-0.5954459), (-0.3158013)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1923-04", (-0.41038665), (-0.57101375), (-0.24975957)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1923-05", (-0.4038749), (-0.5846617), (-0.22308807)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1923-06", (-0.25269112), (-0.4406215), (-0.06476072)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1923-07", (-0.41963744), (-0.5942383), (-0.2450366)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1923-08", (-0.32384917), (-0.537738), (-0.10996033)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1923-09", (-0.34093276), (-0.5162632), (-0.16560236)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1923-10", (-0.1764545), (-0.33028832), (-0.022620698)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1923-11", (-0.03351226), (-0.17447731), 0.107452795), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1923-12", (-0.10004945), (-0.24315248), 0.043053582), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1924-01", (-0.32711104), (-0.47252598), (-0.18169609)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1924-02", (-0.31528232), (-0.45562285), (-0.17494178)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1924-03", (-0.17595449), (-0.3153586), (-0.036550395)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1924-04", (-0.34247932), (-0.5014861), (-0.18347253)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1924-05", (-0.21757317), (-0.39559406), (-0.03955228)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1924-06", (-0.27555224), (-0.46537247), (-0.085732006)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1924-07", (-0.29391536), (-0.46117327), (-0.12665746)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1924-08", (-0.3172419), (-0.5321844), (-0.102299385)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1924-09", (-0.33069578), (-0.5084952), (-0.15289639)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1924-10", (-0.36585054), (-0.5206516), (-0.2110495)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1924-11", (-0.2907367), (-0.4303612), (-0.15111223)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1924-12", (-0.49235374), (-0.63418114), (-0.35052633)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1925-01", (-0.49163565), (-0.6360688), (-0.34720248)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1925-02", (-0.48531267), (-0.62783724), (-0.34278813)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1925-03", (-0.37375176), (-0.5155008), (-0.23200274)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1925-04", (-0.30694255), (-0.47034937), (-0.14353575)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1925-05", (-0.3056574), (-0.5006012), (-0.11071356)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1925-06", (-0.33413643), (-0.53678447), (-0.13148837)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1925-07", (-0.33086437), (-0.5057325), (-0.15599626)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1925-08", (-0.16828516), (-0.38384804), 0.04727771), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1925-09", (-0.25893372), (-0.44479072), (-0.0730767)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1925-10", (-0.28853402), (-0.45646706), (-0.120601006)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1925-11", (-0.059098415), (-0.20052361), 0.082326785), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1925-12", 0.014048895, (-0.13270758), 0.16080537), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1926-01", 0.08253241, (-0.06263089), 0.22769572), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1926-02", (-0.035031483), (-0.17242493), 0.102361955), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1926-03", 0.023573108, (-0.11576544), 0.16291165), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1926-04", (-0.1579929), (-0.327664), 0.01167819), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1926-05", (-0.27003446), (-0.4538862), (-0.08618276)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1926-06", (-0.18281585), (-0.3733924), 0.0077607087), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1926-07", (-0.2084477), (-0.38436303), (-0.03253235)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1926-08", (-0.10001693), (-0.32225892), 0.12222505), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1926-09", (-0.11788381), (-0.2965996), 0.06083199), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1926-10", (-0.06996329), (-0.22726479), 0.08733821), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1926-11", (-0.115788996), (-0.25999144), 0.028413441), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1926-12", (-0.32215574), (-0.46747088), (-0.17684063)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1927-01", (-0.31123906), (-0.45435637), (-0.16812176)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1927-02", (-0.21210012), (-0.33594212), (-0.08825814)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1927-03", (-0.41895348), (-0.5508106), (-0.28709638)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1927-04", (-0.3145047), (-0.4677973), (-0.16121212)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1927-05", (-0.23004514), (-0.40716198), (-0.05292829)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1927-06", (-0.24831119), (-0.43623513), (-0.06038725)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1927-07", (-0.20484532), (-0.37125188), (-0.038438786)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1927-08", (-0.21330415), (-0.42017597), (-0.0064323)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1927-09", (-0.11964897), (-0.28789678), 0.04859885), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1927-10", (-0.02967228), (-0.18330196), 0.1239574), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1927-11", (-0.12667355), (-0.25778046), 0.0044333646), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1927-12", (-0.32356292), (-0.46620953), (-0.18091631)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1928-01", (-0.017104585), (-0.1668746), 0.13266544), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1928-02", (-0.124669254), (-0.2695675), 0.020228995), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1928-03", (-0.3195826), (-0.46694115), (-0.17222404)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1928-04", (-0.23520902), (-0.39391342), (-0.076504625)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1928-05", (-0.3014689), (-0.48644242), (-0.11649541)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1928-06", (-0.32672966), (-0.51603055), (-0.1374288)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1928-07", (-0.1883196), (-0.35774884), (-0.018890347)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1928-08", (-0.17851628), (-0.38754088), 0.030508325), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1928-09", (-0.20668688), (-0.38965768), (-0.02371608)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1928-10", (-0.1840448), (-0.34064317), (-0.027446417)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1928-11", (-0.17209516), (-0.31970295), (-0.024487386)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1928-12", (-0.22671194), (-0.37439686), (-0.07902704)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1929-01", (-0.4364513), (-0.5833095), (-0.28959316)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1929-02", (-0.6036853), (-0.74768084), (-0.45968977)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1929-03", (-0.48715258), (-0.63443154), (-0.33987364)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1929-04", (-0.4373352), (-0.60708904), (-0.2675813)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1929-05", (-0.4345294), (-0.62124), (-0.24781875)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1929-06", (-0.40885338), (-0.5975827), (-0.22012407)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1929-07", (-0.4396209), (-0.6168994), (-0.26234248)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1929-08", (-0.2663079), (-0.48695058), (-0.04566523)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1929-09", (-0.27733904), (-0.46059266), (-0.09408544)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1929-10", (-0.22126578), (-0.38139418), (-0.06113739)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1929-11", (-0.14017749), (-0.28305233), 0.0026973686), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1929-12", (-0.5603613), (-0.7042419), (-0.4164808)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1930-01", (-0.3631465), (-0.49787483), (-0.22841819)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1930-02", (-0.35584554), (-0.4784241), (-0.23326696)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1930-03", (-0.24732758), (-0.3744386), (-0.12021657)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1930-04", (-0.23128887), (-0.38058066), (-0.08199705)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1930-05", (-0.25067642), (-0.4180869), (-0.08326598)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1930-06", (-0.20374553), (-0.3809626), (-0.026528457)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1930-07", (-0.1882644), (-0.36365265), (-0.012876141)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1930-08", (-0.09765256), (-0.3049344), 0.10962929), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1930-09", (-0.092231415), (-0.25912735), 0.07466452), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1930-10", (-0.090577535), (-0.23271994), 0.05156486), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1930-11", 0.06376379, (-0.063620925), 0.1911485), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1930-12", (-0.06467221), (-0.18759245), 0.058248024), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1931-01", (-0.13693942), (-0.2671767), (-0.006702163)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1931-02", (-0.2586906), (-0.36686972), (-0.15051147)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1931-03", (-0.10919364), (-0.23315944), 0.014772162), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1931-04", (-0.17070459), (-0.31463963), (-0.026769554)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1931-05", (-0.19289996), (-0.36193624), (-0.023863683)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1931-06", (-0.02544678), (-0.2039998), 0.15310624), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1931-07", (-0.008178203), (-0.17845777), 0.16210136), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1931-08", (-0.026662722), (-0.23960268), 0.18627724), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1931-09", (-0.051968556), (-0.2076939), 0.10375679), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1931-10", (-0.026985472), (-0.17087266), 0.11690171), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1931-11", (-0.13579522), (-0.26063263), (-0.010957824)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1931-12", (-0.09730702), (-0.2172313), 0.022617267), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1932-01", 0.07975415, (-0.043561757), 0.20307006), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1932-02", (-0.17805362), (-0.29942062), (-0.056686606)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1932-03", (-0.1947655), (-0.3203073), (-0.06922365)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1932-04", (-0.061219946), (-0.198662), 0.076222114), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1932-05", (-0.15982142), (-0.3201136), 4.7073714E-4), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1932-06", (-0.25541136), (-0.4258154), (-0.0850073)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1932-07", (-0.12971984), (-0.29410174), 0.034662075), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1932-08", (-0.18982057), (-0.39686376), 0.017222626), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1932-09", (-5.5066624E-4), (-0.15410176), 0.15300043), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1932-10", (-0.09439127), (-0.23334253), 0.044559985), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1932-11", (-0.29486138), (-0.41643777), (-0.17328496)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1932-12", (-0.26667866), (-0.38838974), (-0.14496759)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1933-01", (-0.31109115), (-0.4301322), (-0.1920501)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1933-02", (-0.35099408), (-0.46522236), (-0.23676579)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1933-03", (-0.3851551), (-0.5024361), (-0.2678741)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1933-04", (-0.28470516), (-0.42601293), (-0.14339739)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1933-05", (-0.2769364), (-0.45054585), (-0.10332694)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1933-06", (-0.32360965), (-0.5103935), (-0.13682581)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1933-07", (-0.2903949), (-0.4524689), (-0.1283209)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1933-08", (-0.15375972), (-0.3546877), 0.047168247), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1933-09", (-0.32664743), (-0.48648426), (-0.1668106)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1933-10", (-0.245828), (-0.38623607), (-0.10541995)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1933-11", (-0.40483868), (-0.51923364), (-0.29044378)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1933-12", (-0.5141726), (-0.63299805), (-0.3953472)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1934-01", (-0.32326755), (-0.43162593), (-0.21490915)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1934-02", (-0.1451731), (-0.24469295), (-0.045653235)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1934-03", (-0.4310569), (-0.5399451), (-0.32216865)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1934-04", (-0.37176266), (-0.50687045), (-0.23665486)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1934-05", (-0.14018929), (-0.29952848), 0.019149903), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1934-06", (-0.09232751), (-0.28172815), 0.09707313), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1934-07", (-0.17809097), (-0.33932257), (-0.016859364)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1934-08", (-0.11440116), (-0.3252075), 0.09640516), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1934-09", (-0.13450967), (-0.29044768), 0.021428343), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1934-10", (-0.08177011), (-0.21969576), 0.056155562), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1934-11", 0.031826723, (-0.08049537), 0.14414883), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1934-12", (-0.111320004), (-0.22109856), (-0.0015414461)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1935-01", (-0.3479727), (-0.46686283), (-0.22908255)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1935-02", 0.04972145, (-0.053259466), 0.15270236), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1935-03", (-0.21446298), (-0.31988317), (-0.10904279)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1935-04", (-0.3228376), (-0.460522), (-0.18515322)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1935-05", (-0.31434223), (-0.48563308), (-0.1430514)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1935-06", (-0.2092866), (-0.38938758), (-0.029185612)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1935-07", (-0.14094204), (-0.2998374), 0.017953362), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1935-08", (-0.14877552), (-0.34538043), 0.04782942), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1935-09", (-0.19052882), (-0.3428319), (-0.03822576)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1935-10", (-0.055213235), (-0.18450885), 0.07408237), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1935-11", (-0.32153568), (-0.42853072), (-0.21454066)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1935-12", (-0.25653476), (-0.36094522), (-0.15212429)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1936-01", (-0.39848116), (-0.5024208), (-0.2945415)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1936-02", (-0.34311983), (-0.44220343), (-0.24403626)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1936-03", (-0.32916442), (-0.43601322), (-0.22231562)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1936-04", (-0.1883213), (-0.31698588), (-0.059656713)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1936-05", (-0.17232911), (-0.33633974), (-0.008318501)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1936-06", (-0.14899857), (-0.31470138), 0.016704235), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1936-07", (-0.06987007), (-0.22382125), 0.084081106), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1936-08", (-0.07327964), (-0.27147797), 0.12491867), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1936-09", (-0.108766146), (-0.25690895), 0.03937666), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1936-10", (-0.041382577), (-0.17508227), 0.092317104), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1936-11", (-0.054110777), (-0.15767384), 0.049452282), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1936-12", (-0.10642759), (-0.21628995), 0.0034347898), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1937-01", (-0.12685171), (-0.23948237), (-0.014221046)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1937-02", 0.066486835, (-0.03919336), 0.17216702), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1937-03", (-0.26192847), (-0.37137395), (-0.15248302)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1937-04", (-0.121213466), (-0.255947), 0.013520067), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1937-05", (-0.091207266), (-0.25534177), 0.07292723), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1937-06", (-0.008428331), (-0.18466923), 0.16781256), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1937-07", 0.019690081, (-0.13141476), 0.17079492), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1937-08", 0.036828596, (-0.15785031), 0.2315075), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1937-09", 0.14490855, (-0.010420173), 0.30023727), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1937-10", 0.12801065, (-0.011122891), 0.2671442), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1937-11", 0.061703082, (-0.050341), 0.17374717), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1937-12", (-0.0783857), (-0.19385788), 0.037086464), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1938-01", 0.04551444, (-0.05937577), 0.15040465), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1938-02", (-0.009824214), (-0.11000702), 0.090358585), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1938-03", (-0.015279184), (-0.117580466), 0.087022096), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1938-04", 0.04000326, (-0.0976628), 0.17766932), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1938-05", (-0.09591497), (-0.2707099), 0.07887996), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1938-06", (-0.09364482), (-0.26718155), 0.0798919), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1938-07", (-0.04622565), (-0.20220377), 0.109752476), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1938-08", (-0.0028444168), (-0.20122032), 0.19553149), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1938-09", 0.01991738, (-0.13494068), 0.17477545), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1938-10", 0.16282216, 0.024466746, 0.30117756), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1938-11", 0.054737236, (-0.053614), 0.16308847), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1938-12", (-0.20567), (-0.32208803), (-0.089251965)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1939-01", (-0.121787794), (-0.22934918), (-0.014226404)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1939-02", (-0.117604576), (-0.21543846), (-0.019770693)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1939-03", (-0.28873166), (-0.39380893), (-0.18365441)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1939-04", (-0.106402785), (-0.23740795), 0.024602382), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1939-05", (-0.03005215), (-0.19047527), 0.13037097), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1939-06", 0.014760026, (-0.16028467), 0.18980472), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1939-07", (-0.037748978), (-0.20127435), 0.1257764), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1939-08", (-0.04066755), (-0.25702047), 0.17568538), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1939-09", (-0.017160367), (-0.20016287), 0.16584213), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1939-10", (-0.09934573), (-0.26764223), 0.06895078), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1939-11", 0.021302136, (-0.11902354), 0.16162781), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1939-12", 0.33387345, 0.18944654, 0.47830033), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1940-01", (-0.052654818), (-0.18006782), 0.07475819), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1940-02", 0.08632718, (-0.0359212), 0.20857556), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1940-03", (-0.035766255), (-0.1625376), 0.09100509), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1940-04", 0.14895241, (-0.034468964), 0.33237377), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1940-05", 0.0502412, (-0.14184676), 0.24232917), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1940-06", 0.044663727, (-0.1491368), 0.23846425), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1940-07", 0.1482532, (-0.028301956), 0.32480836), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1940-08", 0.09961082, (-0.115770265), 0.31499192), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1940-09", 0.13118677, (-0.03203977), 0.2944133), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1940-10", 0.09584135, (-0.059646063), 0.25132877), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1940-11", (-0.0046561854), (-0.13411191), 0.12479955), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1940-12", 0.19923072, 0.06407699, 0.33438444), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1941-01", (-0.039560955), (-0.25157484), 0.17245293), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1941-02", 0.11823889, (-0.08517223), 0.32165), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1941-03", (-0.11652528), (-0.32683504), 0.09378447), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1941-04", 0.036228664, (-0.19644469), 0.268902), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1941-05", 0.06123504, (-0.19559848), 0.31806856), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1941-06", 0.0596246, (-0.18859485), 0.30784404), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1941-07", 0.16075781, (-0.07209745), 0.39361307), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1941-08", 0.039676894, (-0.22813907), 0.30749285), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1941-09", (-0.14452067), (-0.3784344), 0.08939303), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1941-10", 0.21426645, (-0.0057034367), 0.43423632), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1941-11", (-0.007257905), (-0.22418799), 0.20967218), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1941-12", 0.07538852, (-0.13360447), 0.2843815), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1942-01", 0.25783694, 0.053692356, 0.4619815), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1942-02", 0.016801072, (-0.18281478), 0.21641691), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1942-03", (-0.041579403), (-0.24019195), 0.15703313), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1942-04", (-0.015153615), (-0.24485067), 0.21454343), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1942-05", 0.12379065, (-0.13554372), 0.38312504), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1942-06", 0.030325836, (-0.2195993), 0.28025097), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1942-07", (-0.059752498), (-0.2964828), 0.1769778), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1942-08", (-0.05740612), (-0.3351613), 0.22034906), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1942-09", (-0.013465349), (-0.25318065), 0.22624996), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1942-10", (-0.08694347), (-0.30974555), 0.13585861), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1942-11", (-0.057510037), (-0.27184075), 0.15682067), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1942-12", (-0.080070905), (-0.2823254), 0.122183576), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1943-01", (-0.18267323), (-0.41188934), 0.046542883), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1943-02", (-0.03061434), (-0.24937429), 0.18814561), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1943-03", (-0.16772735), (-0.39681655), 0.061361846), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1943-04", 0.022969417, (-0.20856993), 0.25450876), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1943-05", 0.03550913, (-0.23148823), 0.30250648), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1943-06", (-0.07487101), (-0.33023354), 0.1804915), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1943-07", 0.018335527, (-0.22184484), 0.2585159), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1943-08", 0.031610876, (-0.24861293), 0.31183466), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1943-09", (-0.013441508), (-0.24750064), 0.22061762), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1943-10", 0.2277136, (-0.0019893488), 0.45741653), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1943-11", 0.10388872, (-0.115436934), 0.32321438), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1943-12", 0.10626907, (-0.10569832), 0.31823647), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1944-01", 0.31816214, 0.112214126, 0.52411014), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1944-02", 0.11862034, (-0.08507213), 0.32231283), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1944-03", 0.12006746, (-0.09471434), 0.33484927), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1944-04", 0.04225588, (-0.1885682), 0.27307996), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1944-05", 0.119925626, (-0.13840115), 0.3782524), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1944-06", 0.10735916, (-0.15293637), 0.3676547), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1944-07", 0.14871696, (-0.0872223), 0.3846562), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1944-08", 0.20666182, (-0.079099305), 0.49242294), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1944-09", 0.16769068, (-0.056805864), 0.39218724), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1944-10", 0.20805594, (-0.0102054365), 0.42631733), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1944-11", 0.08847658, (-0.1139502), 0.29090336), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1944-12", 0.083269, (-0.112689644), 0.27922764), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1945-01", 0.09508047, (-0.11957911), 0.30974007), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1945-02", 0.04839935, (-0.16548169), 0.2622804), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1945-03", 0.03865824, (-0.17728569), 0.25460216), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1945-04", 0.20985286, (-0.02450203), 0.44420776), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1945-05", (-0.061685707), (-0.33644745), 0.21307604), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1945-06", (-0.03652022), (-0.29726994), 0.22422948), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1945-07", 4.2324737E-4, (-0.24768649), 0.24853298), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1945-08", 0.2362124, (-0.053284284), 0.5257091), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1945-09", 0.1028386, (-0.122961916), 0.32863912), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1945-10", 0.094233386, (-0.13283221), 0.321299), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1945-11", (-0.010639086), (-0.22343569), 0.20215751), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1945-12", (-0.19979319), (-0.40156344), 0.0019770549), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1946-01", 0.046495322, (-0.12599254), 0.21898319), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1946-02", (-0.11574643), (-0.2901115), 0.058618642), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1946-03", (-0.1215551), (-0.2931895), 0.050079297), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1946-04", (-0.001070216), (-0.18591501), 0.18377458), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1946-05", (-0.082718804), (-0.28555256), 0.120114945), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1946-06", (-0.27002892), (-0.4794503), (-0.06060755)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1946-07", (-0.109389625), (-0.31101307), 0.09223383), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1946-08", (-0.15412526), (-0.38707858), 0.07882805), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1946-09", (-0.09819822), (-0.28867555), 0.09227911), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1946-10", (-0.06812635), (-0.24190964), 0.10565692), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1946-11", (-0.10808773), (-0.26652718), 0.05035172), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1946-12", (-0.34320223), (-0.48636523), (-0.20003924)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1947-01", (-0.15051101), (-0.29601136), (-0.0050106677)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1947-02", (-0.14106397), (-0.27542192), (-0.006706007)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1947-03", (-0.07618291), (-0.22355233), 0.07118651), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1947-04", (-0.054869834), (-0.23009242), 0.120352745), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1947-05", (-0.07080105), (-0.27533346), 0.13373137), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1947-06", (-0.092732966), (-0.3124098), 0.12694384), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1947-07", (-0.06481824), (-0.25643027), 0.12679379), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1947-08", (-0.11288264), (-0.34558374), 0.11981848), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1947-09", (-0.16043018), (-0.35566252), 0.034802165), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1947-10", 0.033811674, (-0.14890239), 0.21652573), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1947-11", 0.02912334, (-0.12750946), 0.18575613), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1947-12", (-0.23310879), (-0.38460296), (-0.08161461)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1948-01", (-0.01899665), (-0.15659407), 0.11860077), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1948-02", (-0.23857601), (-0.37797922), (-0.09917279)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1948-03", (-0.28302348), (-0.4262124), (-0.13983452)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1948-04", (-0.114602394), (-0.287611), 0.05840621), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1948-05", 0.057578247, (-0.14908782), 0.26424432), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1948-06", (-0.008215971), (-0.20537749), 0.18894555), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1948-07", (-0.12959683), (-0.32280955), 0.0636159), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1948-08", (-0.047574744), (-0.27386165), 0.17871216), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1948-09", (-0.13380374), (-0.31497514), 0.047367666), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1948-10", (-0.05680375), (-0.2210213), 0.1074138), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1948-11", (-0.17333214), (-0.3244153), (-0.022249011)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1948-12", (-0.3489878), (-0.49336633), (-0.20460922)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1949-01", (-0.018578093), (-0.14231202), 0.10515583), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1949-02", (-0.24225992), (-0.3602003), (-0.12431957)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1949-03", (-0.10957818), (-0.2236049), 0.0044485494), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1949-04", (-0.14671299), (-0.2947693), 0.0013433092), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1949-05", (-0.11125475), (-0.29777372), 0.07526421), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1949-06", (-0.23316567), (-0.41350195), (-0.052829392)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1949-07", (-0.18007946), (-0.34748125), (-0.01267766)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1949-08", (-0.07750365), (-0.29055914), 0.13555184), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1949-09", (-0.123270296), (-0.28533342), 0.03879283), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1949-10", (-0.08973549), (-0.22897226), 0.04950127), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1949-11", (-0.1810419), (-0.30046904), (-0.061614756)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1949-12", (-0.21244651), (-0.32703057), (-0.09786245)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1950-01", (-0.30004355), (-0.41899204), (-0.18109505)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1950-02", (-0.37003636), (-0.4831021), (-0.2569706)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1950-03", (-0.21643834), (-0.3307996), (-0.10207707)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1950-04", (-0.24361573), (-0.39951792), (-0.08771354)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1950-05", (-0.13729778), (-0.31324044), 0.038644888), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1950-06", (-0.105043374), (-0.29483223), 0.084745474), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1950-07", (-0.10670231), (-0.26735002), 0.05394541), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1950-08", (-0.15261763), (-0.35921878), 0.053983524), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1950-09", (-0.24503586), (-0.4036668), (-0.086404935)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1950-10", (-0.20104446), (-0.33889845), (-0.063190475)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1950-11", (-0.38081577), (-0.49243763), (-0.26919392)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1950-12", (-0.26077038), (-0.3802367), (-0.14130408)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1951-01", (-0.36034262), (-0.4589177), (-0.26176754)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1951-02", (-0.5093785), (-0.6001588), (-0.41859823)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1951-03", (-0.2620192), (-0.3542802), (-0.16975816)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1951-04", (-0.1080777), (-0.24150318), 0.025347786), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1951-05", 0.032269213, (-0.151453), 0.21599144), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1951-06", 0.060181145, (-0.11182762), 0.23218991), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1951-07", 0.03866412, (-0.12042866), 0.1977569), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1951-08", 0.12133113, (-0.07829491), 0.32095715), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1951-09", 0.13226272, (-0.019023193), 0.28354865), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1951-10", 0.12436143, (-0.0045943954), 0.25331727), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1951-11", (-0.07229671), (-0.17430036), 0.029706946), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1951-12", 0.0691973, (-0.032534182), 0.17092878), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1952-01", 0.09402644, (-0.00812421), 0.1961771), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1952-02", 0.068350874, (-0.028965494), 0.16566725), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1952-03", (-0.16353902), (-0.25835308), (-0.06872494)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1952-04", 0.04558809, (-0.09313565), 0.18431182), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1952-05", 0.022243695, (-0.15909414), 0.20358154), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1952-06", 0.023484357, (-0.1614921), 0.20846081), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1952-07", 0.09006012, (-0.07709257), 0.25721282), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1952-08", 0.096942395, (-0.1105835), 0.30446827), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1952-09", 0.09621102, (-0.06066274), 0.25308478), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1952-10", (-0.016534438), (-0.14808096), 0.11501208), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1952-11", (-0.13228506), (-0.23842481), (-0.026145296)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1952-12", (-0.04029371), (-0.14592908), 0.06534167), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1953-01", (-0.009005178), (-0.11308341), 0.09507305), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1953-02", 0.09501191, 7.980468E-4, 0.18922578), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1953-03", 0.018006958, (-0.083248086), 0.119262), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1953-04", 0.22455436, 0.07946404, 0.36964467), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1953-05", 0.14901619, (-0.02643255), 0.32446492), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1953-06", 0.1404282, (-0.04348267), 0.32433906), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1953-07", 0.043144584, (-0.12013697), 0.20642613), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1953-08", 0.08707856, (-0.12004952), 0.29420665), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1953-09", 0.08630111, (-0.07270259), 0.24530481), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1953-10", 0.08342033, (-0.048025105), 0.21486577), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1953-11", (-0.0058099576), (-0.11363081), 0.10201089), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1953-12", 0.01942187, (-0.08567341), 0.12451715), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1954-01", (-0.2434586), (-0.33929825), (-0.14761893)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1954-02", (-0.089074455), (-0.18093091), 0.002781996), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1954-03", (-0.18339783), (-0.27912733), (-0.08766833)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1954-04", (-0.11477188), (-0.24236786), 0.0128240995), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1954-05", (-0.17059736), (-0.33720312), (-0.0039916215)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1954-06", (-0.1296339), (-0.30016065), 0.040892836), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1954-07", (-0.19616233), (-0.35168973), (-0.040634945)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1954-08", (-0.10182279), (-0.28616172), 0.08251613), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1954-09", (-0.11330111), (-0.26177186), 0.035169613), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1954-10", (-0.011538466), (-0.13309364), 0.1100167), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1954-11", 0.11638409, 0.01995511, 0.21281308), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1954-12", (-0.16362791), (-0.2633629), (-0.0638929)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1955-01", 0.10597788, 0.014951693, 0.19700406), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1955-02", (-0.19271314), (-0.27525374), (-0.110172555)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1955-03", (-0.3963696), (-0.48520008), (-0.30753914)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1955-04", (-0.22909744), (-0.35830337), (-0.099891536)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1955-05", (-0.23882908), (-0.40164378), (-0.07601436)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1955-06", (-0.17836486), (-0.34488028), (-0.0118494425)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1955-07", (-0.20829603), (-0.36318785), (-0.05340421)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1955-08", (-0.08842416), (-0.2744727), 0.097624384), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1955-09", (-0.14314792), (-0.27703187), (-0.0092639625)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1955-10", (-0.11328784), (-0.22637765), (-1.980232E-4)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1955-11", (-0.32083783), (-0.41694224), (-0.22473344)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1955-12", (-0.36432907), (-0.45405668), (-0.27460146)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1956-01", (-0.2403825), (-0.3247751), (-0.15598993)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1956-02", (-0.28243503), (-0.3625925), (-0.20227754)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1956-03", (-0.35645252), (-0.43977112), (-0.27313393)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1956-04", (-0.30645922), (-0.40755266), (-0.20536578)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1956-05", (-0.33606264), (-0.45112088), (-0.22100437)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1956-06", (-0.22652255), (-0.33725312), (-0.11579198)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1956-07", (-0.2106352), (-0.32375464), (-0.097515784)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1956-08", (-0.28964865), (-0.42783394), (-0.15146336)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1956-09", (-0.2734754), (-0.38730374), (-0.15964706)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1956-10", (-0.26315844), (-0.35439906), (-0.17191784)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1956-11", (-0.21516415), (-0.29393166), (-0.13639663)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1956-12", (-0.1575909), (-0.23783027), (-0.077351525)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1957-01", (-0.22153524), (-0.29409447), (-0.14897601)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1957-02", (-0.15856388), (-0.23127134), (-0.085856415)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1957-03", (-0.1975386), (-0.27344698), (-0.121630214)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1957-04", (-0.041761864), (-0.12591177), 0.042388048), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1957-05", 0.03177997, (-0.05156566), 0.115125604), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1957-06", 0.06454678, (-0.027708724), 0.15680228), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1957-07", (-0.06267592), (-0.16108057), 0.035728723), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1957-08", 0.07285775, (-0.025583688), 0.17129919), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1957-09", 0.041351955, (-0.050062116), 0.13276602), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1957-10", (-7.920379E-4), (-0.07993971), 0.07835563), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1957-11", (-0.00397586), (-0.08217196), 0.07422025), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1957-12", 0.05228784, (-0.014773578), 0.119349256), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1958-01", 0.25472188, 0.18477017, 0.3246736), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1958-02", 0.09280772, 0.020115048, 0.16550039), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1958-03", 0.0052554575, (-0.06892984), 0.07944076), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1958-04", (-0.06950849), (-0.14541516), 0.0063981838), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1958-05", 0.016476592, (-0.06756154), 0.100514725), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1958-06", (-0.15305896), (-0.2407915), (-0.06532643)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1958-07", (-0.020030653), (-0.122118644), 0.082057334), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1958-08", (-0.083085604), (-0.18378095), 0.017609738), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1958-09", (-0.11479923), (-0.20449965), (-0.025098816)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1958-10", (-0.019471264), (-0.10863628), 0.06969376), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1958-11", (-0.038575903), (-0.110695235), 0.033543434), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1958-12", (-0.08232217), (-0.15505922), (-0.009585136)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1959-01", 0.013691866, (-0.057967845), 0.08535158), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1959-02", (-0.005084035), (-0.06930822), 0.059140153), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1959-03", 0.016677765, (-0.055086143), 0.08844168), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1959-04", 0.026267799, (-0.05526906), 0.107804656), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1959-05", (-0.03853143), (-0.12668422), 0.04962136), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1959-06", (-0.0018165166), (-0.09611195), 0.09247892), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1959-07", (-0.043648165), (-0.1407121), 0.05341577), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1959-08", (-0.041345503), (-0.12845452), 0.04576352), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1959-09", (-0.14124896), (-0.22689748), (-0.05560044)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1959-10", (-0.071337834), (-0.14982772), 0.007152045), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1959-11", (-0.18634169), (-0.25757015), (-0.11511324)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1959-12", (-0.10334121), (-0.16692382), (-0.039758593)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1960-01", (-0.11465857), (-0.17818601), (-0.051131118)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1960-02", 0.02281142, (-0.038939342), 0.08456218), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1960-03", (-0.44688365), (-0.51143664), (-0.38233066)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1960-04", (-0.26193932), (-0.33308205), (-0.1907966)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1960-05", (-0.17928644), (-0.2596041), (-0.09896878)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1960-06", (-0.1261228), (-0.2180584), (-0.034187194)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1960-07", (-0.11407162), (-0.20836379), (-0.019779457)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1960-08", (-0.006310927), (-0.09468046), 0.0820586), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1960-09", 0.0032144422, (-0.077028275), 0.08345716), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1960-10", (-0.031158555), (-0.11090458), 0.048587475), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1960-11", (-0.21504581), (-0.28288013), (-0.14721149)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1960-12", 0.0836075, 0.024021316, 0.14319369), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1961-01", (-0.052229382), (-0.10604209), 0.0015833256), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1961-02", 0.09082804, 0.03480867, 0.1468474), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1961-03", (-0.0616479), (-0.121089086), (-0.0022067144)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1961-04", 0.06100269, (-0.005988584), 0.12799396), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1961-05", 0.067880936, (-0.0045889886), 0.14035086), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1961-06", 0.08760505, 0.005416348, 0.16979375), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1961-07", (-0.03974989), (-0.124212116), 0.044712335), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1961-08", (-0.016852155), (-0.093706384), 0.060002074), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1961-09", (-0.030176053), (-0.110131025), 0.04977892), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1961-10", (-0.06376159), (-0.12409272), (-0.0034304585)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1961-11", (-0.031068904), (-0.0864477), 0.024309888), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1961-12", (-0.25179952), (-0.30733567), (-0.19626334)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1962-01", (-0.05704969), (-0.111643106), (-0.0024562806)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1962-02", 0.012157755, (-0.047518242), 0.07183375), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1962-03", 0.018748457, (-0.036765415), 0.07426233), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1962-04", (-0.026072158), (-0.095235944), 0.04309163), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1962-05", (-0.18164511), (-0.2606271), (-0.102663144)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1962-06", (-0.056267038), (-0.1399578), 0.027423719), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1962-07", (-0.10915736), (-0.2047529), (-0.013561823)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1962-08", (-0.10973202), (-0.19394721), (-0.02551682)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1962-09", (-0.07493823), (-0.14678304), (-0.003093423)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1962-10", (-0.038202044), (-0.112969555), 0.036565468), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1962-11", (-0.020875225), (-0.07987935), 0.038128905), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1962-12", (-0.12562062), (-0.18604958), (-0.06519166)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1963-01", (-0.121948205), (-0.17286605), (-0.07103036)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1963-02", 0.040044732, (-0.013600229), 0.093689695), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1963-03", (-0.3409997), (-0.4023474), (-0.27965203)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1963-04", (-0.17912978), (-0.24301982), (-0.11523975)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1963-05", (-0.1466549), (-0.2207718), (-0.072538)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1963-06", (-0.06680599), (-0.15230548), 0.018693516), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1963-07", 0.05953688, (-0.033529285), 0.15260305), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1963-08", 0.14581573, 0.05786402, 0.23376743), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1963-09", 0.12205969, 0.039692715, 0.20442666), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1963-10", 0.06423311, (-0.006535083), 0.1350013), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1963-11", 0.04470364, (-0.017914778), 0.10732206), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1963-12", (-0.062525906), (-0.119097084), (-0.005954728)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1964-01", (-0.19452871), (-0.24590258), (-0.14315486)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1964-02", (-0.22300385), (-0.2707023), (-0.17530538)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1964-03", (-0.38280848), (-0.4354939), (-0.33012307)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1964-04", (-0.44159797), (-0.49986494), (-0.38333103)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1964-05", (-0.37424895), (-0.44108826), (-0.30740967)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1964-06", (-0.16659828), (-0.23335688), (-0.09983969)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1964-07", (-0.20062846), (-0.27401683), (-0.12724008)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1964-08", (-0.30053315), (-0.36973116), (-0.23133513)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1964-09", (-0.4045793), (-0.46920264), (-0.33995596)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1964-10", (-0.3114203), (-0.3756508), (-0.24718978)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1964-11", (-0.2988282), (-0.3533131), (-0.24434334)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1964-12", (-0.3716253), (-0.41772586), (-0.32552475)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1965-01", (-0.16228765), (-0.21544793), (-0.10912736)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1965-02", (-0.26308617), (-0.31864673), (-0.20752563)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1965-03", (-0.2597472), (-0.314058), (-0.20543642)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1965-04", (-0.29863888), (-0.36014748), (-0.23713025)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1965-05", (-0.19161598), (-0.2604217), (-0.12281029)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1965-06", (-0.20754607), (-0.2859227), (-0.12916943)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1965-07", (-0.26655743), (-0.34850556), (-0.1846093)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1965-08", (-0.1619956), (-0.2357662), (-0.08822501)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1965-09", (-0.24531643), (-0.32013673), (-0.17049614)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1965-10", (-0.10577728), (-0.16904464), (-0.042509913)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1965-11", (-0.1437657), (-0.20105892), (-0.08647249)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1965-12", (-0.14632036), (-0.19985811), (-0.09278261)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1966-01", (-0.28320545), (-0.33601388), (-0.23039699)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1966-02", (-0.16757779), (-0.22072573), (-0.114429854)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1966-03", (-0.1708448), (-0.22562246), (-0.11606713)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1966-04", (-0.17045191), (-0.22957575), (-0.11132808)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1966-05", (-0.21843779), (-0.27984244), (-0.15703316)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1966-06", (-0.10499999), (-0.18416446), (-0.025835512)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1966-07", 0.0030392085, (-0.08309536), 0.08917377), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1966-08", (-0.10166964), (-0.18408725), (-0.019252032)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1966-09", (-0.08658218), (-0.16101395), (-0.012150404)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1966-10", (-0.23768093), (-0.3007167), (-0.17464516)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1966-11", (-0.10768294), (-0.16457853), (-0.050787363)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1966-12", (-0.14052084), (-0.19718638), (-0.083855316)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1967-01", (-0.21960148), (-0.26585704), (-0.17334592)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1967-02", (-0.32817873), (-0.38193217), (-0.2744253)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1967-03", (-0.09374347), (-0.14432028), (-0.043166663)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1967-04", (-0.13242696), (-0.18680602), (-0.078047894)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1967-05", 0.057162356, (-0.005516053), 0.11984076), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1967-06", (-0.108169004), (-0.17946222), (-0.036875788)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1967-07", (-0.067892365), (-0.14901736), 0.01323264), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1967-08", (-0.099165745), (-0.17351398), (-0.024817519)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1967-09", (-0.12451488), (-0.19525743), (-0.05377232)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1967-10", (-0.020286117), (-0.0855479), 0.044975664), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1967-11", (-0.119650505), (-0.17039524), (-0.06890577)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1967-12", (-0.1537288), (-0.1991738), (-0.10828379)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1968-01", (-0.32466504), (-0.37137488), (-0.27795523)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1968-02", (-0.26771057), (-0.3169445), (-0.21847664)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1968-03", (-0.003727732), (-0.05343113), 0.045975666), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1968-04", (-0.18043014), (-0.23411447), (-0.1267458)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1968-05", (-0.22587559), (-0.28420305), (-0.16754813)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1968-06", (-0.15176927), (-0.22612664), (-0.077411875)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1968-07", (-0.19500259), (-0.27286038), (-0.1171448)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1968-08", (-0.12997681), (-0.21054135), (-0.049412273)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1968-09", (-0.22645247), (-0.29917043), (-0.1537345)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1968-10", 0.008175721, (-0.059301265), 0.07565271), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1968-11", (-0.13496026), (-0.18726788), (-0.08265263)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1968-12", (-0.1911928), (-0.24149217), (-0.14089343)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1969-01", (-0.16237703), (-0.20836867), (-0.11638539)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1969-02", (-0.1970934), (-0.24815017), (-0.14603664)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1969-03", (-0.13277553), (-0.18331009), (-0.08224098)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1969-04", 0.049255937, (-7.941228E-4), 0.099305995), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1969-05", 0.06528902, 0.0093505345, 0.12122751), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1969-06", 0.0056816083, (-0.06108295), 0.07244617), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1969-07", (-0.1091712), (-0.17552002), (-0.042822383)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1969-08", (-0.07289227), (-0.14569598), (-8.85525E-5)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1969-09", (-0.013110088), (-0.07264362), 0.046423446), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1969-10", 9.0877194E-4, (-0.06066966), 0.062487204), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1969-11", 0.023137517, (-0.028535709), 0.07481074), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1969-12", 0.16674611, 0.12138196, 0.21211027), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1970-01", 0.014005779, (-0.024967588), 0.05297915), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1970-02", 0.063759334, 0.017752824, 0.10976585), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1970-03", (-0.08814179), (-0.13351265), (-0.04277095)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1970-04", (-0.07942118), (-0.1272537), (-0.031588662)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1970-05", (-0.14084856), (-0.19922996), (-0.08246716)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1970-06", (-0.1370101), (-0.204421), (-0.0695992)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1970-07", (-0.11218003), (-0.18914407), (-0.035215985)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1970-08", (-0.1992122), (-0.27766284), (-0.12076156)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1970-09", (-0.030715683), (-0.09970784), 0.03827647), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1970-10", (-0.06031036), (-0.12693785), 0.0063171284), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1970-11", (-0.058197107), (-0.110719755), (-0.005674464)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1970-12", (-0.1930069), (-0.23651735), (-0.14949644)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1971-01", (-0.14365958), (-0.18466523), (-0.10265391)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1971-02", (-0.2726155), (-0.31656718), (-0.22866382)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1971-03", (-0.33664557), (-0.38328534), (-0.2900058)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1971-04", (-0.23293439), (-0.28357276), (-0.18229601)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1971-05", (-0.1979984), (-0.26606554), (-0.12993127)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1971-06", (-0.2552373), (-0.32123104), (-0.18924357)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1971-07", (-0.18479517), (-0.2544347), (-0.11515566)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1971-08", (-0.1812137), (-0.25926685), (-0.10316055)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1971-09", (-0.12637776), (-0.19992936), (-0.05282617)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1971-10", (-0.15617602), (-0.20850164), (-0.103850394)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1971-11", (-0.15279908), (-0.20081574), (-0.104782425)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1971-12", (-0.23074044), (-0.27251953), (-0.18896136)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1972-01", (-0.37904298), (-0.41819), (-0.33989596)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1972-02", (-0.2778282), (-0.320703), (-0.2349534)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1972-03", (-0.14302962), (-0.18787768), (-0.09818155)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1972-04", (-0.12759815), (-0.17795895), (-0.07723736)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1972-05", (-0.082474515), (-0.14861475), (-0.016334282)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1972-06", (-0.031909496), (-0.100287944), 0.036468957), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1972-07", (-0.09311811), (-0.1700235), (-0.016212704)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1972-08", 0.061222523, (-0.019026173), 0.14147122), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1972-09", (-0.052398738), (-0.120318), 0.015520524), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1972-10", (-0.056839254), (-0.112568185), (-0.0011103234)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1972-11", (-0.051805325), (-0.09928263), (-0.0043280204)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1972-12", 0.10889668, 0.06640539, 0.15138797), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1973-01", 0.100870065, 0.05921677, 0.14252336), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1973-02", 0.15933001, 0.120916836, 0.19774319), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1973-03", 0.11498204, 0.069975875, 0.15998821), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1973-04", 0.19915819, 0.1508453, 0.2474711), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1973-05", 0.10814754, 0.044189963, 0.17210512), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1973-06", 0.106045224, 0.045468733, 0.16662171), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1973-07", 0.01621605, (-0.049754184), 0.08218629), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1973-08", (-0.027661854), (-0.10094168), 0.04561797), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1973-09", (-0.035152175), (-0.11000057), 0.03969623), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1973-10", 0.0108220205, (-0.047591276), 0.06923532), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1973-11", (-0.025164139), (-0.071579844), 0.021251563), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1973-12", (-0.1283927), (-0.16965793), (-0.08712748)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1974-01", (-0.28239968), (-0.32175258), (-0.24304679)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1974-02", (-0.4465835), (-0.4916486), (-0.40151843)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1974-03", (-0.23716211), (-0.2810448), (-0.19327942)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1974-04", (-0.20168932), (-0.25082228), (-0.15255636)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1974-05", (-0.1265853), (-0.18765014), (-0.06552047)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1974-06", (-0.11528032), (-0.18392684), (-0.04663381)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1974-07", (-0.13573898), (-0.20700736), (-0.0644706)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1974-08", 0.023082737, (-0.05511237), 0.10127784), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1974-09", (-0.09269041), (-0.16663258), (-0.01874824)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1974-10", (-0.11529485), (-0.17675921), (-0.053830486)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1974-11", (-0.12621354), (-0.17617388), (-0.07625319)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1974-12", (-0.21389274), (-0.25553343), (-0.17225204)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1975-01", (-0.0966292), (-0.13978224), (-0.053476162)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1975-02", (-0.020880949), (-0.06348584), 0.021723943), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1975-03", (-0.01112924), (-0.05811524), 0.035856765), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1975-04", (-0.051968537), (-0.10094516), (-0.0029919175)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1975-05", 0.053007245, (-0.009473412), 0.1154879), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1975-06", (-0.060783383), (-0.13291909), 0.011352318), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1975-07", (-0.10466969), (-0.18719059), (-0.022148784)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1975-08", (-0.23242185), (-0.30827186), (-0.15657184)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1975-09", (-0.139501), (-0.21193255), (-0.06706945)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1975-10", (-0.15371256), (-0.22347201), (-0.083953075)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1975-11", (-0.26358986), (-0.31321743), (-0.21396226)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1975-12", (-0.24677186), (-0.29279146), (-0.20075226)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1976-01", (-0.16959351), (-0.21492438), (-0.12426263)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1976-02", (-0.23186125), (-0.27618515), (-0.18753733)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1976-03", (-0.33692366), (-0.38385162), (-0.28999567)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1976-04", (-0.18590008), (-0.24028902), (-0.13151114)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1976-05", (-0.35880587), (-0.42114106), (-0.29647064)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1976-06", (-0.23977908), (-0.3094969), (-0.17006126)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1976-07", (-0.17275204), (-0.25314432), (-0.09235974)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1976-08", (-0.24235126), (-0.3215088), (-0.16319375)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1976-09", (-0.15119453), (-0.22489694), (-0.07749211)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1976-10", (-0.3322862), (-0.3963161), (-0.26825628)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1976-11", (-0.13943368), (-0.19311805), (-0.08574931)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1976-12", (-0.02945889), (-0.08022431), 0.02130653), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1977-01", 0.15336634, 0.10795948, 0.1987732), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1977-02", 0.10381479, 0.053849906, 0.15377967), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1977-03", 0.07475545, 0.024980498, 0.124530405), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1977-04", 0.13446581, 0.08024284, 0.18868878), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1977-05", 0.22771347, 0.16327552, 0.2921514), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1977-06", 0.20780508, 0.14048275, 0.2751274), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1977-07", 0.14251913, 0.061580263, 0.22345799), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1977-08", 0.1298329, 0.04911758, 0.2105482), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1977-09", (-0.0019903248), (-0.07811894), 0.07413829), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1977-10", (-0.01617223), (-0.083238326), 0.050893866), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1977-11", 0.12106576, 0.06669167, 0.17543985), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1977-12", (-0.04011389), (-0.09081486), 0.010587082), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1978-01", 0.036995538, (-0.0071859756), 0.081177056), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1978-02", 0.07385509, 0.02860965, 0.11910052), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1978-03", 0.059285987, 0.014052451, 0.10451952), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1978-04", 0.053218562, (-5.5365695E-4), 0.106990784), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1978-05", 0.0115159005, (-0.052302517), 0.07533432), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1978-06", (-0.055066437), (-0.123960376), 0.01382751), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1978-07", 0.016265042, (-0.05862395), 0.09115403), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1978-08", (-0.2168574), (-0.2955802), (-0.1381346)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1978-09", 0.04174579, (-0.036548592), 0.12004017), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1978-10", (-0.059895515), (-0.12789159), 0.008100553), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1978-11", 0.091779426, 0.04129526, 0.14226359), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1978-12", 0.010227291, (-0.032376792), 0.05283137), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1979-01", 0.0516812, 0.014161454, 0.08920094), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1979-02", (-0.17951806), (-0.2162433), (-0.14279284)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1979-03", 0.06694152, 0.030953744, 0.102929294), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1979-04", 0.07699999, 0.03878828, 0.1152117), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1979-05", (-0.022435743), (-0.06633464), 0.021463156), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1979-06", 0.050191652, 0.006530249, 0.09385306), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1979-07", 0.018005762, (-0.03262814), 0.068639666), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1979-08", 0.114524774, 0.053652395, 0.17539716), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1979-09", 0.17285156, 0.11173119, 0.23397192), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1979-10", 0.14730756, 0.09926776, 0.19534737), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1979-11", 0.20778532, 0.16501372, 0.25055695), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1979-12", 0.38596204, 0.3516528, 0.4202713), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1980-01", 0.2527261, 0.21300751, 0.29244468), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1980-02", 0.3607043, 0.32330173, 0.3981069), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1980-03", 0.21667273, 0.17630167, 0.25704378), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1980-04", 0.23393515, 0.19394667, 0.2739236), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1980-05", 0.2456877, 0.19866508, 0.2927103), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1980-06", 0.13180715, 0.082248576, 0.18136574), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1980-07", 0.20636384, 0.15439135, 0.25833634), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1980-08", 0.16441017, 0.10678383, 0.22203653), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1980-09", 0.123579785, 0.060605038, 0.18655454), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1980-10", 0.097044446, 0.043979082, 0.15010981), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1980-11", 0.20625903, 0.15803419, 0.25448385), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1980-12", 0.113674425, 0.07168679, 0.15566206), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1981-01", 0.44390386, 0.39915735, 0.4886504), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1981-02", 0.33654687, 0.30277714, 0.3703166), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1981-03", 0.33077422, 0.29371208, 0.3678364), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1981-04", 0.19894964, 0.15788971, 0.24000956), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1981-05", 0.14773263, 0.101183265, 0.194282), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1981-06", 0.24469398, 0.19016218, 0.29922578), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1981-07", 0.26434663, 0.2016414, 0.3270519), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1981-08", 0.31205258, 0.25005865, 0.3740465), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1981-09", 0.1367701, 0.07926537, 0.19427481), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1981-10", 0.05529363, 0.0070646233, 0.103522636), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1981-11", 0.16566867, 0.12102321, 0.21031414), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1981-12", 0.3634116, 0.3172231, 0.4096001), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1982-01", (-0.024068523), (-0.07235162), 0.024214571), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1982-02", 0.06821714, 0.0223868, 0.11404749), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1982-03", (-0.13698223), (-0.1845714), (-0.08939307)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1982-04", 0.020402594, (-0.029829908), 0.070635095), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1982-05", 0.09071928, 0.03224222, 0.14919634), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1982-06", (-0.0013139228), (-0.064454645), 0.061826803), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1982-07", 0.075844936, 0.004775244, 0.14691463), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1982-08", (-0.045588225), (-0.11802615), 0.026849702), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1982-09", 0.016534334, (-0.050160784), 0.08322945), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1982-10", 0.041061886, (-0.018483559), 0.10060733), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1982-11", 0.029048067, (-0.020967891), 0.07906403), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1982-12", 0.27728456, 0.23279157, 0.32177758), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1983-01", 0.3584244, 0.31470326, 0.40214556), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1983-02", 0.33635557, 0.2908501, 0.381861), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1983-03", 0.24756545, 0.20511036, 0.29002056), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1983-04", 0.17535253, 0.12663808, 0.22406697), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1983-05", 0.22204514, 0.16600104, 0.27808926), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1983-06", 0.16691586, 0.10999884, 0.22383289), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1983-07", 0.114927486, 0.056167133, 0.17368785), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1983-08", 0.28377086, 0.21628153, 0.3512602), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1983-09", 0.3260587, 0.2662912, 0.38582617), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1983-10", 0.113148384, 0.057640273, 0.16865648), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1983-11", 0.24547733, 0.19653328, 0.29442137), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1983-12", 0.096021675, 0.049950793, 0.14209256), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1984-01", 0.15764055, 0.11318809, 0.202093), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1984-02", 0.02001983, (-0.025347726), 0.06538738), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1984-03", 0.14398187, 0.09306026, 0.1949035), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1984-04", 0.010137831, (-0.039188646), 0.05946431), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1984-05", 0.21433139, 0.16248918, 0.2661736), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1984-06", (-0.038575307), (-0.100490406), 0.023339793), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1984-07", 0.024865314, (-0.037082333), 0.086812966), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1984-08", 0.08923666, 0.023951871, 0.15452145), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1984-09", 0.12719487, 0.06800548, 0.18638426), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1984-10", 0.040902097, (-0.012790171), 0.09459436), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1984-11", (-0.05765004), (-0.104584284), (-0.010715791)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1984-12", (-0.15602855), (-0.19877177), (-0.11328532)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1985-01", 0.1155558, 0.070438474, 0.16067311), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1985-02", (-0.104183674), (-0.14948314), (-0.05888421)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1985-03", 0.04271185, (-0.0051474376), 0.090571135), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1985-04", 0.0028204513, (-0.042313404), 0.047954306), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1985-05", 0.067987494, 0.019966573, 0.116008416), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1985-06", 0.12117828, 0.071005605, 0.17135094), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1985-07", (-0.022891713), (-0.07350898), 0.027725551), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1985-08", 0.1431363, 0.08397767, 0.20229492), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1985-09", 0.11767927, 0.061845258, 0.17351328), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1985-10", 0.039328277, (-0.011885249), 0.0905418), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1985-11", 0.018120727, (-0.028659811), 0.06490126), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1985-12", 0.05531433, 0.014779543, 0.09584911), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1986-01", 0.11670128, 0.07163385, 0.1617687), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1986-02", 0.3093589, 0.26656476, 0.352153), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1986-03", 0.13820964, 0.09782837, 0.17859091), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1986-04", 0.13485684, 0.09247309, 0.1772406), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1986-05", 0.13101041, 0.08589921, 0.17612162), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1986-06", 0.039869342, (-0.008415869), 0.088154554), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1986-07", 0.042954296, (-0.01108), 0.096988596), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1986-08", 0.08790163, 0.0326548, 0.14314847), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1986-09", 0.024142634, (-0.0311676), 0.07945287), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1986-10", 0.051004555, 0.0039842986, 0.098024815), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1986-11", 0.04011416, 1.3273644E-4, 0.08009558), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1986-12", 0.03212002, (-0.009131731), 0.073371775), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1987-01", 0.22004549, 0.17728503, 0.26280597), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1987-02", 0.31599578, 0.27342454, 0.35856703), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1987-03", 0.104251325, 0.06377447, 0.14472818), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1987-04", 0.1889307, 0.1432275, 0.23463391), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1987-05", 0.16939573, 0.122770004, 0.21602145), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1987-06", 0.26585034, 0.21572928, 0.31597137), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1987-07", 0.34769198, 0.3002212, 0.39516273), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1987-08", 0.21050136, 0.15359204, 0.2674107), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1987-09", 0.26593548, 0.21810848, 0.31376252), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1987-10", 0.26956236, 0.22279249, 0.31633225), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1987-11", 0.18613108, 0.14134122, 0.23092094), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1987-12", 0.37202516, 0.3352671, 0.40878323), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1988-01", 0.45912874, 0.4158971, 0.50236034), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1988-02", 0.33302152, 0.288721, 0.37732208), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1988-03", 0.38519633, 0.34249073, 0.42790192), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1988-04", 0.32767174, 0.28327718, 0.37206626), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1988-05", 0.31933275, 0.2659124, 0.3727531), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1988-06", 0.33036658, 0.27507606, 0.3856571), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1988-07", 0.2556859, 0.2018744, 0.30949736), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1988-08", 0.25767827, 0.19392912, 0.32142743), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1988-09", 0.25825685, 0.19838016, 0.31813353), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1988-10", 0.254709, 0.20196135, 0.30745664), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1988-11", 0.028571693, (-0.021743037), 0.07888642), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1988-12", 0.17620139, 0.12991531, 0.22248745), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1989-01", (-0.026005011), (-0.07035818), 0.018348154), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1989-02", 0.23738506, 0.19713072, 0.27763942), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1989-03", 0.18512788, 0.1426663, 0.22758949), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1989-04", 0.14958581, 0.10371123, 0.19546038), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1989-05", 0.038256668, (-0.013571449), 0.090084784), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1989-06", 0.09383323, 0.03904897, 0.14861748), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1989-07", 0.26380813, 0.20505361, 0.32256266), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1989-08", 0.25223345, 0.185825, 0.3186419), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1989-09", 0.29773393, 0.23395298, 0.36151487), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1989-10", 0.26001906, 0.20135662, 0.31868154), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1989-11", 0.11531052, 0.06379637, 0.16682467), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1989-12", 0.2837144, 0.23685499, 0.33057386), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1990-01", 0.28277373, 0.23656435, 0.32898313), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1990-02", 0.27884814, 0.23266093, 0.3250354), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1990-03", 0.6347864, 0.58848524, 0.6810877), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1990-04", 0.4940245, 0.44746447, 0.5405845), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1990-05", 0.40596974, 0.35395133, 0.45798814), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1990-06", 0.3151888, 0.26191312, 0.36846447), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1990-07", 0.3796524, 0.32039037, 0.43891445), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1990-08", 0.28095096, 0.21359323, 0.34830868), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1990-09", 0.22031836, 0.1604603, 0.28017643), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1990-10", 0.38645974, 0.33040056, 0.4425189), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1990-11", 0.35899177, 0.30630797, 0.4116756), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1990-12", 0.28878504, 0.24264595, 0.33492413), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1991-01", 0.30340114, 0.26020792, 0.34659436), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1991-02", 0.4070458, 0.35951877, 0.45457286), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1991-03", 0.24740836, 0.20353888, 0.29127786), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1991-04", 0.43600866, 0.3861235, 0.48589385), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1991-05", 0.31398752, 0.2661917, 0.36178336), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1991-06", 0.4334769, 0.38315243, 0.4838014), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1991-07", 0.46741664, 0.413612, 0.5212213), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1991-08", 0.3620418, 0.30141258, 0.422671), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1991-09", 0.35283542, 0.2949484, 0.41072243), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1991-10", 0.25118244, 0.19777474, 0.30459014), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1991-11", 0.25364134, 0.20526768, 0.30201498), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1991-12", 0.23831235, 0.19523758, 0.28138712), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1992-01", 0.36292845, 0.32279372, 0.40306315), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1992-02", 0.34844932, 0.30590802, 0.39099064), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1992-03", 0.30922496, 0.26654962, 0.35190034), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1992-04", 0.16185239, 0.11636393, 0.20734085), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1992-05", 0.16797747, 0.115565054, 0.22038987), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1992-06", 0.15643431, 0.09561311, 0.21725553), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1992-07", 0.005340144, (-0.05662222), 0.0673025), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1992-08", 0.03774724, (-0.039666817), 0.1151613), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1992-09", (-0.08989003), (-0.16200817), (-0.017771905)), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1992-10", (-0.022682328), (-0.07580555), 0.030440897), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1992-11", (-0.03733942), (-0.08598786), 0.011309022), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1992-12", 0.09871902, 0.054537915, 0.14290014), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1993-01", 0.26102662, 0.21946819, 0.30258507), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1993-02", 0.28333446, 0.23878285, 0.32788607), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1993-03", 0.23608007, 0.18892586, 0.28323427), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1993-04", 0.19514883, 0.14572291, 0.24457474), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1993-05", 0.19503304, 0.13349326, 0.25657284), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1993-06", 0.16445984, 0.099572934, 0.22934674), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1993-07", 0.15863112, 0.09205189, 0.22521032), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1993-08", 0.08418279, 0.013109553, 0.15525602), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1993-09", 0.045521, (-0.027268391), 0.11831039), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1993-10", 0.15051654, 0.09072666, 0.21030644), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1993-11", 0.06566895, 0.012819225, 0.11851867), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1993-12", 0.14829831, 0.1003046, 0.19629201), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1994-01", 0.20031649, 0.15430397, 0.24632901), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1994-02", 0.014015401, (-0.037698988), 0.06572979), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1994-03", 0.23547028, 0.1929952, 0.27794534), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1994-04", 0.25558206, 0.20292777, 0.30823633), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1994-05", 0.20769499, 0.14959231, 0.26579767), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1994-06", 0.31435218, 0.25530413, 0.37340024), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1994-07", 0.18217762, 0.11941934, 0.2449359), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1994-08", 0.1732785, 0.10758695, 0.23897003), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1994-09", 0.2722316, 0.21403906, 0.3304242), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1994-10", 0.34696406, 0.29957974, 0.39434835), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1994-11", 0.3531186, 0.30807722, 0.39815998), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1994-12", 0.24739546, 0.20374133, 0.29104957), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1995-01", 0.41360325, 0.36785004, 0.4593565), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1995-02", 0.6401344, 0.5955497, 0.6847191), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1995-03", 0.3564086, 0.3137096, 0.39910764), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1995-04", 0.42731214, 0.38019723, 0.474427), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1995-05", 0.26464352, 0.2158012, 0.31348586), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1995-06", 0.37844238, 0.32494324, 0.4319415), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1995-07", 0.44184983, 0.3830831, 0.50061655), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1995-08", 0.391613, 0.32795027, 0.45527574), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1995-09", 0.27957153, 0.22031401, 0.33882907), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1995-10", 0.37940124, 0.3315722, 0.42723027), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1995-11", 0.37539726, 0.32783252, 0.42296204), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1995-12", 0.1740167, 0.13141942, 0.21661398), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1996-01", 0.21639675, 0.17465207, 0.25814143), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1996-02", 0.46155688, 0.4207942, 0.5023196), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1996-03", 0.2883724, 0.24666715, 0.33007762), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1996-04", 0.25163049, 0.2030822, 0.3001788), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1996-05", 0.23714963, 0.18536083, 0.2889384), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1996-06", 0.21651414, 0.16119543, 0.27183285), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1996-07", 0.3253906, 0.2691372, 0.381644), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1996-08", 0.35149437, 0.2850047, 0.41798404), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1996-09", 0.20457508, 0.1391627, 0.26998743), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1996-10", 0.12766548, 0.07437373, 0.18095721), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1996-11", 0.3162583, 0.26804507, 0.36447155), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1996-12", 0.32326886, 0.28039086, 0.36614683), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1997-01", 0.24903603, 0.2050436, 0.29302847), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1997-02", 0.30442297, 0.26189378, 0.34695214), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1997-03", 0.39708516, 0.35149974, 0.44267058), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1997-04", 0.3775284, 0.33273223, 0.4223246), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1997-05", 0.31710884, 0.26625335, 0.36796433), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1997-06", 0.49175587, 0.43785518, 0.54565656), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1997-07", 0.3461335, 0.28540578, 0.4068612), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1997-08", 0.40574697, 0.3444696, 0.46702433), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1997-09", 0.4674913, 0.4117658, 0.5232167), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1997-10", 0.5718022, 0.5265241, 0.61708033), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1997-11", 0.61571497, 0.573657, 0.657773), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1997-12", 0.52387595, 0.48183948, 0.5659124), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1998-01", 0.5629589, 0.5195781, 0.6063397), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1998-02", 0.7973742, 0.75377077, 0.84097755), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1998-03", 0.5894701, 0.54612184, 0.6328183), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1998-04", 0.65089357, 0.6040493, 0.6977379), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1998-05", 0.6390668, 0.5907695, 0.6873641), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1998-06", 0.6679476, 0.6111207, 0.7247745), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1998-07", 0.65909415, 0.59979075, 0.71839756), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1998-08", 0.6453173, 0.57817835, 0.7124562), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1998-09", 0.43478084, 0.375726, 0.49383566), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1998-10", 0.41109028, 0.35487813, 0.4673024), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1998-11", 0.38224158, 0.33153662, 0.43294653), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1998-12", 0.48756245, 0.4447607, 0.53036416), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1999-01", 0.3872738, 0.34417182, 0.43037575), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1999-02", 0.60396034, 0.55778724, 0.6501335), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1999-03", 0.26383877, 0.22156142, 0.30611613), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1999-04", 0.26947576, 0.22510633, 0.3138452), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1999-05", 0.2477816, 0.19969408, 0.29586914), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1999-06", 0.32476822, 0.2663474, 0.383189), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1999-07", 0.3104075, 0.2524305, 0.36838448), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1999-08", 0.3025803, 0.23762035, 0.36754024), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1999-09", 0.27602673, 0.21561834, 0.33643514), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1999-10", 0.30699936, 0.25596854, 0.3580302), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1999-11", 0.28691775, 0.2385114, 0.3353241), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("1999-12", 0.3137894, 0.2717762, 0.35580257), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2000-01", 0.18133692, 0.13842326, 0.22425057), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2000-02", 0.49915195, 0.45606333, 0.54224056), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2000-03", 0.44504288, 0.40051213, 0.48957363), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2000-04", 0.5384154, 0.49182132, 0.5850094), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2000-05", 0.30583385, 0.25669247, 0.35497522), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2000-06", 0.3502256, 0.29859963, 0.40185153), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2000-07", 0.32576227, 0.2669195, 0.38460502), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2000-08", 0.3747202, 0.31097934, 0.43846104), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2000-09", 0.3107709, 0.2432111, 0.37833068), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2000-10", 0.19478564, 0.1407225, 0.24884878), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2000-11", 0.24529691, 0.19789627, 0.29269755), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2000-12", 0.20167494, 0.16030242, 0.24304746), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2001-01", 0.36417356, 0.3213304, 0.40701672), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2001-02", 0.3918914, 0.3534353, 0.43034744), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2001-03", 0.5204522, 0.47700635, 0.563898), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2001-04", 0.45251647, 0.4085218, 0.49651113), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2001-05", 0.48934218, 0.43208975, 0.5465946), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2001-06", 0.44591305, 0.3939379, 0.4978882), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2001-07", 0.50912946, 0.45009238, 0.5681665), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2001-08", 0.5074936, 0.4429187, 0.5720685), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2001-09", 0.49257064, 0.4302663, 0.554875), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2001-10", 0.46419922, 0.41107866, 0.51731974), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2001-11", 0.69211686, 0.640878, 0.7433557), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2001-12", 0.54156566, 0.49947885, 0.5836525), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2002-01", 0.6473876, 0.60533094, 0.68944436), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2002-02", 0.6426373, 0.6011374, 0.68413717), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2002-03", 0.79940027, 0.7590046, 0.8397959), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2002-04", 0.56820655, 0.52739567, 0.6090175), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2002-05", 0.502807, 0.44722888, 0.5583851), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2002-06", 0.4493149, 0.39931378, 0.49931604), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2002-07", 0.56947935, 0.51337254, 0.62558615), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2002-08", 0.4984804, 0.43160668, 0.56535417), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2002-09", 0.50192404, 0.44515252, 0.5586955), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2002-10", 0.50043756, 0.45524058, 0.54563457), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2002-11", 0.4944799, 0.4534452, 0.5355146), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2002-12", 0.34704304, 0.30875584, 0.3853302), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2003-01", 0.65388364, 0.613197, 0.6945702), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2003-02", 0.48562348, 0.4458717, 0.52537525), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2003-03", 0.48364088, 0.44157836, 0.52570343), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2003-04", 0.47277164, 0.42678806, 0.51875526), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2003-05", 0.52228177, 0.47656673, 0.5679968), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2003-06", 0.42513415, 0.37852696, 0.47174132), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2003-07", 0.48383972, 0.43063387, 0.53704554), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2003-08", 0.6121032, 0.550043, 0.6741635), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2003-09", 0.5746869, 0.5124665, 0.6369072), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2003-10", 0.65677655, 0.6032623, 0.7102908), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2003-11", 0.4990721, 0.45430422, 0.54384), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2003-12", 0.66022813, 0.6204066, 0.7000496), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2004-01", 0.5089659, 0.46465796, 0.55327386), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2004-02", 0.634869, 0.5934909, 0.67624706), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2004-03", 0.52825564, 0.48533162, 0.5711797), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2004-04", 0.52279246, 0.47966897, 0.56591594), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2004-05", 0.35092646, 0.29784238, 0.4040105), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2004-06", 0.31097007, 0.25695875, 0.3649814), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2004-07", 0.23719142, 0.18061385, 0.293769), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2004-08", 0.45830214, 0.3906122, 0.5259921), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2004-09", 0.46726716, 0.40468165, 0.5298527), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2004-10", 0.52292866, 0.47372162, 0.57213575), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2004-11", 0.6510514, 0.6063923, 0.6957104), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2004-12", 0.41492838, 0.37327114, 0.4565856), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2005-01", 0.6500713, 0.609467, 0.6906757), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2005-02", 0.5338277, 0.49320507, 0.5744504), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2005-03", 0.6459099, 0.6046563, 0.6871636), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2005-04", 0.63165, 0.5915574, 0.6717425), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2005-05", 0.553209, 0.5060686, 0.6003494), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2005-06", 0.5688213, 0.5192257, 0.61841685), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2005-07", 0.55488116, 0.5001601, 0.6096023), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2005-08", 0.58098936, 0.5232058, 0.6387729), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2005-09", 0.6340549, 0.5779788, 0.690131), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2005-10", 0.68443674, 0.63147235, 0.73740107), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2005-11", 0.6432208, 0.60146093, 0.6849806), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2005-12", 0.6012786, 0.5628747, 0.63968253), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2006-01", 0.4999044, 0.46040437, 0.53940445), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2006-02", 0.6455559, 0.6057573, 0.6853545), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2006-03", 0.543684, 0.5041917, 0.5831763), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2006-04", 0.48621997, 0.44641006, 0.5260299), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2006-05", 0.47178116, 0.42676216, 0.51680017), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2006-06", 0.57188183, 0.5230483, 0.6207154), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2006-07", 0.4763779, 0.4250063, 0.52774954), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2006-08", 0.6333706, 0.57561433, 0.6911268), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2006-09", 0.5499711, 0.49338928, 0.60655284), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2006-10", 0.6137471, 0.5645416, 0.6629527), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2006-11", 0.66086054, 0.62075555, 0.7009655), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2006-12", 0.7172778, 0.67794055, 0.75661516), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2007-01", 0.8930489, 0.8556196, 0.9304782), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2007-02", 0.63967174, 0.5991852, 0.6801582), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2007-03", 0.59194857, 0.5498087, 0.63408846), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2007-04", 0.7261497, 0.6873898, 0.7649096), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2007-05", 0.58012205, 0.53377515, 0.62646896), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2007-06", 0.5006901, 0.4553407, 0.5460395), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2007-07", 0.5630122, 0.5168375, 0.6091869), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2007-08", 0.5837867, 0.5294786, 0.63809484), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2007-09", 0.5083473, 0.45169324, 0.56500137), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2007-10", 0.5590798, 0.511534, 0.60662574), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2007-11", 0.5355275, 0.4951343, 0.57592076), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2007-12", 0.41903135, 0.37986842, 0.45819432), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2008-01", 0.21021158, 0.17132828, 0.24909489), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2008-02", 0.2693002, 0.23020747, 0.30839294), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2008-03", 0.6136748, 0.57399446, 0.65335524), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2008-04", 0.44805115, 0.40573728, 0.490365), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2008-05", 0.43248925, 0.38698703, 0.47799146), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2008-06", 0.38399753, 0.33127367, 0.43672138), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2008-07", 0.5340773, 0.47861314, 0.58954144), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2008-08", 0.45276764, 0.38723072, 0.5183046), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2008-09", 0.5480162, 0.48638335, 0.609649), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2008-10", 0.5909558, 0.5442111, 0.63770056), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2008-11", 0.63220257, 0.58828634, 0.67611885), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2008-12", 0.4720541, 0.4311543, 0.5129539), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2009-01", 0.59029907, 0.5528154, 0.6277828), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2009-02", 0.47127843, 0.43303752, 0.50951934), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2009-03", 0.446841, 0.40850705, 0.48517495), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2009-04", 0.528052, 0.48462898, 0.571475), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2009-05", 0.5503384, 0.5067513, 0.5939255), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2009-06", 0.6234883, 0.57204455, 0.67493206), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2009-07", 0.68074554, 0.6269582, 0.7345329), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2009-08", 0.6221325, 0.5652589, 0.679006), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2009-09", 0.68177086, 0.6316205, 0.7319212), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2009-10", 0.6202136, 0.57169586, 0.6687314), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2009-11", 0.7060583, 0.6633704, 0.74874634), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2009-12", 0.64016175, 0.59658796, 0.68373555), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2010-01", 0.7106075, 0.6701205, 0.75109464), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2010-02", 0.7901331, 0.7487547, 0.8315116), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2010-03", 0.8602274, 0.82209677, 0.8983581), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2010-04", 0.83354694, 0.79155594, 0.87553793), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2010-05", 0.71491516, 0.668846, 0.76098436), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2010-06", 0.6450033, 0.59584945, 0.69415724), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2010-07", 0.61741793, 0.5650828, 0.66975313), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2010-08", 0.6146318, 0.5553926, 0.67387086), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2010-09", 0.5642509, 0.51248723, 0.6160146), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2010-10", 0.64213544, 0.5979481, 0.68632275), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2010-11", 0.73456544, 0.69051653, 0.7786144), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2010-12", 0.4370223, 0.39815724, 0.4758874), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2011-01", 0.45676905, 0.41436893, 0.49916914), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2011-02", 0.42912033, 0.3897128, 0.46852788), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2011-03", 0.5563974, 0.51538527, 0.5974095), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2011-04", 0.60221547, 0.56289977, 0.64153117), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2011-05", 0.44336236, 0.40157145, 0.4851533), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2011-06", 0.5482127, 0.502444, 0.5939814), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2011-07", 0.64491206, 0.58925456, 0.7005696), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2011-08", 0.6510249, 0.5970996, 0.70495015), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2011-09", 0.53794116, 0.48637974, 0.5895026), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2011-10", 0.5763366, 0.5300275, 0.6226457), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2011-11", 0.5112523, 0.46869895, 0.5538056), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2011-12", 0.49482837, 0.4525499, 0.5371068), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2012-01", 0.3695542, 0.3276059, 0.4115025), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2012-02", 0.4647088, 0.41840962, 0.51100796), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2012-03", 0.4209961, 0.3828921, 0.4591001), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2012-04", 0.6105002, 0.56782424, 0.6531762), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2012-05", 0.6589486, 0.6107233, 0.70717394), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2012-06", 0.629351, 0.5786319, 0.6800701), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2012-07", 0.56779647, 0.51425034, 0.6213426), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2012-08", 0.6449439, 0.5771274, 0.7127604), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2012-09", 0.64759123, 0.5868464, 0.708336), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2012-10", 0.7321626, 0.6801398, 0.7841854), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2012-11", 0.7210487, 0.6773536, 0.76474386), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2012-12", 0.4636831, 0.42318177, 0.5041845), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2013-01", 0.6078036, 0.5659251, 0.64968204), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2013-02", 0.52651656, 0.48379186, 0.5692413), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2013-03", 0.5829417, 0.541925, 0.62395847), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2013-04", 0.57481265, 0.5257574, 0.6238679), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2013-05", 0.5568857, 0.50146765, 0.6123038), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2013-06", 0.6593197, 0.6030043, 0.7156352), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2013-07", 0.58917844, 0.5326067, 0.64575016), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2013-08", 0.6352067, 0.57162017, 0.6987932), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2013-09", 0.7221902, 0.6662515, 0.77812886), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2013-10", 0.6503963, 0.597056, 0.70373666), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2013-11", 0.7700114, 0.7229114, 0.81711143), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2013-12", 0.60764134, 0.56141466, 0.65386796), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2014-01", 0.6695646, 0.622098, 0.7170312), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2014-02", 0.49080652, 0.44725463, 0.5343584), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2014-03", 0.694528, 0.648441, 0.740615), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2014-04", 0.73631227, 0.6886264, 0.78399813), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2014-05", 0.73708785, 0.6884094, 0.78576624), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2014-06", 0.61747456, 0.5643953, 0.6705538), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2014-07", 0.5809606, 0.52662504, 0.63529617), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2014-08", 0.73377496, 0.67367274, 0.7938772), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2014-09", 0.756769, 0.7046591, 0.8088789), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2014-10", 0.7423641, 0.69290525, 0.7918229), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2014-11", 0.63000286, 0.5861616, 0.6738441), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2014-12", 0.6848145, 0.6452265, 0.7244026), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2015-01", 0.7400082, 0.69822913, 0.7817873), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2015-02", 0.78175026, 0.740612, 0.8228885), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2015-03", 0.79528373, 0.75049824, 0.8400692), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2015-04", 0.70091575, 0.65298545, 0.74884605), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2015-05", 0.7309856, 0.6839389, 0.77803224), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2015-06", 0.7596305, 0.7079085, 0.81135243), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2015-07", 0.7145488, 0.66327834, 0.7658193), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2015-08", 0.7991504, 0.7368658, 0.861435), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2015-09", 0.82609314, 0.77123094, 0.88095534), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2015-10", 1.0153373, 0.96493423, 1.0657405), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2015-11", 0.9959859, 0.95247537, 1.0394964), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2015-12", 1.0416831, 0.99845076, 1.0849154), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2016-01", 1.0877537, 1.0464499, 1.1290573), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2016-02", 1.2235882, 1.1839018, 1.2632747), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2016-03", 1.1820779, 1.1462066, 1.217949), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2016-04", 1.0296463, 0.9872375, 1.072055), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2016-05", 0.8804874, 0.83482504, 0.9261497), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2016-06", 0.77708083, 0.7294142, 0.82474744), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2016-07", 0.77772677, 0.72627807, 0.82917553), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2016-08", 0.94857633, 0.8921002, 1.0050524), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2016-09", 0.8455436, 0.79136264, 0.8997246), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2016-10", 0.81902903, 0.7713468, 0.8667112), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2016-11", 0.8444866, 0.80383766, 0.8851355), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2016-12", 0.77912897, 0.7382809, 0.8199771), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2017-01", 0.9519715, 0.91184795, 0.99209505), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2017-02", 1.0670907, 1.0290638, 1.1051178), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2017-03", 1.0645919, 1.0271796, 1.1020042), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2017-04", 0.84599763, 0.80479693, 0.88719827), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2017-05", 0.7798254, 0.73829556, 0.8213552), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2017-06", 0.6575456, 0.609505, 0.70558625), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2017-07", 0.80458516, 0.7507668, 0.85840356), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2017-08", 0.81099087, 0.7511646, 0.8708171), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2017-09", 0.72930163, 0.6776079, 0.78099537), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2017-10", 0.80949205, 0.764127, 0.85485715), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2017-11", 0.8058706, 0.763549, 0.8481923), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2017-12", 0.8148281, 0.7754213, 0.85423493), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2018-01", 0.7106047, 0.6729177, 0.7482917), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2018-02", 0.7957914, 0.75522476, 0.836358), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2018-03", 0.7900751, 0.7507628, 0.82938737), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2018-04", 0.8223178, 0.7767505, 0.86788505), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2018-05", 0.71316856, 0.6692025, 0.7571347), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2018-06", 0.7375257, 0.6873122, 0.7877392), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2018-07", 0.7334142, 0.67723614, 0.78959227), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2018-08", 0.73473924, 0.672286, 0.79719245), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2018-09", 0.67586756, 0.6212568, 0.7304783), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2018-10", 0.8693208, 0.8213614, 0.9172802), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2018-11", 0.7447671, 0.7012972, 0.78823704), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2018-12", 0.8242562, 0.7847442, 0.86376816), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2019-01", 0.7995958, 0.75716734, 0.84202427), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2019-02", 0.8442263, 0.79712707, 0.89132553), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2019-03", 1.0757369, 1.0314062, 1.1200676), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2019-04", 0.93880504, 0.89124775, 0.9863623), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2019-05", 0.7776251, 0.73376954, 0.8214807), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2019-06", 0.80911994, 0.7547636, 0.8634763), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2019-07", 0.8571952, 0.79993093, 0.9144594), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2019-08", 0.85825413, 0.79831004, 0.91819817), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2019-09", 0.8026575, 0.74497795, 0.860337), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2019-10", 0.9556284, 0.9032823, 1.0079745), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2019-11", 0.9372168, 0.8904445, 0.9839892), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2019-12", 1.0368102, 0.9909035, 1.0827167), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2020-01", 1.0694563, 1.0249017, 1.1140109), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2020-02", 1.1133685, 1.0673538, 1.1593832), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2020-03", 1.0943997, 1.0482767, 1.1405227), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2020-04", 1.0626723, 1.0151452, 1.1101993), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2020-05", 0.90792704, 0.8561947, 0.9596594), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2020-06", 0.8251334, 0.7627924, 0.8874744), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2020-07", 0.81607646, 0.7542902, 0.87786263), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2020-08", 0.80101144, 0.7415303, 0.8604925), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2020-09", 0.8670323, 0.80767053, 0.92639405), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2020-10", 0.8107299, 0.76469195, 0.8567679), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2020-11", 1.0130944, 0.9651476, 1.0610412), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2020-12", 0.6926237, 0.6460196, 0.7392277), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2021-01", 0.70082587, 0.6534755, 0.7481762), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2021-02", 0.56454515, 0.51881725, 0.61027306), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2021-03", 0.7262527, 0.6786184, 0.77388704), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2021-04", 0.7601092, 0.71282953, 0.80738884), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2021-05", 0.7064251, 0.6576904, 0.75515974), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2021-06", 0.71322304, 0.66050047, 0.7659456), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2021-07", 0.7916223, 0.72672427, 0.85652035), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2021-08", 0.79945594, 0.7385131, 0.8603988), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2021-09", 0.8674762, 0.81049454, 0.92445797), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2021-10", 0.907391, 0.8540407, 0.9607413), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2021-11", 0.8536163, 0.8015729, 0.9056597), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2021-12", 0.7513281, 0.7025465, 0.80010974), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2022-01", 0.7788991, 0.7316793, 0.8261188), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2022-02", 0.76354825, 0.71481043, 0.812286), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2022-03", 0.88959247, 0.8434075, 0.9357775), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2022-04", 0.7703609, 0.7202506, 0.82047117), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2022-05", 0.7613267, 0.71092033, 0.811733), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2022-06", 0.8581897, 0.80506545, 0.911314), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2022-07", 0.77835214, 0.7176057, 0.8390986), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2022-08", 0.85325915, 0.7917466, 0.9147717), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2022-09", 0.79008293, 0.73376393, 0.84640193), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2022-10", 0.9288468, 0.87793136, 0.97976226), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2022-11", 0.674607, 0.6267639, 0.7224501), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2022-12", 0.76834446, 0.72198945, 0.8146995), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2023-01", 0.7786378, 0.7296263, 0.8276493), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2023-02", 0.87222534, 0.82195526, 0.9224954), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2023-03", 1.1243817, 1.0749991, 1.1737643), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2023-04", 0.9272796, 0.87626445, 0.97829473), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2023-05", 0.87121195, 0.817516, 0.9249078), this.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record("2023-06", 1.0509841, 0.9951409, 1.1068273)]));
+  if ((xs !== null)) {
+    var $$x1 = xs
+  } else {
+    var this$6 = $n(xs);
+    var n = this$6.length__I();
+    if ((n > (-1))) {
+      var elements = new ($d_Lchartreuse_examples_HadCrut5$Record.getArrayOf().constr)(n);
+      var iterator = $n(xs).iterator__sc_Iterator();
+      var i = 0;
+      while ((i < n)) {
+        elements.set(i, $n(iterator).next__O());
+        i = ((1 + i) | 0)
+      };
+      var $$x2 = elements
+    } else {
+      var capacity = 0;
+      var jsElems = null;
+      capacity = 0;
+      jsElems = [];
+      var iterator$2 = $n(xs).iterator__sc_Iterator();
+      while ($n(iterator$2).hasNext__Z()) {
+        var elem = $n(iterator$2).next__O();
+        var unboxedElem = ((elem === null) ? null : elem);
+        jsElems.push(unboxedElem)
+      };
+      var $$x2 = new ($d_Lchartreuse_examples_HadCrut5$Record.getArrayOf().constr)(jsElems)
+    };
+    var $$x1 = this$4.unsafeWrapArray__O__sci_ArraySeq($$x2)
+  };
+  this.Lchartreuse_examples_HadCrut5$__f_data = $$x1
+}
+$c_Lchartreuse_examples_HadCrut5$.prototype = new $h_O();
+$c_Lchartreuse_examples_HadCrut5$.prototype.constructor = $c_Lchartreuse_examples_HadCrut5$;
+/** @constructor */
+function $h_Lchartreuse_examples_HadCrut5$() {
+  /*<skip>*/
+}
+$h_Lchartreuse_examples_HadCrut5$.prototype = $c_Lchartreuse_examples_HadCrut5$.prototype;
+$c_Lchartreuse_examples_HadCrut5$.prototype.parse__T__D__D__D__Lchartreuse_examples_HadCrut5$Record = (function(date, anomaly, lower, upper) {
+  if ((date !== null)) {
+    var x6 = $n(this.Lchartreuse_examples_HadCrut5$__f_dateRe).unapplySeq__jl_CharSequence__s_Option(date);
+    if ((!$n(x6).isEmpty__Z())) {
+      var x7 = $as_sci_List($n(x6).get__O());
+      if (($n(x7).lengthCompare__I__I(2) === 0)) {
+        var this$1 = $n(x7);
+        var x8 = $as_T($f_sc_LinearSeqOps__apply__I__O(this$1, 0));
+        var this$2 = $n(x7);
+        var x9 = $as_T($f_sc_LinearSeqOps__apply__I__O(this$2, 1));
+        $m_sc_StringOps$();
+        var this$5 = $m_jl_Integer$();
+        var year = this$5.parseInt__T__I__I(x8, 10);
+        $m_sc_StringOps$();
+        var this$8 = $m_jl_Integer$();
+        var month = this$8.parseInt__T__I__I(x9, 10);
+        return new $c_Lchartreuse_examples_HadCrut5$Record(year, month, anomaly, lower, upper)
+      }
+    }
+  };
+  throw new $c_s_MatchError(date)
+});
+var $d_Lchartreuse_examples_HadCrut5$ = new $TypeData().initClass({
+  Lchartreuse_examples_HadCrut5$: 0
+}, false, "chartreuse.examples.HadCrut5$", {
+  Lchartreuse_examples_HadCrut5$: 1,
+  O: 1
+});
+$c_Lchartreuse_examples_HadCrut5$.prototype.$classData = $d_Lchartreuse_examples_HadCrut5$;
+var $n_Lchartreuse_examples_HadCrut5$;
+function $m_Lchartreuse_examples_HadCrut5$() {
+  if ((!$n_Lchartreuse_examples_HadCrut5$)) {
+    $n_Lchartreuse_examples_HadCrut5$ = new $c_Lchartreuse_examples_HadCrut5$()
+  };
+  return $n_Lchartreuse_examples_HadCrut5$
+}
+/** @constructor */
 function $c_Lchartreuse_examples_PlotExample$() {
   this.Lchartreuse_examples_PlotExample$__f_plot = null;
   $n_Lchartreuse_examples_PlotExample$ = this;
@@ -3644,8 +3888,7 @@ $c_Lchartreuse_examples_PlotExample$.prototype.randomLayer__Lchartreuse_Layer = 
     var pt$1 = $as_Ldoodle_core_Point(pt);
     return pt$1
   }));
-  var scale = new $c_Lchartreuse_Scale$$anon$1();
-  return new $c_Lchartreuse_Layer(data, toPoint, scale, layout, "Layer Label")
+  return new $c_Lchartreuse_Layer(data, toPoint, layout, "Layer Label")
 });
 $c_Lchartreuse_examples_PlotExample$.prototype.draw__T__V = (function(id) {
   var this$2 = $m_Ldoodle_syntax_package$all$();
@@ -3677,29 +3920,29 @@ $c_Lchartreuse_examples_PlotExample$.prototype.drawBase16Ocean__T__V = (function
   var picture = $n(this.Lchartreuse_examples_PlotExample$__f_plot).draw__I__I__Lchartreuse_theme_PlotTheme__Ldoodle_algebra_Picture(320, 240, $m_Lchartreuse_theme_PlotTheme$base16$().Lchartreuse_theme_PlotTheme$base16$__f_ocean);
   new $c_Ldoodle_syntax_AbstractRendererSyntax$RendererPictureOps(this$1, picture).drawWithFrame__O__Ldoodle_effect_Renderer__Lcats_effect_unsafe_IORuntime__V($n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Frame).apply__T__Ldoodle_svg_effect_Frame(id), $m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_svgRenderer, $m_Lcats_effect_unsafe_IORuntime$().global__Lcats_effect_unsafe_IORuntime())
 });
-$c_Lchartreuse_examples_PlotExample$.prototype.drawDefault = (function(arg) {
-  var prep0 = $as_T(arg);
-  this.drawDefault__T__V(prep0)
-});
 $c_Lchartreuse_examples_PlotExample$.prototype.drawBase16Ocean = (function(arg) {
   var prep0 = $as_T(arg);
   this.drawBase16Ocean__T__V(prep0)
+});
+$c_Lchartreuse_examples_PlotExample$.prototype.drawDefault = (function(arg) {
+  var prep0 = $as_T(arg);
+  this.drawDefault__T__V(prep0)
 });
 $c_Lchartreuse_examples_PlotExample$.prototype.drawBmh = (function(arg) {
   var prep0 = $as_T(arg);
   this.drawBmh__T__V(prep0)
 });
-$c_Lchartreuse_examples_PlotExample$.prototype.drawBase16DefaultLight = (function(arg) {
+$c_Lchartreuse_examples_PlotExample$.prototype.drawFiveThirtyEight = (function(arg) {
   var prep0 = $as_T(arg);
-  this.drawBase16DefaultLight__T__V(prep0)
+  this.drawFiveThirtyEight__T__V(prep0)
 });
 $c_Lchartreuse_examples_PlotExample$.prototype.draw = (function(arg) {
   var prep0 = $as_T(arg);
   this.draw__T__V(prep0)
 });
-$c_Lchartreuse_examples_PlotExample$.prototype.drawFiveThirtyEight = (function(arg) {
+$c_Lchartreuse_examples_PlotExample$.prototype.drawBase16DefaultLight = (function(arg) {
   var prep0 = $as_T(arg);
-  this.drawFiveThirtyEight__T__V(prep0)
+  this.drawBase16DefaultLight__T__V(prep0)
 });
 var $d_Lchartreuse_examples_PlotExample$ = new $TypeData().initClass({
   Lchartreuse_examples_PlotExample$: 0
@@ -3809,73 +4052,184 @@ function $m_Lchartreuse_examples_QuickStartExample$() {
   return $n_Lchartreuse_examples_QuickStartExample$
 }
 /** @constructor */
-function $c_Lchartreuse_examples_ScatterPlotExample$() {
-  this.Lchartreuse_examples_ScatterPlotExample$__f_points = null;
-  this.Lchartreuse_examples_ScatterPlotExample$__f_data = null;
-  this.Lchartreuse_examples_ScatterPlotExample$__f_layout = null;
-  this.Lchartreuse_examples_ScatterPlotExample$__f_layer = null;
-  $n_Lchartreuse_examples_ScatterPlotExample$ = this;
-  $n($m_s_package$().s_package$__f_List);
-  var b = new $c_scm_ListBuffer();
-  var i = 0;
-  while ((i < 100)) {
-    $m_Ldoodle_core_Point$();
-    var this$2 = $m_s_util_Random$();
-    var x = $n(this$2.s_util_Random__f_self).nextGaussian__D();
-    var this$3 = $m_s_util_Random$();
-    var y = $n(this$3.s_util_Random__f_self).nextGaussian__D();
-    var elem = new $c_Ldoodle_core_Point$Cartesian(x, y);
-    b.addOne__O__scm_ListBuffer(elem);
-    i = ((1 + i) | 0)
+function $c_Lchartreuse_examples_TemperatureAnomaly$() {
+  this.Lchartreuse_examples_TemperatureAnomaly$__f_dataByYear = null;
+  this.Lchartreuse_examples_TemperatureAnomaly$__f_layers = null;
+  this.Lchartreuse_examples_TemperatureAnomaly$__f_plot = null;
+  $n_Lchartreuse_examples_TemperatureAnomaly$ = this;
+  var this$1 = $n($m_Lchartreuse_examples_HadCrut5$().Lchartreuse_examples_HadCrut5$__f_data);
+  var m = $as_scm_Map($m_scm_Map$().empty__O());
+  var it = this$1.iterator__sc_Iterator();
+  while ($n(it).hasNext__Z()) {
+    var elem = $n(it).next__O();
+    var _$1 = $as_Lchartreuse_examples_HadCrut5$Record(elem);
+    var key = $n(_$1).Lchartreuse_examples_HadCrut5$Record__f_year;
+    var bldr = $as_scm_Builder($n(m).getOrElseUpdate__O__F0__O(key, new $c_sjsr_AnonFunction0(((this$1) => (() => {
+      var this$2 = $m_sci_ArraySeq$();
+      var evidence$12 = this$1.elemTag__s_reflect_ClassTag();
+      return this$2.newBuilder__s_reflect_ClassTag__scm_Builder(evidence$12)
+    }))(this$1))));
+    var this$3 = $n(bldr);
+    this$3.addOne__O__scm_Growable(elem)
   };
-  this.Lchartreuse_examples_ScatterPlotExample$__f_points = b.toList__sci_List();
-  var data = this.Lchartreuse_examples_ScatterPlotExample$__f_points;
-  this.Lchartreuse_examples_ScatterPlotExample$__f_data = new $c_Lchartreuse_Data$FromIterable(data);
-  this.Lchartreuse_examples_ScatterPlotExample$__f_layout = $m_Lchartreuse_layout_Scatter$().default__Lchartreuse_layout_Scatter();
-  var data$1 = this.Lchartreuse_examples_ScatterPlotExample$__f_data;
-  var layout = this.Lchartreuse_examples_ScatterPlotExample$__f_layout;
-  var toPoint = new $c_sjsr_AnonFunction1(((pt) => {
-    var pt$1 = $as_Ldoodle_core_Point(pt);
-    return pt$1
+  var this$4 = $m_sci_HashMap$();
+  var result = this$4.sci_HashMap$__f_EmptyMap;
+  var mapIt = $n(m).iterator__sc_Iterator();
+  while ($n(mapIt).hasNext__Z()) {
+    var x1 = $as_T2($n(mapIt).next__O());
+    if ((x1 === null)) {
+      throw new $c_s_MatchError(x1)
+    };
+    var k = $n(x1).T2__f__1;
+    var v = $as_scm_Builder($n(x1).T2__f__2);
+    result = $n(result).updated__O__O__sci_HashMap(k, $n(v).result__O())
+  };
+  var this$5 = $n(result);
+  var pred = new $c_sjsr_AnonFunction1(((x$1) => {
+    var x$1$1 = $as_T2(x$1);
+    var year = $uI($n(x$1$1).T2__f__1);
+    $as_sci_ArraySeq($n(x$1$1).T2__f__2);
+    return (year < 2023)
   }));
-  var scale = new $c_Lchartreuse_Scale$$anon$1();
-  this.Lchartreuse_examples_ScatterPlotExample$__f_layer = new $c_Lchartreuse_Layer(data$1, toPoint, scale, layout, "Layer Label")
+  this.Lchartreuse_examples_TemperatureAnomaly$__f_dataByYear = this$5.filterImpl__F1__Z__sci_HashMap(pred, false);
+  var this$19 = $n($n($as_sc_IterableOnceOps($n(this.Lchartreuse_examples_TemperatureAnomaly$__f_dataByYear).map__F1__O(new $c_sjsr_AnonFunction1(((x$1$2) => {
+    var x$1$3 = $as_T2(x$1$2);
+    var year$1 = $uI($n(x$1$3).T2__f__1);
+    var records = $as_sci_ArraySeq($n(x$1$3).T2__f__2);
+    var this$6 = $n($m_Lchartreuse_layout_Line$().default__Lchartreuse_layout_Line());
+    var arg1 = this$6.Lchartreuse_layout_Line__f_themeable;
+    if ((year$1 < 2013)) {
+      var $$x1 = $n(arg1);
+      var value = $m_Ldoodle_core_Color$().Ldoodle_core_Color$__f_grey;
+      var value$1 = new $c_s_Some(value);
+      var themeable = $n($$x1).withStrokeColor__O__Lchartreuse_theme_LayoutTheme(new $c_Lchartreuse_Themeable$Override(value$1))
+    } else {
+      var themeable = arg1
+    };
+    var this$16 = new $c_Lchartreuse_layout_Line(themeable);
+    var this$9 = $n(records);
+    var f = new $c_sjsr_AnonFunction1(((_$3) => {
+      var _$3$1 = $as_Lchartreuse_examples_HadCrut5$Record(_$3);
+      return $n(_$3$1).Lchartreuse_examples_HadCrut5$Record__f_month
+    }));
+    var ord = $m_s_math_Ordering$Int$();
+    var data = $f_sc_SeqOps__sortBy__F1__s_math_Ordering__O(this$9, f, ord);
+    var toPoint = new $c_sjsr_AnonFunction1(((record) => {
+      var record$1 = $as_Lchartreuse_examples_HadCrut5$Record(record);
+      $m_Ldoodle_core_Point$();
+      var x = $n(record$1).Lchartreuse_examples_HadCrut5$Record__f_month;
+      var x$2 = x;
+      var y = $n(record$1).Lchartreuse_examples_HadCrut5$Record__f_anomaly;
+      return new $c_Ldoodle_core_Point$Cartesian(x$2, y)
+    }));
+    $m_Lcats_UnorderedFoldable$();
+    var traverse = $as_Lcats_Traverse($m_Lcats_instances_ArraySeqInstances$().Lcats_instances_ArraySeqInstances$__f_cats$instances$ArraySeqInstances$$$stdInstances);
+    var toData = new $c_Lchartreuse_ToData$fromTraverse(traverse);
+    var this$18 = $n($f_Lchartreuse_Layout__toLayer__O__F1__Lchartreuse_ToData__Lchartreuse_Layer(this$16, data, toPoint, toData));
+    var label = ("" + year$1);
+    var data$1 = this$18.Lchartreuse_Layer__f_data;
+    var toPoint$1 = this$18.Lchartreuse_Layer__f_toPoint;
+    var layout = this$18.Lchartreuse_Layer__f_layout;
+    return new $c_Lchartreuse_Layer(data$1, toPoint$1, layout, label)
+  }))))).toList__sci_List());
+  var f$1 = new $c_sjsr_AnonFunction1(((_$4) => {
+    var _$4$1 = $as_Lchartreuse_Layer(_$4);
+    return $n(_$4$1).Lchartreuse_Layer__f_label
+  }));
+  var ord$1 = $m_s_math_Ordering$String$();
+  this.Lchartreuse_examples_TemperatureAnomaly$__f_layers = $as_sci_List($f_sc_SeqOps__sortBy__F1__s_math_Ordering__O(this$19, f$1, ord$1));
+  var layers = $n(this.Lchartreuse_examples_TemperatureAnomaly$__f_layers);
+  var xTicks = new $c_Lchartreuse_MajorTickLayout$Algorithmic(12);
+  var yTicks = new $c_Lchartreuse_MajorTickLayout$Algorithmic(12);
+  var minorTicks = $s_Lchartreuse_MinorTickLayout$__NoTicks__Lchartreuse_MinorTickLayout();
+  var theme = $m_Lchartreuse_theme_PlotTheme$().Lchartreuse_theme_PlotTheme$__f_default;
+  $n($m_s_package$().s_package$__f_List);
+  var annotations = $m_sci_Nil$();
+  var this$29 = new $c_Lchartreuse_Plot(layers, "Plot Title", "X data", "Y data", false, false, xTicks, yTicks, minorTicks, theme, annotations);
+  var layers$1 = this$29.Lchartreuse_Plot__f_layers;
+  var xTitle = this$29.Lchartreuse_Plot__f_xTitle;
+  var yTitle = this$29.Lchartreuse_Plot__f_yTitle;
+  var grid = this$29.Lchartreuse_Plot__f_grid;
+  var legend = this$29.Lchartreuse_Plot__f_legend;
+  var xTicks$1 = this$29.Lchartreuse_Plot__f_xTicks;
+  var yTicks$1 = this$29.Lchartreuse_Plot__f_yTicks;
+  var minorTicks$1 = this$29.Lchartreuse_Plot__f_minorTicks;
+  var theme$1 = this$29.Lchartreuse_Plot__f_theme;
+  var annotations$1 = this$29.Lchartreuse_Plot__f_annotations;
+  var this$30 = new $c_Lchartreuse_Plot(layers$1, "Global Average Temperature Anomaly (2022-2013 Highlighted)", xTitle, yTitle, grid, legend, xTicks$1, yTicks$1, minorTicks$1, theme$1, annotations$1);
+  var layers$2 = this$30.Lchartreuse_Plot__f_layers;
+  var plotTitle = this$30.Lchartreuse_Plot__f_plotTitle;
+  var xTitle$1 = this$30.Lchartreuse_Plot__f_xTitle;
+  var grid$1 = this$30.Lchartreuse_Plot__f_grid;
+  var legend$1 = this$30.Lchartreuse_Plot__f_legend;
+  var xTicks$2 = this$30.Lchartreuse_Plot__f_xTicks;
+  var yTicks$2 = this$30.Lchartreuse_Plot__f_yTicks;
+  var minorTicks$2 = this$30.Lchartreuse_Plot__f_minorTicks;
+  var theme$2 = this$30.Lchartreuse_Plot__f_theme;
+  var annotations$2 = this$30.Lchartreuse_Plot__f_annotations;
+  var this$31 = new $c_Lchartreuse_Plot(layers$2, plotTitle, xTitle$1, "\u00b0C anomaly from 1961-1990", grid$1, legend$1, xTicks$2, yTicks$2, minorTicks$2, theme$2, annotations$2);
+  var layers$3 = this$31.Lchartreuse_Plot__f_layers;
+  var plotTitle$1 = this$31.Lchartreuse_Plot__f_plotTitle;
+  var yTitle$1 = this$31.Lchartreuse_Plot__f_yTitle;
+  var grid$2 = this$31.Lchartreuse_Plot__f_grid;
+  var legend$2 = this$31.Lchartreuse_Plot__f_legend;
+  var xTicks$3 = this$31.Lchartreuse_Plot__f_xTicks;
+  var yTicks$3 = this$31.Lchartreuse_Plot__f_yTicks;
+  var minorTicks$3 = this$31.Lchartreuse_Plot__f_minorTicks;
+  var theme$3 = this$31.Lchartreuse_Plot__f_theme;
+  var annotations$3 = this$31.Lchartreuse_Plot__f_annotations;
+  var this$32 = new $c_Lchartreuse_Plot(layers$3, plotTitle$1, "Month", yTitle$1, grid$2, legend$2, xTicks$3, yTicks$3, minorTicks$3, theme$3, annotations$3);
+  var layers$4 = this$32.Lchartreuse_Plot__f_layers;
+  var plotTitle$2 = this$32.Lchartreuse_Plot__f_plotTitle;
+  var xTitle$2 = this$32.Lchartreuse_Plot__f_xTitle;
+  var yTitle$2 = this$32.Lchartreuse_Plot__f_yTitle;
+  var grid$3 = this$32.Lchartreuse_Plot__f_grid;
+  var xTicks$4 = this$32.Lchartreuse_Plot__f_xTicks;
+  var yTicks$4 = this$32.Lchartreuse_Plot__f_yTicks;
+  var minorTicks$4 = this$32.Lchartreuse_Plot__f_minorTicks;
+  var theme$4 = this$32.Lchartreuse_Plot__f_theme;
+  var annotations$4 = this$32.Lchartreuse_Plot__f_annotations;
+  this.Lchartreuse_examples_TemperatureAnomaly$__f_plot = new $c_Lchartreuse_Plot(layers$4, plotTitle$2, xTitle$2, yTitle$2, grid$3, false, xTicks$4, yTicks$4, minorTicks$4, theme$4, annotations$4)
 }
-$c_Lchartreuse_examples_ScatterPlotExample$.prototype = new $h_O();
-$c_Lchartreuse_examples_ScatterPlotExample$.prototype.constructor = $c_Lchartreuse_examples_ScatterPlotExample$;
+$c_Lchartreuse_examples_TemperatureAnomaly$.prototype = new $h_O();
+$c_Lchartreuse_examples_TemperatureAnomaly$.prototype.constructor = $c_Lchartreuse_examples_TemperatureAnomaly$;
 /** @constructor */
-function $h_Lchartreuse_examples_ScatterPlotExample$() {
+function $h_Lchartreuse_examples_TemperatureAnomaly$() {
   /*<skip>*/
 }
-$h_Lchartreuse_examples_ScatterPlotExample$.prototype = $c_Lchartreuse_examples_ScatterPlotExample$.prototype;
-$c_Lchartreuse_examples_ScatterPlotExample$.prototype.draw__T__V = (function(id) {
+$h_Lchartreuse_examples_TemperatureAnomaly$.prototype = $c_Lchartreuse_examples_TemperatureAnomaly$.prototype;
+$c_Lchartreuse_examples_TemperatureAnomaly$.prototype.draw__T__V = (function(id) {
   var this$2 = $m_Ldoodle_syntax_package$all$();
-  var picture = $n(this.Lchartreuse_examples_ScatterPlotExample$__f_layer).draw__I__I__Lchartreuse_theme_LayoutTheme__Ldoodle_algebra_Picture(640, 480, $m_Lchartreuse_theme_LayoutTheme$().default__Lcats_Applicative__Lchartreuse_theme_LayoutTheme(($m_Lcats_Invariant$(), $m_Lcats_package$().Lcats_package$__f_catsInstancesForId)));
+  var picture = $n(this.Lchartreuse_examples_TemperatureAnomaly$__f_plot).draw__I__I__Lchartreuse_theme_PlotTheme__Ldoodle_algebra_Picture(480, 360, ($n(this.Lchartreuse_examples_TemperatureAnomaly$__f_plot), $m_Lchartreuse_theme_PlotTheme$().Lchartreuse_theme_PlotTheme$__f_default));
   new $c_Ldoodle_syntax_AbstractRendererSyntax$RendererPictureOps(this$2, picture).drawWithFrame__O__Ldoodle_effect_Renderer__Lcats_effect_unsafe_IORuntime__V($n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Frame).apply__T__Ldoodle_svg_effect_Frame(id), $m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_svgRenderer, $m_Lcats_effect_unsafe_IORuntime$().global__Lcats_effect_unsafe_IORuntime())
 });
-$c_Lchartreuse_examples_ScatterPlotExample$.prototype.draw = (function(arg) {
+$c_Lchartreuse_examples_TemperatureAnomaly$.prototype.draw = (function(arg) {
   var prep0 = $as_T(arg);
   this.draw__T__V(prep0)
 });
-var $d_Lchartreuse_examples_ScatterPlotExample$ = new $TypeData().initClass({
-  Lchartreuse_examples_ScatterPlotExample$: 0
-}, false, "chartreuse.examples.ScatterPlotExample$", {
-  Lchartreuse_examples_ScatterPlotExample$: 1,
+var $d_Lchartreuse_examples_TemperatureAnomaly$ = new $TypeData().initClass({
+  Lchartreuse_examples_TemperatureAnomaly$: 0
+}, false, "chartreuse.examples.TemperatureAnomaly$", {
+  Lchartreuse_examples_TemperatureAnomaly$: 1,
   O: 1
 });
-$c_Lchartreuse_examples_ScatterPlotExample$.prototype.$classData = $d_Lchartreuse_examples_ScatterPlotExample$;
-var $n_Lchartreuse_examples_ScatterPlotExample$;
-function $m_Lchartreuse_examples_ScatterPlotExample$() {
-  if ((!$n_Lchartreuse_examples_ScatterPlotExample$)) {
-    $n_Lchartreuse_examples_ScatterPlotExample$ = new $c_Lchartreuse_examples_ScatterPlotExample$()
+$c_Lchartreuse_examples_TemperatureAnomaly$.prototype.$classData = $d_Lchartreuse_examples_TemperatureAnomaly$;
+var $n_Lchartreuse_examples_TemperatureAnomaly$;
+function $m_Lchartreuse_examples_TemperatureAnomaly$() {
+  if ((!$n_Lchartreuse_examples_TemperatureAnomaly$)) {
+    $n_Lchartreuse_examples_TemperatureAnomaly$ = new $c_Lchartreuse_examples_TemperatureAnomaly$()
   };
-  return $n_Lchartreuse_examples_ScatterPlotExample$
+  return $n_Lchartreuse_examples_TemperatureAnomaly$
 }
 /** @constructor */
 function $c_Lchartreuse_layout_Glyph$() {
   this.Lchartreuse_layout_Glyph$__f_circle = null;
   $n_Lchartreuse_layout_Glyph$ = this;
-  this.Lchartreuse_layout_Glyph$__f_circle = new $c_Lchartreuse_layout_Glyph$$anon$1()
+  var f = new $c_sjsr_AnonFunction1(((size) => {
+    var size$1 = $uD(size);
+    return new $c_Ldoodle_syntax_ShapeSyntax$$anon$4(size$1)
+  }));
+  this.Lchartreuse_layout_Glyph$__f_circle = new $c_Lchartreuse_layout_Glyph$$anon$1(f)
 }
 $c_Lchartreuse_layout_Glyph$.prototype = new $h_O();
 $c_Lchartreuse_layout_Glyph$.prototype.constructor = $c_Lchartreuse_layout_Glyph$;
@@ -4382,7 +4736,7 @@ function $f_Ldoodle_core_CommonColors__$init$__V($thiz) {
   var this$54 = $m_Ldoodle_core_Color$();
   $thiz.Ldoodle_core_Color$__f_gray = this$54.rgba__I__I__I__D__Ldoodle_core_Color(128, 128, 128, 1.0);
   var this$55 = $m_Ldoodle_core_Color$();
-  this$55.rgba__I__I__I__D__Ldoodle_core_Color(128, 128, 128, 1.0);
+  $thiz.Ldoodle_core_Color$__f_grey = this$55.rgba__I__I__I__D__Ldoodle_core_Color(128, 128, 128, 1.0);
   var this$56 = $m_Ldoodle_core_Color$();
   $thiz.Ldoodle_core_Color$__f_green = this$56.rgba__I__I__I__D__Ldoodle_core_Color(0, 128, 0, 1.0);
   var this$57 = $m_Ldoodle_core_Color$();
@@ -4488,7 +4842,7 @@ function $f_Ldoodle_core_CommonColors__$init$__V($thiz) {
   var this$107 = $m_Ldoodle_core_Color$();
   this$107.rgba__I__I__I__D__Ldoodle_core_Color(255, 69, 0, 1.0);
   var this$108 = $m_Ldoodle_core_Color$();
-  $thiz.Ldoodle_core_Color$__f_orchid = this$108.rgba__I__I__I__D__Ldoodle_core_Color(218, 112, 214, 1.0);
+  this$108.rgba__I__I__I__D__Ldoodle_core_Color(218, 112, 214, 1.0);
   var this$109 = $m_Ldoodle_core_Color$();
   this$109.rgba__I__I__I__D__Ldoodle_core_Color(238, 232, 170, 1.0);
   var this$110 = $m_Ldoodle_core_Color$();
@@ -5950,6 +6304,18 @@ var $d_Lfs2_Stream = new $TypeData().initClass({
   O: 1
 });
 $c_Lfs2_Stream.prototype.$classData = $d_Lfs2_Stream;
+function $is_jl_Comparable(obj) {
+  return ((((((!(!((obj && obj.$classData) && obj.$classData.ancestors.jl_Comparable))) || ((typeof obj) === "string")) || ((typeof obj) === "number")) || ((typeof obj) === "boolean")) || (obj instanceof $c_RTLong)) || (obj instanceof $Char))
+}
+function $as_jl_Comparable(obj) {
+  return (($is_jl_Comparable(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "java.lang.Comparable"))
+}
+function $isArrayOf_jl_Comparable(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.jl_Comparable)))
+}
+function $asArrayOf_jl_Comparable(obj, depth) {
+  return (($isArrayOf_jl_Comparable(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ljava.lang.Comparable;", depth))
+}
 /** @constructor */
 function $c_jl_FloatingPointBits$() {
   this.jl_FloatingPointBits$__f_java$lang$FloatingPointBits$$_areTypedArraysSupported = false;
@@ -8481,6 +8847,255 @@ function $h_ju_Arrays$() {
   /*<skip>*/
 }
 $h_ju_Arrays$.prototype = $c_ju_Arrays$.prototype;
+$c_ju_Arrays$.prototype.sort__AI__V = (function(a) {
+  var comparator = $m_ju_internal_GenericArrayOps$IntArrayOps$();
+  var ops = $m_ju_internal_GenericArrayOps$IntArrayOps$();
+  var end = $n(a).u.length;
+  if ((end > 16)) {
+    var length = $n(a).u.length;
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, new $ac_I(length), 0, end, comparator, ops)
+  } else {
+    this.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, 0, end, comparator, ops)
+  }
+});
+$c_ju_Arrays$.prototype.sort__AI__I__I__V = (function(a, fromIndex, toIndex) {
+  var comparator = $m_ju_internal_GenericArrayOps$IntArrayOps$();
+  var ops = $m_ju_internal_GenericArrayOps$IntArrayOps$();
+  if ((fromIndex > toIndex)) {
+    throw $ct_jl_IllegalArgumentException__T__(new $c_jl_IllegalArgumentException(), (((("fromIndex(" + fromIndex) + ") > toIndex(") + toIndex) + ")"))
+  };
+  if ((fromIndex < 0)) {
+    $n(a).get(fromIndex)
+  };
+  if ((toIndex > 0)) {
+    var i = (((-1) + toIndex) | 0);
+    $n(a).get(i)
+  };
+  if ((((toIndex - fromIndex) | 0) > 16)) {
+    var length = $n(a).u.length;
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, new $ac_I(length), fromIndex, toIndex, comparator, ops)
+  } else {
+    this.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, fromIndex, toIndex, comparator, ops)
+  }
+});
+$c_ju_Arrays$.prototype.sort__AJ__V = (function(a) {
+  var comparator = $m_ju_internal_GenericArrayOps$LongArrayOps$();
+  var ops = $m_ju_internal_GenericArrayOps$LongArrayOps$();
+  var end = $n(a).u.length;
+  if ((end > 16)) {
+    var length = $n(a).u.length;
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, new $ac_J(length), 0, end, comparator, ops)
+  } else {
+    this.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, 0, end, comparator, ops)
+  }
+});
+$c_ju_Arrays$.prototype.sort__AJ__I__I__V = (function(a, fromIndex, toIndex) {
+  var comparator = $m_ju_internal_GenericArrayOps$LongArrayOps$();
+  var ops = $m_ju_internal_GenericArrayOps$LongArrayOps$();
+  if ((fromIndex > toIndex)) {
+    throw $ct_jl_IllegalArgumentException__T__(new $c_jl_IllegalArgumentException(), (((("fromIndex(" + fromIndex) + ") > toIndex(") + toIndex) + ")"))
+  };
+  if ((fromIndex < 0)) {
+    $n(a).get(fromIndex)
+  };
+  if ((toIndex > 0)) {
+    var i = (((-1) + toIndex) | 0);
+    $n(a).get(i)
+  };
+  if ((((toIndex - fromIndex) | 0) > 16)) {
+    var length = $n(a).u.length;
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, new $ac_J(length), fromIndex, toIndex, comparator, ops)
+  } else {
+    this.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, fromIndex, toIndex, comparator, ops)
+  }
+});
+$c_ju_Arrays$.prototype.sort__AS__V = (function(a) {
+  var comparator = $m_ju_internal_GenericArrayOps$ShortArrayOps$();
+  var ops = $m_ju_internal_GenericArrayOps$ShortArrayOps$();
+  var end = $n(a).u.length;
+  if ((end > 16)) {
+    var length = $n(a).u.length;
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, new $ac_S(length), 0, end, comparator, ops)
+  } else {
+    this.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, 0, end, comparator, ops)
+  }
+});
+$c_ju_Arrays$.prototype.sort__AS__I__I__V = (function(a, fromIndex, toIndex) {
+  var comparator = $m_ju_internal_GenericArrayOps$ShortArrayOps$();
+  var ops = $m_ju_internal_GenericArrayOps$ShortArrayOps$();
+  if ((fromIndex > toIndex)) {
+    throw $ct_jl_IllegalArgumentException__T__(new $c_jl_IllegalArgumentException(), (((("fromIndex(" + fromIndex) + ") > toIndex(") + toIndex) + ")"))
+  };
+  if ((fromIndex < 0)) {
+    $n(a).get(fromIndex)
+  };
+  if ((toIndex > 0)) {
+    var i = (((-1) + toIndex) | 0);
+    $n(a).get(i)
+  };
+  if ((((toIndex - fromIndex) | 0) > 16)) {
+    var length = $n(a).u.length;
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, new $ac_S(length), fromIndex, toIndex, comparator, ops)
+  } else {
+    this.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, fromIndex, toIndex, comparator, ops)
+  }
+});
+$c_ju_Arrays$.prototype.sort__AC__V = (function(a) {
+  var comparator = $m_ju_internal_GenericArrayOps$CharArrayOps$();
+  var ops = $m_ju_internal_GenericArrayOps$CharArrayOps$();
+  var end = $n(a).u.length;
+  if ((end > 16)) {
+    var length = $n(a).u.length;
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, new $ac_C(length), 0, end, comparator, ops)
+  } else {
+    this.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, 0, end, comparator, ops)
+  }
+});
+$c_ju_Arrays$.prototype.sort__AC__I__I__V = (function(a, fromIndex, toIndex) {
+  var comparator = $m_ju_internal_GenericArrayOps$CharArrayOps$();
+  var ops = $m_ju_internal_GenericArrayOps$CharArrayOps$();
+  if ((fromIndex > toIndex)) {
+    throw $ct_jl_IllegalArgumentException__T__(new $c_jl_IllegalArgumentException(), (((("fromIndex(" + fromIndex) + ") > toIndex(") + toIndex) + ")"))
+  };
+  if ((fromIndex < 0)) {
+    $n(a).get(fromIndex)
+  };
+  if ((toIndex > 0)) {
+    var i = (((-1) + toIndex) | 0);
+    $n(a).get(i)
+  };
+  if ((((toIndex - fromIndex) | 0) > 16)) {
+    var length = $n(a).u.length;
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, new $ac_C(length), fromIndex, toIndex, comparator, ops)
+  } else {
+    this.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, fromIndex, toIndex, comparator, ops)
+  }
+});
+$c_ju_Arrays$.prototype.sort__AB__V = (function(a) {
+  var comparator = $m_ju_internal_GenericArrayOps$ByteArrayOps$();
+  var ops = $m_ju_internal_GenericArrayOps$ByteArrayOps$();
+  var end = $n(a).u.length;
+  if ((end > 16)) {
+    var length = $n(a).u.length;
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, new $ac_B(length), 0, end, comparator, ops)
+  } else {
+    this.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, 0, end, comparator, ops)
+  }
+});
+$c_ju_Arrays$.prototype.sort__AB__I__I__V = (function(a, fromIndex, toIndex) {
+  var comparator = $m_ju_internal_GenericArrayOps$ByteArrayOps$();
+  var ops = $m_ju_internal_GenericArrayOps$ByteArrayOps$();
+  if ((fromIndex > toIndex)) {
+    throw $ct_jl_IllegalArgumentException__T__(new $c_jl_IllegalArgumentException(), (((("fromIndex(" + fromIndex) + ") > toIndex(") + toIndex) + ")"))
+  };
+  if ((fromIndex < 0)) {
+    $n(a).get(fromIndex)
+  };
+  if ((toIndex > 0)) {
+    var i = (((-1) + toIndex) | 0);
+    $n(a).get(i)
+  };
+  if ((((toIndex - fromIndex) | 0) > 16)) {
+    var length = $n(a).u.length;
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, new $ac_B(length), fromIndex, toIndex, comparator, ops)
+  } else {
+    this.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, fromIndex, toIndex, comparator, ops)
+  }
+});
+$c_ju_Arrays$.prototype.sort__AO__ju_Comparator__V = (function(array, comparator) {
+  var comparator$1 = ((comparator === null) ? $m_ju_Arrays$NaturalComparator$() : comparator);
+  var ops = $m_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$();
+  var end = $n(array).u.length;
+  if ((end > 16)) {
+    var length = $n(array).u.length;
+    var this$2 = $n(array);
+    var clazz = $objectGetClass(this$2);
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(array, $asArrayOf_O($m_jl_reflect_Array$().newInstance__jl_Class__I__O(clazz.getComponentType__jl_Class(), length), 1), 0, end, comparator$1, ops)
+  } else {
+    this.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(array, 0, end, comparator$1, ops)
+  }
+});
+$c_ju_Arrays$.prototype.sort__AO__I__I__ju_Comparator__V = (function(array, fromIndex, toIndex, comparator) {
+  var comparator$1 = ((comparator === null) ? $m_ju_Arrays$NaturalComparator$() : comparator);
+  var ops = $m_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$();
+  if ((fromIndex > toIndex)) {
+    throw $ct_jl_IllegalArgumentException__T__(new $c_jl_IllegalArgumentException(), (((("fromIndex(" + fromIndex) + ") > toIndex(") + toIndex) + ")"))
+  };
+  if ((fromIndex < 0)) {
+    $n(array).get(fromIndex)
+  };
+  if ((toIndex > 0)) {
+    var i = (((-1) + toIndex) | 0);
+    $n(array).get(i)
+  };
+  if ((((toIndex - fromIndex) | 0) > 16)) {
+    var length = $n(array).u.length;
+    var this$2 = $n(array);
+    var clazz = $objectGetClass(this$2);
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(array, $asArrayOf_O($m_jl_reflect_Array$().newInstance__jl_Class__I__O(clazz.getComponentType__jl_Class(), length), 1), fromIndex, toIndex, comparator$1, ops)
+  } else {
+    this.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(array, fromIndex, toIndex, comparator$1, ops)
+  }
+});
+$c_ju_Arrays$.prototype.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V = (function(a, temp, start, end, comparator, ops) {
+  var length = ((end - start) | 0);
+  if ((length > 16)) {
+    var middle = ((start + ((length / 2) | 0)) | 0);
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, temp, start, middle, comparator, ops);
+    this.java$util$Arrays$$stableSplitMerge__O__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, temp, middle, end, comparator, ops);
+    var outIndex = start;
+    var leftInIndex = start;
+    var rightInIndex = middle;
+    while ((outIndex < end)) {
+      if (((leftInIndex < middle) && ((rightInIndex >= end) || ($n(comparator).compare__O__O__I($n(ops).get__O__I__O(a, leftInIndex), $n(ops).get__O__I__O(a, rightInIndex)) <= 0)))) {
+        $n(ops).set__O__I__O__V(temp, outIndex, $n(ops).get__O__I__O(a, leftInIndex));
+        leftInIndex = ((1 + leftInIndex) | 0)
+      } else {
+        $n(ops).set__O__I__O__V(temp, outIndex, $n(ops).get__O__I__O(a, rightInIndex));
+        rightInIndex = ((1 + rightInIndex) | 0)
+      };
+      outIndex = ((1 + outIndex) | 0)
+    };
+    $systemArraycopyFull($n(temp), start, $n(a), start, length)
+  } else {
+    this.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V(a, start, end, comparator, ops)
+  }
+});
+$c_ju_Arrays$.prototype.java$util$Arrays$$insertionSort__O__I__I__ju_Comparator__ju_internal_GenericArrayOps$ArrayOps__V = (function(a, start, end, comparator, ops) {
+  var n = ((end - start) | 0);
+  if ((n >= 2)) {
+    var aStart = $n(ops).get__O__I__O(a, start);
+    var aStartPlusOne = $n(ops).get__O__I__O(a, ((1 + start) | 0));
+    if (($n(comparator).compare__O__O__I(aStart, aStartPlusOne) > 0)) {
+      $n(ops).set__O__I__O__V(a, start, aStartPlusOne);
+      $n(ops).set__O__I__O__V(a, ((1 + start) | 0), aStart)
+    };
+    var m = 2;
+    while ((m < n)) {
+      var next = $n(ops).get__O__I__O(a, ((start + m) | 0));
+      if (($n(comparator).compare__O__O__I(next, $n(ops).get__O__I__O(a, (((-1) + ((start + m) | 0)) | 0))) < 0)) {
+        var iA = start;
+        var iB = (((-1) + ((start + m) | 0)) | 0);
+        while ((((iB - iA) | 0) > 1)) {
+          var ix = ((((iA + iB) | 0) >>> 1) | 0);
+          if (($n(comparator).compare__O__O__I(next, $n(ops).get__O__I__O(a, ix)) < 0)) {
+            iB = ix
+          } else {
+            iA = ix
+          }
+        };
+        var ix$2 = ((iA + (($n(comparator).compare__O__O__I(next, $n(ops).get__O__I__O(a, iA)) < 0) ? 0 : 1)) | 0);
+        var i = ((start + m) | 0);
+        while ((i > ix$2)) {
+          $n(ops).set__O__I__O__V(a, i, $n(ops).get__O__I__O(a, (((-1) + i) | 0)));
+          i = (((-1) + i) | 0)
+        };
+        $n(ops).set__O__I__O__V(a, ix$2, next)
+      };
+      m = ((1 + m) | 0)
+    }
+  }
+});
 $c_ju_Arrays$.prototype.binarySearch__AJ__J__I = (function(a, key) {
   var startIndex = 0;
   var endIndex = $n(a).u.length;
@@ -11387,6 +12002,37 @@ function $m_s_PartialFunction$() {
 function $f_s_Proxy__toString__T($thiz) {
   return ("" + $thiz.sr_RichLong__f_self)
 }
+function $p_sc_ArrayOps$__boxed$1__I__O__s_math_Ordering__O($thiz, len$1, \u03b4this$2, ord$1) {
+  if ((len$1 < 300)) {
+    var a = $m_sr_ScalaRunTime$().array_clone__O__O(\u03b4this$2);
+    var this$1 = $m_s_util_Sorting$();
+    this$1.stableSort__O__I__I__s_math_Ordering__V(a, 0, $m_jl_reflect_Array$().getLength__O__I(a), ord$1);
+    return a
+  } else {
+    var this$5 = $m_s_Array$();
+    $m_s_reflect_ManifestFactory$ObjectManifest$();
+    var this$6 = $n(\u03b4this$2);
+    if ($d_O.getClassOf().isAssignableFrom__jl_Class__Z($n($objectGetClass(this$6)).getComponentType__jl_Class())) {
+      if ($d_O.getClassOf().isPrimitive__Z()) {
+        var $$x1 = this$5.copyOf__O__I__O(\u03b4this$2, len$1)
+      } else {
+        var original = $asArrayOf_O(\u03b4this$2, 1);
+        var $$x1 = $m_ju_Arrays$().copyOf__AO__I__jl_Class__AO(original, len$1, $d_O.getArrayOf().getClassOf())
+      }
+    } else {
+      var dest = new $ac_O(len$1);
+      $m_s_Array$().copy__O__I__O__I__I__V(\u03b4this$2, 0, dest, 0, $m_jl_reflect_Array$().getLength__O__I(\u03b4this$2));
+      var $$x1 = dest
+    };
+    var a$2 = $asArrayOf_O($$x1, 1);
+    $m_ju_Arrays$().sort__AO__ju_Comparator__V(a$2, ord$1);
+    var $$x3 = $m_s_Array$();
+    $m_sc_ArrayOps$();
+    var $$x2 = $m_s_reflect_ClassTag$();
+    var this$10 = $n(\u03b4this$2);
+    return $n($$x3).copyAs__O__I__s_reflect_ClassTag__O(a$2, len$1, $n($$x2).apply__jl_Class__s_reflect_ClassTag($n($objectGetClass(this$10)).getComponentType__jl_Class()))
+  }
+}
 /** @constructor */
 function $c_sc_ArrayOps$() {
   this.sc_ArrayOps$__f_fallback = null;
@@ -11458,6 +12104,75 @@ $c_sc_ArrayOps$.prototype.tail$extension__O__O = (function(this$) {
 });
 $c_sc_ArrayOps$.prototype.drop$extension__O__I__O = (function(this$, n) {
   return $m_sc_ArrayOps$().slice$extension__O__I__I__O(this$, n, $m_jl_reflect_Array$().getLength__O__I(this$))
+});
+$c_sc_ArrayOps$.prototype.sorted$extension__O__s_math_Ordering__O = (function(this$, ord) {
+  var len = $m_jl_reflect_Array$().getLength__O__I(this$);
+  if ((len <= 1)) {
+    return $m_sr_ScalaRunTime$().array_clone__O__O(this$)
+  } else if ((this$ instanceof $ac_O)) {
+    var x2 = $asArrayOf_O(this$, 1);
+    var a = $m_ju_Arrays$().copyOf__AO__I__AO(x2, len);
+    $m_ju_Arrays$().sort__AO__ju_Comparator__V(a, ord);
+    return a
+  } else if ((this$ instanceof $ac_I)) {
+    var x3 = $asArrayOf_I(this$, 1);
+    if ((ord === $m_s_math_Ordering$Int$())) {
+      var a$2 = $m_ju_Arrays$().copyOf__AI__I__AI(x3, len);
+      $m_ju_Arrays$().sort__AI__V(a$2);
+      return a$2
+    } else {
+      return $p_sc_ArrayOps$__boxed$1__I__O__s_math_Ordering__O(this, len, this$, ord)
+    }
+  } else if ((this$ instanceof $ac_J)) {
+    var x4 = $asArrayOf_J(this$, 1);
+    if ((ord === $m_s_math_Ordering$Long$())) {
+      var a$3 = $m_ju_Arrays$().copyOf__AJ__I__AJ(x4, len);
+      $m_ju_Arrays$().sort__AJ__V(a$3);
+      return a$3
+    } else {
+      return $p_sc_ArrayOps$__boxed$1__I__O__s_math_Ordering__O(this, len, this$, ord)
+    }
+  } else if ((this$ instanceof $ac_C)) {
+    var x5 = $asArrayOf_C(this$, 1);
+    if ((ord === $m_s_math_Ordering$Char$())) {
+      var a$4 = $m_ju_Arrays$().copyOf__AC__I__AC(x5, len);
+      $m_ju_Arrays$().sort__AC__V(a$4);
+      return a$4
+    } else {
+      return $p_sc_ArrayOps$__boxed$1__I__O__s_math_Ordering__O(this, len, this$, ord)
+    }
+  } else if ((this$ instanceof $ac_B)) {
+    var x6 = $asArrayOf_B(this$, 1);
+    if ((ord === $m_s_math_Ordering$Byte$())) {
+      var a$5 = $m_ju_Arrays$().copyOf__AB__I__AB(x6, len);
+      $m_ju_Arrays$().sort__AB__V(a$5);
+      return a$5
+    } else {
+      return $p_sc_ArrayOps$__boxed$1__I__O__s_math_Ordering__O(this, len, this$, ord)
+    }
+  } else if ((this$ instanceof $ac_S)) {
+    var x7 = $asArrayOf_S(this$, 1);
+    if ((ord === $m_s_math_Ordering$Short$())) {
+      var a$6 = $m_ju_Arrays$().copyOf__AS__I__AS(x7, len);
+      $m_ju_Arrays$().sort__AS__V(a$6);
+      return a$6
+    } else {
+      return $p_sc_ArrayOps$__boxed$1__I__O__s_math_Ordering__O(this, len, this$, ord)
+    }
+  } else if ((this$ instanceof $ac_Z)) {
+    var x8 = $asArrayOf_Z(this$, 1);
+    if ((ord === $m_s_math_Ordering$Boolean$())) {
+      var a$7 = $m_ju_Arrays$().copyOf__AZ__I__AZ(x8, len);
+      var this$2 = $m_s_util_Sorting$();
+      var evidence$3 = $m_s_math_Ordering$Boolean$();
+      this$2.stableSort__O__I__I__s_math_Ordering__V(a$7, 0, $n(a$7).u.length, evidence$3);
+      return a$7
+    } else {
+      return $p_sc_ArrayOps$__boxed$1__I__O__s_math_Ordering__O(this, len, this$, ord)
+    }
+  } else {
+    return $p_sc_ArrayOps$__boxed$1__I__O__s_math_Ordering__O(this, len, this$, ord)
+  }
 });
 var $d_sc_ArrayOps$ = new $TypeData().initClass({
   sc_ArrayOps$: 0
@@ -11739,6 +12454,16 @@ function $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O($thiz, evidence$2
     var elemRuntimeClass = ((elementClass === $d_V.getClassOf()) ? $d_jl_Void.getClassOf() : (((elementClass === $d_sr_Null$.getClassOf()) || (elementClass === $d_sr_Nothing$.getClassOf())) ? $d_O.getClassOf() : elementClass));
     return $n(elemRuntimeClass).jl_Class__f_data.getArrayOf().wrapArray(jsElems)
   }
+}
+function $f_sc_IterableOnceOps__reversed__sc_Iterable($thiz) {
+  var xs = $m_sci_Nil$();
+  var it = $n($as_sc_IterableOnce($thiz)).iterator__sc_Iterator();
+  while ($n(it).hasNext__Z()) {
+    var rassoc$1 = $n(it).next__O();
+    var this$1 = $n(xs);
+    xs = new $c_sci_$colon$colon(rassoc$1, this$1)
+  };
+  return xs
 }
 function $p_sc_IterableOnceOps__loop$1__I__I__O__F2__sc_IndexedSeq__O($thiz, at, end, acc, op$1, seq$1) {
   while (true) {
@@ -15590,6 +16315,49 @@ $c_sr_ScalaRunTime$.prototype.array_update__O__I__O__V = (function(xs, idx, valu
     throw new $c_s_MatchError(xs)
   }
 });
+$c_sr_ScalaRunTime$.prototype.array_clone__O__O = (function(xs) {
+  if ((xs instanceof $ac_O)) {
+    var x2 = $asArrayOf_O(xs, 1);
+    var this$1 = $n(x2);
+    return $n(this$1).clone__O()
+  } else if ((xs instanceof $ac_I)) {
+    var x3 = $asArrayOf_I(xs, 1);
+    var this$2 = $n(x3);
+    return $n(this$2).clone__O()
+  } else if ((xs instanceof $ac_D)) {
+    var x4 = $asArrayOf_D(xs, 1);
+    var this$3 = $n(x4);
+    return $n(this$3).clone__O()
+  } else if ((xs instanceof $ac_J)) {
+    var x5 = $asArrayOf_J(xs, 1);
+    var this$4 = $n(x5);
+    return $n(this$4).clone__O()
+  } else if ((xs instanceof $ac_F)) {
+    var x6 = $asArrayOf_F(xs, 1);
+    var this$5 = $n(x6);
+    return $n(this$5).clone__O()
+  } else if ((xs instanceof $ac_C)) {
+    var x7 = $asArrayOf_C(xs, 1);
+    var this$6 = $n(x7);
+    return $n(this$6).clone__O()
+  } else if ((xs instanceof $ac_B)) {
+    var x8 = $asArrayOf_B(xs, 1);
+    var this$7 = $n(x8);
+    return $n(this$7).clone__O()
+  } else if ((xs instanceof $ac_S)) {
+    var x9 = $asArrayOf_S(xs, 1);
+    var this$8 = $n(x9);
+    return $n(this$8).clone__O()
+  } else if ((xs instanceof $ac_Z)) {
+    var x10 = $asArrayOf_Z(xs, 1);
+    var this$9 = $n(x10);
+    return $n(this$9).clone__O()
+  } else if ((xs === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  } else {
+    throw new $c_s_MatchError(xs)
+  }
+});
 $c_sr_ScalaRunTime$.prototype._toString__s_Product__T = (function(x) {
   var this$1 = $n($n(x).productIterator__sc_Iterator());
   var start = ($n(x).productPrefix__T() + "(");
@@ -15868,6 +16636,378 @@ var $d_s_util_NotGiven = new $TypeData().initClass({
   O: 1
 });
 $c_s_util_NotGiven.prototype.$classData = $d_s_util_NotGiven;
+/** @constructor */
+function $c_s_util_Sorting$() {
+  /*<skip>*/
+}
+$c_s_util_Sorting$.prototype = new $h_O();
+$c_s_util_Sorting$.prototype.constructor = $c_s_util_Sorting$;
+/** @constructor */
+function $h_s_util_Sorting$() {
+  /*<skip>*/
+}
+$h_s_util_Sorting$.prototype = $c_s_util_Sorting$.prototype;
+$c_s_util_Sorting$.prototype.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V = (function(a, i0, iN, ord) {
+  var n = ((iN - i0) | 0);
+  if ((n < 2)) {
+    return (void 0)
+  };
+  if (($n(ord).compare__O__O__I($m_sr_ScalaRunTime$().array_apply__O__I__O(a, i0), $m_sr_ScalaRunTime$().array_apply__O__I__O(a, ((1 + i0) | 0))) > 0)) {
+    var temp = $m_sr_ScalaRunTime$().array_apply__O__I__O(a, i0);
+    $m_sr_ScalaRunTime$().array_update__O__I__O__V(a, i0, $m_sr_ScalaRunTime$().array_apply__O__I__O(a, ((1 + i0) | 0)));
+    $m_sr_ScalaRunTime$().array_update__O__I__O__V(a, ((1 + i0) | 0), temp)
+  };
+  var m = 2;
+  while ((m < n)) {
+    var next = $m_sr_ScalaRunTime$().array_apply__O__I__O(a, ((i0 + m) | 0));
+    if (($n(ord).compare__O__O__I(next, $m_sr_ScalaRunTime$().array_apply__O__I__O(a, (((-1) + ((i0 + m) | 0)) | 0))) < 0)) {
+      var iA = i0;
+      var iB = (((-1) + ((i0 + m) | 0)) | 0);
+      while ((((iB - iA) | 0) > 1)) {
+        var ix = ((((iA + iB) | 0) >>> 1) | 0);
+        if (($n(ord).compare__O__O__I(next, $m_sr_ScalaRunTime$().array_apply__O__I__O(a, ix)) < 0)) {
+          iB = ix
+        } else {
+          iA = ix
+        }
+      };
+      var ix$2 = ((iA + (($n(ord).compare__O__O__I(next, $m_sr_ScalaRunTime$().array_apply__O__I__O(a, iA)) < 0) ? 0 : 1)) | 0);
+      var i = ((i0 + m) | 0);
+      while ((i > ix$2)) {
+        $m_sr_ScalaRunTime$().array_update__O__I__O__V(a, i, $m_sr_ScalaRunTime$().array_apply__O__I__O(a, (((-1) + i) | 0)));
+        i = (((-1) + i) | 0)
+      };
+      $m_sr_ScalaRunTime$().array_update__O__I__O__V(a, ix$2, next)
+    };
+    m = ((1 + m) | 0)
+  }
+});
+$c_s_util_Sorting$.prototype.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V = (function(a, i0, iN, ord, scratch, evidence$2) {
+  if ((((iN - i0) | 0) < 32)) {
+    this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(a, i0, iN, ord)
+  } else {
+    var iK = ((((i0 + iN) | 0) >>> 1) | 0);
+    var sc = ((scratch === null) ? $n(evidence$2).newArray__I__O(((iK - i0) | 0)) : scratch);
+    this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(a, i0, iK, ord, sc, evidence$2);
+    this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(a, iK, iN, ord, sc, evidence$2);
+    this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(a, i0, iK, iN, ord, sc)
+  }
+});
+$c_s_util_Sorting$.prototype.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V = (function(a, i0, iK, iN, ord, scratch) {
+  if (($n(ord).compare__O__O__I($m_sr_ScalaRunTime$().array_apply__O__I__O(a, (((-1) + iK) | 0)), $m_sr_ScalaRunTime$().array_apply__O__I__O(a, iK)) > 0)) {
+    var i = i0;
+    var jN = ((iK - i0) | 0);
+    var j = 0;
+    while ((i < iK)) {
+      $m_sr_ScalaRunTime$().array_update__O__I__O__V(scratch, j, $m_sr_ScalaRunTime$().array_apply__O__I__O(a, i));
+      i = ((1 + i) | 0);
+      j = ((1 + j) | 0)
+    };
+    var k = i0;
+    j = 0;
+    while (((i < iN) && (j < jN))) {
+      if (($n(ord).compare__O__O__I($m_sr_ScalaRunTime$().array_apply__O__I__O(a, i), $m_sr_ScalaRunTime$().array_apply__O__I__O(scratch, j)) < 0)) {
+        $m_sr_ScalaRunTime$().array_update__O__I__O__V(a, k, $m_sr_ScalaRunTime$().array_apply__O__I__O(a, i));
+        i = ((1 + i) | 0)
+      } else {
+        $m_sr_ScalaRunTime$().array_update__O__I__O__V(a, k, $m_sr_ScalaRunTime$().array_apply__O__I__O(scratch, j));
+        j = ((1 + j) | 0)
+      };
+      k = ((1 + k) | 0)
+    };
+    while ((j < jN)) {
+      $m_sr_ScalaRunTime$().array_update__O__I__O__V(a, k, $m_sr_ScalaRunTime$().array_apply__O__I__O(scratch, j));
+      j = ((1 + j) | 0);
+      k = ((1 + k) | 0)
+    }
+  }
+});
+$c_s_util_Sorting$.prototype.scala$util$Sorting$$booleanSort__AZ__I__I__V = (function(a, from, until) {
+  var i = from;
+  var n = 0;
+  while ((i < until)) {
+    if ((!$n(a).get(i))) {
+      n = ((1 + n) | 0)
+    };
+    i = ((1 + i) | 0)
+  };
+  i = 0;
+  while ((i < n)) {
+    $n(a).set(((from + i) | 0), false);
+    i = ((1 + i) | 0)
+  };
+  while ((((from + i) | 0) < until)) {
+    $n(a).set(((from + i) | 0), true);
+    i = ((1 + i) | 0)
+  }
+});
+$c_s_util_Sorting$.prototype.stableSort__O__I__I__s_math_Ordering__V = (function(a, from, until, evidence$4) {
+  if ((a instanceof $ac_O)) {
+    if ((($m_jl_reflect_Array$().getLength__O__I(a) > 1) && (evidence$4 === null))) {
+      throw $ct_jl_NullPointerException__T__(new $c_jl_NullPointerException(), "Ordering")
+    };
+    var array = $asArrayOf_O(a, 1);
+    $m_ju_Arrays$().sort__AO__I__I__ju_Comparator__V(array, from, until, evidence$4)
+  } else if ((a instanceof $ac_I)) {
+    var x3 = $asArrayOf_I(a, 1);
+    if ((evidence$4 === $m_s_math_Ordering$Int$())) {
+      $m_ju_Arrays$().sort__AI__I__I__V(x3, from, until)
+    } else {
+      var evidence$2 = $m_s_reflect_ManifestFactory$IntManifest$();
+      if ((((until - from) | 0) < 32)) {
+        this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x3, from, until, evidence$4)
+      } else {
+        var iK = ((((from + until) | 0) >>> 1) | 0);
+        var len = ((iK - from) | 0);
+        var sc = new $ac_I(len);
+        if ((((iK - from) | 0) < 32)) {
+          this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x3, from, iK, evidence$4)
+        } else {
+          var iK$1 = ((((from + iK) | 0) >>> 1) | 0);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x3, from, iK$1, evidence$4, sc, evidence$2);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x3, iK$1, iK, evidence$4, sc, evidence$2);
+          this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x3, from, iK$1, iK, evidence$4, sc)
+        };
+        if ((((until - iK) | 0) < 32)) {
+          this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x3, iK, until, evidence$4)
+        } else {
+          var iK$2 = ((((iK + until) | 0) >>> 1) | 0);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x3, iK, iK$2, evidence$4, sc, evidence$2);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x3, iK$2, until, evidence$4, sc, evidence$2);
+          this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x3, iK, iK$2, until, evidence$4, sc)
+        };
+        this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x3, from, iK, until, evidence$4, sc)
+      }
+    }
+  } else if ((a instanceof $ac_D)) {
+    var x4 = $asArrayOf_D(a, 1);
+    var evidence$2$1 = $m_s_reflect_ManifestFactory$DoubleManifest$();
+    if ((((until - from) | 0) < 32)) {
+      this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x4, from, until, evidence$4)
+    } else {
+      var iK$3 = ((((from + until) | 0) >>> 1) | 0);
+      var len$1 = ((iK$3 - from) | 0);
+      var sc$1 = new $ac_D(len$1);
+      if ((((iK$3 - from) | 0) < 32)) {
+        this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x4, from, iK$3, evidence$4)
+      } else {
+        var iK$4 = ((((from + iK$3) | 0) >>> 1) | 0);
+        this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x4, from, iK$4, evidence$4, sc$1, evidence$2$1);
+        this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x4, iK$4, iK$3, evidence$4, sc$1, evidence$2$1);
+        this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x4, from, iK$4, iK$3, evidence$4, sc$1)
+      };
+      if ((((until - iK$3) | 0) < 32)) {
+        this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x4, iK$3, until, evidence$4)
+      } else {
+        var iK$5 = ((((iK$3 + until) | 0) >>> 1) | 0);
+        this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x4, iK$3, iK$5, evidence$4, sc$1, evidence$2$1);
+        this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x4, iK$5, until, evidence$4, sc$1, evidence$2$1);
+        this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x4, iK$3, iK$5, until, evidence$4, sc$1)
+      };
+      this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x4, from, iK$3, until, evidence$4, sc$1)
+    }
+  } else if ((a instanceof $ac_J)) {
+    var x5 = $asArrayOf_J(a, 1);
+    if ((evidence$4 === $m_s_math_Ordering$Long$())) {
+      $m_ju_Arrays$().sort__AJ__I__I__V(x5, from, until)
+    } else {
+      var evidence$2$2 = $m_s_reflect_ManifestFactory$LongManifest$();
+      if ((((until - from) | 0) < 32)) {
+        this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x5, from, until, evidence$4)
+      } else {
+        var iK$6 = ((((from + until) | 0) >>> 1) | 0);
+        var len$2 = ((iK$6 - from) | 0);
+        var sc$2 = new $ac_J(len$2);
+        if ((((iK$6 - from) | 0) < 32)) {
+          this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x5, from, iK$6, evidence$4)
+        } else {
+          var iK$7 = ((((from + iK$6) | 0) >>> 1) | 0);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x5, from, iK$7, evidence$4, sc$2, evidence$2$2);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x5, iK$7, iK$6, evidence$4, sc$2, evidence$2$2);
+          this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x5, from, iK$7, iK$6, evidence$4, sc$2)
+        };
+        if ((((until - iK$6) | 0) < 32)) {
+          this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x5, iK$6, until, evidence$4)
+        } else {
+          var iK$8 = ((((iK$6 + until) | 0) >>> 1) | 0);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x5, iK$6, iK$8, evidence$4, sc$2, evidence$2$2);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x5, iK$8, until, evidence$4, sc$2, evidence$2$2);
+          this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x5, iK$6, iK$8, until, evidence$4, sc$2)
+        };
+        this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x5, from, iK$6, until, evidence$4, sc$2)
+      }
+    }
+  } else if ((a instanceof $ac_F)) {
+    var x6 = $asArrayOf_F(a, 1);
+    var evidence$2$3 = $m_s_reflect_ManifestFactory$FloatManifest$();
+    if ((((until - from) | 0) < 32)) {
+      this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x6, from, until, evidence$4)
+    } else {
+      var iK$9 = ((((from + until) | 0) >>> 1) | 0);
+      var len$3 = ((iK$9 - from) | 0);
+      var sc$3 = new $ac_F(len$3);
+      if ((((iK$9 - from) | 0) < 32)) {
+        this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x6, from, iK$9, evidence$4)
+      } else {
+        var iK$10 = ((((from + iK$9) | 0) >>> 1) | 0);
+        this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x6, from, iK$10, evidence$4, sc$3, evidence$2$3);
+        this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x6, iK$10, iK$9, evidence$4, sc$3, evidence$2$3);
+        this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x6, from, iK$10, iK$9, evidence$4, sc$3)
+      };
+      if ((((until - iK$9) | 0) < 32)) {
+        this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x6, iK$9, until, evidence$4)
+      } else {
+        var iK$11 = ((((iK$9 + until) | 0) >>> 1) | 0);
+        this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x6, iK$9, iK$11, evidence$4, sc$3, evidence$2$3);
+        this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x6, iK$11, until, evidence$4, sc$3, evidence$2$3);
+        this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x6, iK$9, iK$11, until, evidence$4, sc$3)
+      };
+      this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x6, from, iK$9, until, evidence$4, sc$3)
+    }
+  } else if ((a instanceof $ac_C)) {
+    var x7 = $asArrayOf_C(a, 1);
+    if ((evidence$4 === $m_s_math_Ordering$Char$())) {
+      $m_ju_Arrays$().sort__AC__I__I__V(x7, from, until)
+    } else {
+      var evidence$2$4 = $m_s_reflect_ManifestFactory$CharManifest$();
+      if ((((until - from) | 0) < 32)) {
+        this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x7, from, until, evidence$4)
+      } else {
+        var iK$12 = ((((from + until) | 0) >>> 1) | 0);
+        var len$4 = ((iK$12 - from) | 0);
+        var sc$4 = new $ac_C(len$4);
+        if ((((iK$12 - from) | 0) < 32)) {
+          this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x7, from, iK$12, evidence$4)
+        } else {
+          var iK$13 = ((((from + iK$12) | 0) >>> 1) | 0);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x7, from, iK$13, evidence$4, sc$4, evidence$2$4);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x7, iK$13, iK$12, evidence$4, sc$4, evidence$2$4);
+          this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x7, from, iK$13, iK$12, evidence$4, sc$4)
+        };
+        if ((((until - iK$12) | 0) < 32)) {
+          this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x7, iK$12, until, evidence$4)
+        } else {
+          var iK$14 = ((((iK$12 + until) | 0) >>> 1) | 0);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x7, iK$12, iK$14, evidence$4, sc$4, evidence$2$4);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x7, iK$14, until, evidence$4, sc$4, evidence$2$4);
+          this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x7, iK$12, iK$14, until, evidence$4, sc$4)
+        };
+        this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x7, from, iK$12, until, evidence$4, sc$4)
+      }
+    }
+  } else if ((a instanceof $ac_B)) {
+    var x8 = $asArrayOf_B(a, 1);
+    if ((evidence$4 === $m_s_math_Ordering$Byte$())) {
+      $m_ju_Arrays$().sort__AB__I__I__V(x8, from, until)
+    } else {
+      var evidence$2$5 = $m_s_reflect_ManifestFactory$ByteManifest$();
+      if ((((until - from) | 0) < 32)) {
+        this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x8, from, until, evidence$4)
+      } else {
+        var iK$15 = ((((from + until) | 0) >>> 1) | 0);
+        var len$5 = ((iK$15 - from) | 0);
+        var sc$5 = new $ac_B(len$5);
+        if ((((iK$15 - from) | 0) < 32)) {
+          this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x8, from, iK$15, evidence$4)
+        } else {
+          var iK$16 = ((((from + iK$15) | 0) >>> 1) | 0);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x8, from, iK$16, evidence$4, sc$5, evidence$2$5);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x8, iK$16, iK$15, evidence$4, sc$5, evidence$2$5);
+          this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x8, from, iK$16, iK$15, evidence$4, sc$5)
+        };
+        if ((((until - iK$15) | 0) < 32)) {
+          this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x8, iK$15, until, evidence$4)
+        } else {
+          var iK$17 = ((((iK$15 + until) | 0) >>> 1) | 0);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x8, iK$15, iK$17, evidence$4, sc$5, evidence$2$5);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x8, iK$17, until, evidence$4, sc$5, evidence$2$5);
+          this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x8, iK$15, iK$17, until, evidence$4, sc$5)
+        };
+        this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x8, from, iK$15, until, evidence$4, sc$5)
+      }
+    }
+  } else if ((a instanceof $ac_S)) {
+    var x9 = $asArrayOf_S(a, 1);
+    if ((evidence$4 === $m_s_math_Ordering$Short$())) {
+      $m_ju_Arrays$().sort__AS__I__I__V(x9, from, until)
+    } else {
+      var evidence$2$6 = $m_s_reflect_ManifestFactory$ShortManifest$();
+      if ((((until - from) | 0) < 32)) {
+        this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x9, from, until, evidence$4)
+      } else {
+        var iK$18 = ((((from + until) | 0) >>> 1) | 0);
+        var len$6 = ((iK$18 - from) | 0);
+        var sc$6 = new $ac_S(len$6);
+        if ((((iK$18 - from) | 0) < 32)) {
+          this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x9, from, iK$18, evidence$4)
+        } else {
+          var iK$19 = ((((from + iK$18) | 0) >>> 1) | 0);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x9, from, iK$19, evidence$4, sc$6, evidence$2$6);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x9, iK$19, iK$18, evidence$4, sc$6, evidence$2$6);
+          this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x9, from, iK$19, iK$18, evidence$4, sc$6)
+        };
+        if ((((until - iK$18) | 0) < 32)) {
+          this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x9, iK$18, until, evidence$4)
+        } else {
+          var iK$20 = ((((iK$18 + until) | 0) >>> 1) | 0);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x9, iK$18, iK$20, evidence$4, sc$6, evidence$2$6);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x9, iK$20, until, evidence$4, sc$6, evidence$2$6);
+          this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x9, iK$18, iK$20, until, evidence$4, sc$6)
+        };
+        this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x9, from, iK$18, until, evidence$4, sc$6)
+      }
+    }
+  } else if ((a instanceof $ac_Z)) {
+    var x10 = $asArrayOf_Z(a, 1);
+    if ((evidence$4 === $m_s_math_Ordering$Boolean$())) {
+      this.scala$util$Sorting$$booleanSort__AZ__I__I__V(x10, from, until)
+    } else {
+      var evidence$2$7 = $m_s_reflect_ManifestFactory$BooleanManifest$();
+      if ((((until - from) | 0) < 32)) {
+        this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x10, from, until, evidence$4)
+      } else {
+        var iK$21 = ((((from + until) | 0) >>> 1) | 0);
+        var len$7 = ((iK$21 - from) | 0);
+        var sc$7 = new $ac_Z(len$7);
+        if ((((iK$21 - from) | 0) < 32)) {
+          this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x10, from, iK$21, evidence$4)
+        } else {
+          var iK$22 = ((((from + iK$21) | 0) >>> 1) | 0);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x10, from, iK$22, evidence$4, sc$7, evidence$2$7);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x10, iK$22, iK$21, evidence$4, sc$7, evidence$2$7);
+          this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x10, from, iK$22, iK$21, evidence$4, sc$7)
+        };
+        if ((((until - iK$21) | 0) < 32)) {
+          this.scala$util$Sorting$$insertionSort__O__I__I__s_math_Ordering__V(x10, iK$21, until, evidence$4)
+        } else {
+          var iK$23 = ((((iK$21 + until) | 0) >>> 1) | 0);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x10, iK$21, iK$23, evidence$4, sc$7, evidence$2$7);
+          this.scala$util$Sorting$$mergeSort__O__I__I__s_math_Ordering__O__s_reflect_ClassTag__V(x10, iK$23, until, evidence$4, sc$7, evidence$2$7);
+          this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x10, iK$21, iK$23, until, evidence$4, sc$7)
+        };
+        this.scala$util$Sorting$$mergeSorted__O__I__I__I__s_math_Ordering__O__V(x10, from, iK$21, until, evidence$4, sc$7)
+      }
+    }
+  } else if ((a === null)) {
+    throw $ct_jl_NullPointerException__(new $c_jl_NullPointerException())
+  } else {
+    throw new $c_s_MatchError(a)
+  }
+});
+var $d_s_util_Sorting$ = new $TypeData().initClass({
+  s_util_Sorting$: 0
+}, false, "scala.util.Sorting$", {
+  s_util_Sorting$: 1,
+  O: 1
+});
+$c_s_util_Sorting$.prototype.$classData = $d_s_util_Sorting$;
+var $n_s_util_Sorting$;
+function $m_s_util_Sorting$() {
+  if ((!$n_s_util_Sorting$)) {
+    $n_s_util_Sorting$ = new $c_s_util_Sorting$()
+  };
+  return $n_s_util_Sorting$
+}
 /** @constructor */
 function $c_s_util_control_NonFatal$() {
   /*<skip>*/
@@ -18852,8 +19992,9 @@ var $d_Lchartreuse_ToData$fromTraverse = new $TypeData().initClass({
 });
 $c_Lchartreuse_ToData$fromTraverse.prototype.$classData = $d_Lchartreuse_ToData$fromTraverse;
 /** @constructor */
-function $c_Lchartreuse_layout_Glyph$$anon$1() {
-  /*<skip>*/
+function $c_Lchartreuse_layout_Glyph$$anon$1(f$2) {
+  this.Lchartreuse_layout_Glyph$$anon$1__f_f$1 = null;
+  this.Lchartreuse_layout_Glyph$$anon$1__f_f$1 = f$2
 }
 $c_Lchartreuse_layout_Glyph$$anon$1.prototype = new $h_O();
 $c_Lchartreuse_layout_Glyph$$anon$1.prototype.constructor = $c_Lchartreuse_layout_Glyph$$anon$1;
@@ -18862,8 +20003,8 @@ function $h_Lchartreuse_layout_Glyph$$anon$1() {
   /*<skip>*/
 }
 $h_Lchartreuse_layout_Glyph$$anon$1.prototype = $c_Lchartreuse_layout_Glyph$$anon$1.prototype;
-$c_Lchartreuse_layout_Glyph$$anon$1.prototype.draw__D__Lchartreuse_theme_LayoutTheme__Ldoodle_algebra_Picture = (function(data, theme) {
-  return $n(theme).apply__Ldoodle_algebra_Picture__Lcats_Comonad__Ldoodle_algebra_Picture(new $c_Ldoodle_syntax_ShapeSyntax$$anon$4(data), ($m_Lcats_Invariant$(), $m_Lcats_package$().Lcats_package$__f_catsInstancesForId))
+$c_Lchartreuse_layout_Glyph$$anon$1.prototype.draw__O__Lchartreuse_theme_LayoutTheme__Ldoodle_algebra_Picture = (function(data, theme) {
+  return $n(theme).apply__Ldoodle_algebra_Picture__Lcats_Comonad__Ldoodle_algebra_Picture($as_Ldoodle_algebra_Picture($n(this.Lchartreuse_layout_Glyph$$anon$1__f_f$1).apply__O__O(data)), ($m_Lcats_Invariant$(), $m_Lcats_package$().Lcats_package$__f_catsInstancesForId))
 });
 var $d_Lchartreuse_layout_Glyph$$anon$1 = new $TypeData().initClass({
   Lchartreuse_layout_Glyph$$anon$1: 0
@@ -22015,6 +23156,35 @@ function $m_Ljava_math_RoundingMode$() {
   return $n_Ljava_math_RoundingMode$
 }
 /** @constructor */
+function $c_ju_Arrays$NaturalComparator$() {
+  /*<skip>*/
+}
+$c_ju_Arrays$NaturalComparator$.prototype = new $h_O();
+$c_ju_Arrays$NaturalComparator$.prototype.constructor = $c_ju_Arrays$NaturalComparator$;
+/** @constructor */
+function $h_ju_Arrays$NaturalComparator$() {
+  /*<skip>*/
+}
+$h_ju_Arrays$NaturalComparator$.prototype = $c_ju_Arrays$NaturalComparator$.prototype;
+$c_ju_Arrays$NaturalComparator$.prototype.compare__O__O__I = (function(o1, o2) {
+  return $dp_compareTo__O__I($n($as_jl_Comparable(o1)), o2)
+});
+var $d_ju_Arrays$NaturalComparator$ = new $TypeData().initClass({
+  ju_Arrays$NaturalComparator$: 0
+}, false, "java.util.Arrays$NaturalComparator$", {
+  ju_Arrays$NaturalComparator$: 1,
+  O: 1,
+  ju_Comparator: 1
+});
+$c_ju_Arrays$NaturalComparator$.prototype.$classData = $d_ju_Arrays$NaturalComparator$;
+var $n_ju_Arrays$NaturalComparator$;
+function $m_ju_Arrays$NaturalComparator$() {
+  if ((!$n_ju_Arrays$NaturalComparator$)) {
+    $n_ju_Arrays$NaturalComparator$ = new $c_ju_Arrays$NaturalComparator$()
+  };
+  return $n_ju_Arrays$NaturalComparator$
+}
+/** @constructor */
 function $c_ju_Formatter$RootLocaleInfo$() {
   /*<skip>*/
 }
@@ -22302,6 +23472,40 @@ var $d_ju_concurrent_atomic_AtomicReference = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_ju_concurrent_atomic_AtomicReference.prototype.$classData = $d_ju_concurrent_atomic_AtomicReference;
+/** @constructor */
+function $c_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$() {
+  /*<skip>*/
+}
+$c_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$.prototype = new $h_O();
+$c_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$.prototype.constructor = $c_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$;
+/** @constructor */
+function $h_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$() {
+  /*<skip>*/
+}
+$h_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$.prototype = $c_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$.prototype;
+$c_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$.prototype.set__O__I__O__V = (function(a, i, v) {
+  var a$1 = $asArrayOf_O(a, 1);
+  $n(a$1).set(i, v)
+});
+$c_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$.prototype.get__O__I__O = (function(a, i) {
+  var a$1 = $asArrayOf_O(a, 1);
+  return $n(a$1).get(i)
+});
+var $d_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$ = new $TypeData().initClass({
+  ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$: 0
+}, false, "java.util.internal.GenericArrayOps$ReusableAnyRefArrayOps$", {
+  ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$: 1,
+  O: 1,
+  ju_internal_GenericArrayOps$ArrayOps: 1
+});
+$c_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$.prototype.$classData = $d_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$;
+var $n_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$;
+function $m_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$() {
+  if ((!$n_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$)) {
+    $n_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$ = new $c_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$()
+  };
+  return $n_ju_internal_GenericArrayOps$ReusableAnyRefArrayOps$
+}
 function $p_ju_regex_Matcher__resetMatch__ju_regex_Matcher($thiz) {
   $thiz.ju_regex_Matcher__f_position = 0;
   $thiz.ju_regex_Matcher__f_lastMatch = null;
@@ -22733,6 +23937,34 @@ $c_s_Array$.prototype.copyOf__O__I__O = (function(original, newLength) {
     return $m_ju_Arrays$().copyOf__AZ__I__AZ(x11, newLength)
   } else {
     throw new $c_s_MatchError(original)
+  }
+});
+$c_s_Array$.prototype.copyAs__O__I__s_reflect_ClassTag__O = (function(original, newLength, ct) {
+  var runtimeClass = $n(ct).runtimeClass__jl_Class();
+  if ((runtimeClass !== null)) {
+    var this$1 = $n(runtimeClass);
+    var $$x1 = (this$1 === $d_V.getClassOf())
+  } else {
+    var $$x1 = false
+  };
+  if ($$x1) {
+    return $p_s_Array$__newUnitArray__I__Ajl_Void(this, newLength)
+  } else {
+    var this$2 = $n(original);
+    if ($n(runtimeClass).isAssignableFrom__jl_Class__Z($n($objectGetClass(this$2)).getComponentType__jl_Class())) {
+      if ($n(runtimeClass).isPrimitive__Z()) {
+        return this.copyOf__O__I__O(original, newLength)
+      } else {
+        var this$3 = $n($m_jl_reflect_Array$().newInstance__jl_Class__I__O(runtimeClass, 0));
+        var destArrayClass = $objectGetClass(this$3);
+        var original$1 = $asArrayOf_O(original, 1);
+        return $m_ju_Arrays$().copyOf__AO__I__jl_Class__AO(original$1, newLength, destArrayClass)
+      }
+    } else {
+      var dest = $n(ct).newArray__I__O(newLength);
+      $m_s_Array$().copy__O__I__O__I__I__V(original, 0, dest, 0, $m_jl_reflect_Array$().getLength__O__I(original));
+      return dest
+    }
   }
 });
 $c_s_Array$.prototype.equals__AO__AO__Z = (function(xs, ys) {
@@ -25943,7 +27175,7 @@ function $m_Lchartreuse_Plot$() {
 /** @constructor */
 function $c_Lchartreuse_component_AnnotationPosition$() {
   this.Lchartreuse_component_AnnotationPosition$__f_center = null;
-  this.Lchartreuse_component_AnnotationPosition$__f_topLeft = null;
+  this.Lchartreuse_component_AnnotationPosition$__f_bottomRight = null;
   $n_Lchartreuse_component_AnnotationPosition$ = this;
   $m_Lchartreuse_component_AnnotationPosition$();
   var landmark = $m_Ldoodle_core_Landmark$().Ldoodle_core_Landmark$__f_origin;
@@ -26025,7 +27257,7 @@ function $c_Lchartreuse_component_AnnotationPosition$() {
     var y$4 = ($n(pt$7).Ldoodle_core_Point$Cartesian__f_y + margin$6);
     return new $c_Ldoodle_core_Point$Cartesian(x$4, y$4)
   }));
-  this.Lchartreuse_component_AnnotationPosition$__f_topLeft = new $c_Lchartreuse_component_AnnotationPosition(landmark$5, arrowAngle$5, toPoint$5);
+  new $c_Lchartreuse_component_AnnotationPosition(landmark$5, arrowAngle$5, toPoint$5);
   $m_Lchartreuse_component_AnnotationPosition$();
   var landmark$6 = $m_Ldoodle_core_Landmark$().Ldoodle_core_Landmark$__f_bottomLeft;
   var this$30 = $m_Ldoodle_syntax_package$all$();
@@ -26067,7 +27299,7 @@ function $c_Lchartreuse_component_AnnotationPosition$() {
     var y$7 = ($n(pt$10).Ldoodle_core_Point$Cartesian__f_y - margin$9);
     return new $c_Ldoodle_core_Point$Cartesian(x$7, y$7)
   }));
-  new $c_Lchartreuse_component_AnnotationPosition(landmark$8, arrowAngle$8, toPoint$8)
+  this.Lchartreuse_component_AnnotationPosition$__f_bottomRight = new $c_Lchartreuse_component_AnnotationPosition(landmark$8, arrowAngle$8, toPoint$8)
 }
 $c_Lchartreuse_component_AnnotationPosition$.prototype = new $h_O();
 $c_Lchartreuse_component_AnnotationPosition$.prototype.constructor = $c_Lchartreuse_component_AnnotationPosition$;
@@ -27920,6 +29152,23 @@ $c_jl_Enum.prototype.equals__O__Z = (function(that) {
 $c_jl_Enum.prototype.hashCode__I = (function() {
   return $systemIdentityHashCode(this)
 });
+$c_jl_Enum.prototype.compareTo__jl_Enum__I = (function(o) {
+  var x = this.jl_Enum__f__ordinal;
+  var y = $n(o).jl_Enum__f__ordinal;
+  return ((x === y) ? 0 : ((x < y) ? (-1) : 1))
+});
+$c_jl_Enum.prototype.compareTo__O__I = (function(o) {
+  return this.compareTo__jl_Enum__I($as_jl_Enum(o))
+});
+function $as_jl_Enum(obj) {
+  return (((obj instanceof $c_jl_Enum) || (obj === null)) ? obj : $throwClassCastException(obj, "java.lang.Enum"))
+}
+function $isArrayOf_jl_Enum(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.jl_Enum)))
+}
+function $asArrayOf_jl_Enum(obj, depth) {
+  return (($isArrayOf_jl_Enum(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ljava.lang.Enum;", depth))
+}
 class $c_jl_Error extends $c_jl_Throwable {
 }
 function $ct_jl_Exception__T__($thiz, s) {
@@ -28850,6 +30099,202 @@ $c_sci_BitmapIndexedMapNode.prototype.copy__sci_BitmapIndexedMapNode = (function
   var this$2 = $n(this.sci_BitmapIndexedMapNode__f_originalHashes);
   return new $c_sci_BitmapIndexedMapNode($$x2, $$x1, contentClone, $n(this$2).clone__O(), this.sci_BitmapIndexedMapNode__f_size, this.sci_BitmapIndexedMapNode__f_cachedJavaKeySetHashCode)
 });
+$c_sci_BitmapIndexedMapNode.prototype.filterImpl__F1__Z__sci_BitmapIndexedMapNode = (function(pred, flipped) {
+  if ((this.sci_BitmapIndexedMapNode__f_size === 0)) {
+    return this
+  } else if ((this.sci_BitmapIndexedMapNode__f_size === 1)) {
+    if (($uZ($n(pred).apply__O__O(this.getPayload__I__T2(0))) !== flipped)) {
+      return this
+    } else {
+      var this$1 = $m_sci_MapNode$();
+      return this$1.sci_MapNode$__f_EmptyMapNode
+    }
+  } else if ((this.sci_BitmapIndexedMapNode__f_nodeMap === 0)) {
+    var i = this.sci_BitmapIndexedMapNode__f_dataMap;
+    if ((i === 0)) {
+      var minimumIndex = 32
+    } else {
+      var i$1 = (i & ((-i) | 0));
+      var minimumIndex = ((31 - $uI(Math.clz32(i$1))) | 0)
+    };
+    var i$2 = this.sci_BitmapIndexedMapNode__f_dataMap;
+    var maximumIndex = ((32 - $uI(Math.clz32(i$2))) | 0);
+    var newDataMap = 0;
+    var newCachedHashCode = 0;
+    var dataIndex = 0;
+    var i$3 = minimumIndex;
+    while ((i$3 < maximumIndex)) {
+      var bitpos = $m_sci_Node$().bitposFrom__I__I(i$3);
+      if (((bitpos & this.sci_BitmapIndexedMapNode__f_dataMap) !== 0)) {
+        var payload = this.getPayload__I__T2(dataIndex);
+        var passed = ($uZ($n(pred).apply__O__O(payload)) !== flipped);
+        if (passed) {
+          newDataMap = (newDataMap | bitpos);
+          newCachedHashCode = ((newCachedHashCode + $m_sc_Hashing$().improve__I__I(this.getHash__I__I(dataIndex))) | 0)
+        };
+        dataIndex = ((1 + dataIndex) | 0)
+      };
+      i$3 = ((1 + i$3) | 0)
+    };
+    if ((newDataMap === 0)) {
+      var this$4 = $m_sci_MapNode$();
+      return this$4.sci_MapNode$__f_EmptyMapNode
+    } else if ((newDataMap === this.sci_BitmapIndexedMapNode__f_dataMap)) {
+      return this
+    } else {
+      var i$4 = newDataMap;
+      var newSize = $m_jl_Integer$().bitCount__I__I(i$4);
+      var newContent = new $ac_O((newSize << 1));
+      var newOriginalHashCodes = new $ac_I(newSize);
+      var i$5 = newDataMap;
+      var newMaximumIndex = ((32 - $uI(Math.clz32(i$5))) | 0);
+      var i$6 = newDataMap;
+      if ((i$6 === 0)) {
+        var j = 32
+      } else {
+        var i$7 = (i$6 & ((-i$6) | 0));
+        var j = ((31 - $uI(Math.clz32(i$7))) | 0)
+      };
+      var newDataIndex = 0;
+      while ((j < newMaximumIndex)) {
+        var bitpos$2 = $m_sci_Node$().bitposFrom__I__I(j);
+        if (((bitpos$2 & newDataMap) !== 0)) {
+          var oldIndex = $m_sci_Node$().indexFrom__I__I__I(this.sci_BitmapIndexedMapNode__f_dataMap, bitpos$2);
+          $n(newContent).set((newDataIndex << 1), $n(this.sci_BitmapIndexedMapNode__f_content).get((oldIndex << 1)));
+          $n(newContent).set(((1 + (newDataIndex << 1)) | 0), $n(this.sci_BitmapIndexedMapNode__f_content).get(((1 + (oldIndex << 1)) | 0)));
+          $n(newOriginalHashCodes).set(newDataIndex, $n(this.sci_BitmapIndexedMapNode__f_originalHashes).get(oldIndex));
+          newDataIndex = ((1 + newDataIndex) | 0)
+        };
+        j = ((1 + j) | 0)
+      };
+      return new $c_sci_BitmapIndexedMapNode(newDataMap, 0, newContent, newOriginalHashCodes, newSize, newCachedHashCode)
+    }
+  } else {
+    var allMap = (this.sci_BitmapIndexedMapNode__f_dataMap | this.sci_BitmapIndexedMapNode__f_nodeMap);
+    if ((allMap === 0)) {
+      var minimumIndex$2 = 32
+    } else {
+      var i$8 = (allMap & ((-allMap) | 0));
+      var minimumIndex$2 = ((31 - $uI(Math.clz32(i$8))) | 0)
+    };
+    var maximumIndex$2 = ((32 - $uI(Math.clz32(allMap))) | 0);
+    var oldDataPassThrough = 0;
+    var nodeMigrateToDataTargetMap = 0;
+    var nodesToMigrateToData = null;
+    var nodesToPassThroughMap = 0;
+    var mapOfNewNodes = 0;
+    var newNodes = null;
+    var newDataMap$2 = 0;
+    var newNodeMap = 0;
+    var newSize$2 = 0;
+    var newCachedHashCode$2 = 0;
+    var dataIndex$2 = 0;
+    var nodeIndex = 0;
+    var i$2$1 = minimumIndex$2;
+    while ((i$2$1 < maximumIndex$2)) {
+      var bitpos$3 = $m_sci_Node$().bitposFrom__I__I(i$2$1);
+      if (((bitpos$3 & this.sci_BitmapIndexedMapNode__f_dataMap) !== 0)) {
+        var payload$2 = this.getPayload__I__T2(dataIndex$2);
+        var passed$2 = ($uZ($n(pred).apply__O__O(payload$2)) !== flipped);
+        if (passed$2) {
+          newDataMap$2 = (newDataMap$2 | bitpos$3);
+          oldDataPassThrough = (oldDataPassThrough | bitpos$3);
+          newSize$2 = ((1 + newSize$2) | 0);
+          newCachedHashCode$2 = ((newCachedHashCode$2 + $m_sc_Hashing$().improve__I__I(this.getHash__I__I(dataIndex$2))) | 0)
+        };
+        dataIndex$2 = ((1 + dataIndex$2) | 0)
+      } else if (((bitpos$3 & this.sci_BitmapIndexedMapNode__f_nodeMap) !== 0)) {
+        var oldSubNode = this.getNode__I__sci_MapNode(nodeIndex);
+        var newSubNode = $n(oldSubNode).filterImpl__F1__Z__sci_MapNode(pred, flipped);
+        newSize$2 = ((newSize$2 + $n(newSubNode).size__I()) | 0);
+        newCachedHashCode$2 = ((newCachedHashCode$2 + $n(newSubNode).cachedJavaKeySetHashCode__I()) | 0);
+        if (($n(newSubNode).size__I() > 1)) {
+          newNodeMap = (newNodeMap | bitpos$3);
+          if ((oldSubNode === newSubNode)) {
+            nodesToPassThroughMap = (nodesToPassThroughMap | bitpos$3)
+          } else {
+            mapOfNewNodes = (mapOfNewNodes | bitpos$3);
+            if ((newNodes === null)) {
+              newNodes = new $c_scm_Queue(16)
+            };
+            var this$10 = $n(newNodes);
+            this$10.addOne__O__scm_ArrayDeque(newSubNode)
+          }
+        } else if (($n(newSubNode).size__I() === 1)) {
+          newDataMap$2 = (newDataMap$2 | bitpos$3);
+          nodeMigrateToDataTargetMap = (nodeMigrateToDataTargetMap | bitpos$3);
+          if ((nodesToMigrateToData === null)) {
+            var elems = $m_sci_Nil$();
+            var this$12 = new $c_scm_Queue(16);
+            nodesToMigrateToData = $as_scm_Queue(this$12.addAll__sc_IterableOnce__scm_ArrayDeque(elems))
+          };
+          var this$13 = $n(nodesToMigrateToData);
+          this$13.addOne__O__scm_ArrayDeque(newSubNode)
+        };
+        nodeIndex = ((1 + nodeIndex) | 0)
+      };
+      i$2$1 = ((1 + i$2$1) | 0)
+    };
+    if ((newSize$2 === 0)) {
+      var this$14 = $m_sci_MapNode$();
+      return this$14.sci_MapNode$__f_EmptyMapNode
+    } else if ((newSize$2 === this.sci_BitmapIndexedMapNode__f_size)) {
+      return this
+    } else {
+      var i$9 = newDataMap$2;
+      var newDataSize = $m_jl_Integer$().bitCount__I__I(i$9);
+      var i$10 = newNodeMap;
+      var newContentSize = (((newDataSize << 1) + $m_jl_Integer$().bitCount__I__I(i$10)) | 0);
+      var newContent$2 = new $ac_O(newContentSize);
+      var newOriginalHashes = new $ac_I(newDataSize);
+      var newAllMap = (newDataMap$2 | newNodeMap);
+      var maxIndex = ((32 - $uI(Math.clz32(newAllMap))) | 0);
+      var i$3$1 = minimumIndex$2;
+      var oldDataIndex = 0;
+      var oldNodeIndex = 0;
+      var newDataIndex$2 = 0;
+      var newNodeIndex = 0;
+      while ((i$3$1 < maxIndex)) {
+        var bitpos$4 = $m_sci_Node$().bitposFrom__I__I(i$3$1);
+        if (((bitpos$4 & oldDataPassThrough) !== 0)) {
+          $n(newContent$2).set((newDataIndex$2 << 1), this.getKey__I__O(oldDataIndex));
+          $n(newContent$2).set(((1 + (newDataIndex$2 << 1)) | 0), this.getValue__I__O(oldDataIndex));
+          $n(newOriginalHashes).set(newDataIndex$2, this.getHash__I__I(oldDataIndex));
+          newDataIndex$2 = ((1 + newDataIndex$2) | 0);
+          oldDataIndex = ((1 + oldDataIndex) | 0)
+        } else if (((bitpos$4 & nodesToPassThroughMap) !== 0)) {
+          $n(newContent$2).set((((-1) + ((newContentSize - newNodeIndex) | 0)) | 0), this.getNode__I__sci_MapNode(oldNodeIndex));
+          newNodeIndex = ((1 + newNodeIndex) | 0);
+          oldNodeIndex = ((1 + oldNodeIndex) | 0)
+        } else if (((bitpos$4 & nodeMigrateToDataTargetMap) !== 0)) {
+          var this$16 = $n(nodesToMigrateToData);
+          var node = $as_sci_MapNode(this$16.removeHead__Z__O(false));
+          $n(newContent$2).set((newDataIndex$2 << 1), $n(node).getKey__I__O(0));
+          $n(newContent$2).set(((1 + (newDataIndex$2 << 1)) | 0), $n(node).getValue__I__O(0));
+          $n(newOriginalHashes).set(newDataIndex$2, $n(node).getHash__I__I(0));
+          newDataIndex$2 = ((1 + newDataIndex$2) | 0);
+          oldNodeIndex = ((1 + oldNodeIndex) | 0)
+        } else if (((bitpos$4 & mapOfNewNodes) !== 0)) {
+          var $$x2 = $n(newContent$2);
+          var $$x1 = newNodeIndex;
+          var this$17 = $n(newNodes);
+          $$x2.set((((-1) + ((newContentSize - $$x1) | 0)) | 0), this$17.removeHead__Z__O(false));
+          newNodeIndex = ((1 + newNodeIndex) | 0);
+          oldNodeIndex = ((1 + oldNodeIndex) | 0)
+        } else if (((bitpos$4 & this.sci_BitmapIndexedMapNode__f_dataMap) !== 0)) {
+          oldDataIndex = ((1 + oldDataIndex) | 0)
+        } else if (((bitpos$4 & this.sci_BitmapIndexedMapNode__f_nodeMap) !== 0)) {
+          oldNodeIndex = ((1 + oldNodeIndex) | 0)
+        };
+        i$3$1 = ((1 + i$3$1) | 0)
+      };
+      return new $c_sci_BitmapIndexedMapNode(newDataMap$2, newNodeMap, newContent$2, newOriginalHashes, newSize$2, newCachedHashCode$2)
+    }
+  }
+});
+$c_sci_BitmapIndexedMapNode.prototype.filterImpl__F1__Z__sci_MapNode = (function(pred, isFlipped) {
+  return this.filterImpl__F1__Z__sci_BitmapIndexedMapNode(pred, isFlipped)
+});
 $c_sci_BitmapIndexedMapNode.prototype.copy__sci_MapNode = (function() {
   return this.copy__sci_BitmapIndexedMapNode()
 });
@@ -29650,6 +31095,24 @@ $c_sci_HashCollisionMapNode.prototype.equals__O__Z = (function(that) {
     }
   } else {
     return false
+  }
+});
+$c_sci_HashCollisionMapNode.prototype.filterImpl__F1__Z__sci_MapNode = (function(pred, flipped) {
+  var newContent = $n(this.sci_HashCollisionMapNode__f_content).filterImpl__F1__Z__sci_Vector(pred, flipped);
+  var newContentLength = $n(newContent).length__I();
+  if ((newContentLength === 0)) {
+    var this$1 = $m_sci_MapNode$();
+    return this$1.sci_MapNode$__f_EmptyMapNode
+  } else if ((newContentLength === 1)) {
+    var x1 = $as_T2($n(newContent).head__O());
+    if ((x1 === null)) {
+      throw new $c_s_MatchError(x1)
+    };
+    var k = $n(x1).T2__f__1;
+    var v = $n(x1).T2__f__2;
+    return new $c_sci_BitmapIndexedMapNode($m_sci_Node$().bitposFrom__I__I($m_sci_Node$().maskFrom__I__I__I(this.sci_HashCollisionMapNode__f_hash, 0)), 0, new $ac_O([k, v]), new $ac_I(new Int32Array([this.sci_HashCollisionMapNode__f_originalHash])), 1, this.sci_HashCollisionMapNode__f_hash)
+  } else {
+    return ((newContentLength === $n(this.sci_HashCollisionMapNode__f_content).length__I()) ? this : new $c_sci_HashCollisionMapNode(this.sci_HashCollisionMapNode__f_originalHash, this.sci_HashCollisionMapNode__f_hash, newContent))
   }
 });
 $c_sci_HashCollisionMapNode.prototype.hashCode__I = (function() {
@@ -31209,6 +32672,10 @@ $c_Lcats_data_Chain$ChainIterator.prototype.copyToArray__O__I__I__I = (function(
 });
 $c_Lcats_data_Chain$ChainIterator.prototype.addString__scm_StringBuilder__T__T__T__scm_StringBuilder = (function(b, start, sep, end) {
   return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
+});
+$c_Lcats_data_Chain$ChainIterator.prototype.toList__sci_List = (function() {
+  $m_sci_List$();
+  return $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this)
 });
 $c_Lcats_data_Chain$ChainIterator.prototype.toArray__s_reflect_ClassTag__O = (function(evidence$2) {
   return $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O(this, evidence$2)
@@ -33194,15 +34661,13 @@ var $d_Lcats_kernel_instances_StringMonoid = new $TypeData().initClass({
 });
 $c_Lcats_kernel_instances_StringMonoid.prototype.$classData = $d_Lcats_kernel_instances_StringMonoid;
 /** @constructor */
-function $c_Lchartreuse_Layer(data, toPoint, scale, layout, label) {
+function $c_Lchartreuse_Layer(data, toPoint, layout, label) {
   this.Lchartreuse_Layer__f_data = null;
   this.Lchartreuse_Layer__f_toPoint = null;
-  this.Lchartreuse_Layer__f_scale = null;
   this.Lchartreuse_Layer__f_layout = null;
   this.Lchartreuse_Layer__f_label = null;
   this.Lchartreuse_Layer__f_data = data;
   this.Lchartreuse_Layer__f_toPoint = toPoint;
-  this.Lchartreuse_Layer__f_scale = scale;
   this.Lchartreuse_Layer__f_layout = layout;
   this.Lchartreuse_Layer__f_label = label
 }
@@ -33230,26 +34695,14 @@ $c_Lchartreuse_Layer.prototype.equals__O__Z = (function(x$0) {
     if (((x === null) ? (x$2 === null) : $n(x).equals__O__Z(x$2))) {
       var x$3 = this.Lchartreuse_Layer__f_toPoint;
       var x$4 = $n(x$0$2).Lchartreuse_Layer__f_toPoint;
-      var $$x3 = ((x$3 === null) ? (x$4 === null) : $n(x$3).equals__O__Z(x$4))
-    } else {
-      var $$x3 = false
-    };
-    if ($$x3) {
-      var x$5 = this.Lchartreuse_Layer__f_scale;
-      var x$6 = $n(x$0$2).Lchartreuse_Layer__f_scale;
-      if ((x$5 === null)) {
-        var $$x2 = (x$6 === null)
-      } else {
-        var this$1 = $n(x$5);
-        var $$x2 = (this$1 === x$6)
-      }
+      var $$x2 = ((x$3 === null) ? (x$4 === null) : $n(x$3).equals__O__Z(x$4))
     } else {
       var $$x2 = false
     };
     if ($$x2) {
-      var x$7 = this.Lchartreuse_Layer__f_layout;
-      var x$8 = $n(x$0$2).Lchartreuse_Layer__f_layout;
-      var $$x1 = ((x$7 === null) ? (x$8 === null) : $n(x$7).equals__O__Z(x$8))
+      var x$5 = this.Lchartreuse_Layer__f_layout;
+      var x$6 = $n(x$0$2).Lchartreuse_Layer__f_layout;
+      var $$x1 = ((x$5 === null) ? (x$6 === null) : $n(x$5).equals__O__Z(x$6))
     } else {
       var $$x1 = false
     };
@@ -33266,7 +34719,7 @@ $c_Lchartreuse_Layer.prototype.toString__T = (function() {
   return $m_sr_ScalaRunTime$()._toString__s_Product__T(this)
 });
 $c_Lchartreuse_Layer.prototype.productArity__I = (function() {
-  return 5
+  return 4
 });
 $c_Lchartreuse_Layer.prototype.productPrefix__T = (function() {
   return "Layer"
@@ -33282,14 +34735,10 @@ $c_Lchartreuse_Layer.prototype.productElement__I__O = (function(n) {
       break
     }
     case 2: {
-      return this.Lchartreuse_Layer__f_scale;
-      break
-    }
-    case 3: {
       return this.Lchartreuse_Layer__f_layout;
       break
     }
-    case 4: {
+    case 3: {
       return this.Lchartreuse_Layer__f_label;
       break
     }
@@ -33297,11 +34746,6 @@ $c_Lchartreuse_Layer.prototype.productElement__I__O = (function(n) {
       throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
     }
   }
-});
-$c_Lchartreuse_Layer.prototype.draw__I__I__Lchartreuse_theme_LayoutTheme__Ldoodle_algebra_Picture = (function(width, height, theme) {
-  var bb = $n(this.Lchartreuse_Layer__f_data).boundingBox__F1__Ldoodle_core_BoundingBox(this.Lchartreuse_Layer__f_toPoint);
-  var s = $n(this.Lchartreuse_Layer__f_scale).build__Ldoodle_core_BoundingBox__I__I__Lchartreuse_Bijection(bb, width, height);
-  return $n(this.Lchartreuse_Layer__f_layout).draw__Lchartreuse_Data__F1__F1__Lchartreuse_theme_LayoutTheme__Ldoodle_algebra_Picture(this.Lchartreuse_Layer__f_data, this.Lchartreuse_Layer__f_toPoint, s, theme)
 });
 function $as_Lchartreuse_Layer(obj) {
   return (((obj instanceof $c_Lchartreuse_Layer) || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.Layer"))
@@ -33602,20 +35046,21 @@ $c_Lchartreuse_Plot.prototype.draw__I__I__Lchartreuse_theme_PlotTheme__Ldoodle_a
   $m_Lcats_Invariant$();
   $m_Lcats_package$();
   var that = new $c_Lchartreuse_theme_PlotTheme$$anon$1(this$11);
-  var this$13 = $n($as_sci_List($f_sc_StrictOptimizedIterableOps__zip__sc_IterableOnce__O(this$12, that)));
+  var this$14 = $n($as_sci_List($f_sc_StrictOptimizedIterableOps__zip__sc_IterableOnce__O(this$12, that)));
   var f = ((x$1) => {
     var x$1$1 = $as_T2(x$1);
     var layer$1 = $as_Lchartreuse_Layer($n(x$1$1).T2__f__1);
     var theme$1 = $as_Lchartreuse_theme_LayoutTheme($n(x$1$1).T2__f__2);
-    return $n(layer$1).draw__I__I__Lchartreuse_theme_LayoutTheme__Ldoodle_algebra_Picture(width, height, theme$1)
+    var this$13 = $n(layer$1);
+    return $n(this$13.Lchartreuse_Layer__f_layout).draw__Lchartreuse_Data__F1__F1__Lchartreuse_theme_LayoutTheme__Ldoodle_algebra_Picture(this$13.Lchartreuse_Layer__f_data, this$13.Lchartreuse_Layer__f_toPoint, scale, theme$1)
   });
-  if ((this$13 === $m_sci_Nil$())) {
+  if ((this$14 === $m_sci_Nil$())) {
     var $$x2 = $m_sci_Nil$()
   } else {
-    var arg1$1 = this$13.head__O();
+    var arg1$1 = this$14.head__O();
     var h = new $c_sci_$colon$colon(f(arg1$1), $m_sci_Nil$());
     var t = h;
-    var rest = $as_sci_List(this$13.tail__O());
+    var rest = $as_sci_List(this$14.tail__O());
     while ((rest !== $m_sci_Nil$())) {
       var arg1$2 = $n(rest).head__O();
       var nx = new $c_sci_$colon$colon(f(arg1$2), $m_sci_Nil$());
@@ -33625,92 +35070,92 @@ $c_Lchartreuse_Plot.prototype.draw__I__I__Lchartreuse_theme_PlotTheme__Ldoodle_a
     };
     var $$x2 = h
   };
-  var this$15 = $n($$x2);
+  var this$16 = $n($$x2);
   var z$1 = new $c_Ldoodle_syntax_ShapeSyntax$$anon$5();
   var acc$1 = z$1;
-  var these$1 = this$15;
+  var these$1 = this$16;
   while ((!$n(these$1).isEmpty__Z())) {
     var arg1$3 = acc$1;
     var arg2$1 = $n(these$1).head__O();
     var _$1 = $as_Ldoodle_algebra_Picture(arg1$3);
     var _$2 = $as_Ldoodle_algebra_Picture(arg2$1);
-    var this$16 = $m_Ldoodle_syntax_package$all$();
-    var this$18 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$16, _$1);
+    var this$17 = $m_Ldoodle_syntax_package$all$();
+    var this$19 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$17, _$1);
     var s = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-    acc$1 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(_$2, s, this$18);
+    acc$1 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(_$2, s, this$19);
     these$1 = $as_sc_LinearSeq($n(these$1).tail__O())
   };
   var allLayers = $as_Ldoodle_algebra_Picture(acc$1);
-  var this$20 = $n(this.Lchartreuse_Plot__f_annotations);
+  var this$21 = $n(this.Lchartreuse_Plot__f_annotations);
   var z$2 = new $c_Ldoodle_syntax_ShapeSyntax$$anon$5();
   var acc$2 = z$2;
-  var these$2 = this$20;
+  var these$2 = this$21;
   while ((!$n(these$2).isEmpty__Z())) {
     var arg1$4 = acc$2;
     var arg2$2 = $n(these$2).head__O();
     var acc$3 = $as_Ldoodle_algebra_Picture(arg1$4);
     var annotation = $as_Lchartreuse_component_Annotation(arg2$2);
-    var this$21 = $m_Ldoodle_syntax_package$all$();
-    var this$23 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$21, acc$3);
+    var this$22 = $m_Ldoodle_syntax_package$all$();
+    var this$24 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$22, acc$3);
     var that$1 = $n(annotation).draw__Lchartreuse_Bijection__Ldoodle_algebra_Picture(scale);
     var s$1 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-    acc$2 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$1, s$1, this$23);
+    acc$2 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$1, s$1, this$24);
     these$2 = $as_sc_LinearSeq($n(these$2).tail__O())
   };
   var allAnnotations = $as_Ldoodle_algebra_Picture(acc$2);
-  var this$27 = $m_Ldoodle_syntax_package$all$();
-  var this$25 = $m_Ldoodle_syntax_package$all$();
+  var this$28 = $m_Ldoodle_syntax_package$all$();
+  var this$26 = $m_Ldoodle_syntax_package$all$();
   var text = this.Lchartreuse_Plot__f_plotTitle;
   var picture = new $c_Ldoodle_syntax_TextSyntax$$anon$2(text);
-  var this$26 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$25, picture);
+  var this$27 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$26, picture);
   var fillColor = $m_Ldoodle_core_Color$().Ldoodle_core_Color$__f_black;
-  var picture$1 = new $c_Ldoodle_syntax_StyleSyntax$$anon$1(fillColor, this$26);
-  var this$28 = new $c_Ldoodle_syntax_TransformSyntax$TransformPictureOps(this$27, picture$1);
-  var plotTitle = new $c_Ldoodle_syntax_TransformSyntax$$anon$2(2.0, 2.0, this$28);
-  var this$30 = $m_Ldoodle_syntax_package$all$();
+  var picture$1 = new $c_Ldoodle_syntax_StyleSyntax$$anon$1(fillColor, this$27);
+  var this$29 = new $c_Ldoodle_syntax_TransformSyntax$TransformPictureOps(this$28, picture$1);
+  var plotTitle = new $c_Ldoodle_syntax_TransformSyntax$$anon$2(2.0, 2.0, this$29);
+  var this$31 = $m_Ldoodle_syntax_package$all$();
   var text$1 = this.Lchartreuse_Plot__f_xTitle;
   var picture$2 = new $c_Ldoodle_syntax_TextSyntax$$anon$2(text$1);
-  var this$31 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$30, picture$2);
+  var this$32 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$31, picture$2);
   var fillColor$1 = $m_Ldoodle_core_Color$().Ldoodle_core_Color$__f_black;
-  var xTitle = new $c_Ldoodle_syntax_StyleSyntax$$anon$1(fillColor$1, this$31);
-  var this$35 = $m_Ldoodle_syntax_package$all$();
-  var this$33 = $m_Ldoodle_syntax_package$all$();
+  var xTitle = new $c_Ldoodle_syntax_StyleSyntax$$anon$1(fillColor$1, this$32);
+  var this$36 = $m_Ldoodle_syntax_package$all$();
+  var this$34 = $m_Ldoodle_syntax_package$all$();
   var text$2 = this.Lchartreuse_Plot__f_yTitle;
   var picture$3 = new $c_Ldoodle_syntax_TextSyntax$$anon$2(text$2);
-  var this$34 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$33, picture$3);
+  var this$35 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$34, picture$3);
   var fillColor$2 = $m_Ldoodle_core_Color$().Ldoodle_core_Color$__f_black;
-  var picture$4 = new $c_Ldoodle_syntax_StyleSyntax$$anon$1(fillColor$2, this$34);
-  var this$36 = new $c_Ldoodle_syntax_TransformSyntax$TransformPictureOps(this$35, picture$4);
+  var picture$4 = new $c_Ldoodle_syntax_StyleSyntax$$anon$1(fillColor$2, this$35);
+  var this$37 = new $c_Ldoodle_syntax_TransformSyntax$TransformPictureOps(this$36, picture$4);
   var angle = $m_Ldoodle_core_Angle$().apply__D__Ldoodle_core_Angle(1.5708);
-  var yTitle = new $c_Ldoodle_syntax_TransformSyntax$$anon$3(angle, this$36);
-  var this$37 = $m_Ldoodle_syntax_package$all$();
-  var this$70 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$37, yTitle);
-  var this$66 = $m_Ldoodle_syntax_package$all$();
-  var this$63 = $m_Ldoodle_syntax_package$all$();
-  var this$61 = $m_Ldoodle_syntax_package$all$();
-  var this$58 = $m_Ldoodle_syntax_package$all$();
-  var this$53 = $m_Ldoodle_syntax_package$all$();
-  var this$48 = $m_Ldoodle_syntax_package$all$();
-  var this$44 = $m_Ldoodle_syntax_package$all$();
+  var yTitle = new $c_Ldoodle_syntax_TransformSyntax$$anon$3(angle, this$37);
   var this$38 = $m_Ldoodle_syntax_package$all$();
-  var this$43 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$38, allLayers);
+  var this$71 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$38, yTitle);
+  var this$67 = $m_Ldoodle_syntax_package$all$();
+  var this$64 = $m_Ldoodle_syntax_package$all$();
+  var this$62 = $m_Ldoodle_syntax_package$all$();
+  var this$59 = $m_Ldoodle_syntax_package$all$();
+  var this$54 = $m_Ldoodle_syntax_package$all$();
+  var this$49 = $m_Ldoodle_syntax_package$all$();
+  var this$45 = $m_Ldoodle_syntax_package$all$();
   var this$39 = $m_Ldoodle_syntax_package$all$();
+  var this$44 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$39, allLayers);
+  var this$40 = $m_Ldoodle_syntax_package$all$();
   var picture$5 = xAxis.build__sci_Seq__sci_Seq__Lchartreuse_TicksBounds__Ldoodle_algebra_Picture(xMajorTicksSequence, xMinorTicksSequence, yTicksBounds);
-  var this$41 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$39, picture$5);
+  var this$42 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$40, picture$5);
   var that$2 = yAxis.build__sci_Seq__sci_Seq__Lchartreuse_TicksBounds__Ldoodle_algebra_Picture(yMajorTicksSequence, yMinorTicksSequence, xTicksBounds);
   var s$2 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-  var that$3 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$2, s$2, this$41);
+  var that$3 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$2, s$2, this$42);
   var s$3 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-  var picture$6 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$3, s$3, this$43);
-  var this$47 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$44, picture$6);
+  var picture$6 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$3, s$3, this$44);
+  var this$48 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$45, picture$6);
   var that$4 = new $c_Lchartreuse_component_PlotBox(xTicksBounds, yTicksBounds).build__Ldoodle_algebra_Picture();
   var s$4 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-  var picture$7 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$4, s$4, this$47);
-  var this$52 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$48, picture$7);
+  var picture$7 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$4, s$4, this$48);
+  var this$53 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$49, picture$7);
   var that$5 = (this.Lchartreuse_Plot__f_grid ? new $c_Lchartreuse_component_Grid(xTicksBounds, yTicksBounds, xMajorTicksSequence, yMajorTicksSequence).build__Ldoodle_algebra_Picture() : new $c_Ldoodle_syntax_ShapeSyntax$$anon$5());
   var s$5 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-  var picture$8 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$5, s$5, this$52);
-  var this$57 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$53, picture$8);
+  var picture$8 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$5, s$5, this$53);
+  var this$58 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$54, picture$8);
   if (this.Lchartreuse_Plot__f_legend) {
     var layers = this.Lchartreuse_Plot__f_layers;
     var that$6 = new $c_Lchartreuse_component_Legend(layers, theme).build__D__D__Ldoodle_algebra_Picture($n(xTicksBounds).Lchartreuse_TicksBounds__f_max, $n(yTicksBounds).Lchartreuse_TicksBounds__f_max)
@@ -33718,20 +35163,20 @@ $c_Lchartreuse_Plot.prototype.draw__I__I__Lchartreuse_theme_PlotTheme__Ldoodle_a
     var that$6 = new $c_Ldoodle_syntax_ShapeSyntax$$anon$5()
   };
   var s$6 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-  var picture$9 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$4(that$6, s$6, this$57);
-  var this$60 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$58, picture$9);
+  var picture$9 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$4(that$6, s$6, this$58);
+  var this$61 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$59, picture$9);
   var s$7 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-  var picture$10 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$4(allAnnotations, s$7, this$60);
-  var this$62 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$61, picture$10);
-  var picture$11 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$18(5.0, this$62);
-  var this$65 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$63, picture$11);
+  var picture$10 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$4(allAnnotations, s$7, this$61);
+  var this$63 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$62, picture$10);
+  var picture$11 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$18(5.0, this$63);
+  var this$66 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$64, picture$11);
   var s$8 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-  var picture$12 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$5(plotTitle, s$8, this$65);
-  var this$68 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$66, picture$12);
+  var picture$12 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$5(plotTitle, s$8, this$66);
+  var this$69 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$67, picture$12);
   var s$9 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-  var that$7 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$3(xTitle, s$9, this$68);
+  var that$7 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$3(xTitle, s$9, this$69);
   var s$10 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-  return new $c_Ldoodle_syntax_LayoutSyntax$$anon$2(that$7, s$10, this$70)
+  return new $c_Ldoodle_syntax_LayoutSyntax$$anon$2(that$7, s$10, this$71)
 });
 function $as_Lchartreuse_Plot(obj) {
   return (((obj instanceof $c_Lchartreuse_Plot) || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.Plot"))
@@ -34143,33 +35588,34 @@ $c_Lchartreuse_component_Annotation.prototype.draw__Lchartreuse_Bijection__Ldood
       var annotation = new $c_Ldoodle_syntax_LayoutSyntax$$anon$10(mappedPointOfInterest, this$9);
       break matchResult4
     };
-    if (false) {
+    if ((x5 instanceof $c_Lchartreuse_component_AnnotationType$CircleWithText)) {
       var x$1$1 = $as_Lchartreuse_component_AnnotationType$CircleWithText(x5);
-      var x14 = $n(x$1$1)._1__D();
-      var x15 = $n(x$1$1)._2__T();
+      var this$11 = $n(x$1$1);
+      var x14 = this$11.Lchartreuse_component_AnnotationType$CircleWithText__f_radius;
+      var this$12 = $n(x$1$1);
+      var x15 = this$12.Lchartreuse_component_AnnotationType$CircleWithText__f_text;
+      var this$20 = $m_Ldoodle_syntax_package$all$();
       var this$18 = $m_Ldoodle_syntax_package$all$();
       var this$16 = $m_Ldoodle_syntax_package$all$();
       var this$14 = $m_Ldoodle_syntax_package$all$();
-      var this$12 = $m_Ldoodle_syntax_package$all$();
       var picture$3 = new $c_Ldoodle_syntax_ShapeSyntax$$anon$4(x14);
-      var this$13 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$12, picture$3);
+      var this$15 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$14, picture$3);
       var strokeWidth$1 = this.Lchartreuse_component_Annotation__f_strokeWidth;
-      var picture$4 = new $c_Ldoodle_syntax_StyleSyntax$$anon$4(strokeWidth$1, this$13);
-      var this$15 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$14, picture$4);
+      var picture$4 = new $c_Ldoodle_syntax_StyleSyntax$$anon$4(strokeWidth$1, this$15);
+      var this$17 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$16, picture$4);
       var strokeColor$1 = this.Lchartreuse_component_Annotation__f_strokeColor;
-      var picture$5 = new $c_Ldoodle_syntax_StyleSyntax$$anon$3(strokeColor$1, this$15);
-      var this$17 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$16, picture$5);
-      var picture$6 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$10(mappedPointOfInterest, this$17);
-      var this$21 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$18, picture$6);
+      var picture$5 = new $c_Ldoodle_syntax_StyleSyntax$$anon$3(strokeColor$1, this$17);
+      var this$19 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$18, picture$5);
+      var picture$6 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$10(mappedPointOfInterest, this$19);
+      var this$23 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$20, picture$6);
       var that = $p_Lchartreuse_component_Annotation__adjustPosition__Ldoodle_algebra_Picture__Ldoodle_core_Point__Ldoodle_algebra_Picture(this, new $c_Ldoodle_syntax_TextSyntax$$anon$2(x15), mappedPointOfInterest);
       var s = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-      var annotation = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that, s, this$21);
+      var annotation = new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that, s, this$23);
       break matchResult4
     };
-    if ((x5 instanceof $c_Lchartreuse_component_AnnotationType$Text)) {
+    if (false) {
       var x$1$2 = $as_Lchartreuse_component_AnnotationType$Text(x5);
-      var this$23 = $n(x$1$2);
-      var x11 = this$23.Lchartreuse_component_AnnotationType$Text__f_text;
+      var x11 = $n(x$1$2)._1__T();
       var annotation = $p_Lchartreuse_component_Annotation__adjustPosition__Ldoodle_algebra_Picture__Ldoodle_core_Point__Ldoodle_algebra_Picture(this, new $c_Ldoodle_syntax_TextSyntax$$anon$2(x11), mappedPointOfInterest);
       break matchResult4
     };
@@ -34177,41 +35623,41 @@ $c_Lchartreuse_component_Annotation.prototype.draw__Lchartreuse_Bijection__Ldood
       var x$1$3 = $as_Lchartreuse_component_AnnotationType$TextWithBox(x5);
       var x8 = $n(x$1$3)._1__T();
       var boxContent = new $c_Ldoodle_syntax_TextSyntax$$anon$2(x8);
-      var this$27 = $m_Ldoodle_syntax_package$all$();
-      var this$28 = new $c_Ldoodle_syntax_SizeSyntax$SizePictureOps(this$27, boxContent);
-      var this$37 = new $c_Ldoodle_syntax_SizeSyntax$$anon$1(this$28);
+      var this$28 = $m_Ldoodle_syntax_package$all$();
+      var this$29 = new $c_Ldoodle_syntax_SizeSyntax$SizePictureOps(this$28, boxContent);
+      var this$38 = new $c_Ldoodle_syntax_SizeSyntax$$anon$1(this$29);
       var f = new $c_sjsr_AnonFunction1(((bb) => {
         var bb$1 = $as_Ldoodle_core_BoundingBox(bb);
-        var this$35 = $m_Ldoodle_syntax_package$all$();
-        var this$33 = $m_Ldoodle_syntax_package$all$();
-        var this$31 = $m_Ldoodle_syntax_package$all$();
+        var this$36 = $m_Ldoodle_syntax_package$all$();
+        var this$34 = $m_Ldoodle_syntax_package$all$();
+        var this$32 = $m_Ldoodle_syntax_package$all$();
         var width = ($n(bb$1).width__D() + (this.Lchartreuse_component_Annotation__f_textMargin << 1));
         var height = ($n(bb$1).height__D() + (this.Lchartreuse_component_Annotation__f_textMargin << 1));
         var picture$7 = new $c_Ldoodle_syntax_PathSyntax$$anon$5(width, height, 10.0);
-        var this$32 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$31, picture$7);
+        var this$33 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$32, picture$7);
         var fillColor = this.Lchartreuse_component_Annotation__f_fillColor;
-        var picture$8 = new $c_Ldoodle_syntax_StyleSyntax$$anon$1(fillColor, this$32);
-        var this$34 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$33, picture$8);
+        var picture$8 = new $c_Ldoodle_syntax_StyleSyntax$$anon$1(fillColor, this$33);
+        var this$35 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$34, picture$8);
         var strokeColor$2 = this.Lchartreuse_component_Annotation__f_strokeColor;
-        var picture$9 = new $c_Ldoodle_syntax_StyleSyntax$$anon$3(strokeColor$2, this$34);
-        var this$36 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$35, picture$9);
+        var picture$9 = new $c_Ldoodle_syntax_StyleSyntax$$anon$3(strokeColor$2, this$35);
+        var this$37 = new $c_Ldoodle_syntax_StyleSyntax$StylePictureOps(this$36, picture$9);
         var strokeWidth$2 = this.Lchartreuse_component_Annotation__f_strokeWidth;
-        return new $c_Ldoodle_syntax_StyleSyntax$$anon$4(strokeWidth$2, this$36)
+        return new $c_Ldoodle_syntax_StyleSyntax$$anon$4(strokeWidth$2, this$37)
       }));
-      var box = $f_Ldoodle_algebra_Picture__flatMap__F1__Ldoodle_algebra_Picture(this$37, f);
-      var this$38 = $m_Ldoodle_syntax_package$all$();
-      var this$40 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$38, boxContent);
+      var box = $f_Ldoodle_algebra_Picture__flatMap__F1__Ldoodle_algebra_Picture(this$38, f);
+      var this$39 = $m_Ldoodle_syntax_package$all$();
+      var this$41 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$39, boxContent);
       var s$1 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-      var annotation = $p_Lchartreuse_component_Annotation__adjustPosition__Ldoodle_algebra_Picture__Ldoodle_core_Point__Ldoodle_algebra_Picture(this, new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(box, s$1, this$40), mappedPointOfInterest);
+      var annotation = $p_Lchartreuse_component_Annotation__adjustPosition__Ldoodle_algebra_Picture__Ldoodle_core_Point__Ldoodle_algebra_Picture(this, new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(box, s$1, this$41), mappedPointOfInterest);
       break matchResult4
     };
     throw new $c_s_MatchError(x5)
   };
-  var this$41 = $m_Ldoodle_syntax_package$all$();
-  var this$44 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$41, annotation);
+  var this$42 = $m_Ldoodle_syntax_package$all$();
+  var this$45 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$42, annotation);
   var that$1 = (this.Lchartreuse_component_Annotation__f_arrow ? $p_Lchartreuse_component_Annotation__withArrow__Ldoodle_core_Point__Ldoodle_algebra_Picture(this, mappedPointOfInterest) : new $c_Ldoodle_syntax_ShapeSyntax$$anon$5());
   var s$2 = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-  return new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$1, s$2, this$44)
+  return new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(that$1, s$2, this$45)
 });
 function $as_Lchartreuse_component_Annotation(obj) {
   return (((obj instanceof $c_Lchartreuse_component_Annotation) || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.component.Annotation"))
@@ -35259,6 +36705,120 @@ var $d_Lchartreuse_component_PlotBox = new $TypeData().initClass({
 });
 $c_Lchartreuse_component_PlotBox.prototype.$classData = $d_Lchartreuse_component_PlotBox;
 /** @constructor */
+function $c_Lchartreuse_examples_HadCrut5$Record(year, month, anomaly, lower, upper) {
+  this.Lchartreuse_examples_HadCrut5$Record__f_year = 0;
+  this.Lchartreuse_examples_HadCrut5$Record__f_month = 0;
+  this.Lchartreuse_examples_HadCrut5$Record__f_anomaly = 0.0;
+  this.Lchartreuse_examples_HadCrut5$Record__f_lower = 0.0;
+  this.Lchartreuse_examples_HadCrut5$Record__f_upper = 0.0;
+  this.Lchartreuse_examples_HadCrut5$Record__f_year = year;
+  this.Lchartreuse_examples_HadCrut5$Record__f_month = month;
+  this.Lchartreuse_examples_HadCrut5$Record__f_anomaly = anomaly;
+  this.Lchartreuse_examples_HadCrut5$Record__f_lower = lower;
+  this.Lchartreuse_examples_HadCrut5$Record__f_upper = upper
+}
+$c_Lchartreuse_examples_HadCrut5$Record.prototype = new $h_O();
+$c_Lchartreuse_examples_HadCrut5$Record.prototype.constructor = $c_Lchartreuse_examples_HadCrut5$Record;
+/** @constructor */
+function $h_Lchartreuse_examples_HadCrut5$Record() {
+  /*<skip>*/
+}
+$h_Lchartreuse_examples_HadCrut5$Record.prototype = $c_Lchartreuse_examples_HadCrut5$Record.prototype;
+$c_Lchartreuse_examples_HadCrut5$Record.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_s_Product$$anon$1(this)
+});
+$c_Lchartreuse_examples_HadCrut5$Record.prototype.hashCode__I = (function() {
+  var acc = (-889275714);
+  var hash = acc;
+  var data = $f_T__hashCode__I("Record");
+  acc = $m_sr_Statics$().mix__I__I__I(hash, data);
+  var hash$1 = acc;
+  var data$1 = this.Lchartreuse_examples_HadCrut5$Record__f_year;
+  acc = $m_sr_Statics$().mix__I__I__I(hash$1, data$1);
+  var hash$2 = acc;
+  var data$2 = this.Lchartreuse_examples_HadCrut5$Record__f_month;
+  acc = $m_sr_Statics$().mix__I__I__I(hash$2, data$2);
+  var hash$3 = acc;
+  var dv = this.Lchartreuse_examples_HadCrut5$Record__f_anomaly;
+  var data$3 = $m_sr_Statics$().doubleHash__D__I(dv);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$3, data$3);
+  var hash$4 = acc;
+  var dv$1 = this.Lchartreuse_examples_HadCrut5$Record__f_lower;
+  var data$4 = $m_sr_Statics$().doubleHash__D__I(dv$1);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$4, data$4);
+  var hash$5 = acc;
+  var dv$2 = this.Lchartreuse_examples_HadCrut5$Record__f_upper;
+  var data$5 = $m_sr_Statics$().doubleHash__D__I(dv$2);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$5, data$5);
+  var hash$6 = acc;
+  return $m_sr_Statics$().finalizeHash__I__I__I(hash$6, 5)
+});
+$c_Lchartreuse_examples_HadCrut5$Record.prototype.equals__O__Z = (function(x$0) {
+  if ((this === x$0)) {
+    return true
+  } else if ((x$0 instanceof $c_Lchartreuse_examples_HadCrut5$Record)) {
+    var x$0$2 = $as_Lchartreuse_examples_HadCrut5$Record(x$0);
+    return (((((this.Lchartreuse_examples_HadCrut5$Record__f_year === $n(x$0$2).Lchartreuse_examples_HadCrut5$Record__f_year) && (this.Lchartreuse_examples_HadCrut5$Record__f_month === $n(x$0$2).Lchartreuse_examples_HadCrut5$Record__f_month)) && (this.Lchartreuse_examples_HadCrut5$Record__f_anomaly === $n(x$0$2).Lchartreuse_examples_HadCrut5$Record__f_anomaly)) && (this.Lchartreuse_examples_HadCrut5$Record__f_lower === $n(x$0$2).Lchartreuse_examples_HadCrut5$Record__f_lower)) && (this.Lchartreuse_examples_HadCrut5$Record__f_upper === $n(x$0$2).Lchartreuse_examples_HadCrut5$Record__f_upper))
+  } else {
+    return false
+  }
+});
+$c_Lchartreuse_examples_HadCrut5$Record.prototype.toString__T = (function() {
+  return $m_sr_ScalaRunTime$()._toString__s_Product__T(this)
+});
+$c_Lchartreuse_examples_HadCrut5$Record.prototype.productArity__I = (function() {
+  return 5
+});
+$c_Lchartreuse_examples_HadCrut5$Record.prototype.productPrefix__T = (function() {
+  return "Record"
+});
+$c_Lchartreuse_examples_HadCrut5$Record.prototype.productElement__I__O = (function(n) {
+  switch (n) {
+    case 0: {
+      return this.Lchartreuse_examples_HadCrut5$Record__f_year;
+      break
+    }
+    case 1: {
+      return this.Lchartreuse_examples_HadCrut5$Record__f_month;
+      break
+    }
+    case 2: {
+      return this.Lchartreuse_examples_HadCrut5$Record__f_anomaly;
+      break
+    }
+    case 3: {
+      return this.Lchartreuse_examples_HadCrut5$Record__f_lower;
+      break
+    }
+    case 4: {
+      return this.Lchartreuse_examples_HadCrut5$Record__f_upper;
+      break
+    }
+    default: {
+      throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
+    }
+  }
+});
+function $as_Lchartreuse_examples_HadCrut5$Record(obj) {
+  return (((obj instanceof $c_Lchartreuse_examples_HadCrut5$Record) || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.examples.HadCrut5$Record"))
+}
+function $isArrayOf_Lchartreuse_examples_HadCrut5$Record(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lchartreuse_examples_HadCrut5$Record)))
+}
+function $asArrayOf_Lchartreuse_examples_HadCrut5$Record(obj, depth) {
+  return (($isArrayOf_Lchartreuse_examples_HadCrut5$Record(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lchartreuse.examples.HadCrut5$Record;", depth))
+}
+var $d_Lchartreuse_examples_HadCrut5$Record = new $TypeData().initClass({
+  Lchartreuse_examples_HadCrut5$Record: 0
+}, false, "chartreuse.examples.HadCrut5$Record", {
+  Lchartreuse_examples_HadCrut5$Record: 1,
+  O: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lchartreuse_examples_HadCrut5$Record.prototype.$classData = $d_Lchartreuse_examples_HadCrut5$Record;
+/** @constructor */
 function $c_Lchartreuse_theme_LayoutTheme(strokeColor, strokeWidth, fillColor, evidence$1) {
   this.Lchartreuse_theme_LayoutTheme__f_strokeColor = null;
   this.Lchartreuse_theme_LayoutTheme__f_strokeWidth = null;
@@ -35575,6 +37135,10 @@ $c_Lchartreuse_theme_PlotTheme$$anon$1.prototype.copyToArray__O__I__I__I = (func
 });
 $c_Lchartreuse_theme_PlotTheme$$anon$1.prototype.addString__scm_StringBuilder__T__T__T__scm_StringBuilder = (function(b, start, sep, end) {
   return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
+});
+$c_Lchartreuse_theme_PlotTheme$$anon$1.prototype.toList__sci_List = (function() {
+  $m_sci_List$();
+  return $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this)
 });
 $c_Lchartreuse_theme_PlotTheme$$anon$1.prototype.toArray__s_reflect_ClassTag__O = (function(evidence$2) {
   return $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O(this, evidence$2)
@@ -36621,10 +38185,10 @@ function $c_Ldoodle_core_Color$() {
   this.Ldoodle_core_Color$__f_blue = null;
   this.Ldoodle_core_Color$__f_darkBlue = null;
   this.Ldoodle_core_Color$__f_gray = null;
+  this.Ldoodle_core_Color$__f_grey = null;
   this.Ldoodle_core_Color$__f_green = null;
   this.Ldoodle_core_Color$__f_lawngreen = null;
   this.Ldoodle_core_Color$__f_orange = null;
-  this.Ldoodle_core_Color$__f_orchid = null;
   this.Ldoodle_core_Color$__f_pink = null;
   this.Ldoodle_core_Color$__f_purple = null;
   this.Ldoodle_core_Color$__f_red = null;
@@ -38238,6 +39802,10 @@ $c_Lfs2_Chunk$$anon$1.prototype.copyToArray__O__I__I__I = (function(xs, start, l
 $c_Lfs2_Chunk$$anon$1.prototype.addString__scm_StringBuilder__T__T__T__scm_StringBuilder = (function(b, start, sep, end) {
   return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
 });
+$c_Lfs2_Chunk$$anon$1.prototype.toList__sci_List = (function() {
+  $m_sci_List$();
+  return $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this)
+});
 $c_Lfs2_Chunk$$anon$1.prototype.toArray__s_reflect_ClassTag__O = (function(evidence$2) {
   return $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O(this, evidence$2)
 });
@@ -38367,6 +39935,11 @@ function $f_jl_Boolean__hashCode__I($thiz) {
 function $f_jl_Boolean__toString__T($thiz) {
   return ("" + $thiz)
 }
+function $f_jl_Boolean__compareTo__O__I($thiz, o) {
+  var that = $as_jl_Boolean(o);
+  var this$1 = $n(that);
+  return (($thiz === this$1) ? 0 : ($thiz ? 1 : (-1)))
+}
 function $as_jl_Boolean(obj) {
   return ((((typeof obj) === "boolean") || (obj === null)) ? obj : $throwClassCastException(obj, "java.lang.Boolean"))
 }
@@ -38398,6 +39971,11 @@ function $f_jl_Character__equals__O__Z($thiz, that) {
 }
 function $f_jl_Character__toString__T($thiz) {
   return $as_T(String.fromCharCode($thiz))
+}
+function $f_jl_Character__compareTo__O__I($thiz, o) {
+  var that = $as_jl_Character(o);
+  var this$1 = $uC($n(that));
+  return (($thiz - this$1) | 0)
 }
 function $as_jl_Character(obj) {
   return (((obj instanceof $Char) || (obj === null)) ? obj : $throwClassCastException(obj, "java.lang.Character"))
@@ -39433,6 +41011,9 @@ $c_Ljava_math_BigDecimal.prototype.java$math$BigDecimal$$getUnscaledValue__Ljava
   };
   return this.Ljava_math_BigDecimal__f__intVal
 });
+$c_Ljava_math_BigDecimal.prototype.compareTo__O__I = (function(o) {
+  return this.compareTo__Ljava_math_BigDecimal__I($as_Ljava_math_BigDecimal(o))
+});
 function $as_Ljava_math_BigDecimal(obj) {
   return (((obj instanceof $c_Ljava_math_BigDecimal) || (obj === null)) ? obj : $throwClassCastException(obj, "java.math.BigDecimal"))
 }
@@ -39872,6 +41453,9 @@ $c_Ljava_math_BigInteger.prototype.isOne__Z = (function() {
 });
 $c_Ljava_math_BigInteger.prototype.shiftLeftOneBit__Ljava_math_BigInteger = (function() {
   return ((this.Ljava_math_BigInteger__f_sign === 0) ? this : $m_Ljava_math_BitLevel$().shiftLeftOneBit__Ljava_math_BigInteger__Ljava_math_BigInteger(this))
+});
+$c_Ljava_math_BigInteger.prototype.compareTo__O__I = (function(o) {
+  return this.compareTo__Ljava_math_BigInteger__I($as_Ljava_math_BigInteger(o))
 });
 function $as_Ljava_math_BigInteger(obj) {
   return (((obj instanceof $c_Ljava_math_BigInteger) || (obj === null)) ? obj : $throwClassCastException(obj, "java.math.BigInteger"))
@@ -40781,6 +42365,222 @@ function $isArrayOf_ju_concurrent_TimeUnit(obj, depth) {
 function $asArrayOf_ju_concurrent_TimeUnit(obj, depth) {
   return (($isArrayOf_ju_concurrent_TimeUnit(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ljava.util.concurrent.TimeUnit;", depth))
 }
+/** @constructor */
+function $c_ju_internal_GenericArrayOps$ByteArrayOps$() {
+  /*<skip>*/
+}
+$c_ju_internal_GenericArrayOps$ByteArrayOps$.prototype = new $h_O();
+$c_ju_internal_GenericArrayOps$ByteArrayOps$.prototype.constructor = $c_ju_internal_GenericArrayOps$ByteArrayOps$;
+/** @constructor */
+function $h_ju_internal_GenericArrayOps$ByteArrayOps$() {
+  /*<skip>*/
+}
+$h_ju_internal_GenericArrayOps$ByteArrayOps$.prototype = $c_ju_internal_GenericArrayOps$ByteArrayOps$.prototype;
+$c_ju_internal_GenericArrayOps$ByteArrayOps$.prototype.compare__O__O__I = (function(o1, o2) {
+  var x = $uB(o1);
+  var y = $uB(o2);
+  return ((x - y) | 0)
+});
+$c_ju_internal_GenericArrayOps$ByteArrayOps$.prototype.set__O__I__O__V = (function(a, i, v) {
+  var a$1 = $asArrayOf_B(a, 1);
+  var v$1 = $uB(v);
+  $n(a$1).set(i, v$1)
+});
+$c_ju_internal_GenericArrayOps$ByteArrayOps$.prototype.get__O__I__O = (function(a, i) {
+  var a$1 = $asArrayOf_B(a, 1);
+  return $n(a$1).get(i)
+});
+var $d_ju_internal_GenericArrayOps$ByteArrayOps$ = new $TypeData().initClass({
+  ju_internal_GenericArrayOps$ByteArrayOps$: 0
+}, false, "java.util.internal.GenericArrayOps$ByteArrayOps$", {
+  ju_internal_GenericArrayOps$ByteArrayOps$: 1,
+  O: 1,
+  ju_internal_GenericArrayOps$ArrayOps: 1,
+  ju_internal_GenericArrayOps$ArrayCreateOps: 1,
+  ju_Comparator: 1
+});
+$c_ju_internal_GenericArrayOps$ByteArrayOps$.prototype.$classData = $d_ju_internal_GenericArrayOps$ByteArrayOps$;
+var $n_ju_internal_GenericArrayOps$ByteArrayOps$;
+function $m_ju_internal_GenericArrayOps$ByteArrayOps$() {
+  if ((!$n_ju_internal_GenericArrayOps$ByteArrayOps$)) {
+    $n_ju_internal_GenericArrayOps$ByteArrayOps$ = new $c_ju_internal_GenericArrayOps$ByteArrayOps$()
+  };
+  return $n_ju_internal_GenericArrayOps$ByteArrayOps$
+}
+/** @constructor */
+function $c_ju_internal_GenericArrayOps$CharArrayOps$() {
+  /*<skip>*/
+}
+$c_ju_internal_GenericArrayOps$CharArrayOps$.prototype = new $h_O();
+$c_ju_internal_GenericArrayOps$CharArrayOps$.prototype.constructor = $c_ju_internal_GenericArrayOps$CharArrayOps$;
+/** @constructor */
+function $h_ju_internal_GenericArrayOps$CharArrayOps$() {
+  /*<skip>*/
+}
+$h_ju_internal_GenericArrayOps$CharArrayOps$.prototype = $c_ju_internal_GenericArrayOps$CharArrayOps$.prototype;
+$c_ju_internal_GenericArrayOps$CharArrayOps$.prototype.compare__O__O__I = (function(o1, o2) {
+  var x = $uC(o1);
+  var y = $uC(o2);
+  return ((x - y) | 0)
+});
+$c_ju_internal_GenericArrayOps$CharArrayOps$.prototype.set__O__I__O__V = (function(a, i, v) {
+  var a$1 = $asArrayOf_C(a, 1);
+  var v$1 = $uC(v);
+  $n(a$1).set(i, v$1)
+});
+$c_ju_internal_GenericArrayOps$CharArrayOps$.prototype.get__O__I__O = (function(a, i) {
+  var a$1 = $asArrayOf_C(a, 1);
+  return $bC($n(a$1).get(i))
+});
+var $d_ju_internal_GenericArrayOps$CharArrayOps$ = new $TypeData().initClass({
+  ju_internal_GenericArrayOps$CharArrayOps$: 0
+}, false, "java.util.internal.GenericArrayOps$CharArrayOps$", {
+  ju_internal_GenericArrayOps$CharArrayOps$: 1,
+  O: 1,
+  ju_internal_GenericArrayOps$ArrayOps: 1,
+  ju_internal_GenericArrayOps$ArrayCreateOps: 1,
+  ju_Comparator: 1
+});
+$c_ju_internal_GenericArrayOps$CharArrayOps$.prototype.$classData = $d_ju_internal_GenericArrayOps$CharArrayOps$;
+var $n_ju_internal_GenericArrayOps$CharArrayOps$;
+function $m_ju_internal_GenericArrayOps$CharArrayOps$() {
+  if ((!$n_ju_internal_GenericArrayOps$CharArrayOps$)) {
+    $n_ju_internal_GenericArrayOps$CharArrayOps$ = new $c_ju_internal_GenericArrayOps$CharArrayOps$()
+  };
+  return $n_ju_internal_GenericArrayOps$CharArrayOps$
+}
+/** @constructor */
+function $c_ju_internal_GenericArrayOps$IntArrayOps$() {
+  /*<skip>*/
+}
+$c_ju_internal_GenericArrayOps$IntArrayOps$.prototype = new $h_O();
+$c_ju_internal_GenericArrayOps$IntArrayOps$.prototype.constructor = $c_ju_internal_GenericArrayOps$IntArrayOps$;
+/** @constructor */
+function $h_ju_internal_GenericArrayOps$IntArrayOps$() {
+  /*<skip>*/
+}
+$h_ju_internal_GenericArrayOps$IntArrayOps$.prototype = $c_ju_internal_GenericArrayOps$IntArrayOps$.prototype;
+$c_ju_internal_GenericArrayOps$IntArrayOps$.prototype.compare__O__O__I = (function(o1, o2) {
+  var x = $uI(o1);
+  var y = $uI(o2);
+  return ((x === y) ? 0 : ((x < y) ? (-1) : 1))
+});
+$c_ju_internal_GenericArrayOps$IntArrayOps$.prototype.set__O__I__O__V = (function(a, i, v) {
+  var a$1 = $asArrayOf_I(a, 1);
+  var v$1 = $uI(v);
+  $n(a$1).set(i, v$1)
+});
+$c_ju_internal_GenericArrayOps$IntArrayOps$.prototype.get__O__I__O = (function(a, i) {
+  var a$1 = $asArrayOf_I(a, 1);
+  return $n(a$1).get(i)
+});
+var $d_ju_internal_GenericArrayOps$IntArrayOps$ = new $TypeData().initClass({
+  ju_internal_GenericArrayOps$IntArrayOps$: 0
+}, false, "java.util.internal.GenericArrayOps$IntArrayOps$", {
+  ju_internal_GenericArrayOps$IntArrayOps$: 1,
+  O: 1,
+  ju_internal_GenericArrayOps$ArrayOps: 1,
+  ju_internal_GenericArrayOps$ArrayCreateOps: 1,
+  ju_Comparator: 1
+});
+$c_ju_internal_GenericArrayOps$IntArrayOps$.prototype.$classData = $d_ju_internal_GenericArrayOps$IntArrayOps$;
+var $n_ju_internal_GenericArrayOps$IntArrayOps$;
+function $m_ju_internal_GenericArrayOps$IntArrayOps$() {
+  if ((!$n_ju_internal_GenericArrayOps$IntArrayOps$)) {
+    $n_ju_internal_GenericArrayOps$IntArrayOps$ = new $c_ju_internal_GenericArrayOps$IntArrayOps$()
+  };
+  return $n_ju_internal_GenericArrayOps$IntArrayOps$
+}
+/** @constructor */
+function $c_ju_internal_GenericArrayOps$LongArrayOps$() {
+  /*<skip>*/
+}
+$c_ju_internal_GenericArrayOps$LongArrayOps$.prototype = new $h_O();
+$c_ju_internal_GenericArrayOps$LongArrayOps$.prototype.constructor = $c_ju_internal_GenericArrayOps$LongArrayOps$;
+/** @constructor */
+function $h_ju_internal_GenericArrayOps$LongArrayOps$() {
+  /*<skip>*/
+}
+$h_ju_internal_GenericArrayOps$LongArrayOps$.prototype = $c_ju_internal_GenericArrayOps$LongArrayOps$.prototype;
+$c_ju_internal_GenericArrayOps$LongArrayOps$.prototype.compare__O__O__I = (function(o1, o2) {
+  var t = $uJ(o1);
+  var lo = t.RTLong__f_lo;
+  var hi = t.RTLong__f_hi;
+  var t$1 = $uJ(o2);
+  var lo$1 = t$1.RTLong__f_lo;
+  var hi$1 = t$1.RTLong__f_hi;
+  return $m_RTLong$().org$scalajs$linker$runtime$RuntimeLong$$compare__I__I__I__I__I(lo, hi, lo$1, hi$1)
+});
+$c_ju_internal_GenericArrayOps$LongArrayOps$.prototype.set__O__I__O__V = (function(a, i, v) {
+  var a$1 = $asArrayOf_J(a, 1);
+  var t = $uJ(v);
+  var lo = t.RTLong__f_lo;
+  var hi = t.RTLong__f_hi;
+  $n(a$1).set(i, new $c_RTLong(lo, hi))
+});
+$c_ju_internal_GenericArrayOps$LongArrayOps$.prototype.get__O__I__O = (function(a, i) {
+  var a$1 = $asArrayOf_J(a, 1);
+  return $n(a$1).get(i)
+});
+var $d_ju_internal_GenericArrayOps$LongArrayOps$ = new $TypeData().initClass({
+  ju_internal_GenericArrayOps$LongArrayOps$: 0
+}, false, "java.util.internal.GenericArrayOps$LongArrayOps$", {
+  ju_internal_GenericArrayOps$LongArrayOps$: 1,
+  O: 1,
+  ju_internal_GenericArrayOps$ArrayOps: 1,
+  ju_internal_GenericArrayOps$ArrayCreateOps: 1,
+  ju_Comparator: 1
+});
+$c_ju_internal_GenericArrayOps$LongArrayOps$.prototype.$classData = $d_ju_internal_GenericArrayOps$LongArrayOps$;
+var $n_ju_internal_GenericArrayOps$LongArrayOps$;
+function $m_ju_internal_GenericArrayOps$LongArrayOps$() {
+  if ((!$n_ju_internal_GenericArrayOps$LongArrayOps$)) {
+    $n_ju_internal_GenericArrayOps$LongArrayOps$ = new $c_ju_internal_GenericArrayOps$LongArrayOps$()
+  };
+  return $n_ju_internal_GenericArrayOps$LongArrayOps$
+}
+/** @constructor */
+function $c_ju_internal_GenericArrayOps$ShortArrayOps$() {
+  /*<skip>*/
+}
+$c_ju_internal_GenericArrayOps$ShortArrayOps$.prototype = new $h_O();
+$c_ju_internal_GenericArrayOps$ShortArrayOps$.prototype.constructor = $c_ju_internal_GenericArrayOps$ShortArrayOps$;
+/** @constructor */
+function $h_ju_internal_GenericArrayOps$ShortArrayOps$() {
+  /*<skip>*/
+}
+$h_ju_internal_GenericArrayOps$ShortArrayOps$.prototype = $c_ju_internal_GenericArrayOps$ShortArrayOps$.prototype;
+$c_ju_internal_GenericArrayOps$ShortArrayOps$.prototype.compare__O__O__I = (function(o1, o2) {
+  var x = $uS(o1);
+  var y = $uS(o2);
+  return ((x - y) | 0)
+});
+$c_ju_internal_GenericArrayOps$ShortArrayOps$.prototype.set__O__I__O__V = (function(a, i, v) {
+  var a$1 = $asArrayOf_S(a, 1);
+  var v$1 = $uS(v);
+  $n(a$1).set(i, v$1)
+});
+$c_ju_internal_GenericArrayOps$ShortArrayOps$.prototype.get__O__I__O = (function(a, i) {
+  var a$1 = $asArrayOf_S(a, 1);
+  return $n(a$1).get(i)
+});
+var $d_ju_internal_GenericArrayOps$ShortArrayOps$ = new $TypeData().initClass({
+  ju_internal_GenericArrayOps$ShortArrayOps$: 0
+}, false, "java.util.internal.GenericArrayOps$ShortArrayOps$", {
+  ju_internal_GenericArrayOps$ShortArrayOps$: 1,
+  O: 1,
+  ju_internal_GenericArrayOps$ArrayOps: 1,
+  ju_internal_GenericArrayOps$ArrayCreateOps: 1,
+  ju_Comparator: 1
+});
+$c_ju_internal_GenericArrayOps$ShortArrayOps$.prototype.$classData = $d_ju_internal_GenericArrayOps$ShortArrayOps$;
+var $n_ju_internal_GenericArrayOps$ShortArrayOps$;
+function $m_ju_internal_GenericArrayOps$ShortArrayOps$() {
+  if ((!$n_ju_internal_GenericArrayOps$ShortArrayOps$)) {
+    $n_ju_internal_GenericArrayOps$ShortArrayOps$ = new $c_ju_internal_GenericArrayOps$ShortArrayOps$()
+  };
+  return $n_ju_internal_GenericArrayOps$ShortArrayOps$
+}
 function $p_Lorg_scalajs_macrotaskexecutor_MacrotaskExecutor$__canUsePostMessage$1__Z($thiz) {
   if ((($as_T((typeof postMessage)) !== "undefined") && ($as_T((typeof importScripts)) === "undefined"))) {
     var postMessageIsAsynchronous = new $c_sr_BooleanRef(true);
@@ -41185,6 +42985,10 @@ $c_sc_AbstractIterator.prototype.copyToArray__O__I__I__I = (function(xs, start, 
 $c_sc_AbstractIterator.prototype.addString__scm_StringBuilder__T__T__T__scm_StringBuilder = (function(b, start, sep, end) {
   return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
 });
+$c_sc_AbstractIterator.prototype.toList__sci_List = (function() {
+  $m_sci_List$();
+  return $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this)
+});
 $c_sc_AbstractIterator.prototype.toArray__s_reflect_ClassTag__O = (function(evidence$2) {
   return $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O(this, evidence$2)
 });
@@ -41301,6 +43105,32 @@ function $f_sc_SeqOps__indexOf__O__I__I($thiz, elem, from) {
 }
 function $f_sc_SeqOps__contains__O__Z($thiz, elem) {
   return $thiz.exists__F1__Z(new $c_sjsr_AnonFunction1(((x$3$2) => $m_sr_BoxesRunTime$().equals__O__O__Z(x$3$2, elem))))
+}
+function $f_sc_SeqOps__sorted__s_math_Ordering__O($thiz, ord) {
+  var len = $thiz.length__I();
+  var b = $thiz.newSpecificBuilder__scm_Builder();
+  if ((len === 1)) {
+    var this$1 = $n(b);
+    var elem = $thiz.head__O();
+    this$1.addOne__O__scm_Growable(elem)
+  } else if ((len > 1)) {
+    $n(b).sizeHint__I__V(len);
+    var arr = new $ac_O(len);
+    $thiz.copyToArray__O__I__I__I(arr, 0, 2147483647);
+    $m_ju_Arrays$().sort__AO__ju_Comparator__V(arr, ord);
+    var i = 0;
+    while ((i < len)) {
+      var this$2 = $n(b);
+      var elem$1 = $n(arr).get(i);
+      this$2.addOne__O__scm_Growable(elem$1);
+      i = ((1 + i) | 0)
+    }
+  };
+  return $n(b).result__O()
+}
+function $f_sc_SeqOps__sortBy__F1__s_math_Ordering__O($thiz, f, ord) {
+  var this$1 = $n(ord);
+  return $thiz.sorted__s_math_Ordering__O(new $c_s_math_Ordering$$anon$1(this$1, f))
 }
 function $f_sc_SeqOps__isEmpty__Z($thiz) {
   return ($thiz.lengthCompare__I__I(0) === 0)
@@ -41752,7 +43582,7 @@ $c_sci_TreeSet$.prototype.from__sc_IterableOnce__s_math_Ordering__sci_TreeSet = 
       } else {
         var this$2 = $n(x4);
         var this$3 = new $c_sc_IndexedSeqView$Id(this$2);
-        var it$2 = new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(this$3)
+        var it$2 = $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this$3)
       };
       var $$x2 = $m_sci_RedBlackTree$();
       var this$4 = $n(x4);
@@ -42058,7 +43888,7 @@ $c_scm_TreeSet$.prototype.from__sc_IterableOnce__s_math_Ordering__scm_TreeSet = 
       } else {
         var this$2 = $n(x4);
         var this$3 = new $c_sc_IndexedSeqView$Id(this$2);
-        var it$2 = new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(this$3)
+        var it$2 = $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this$3)
       };
       var $$x2 = $m_scm_RedBlackTree$();
       var this$4 = $n(x4);
@@ -42104,6 +43934,9 @@ function $h_s_concurrent_duration_Duration() {
   /*<skip>*/
 }
 $h_s_concurrent_duration_Duration.prototype = $c_s_concurrent_duration_Duration.prototype;
+$c_s_concurrent_duration_Duration.prototype.compareTo__O__I = (function(that) {
+  return this.compare__s_concurrent_duration_Duration__I($as_s_concurrent_duration_Duration(that))
+});
 function $as_s_concurrent_duration_Duration(obj) {
   return (((obj instanceof $c_s_concurrent_duration_Duration) || (obj === null)) ? obj : $throwClassCastException(obj, "scala.concurrent.duration.Duration"))
 }
@@ -44716,18 +46549,15 @@ $c_Lchartreuse_layout_Scatter.prototype.themeable__Lchartreuse_theme_LayoutTheme
 $c_Lchartreuse_layout_Scatter.prototype.draw__Lchartreuse_Data__F1__F1__Lchartreuse_theme_LayoutTheme__Ldoodle_algebra_Picture = (function(data, toPoint, scale, theme) {
   var plot$2 = $as_Ldoodle_algebra_Picture($n(data).foldLeft__O__F2__O(new $c_Ldoodle_syntax_ShapeSyntax$$anon$5(), new $c_sjsr_AnonFunction2(((plot, a) => {
     var plot$1 = $as_Ldoodle_algebra_Picture(plot);
-    var this$7 = $m_Ldoodle_syntax_package$all$();
-    var this$5 = $m_Ldoodle_syntax_package$all$();
-    var this$4 = $n(this.Lchartreuse_layout_Scatter__f_glyph);
-    var data$1 = $n(this.Lchartreuse_layout_Scatter__f_toSize).apply__O__O(a);
-    var theme$1 = $n(theme).theme__Lchartreuse_theme_LayoutTheme__Lcats_Comonad__Lchartreuse_theme_LayoutTheme(this.Lchartreuse_layout_Scatter__f_themeable, ($m_Lcats_Invariant$(), $m_Lcats_package$().Lcats_package$__f_catsInstancesForId));
-    var picture = this$4.draw__D__Lchartreuse_theme_LayoutTheme__Ldoodle_algebra_Picture($uD(data$1), theme$1);
-    var this$6 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$5, picture);
+    var this$6 = $m_Ldoodle_syntax_package$all$();
+    var this$4 = $m_Ldoodle_syntax_package$all$();
+    var picture = $n(this.Lchartreuse_layout_Scatter__f_glyph).draw__O__Lchartreuse_theme_LayoutTheme__Ldoodle_algebra_Picture($n(this.Lchartreuse_layout_Scatter__f_toSize).apply__O__O(a), $n(theme).theme__Lchartreuse_theme_LayoutTheme__Lcats_Comonad__Lchartreuse_theme_LayoutTheme(this.Lchartreuse_layout_Scatter__f_themeable, ($m_Lcats_Invariant$(), $m_Lcats_package$().Lcats_package$__f_catsInstancesForId)));
+    var this$5 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$4, picture);
     var offset = $as_Ldoodle_core_Point($n(scale).apply__O__O($n(toPoint).apply__O__O(a)));
-    var picture$1 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$10(offset, this$6);
-    var this$9 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$7, picture$1);
+    var picture$1 = new $c_Ldoodle_syntax_LayoutSyntax$$anon$10(offset, this$5);
+    var this$8 = new $c_Ldoodle_syntax_LayoutSyntax$LayoutPictureOps(this$6, picture$1);
     var s = $m_Lcats_kernel_instances_unit_package$().Lcats_kernel_instances_unit_package$__f_catsKernelStdAlgebraForUnit;
-    return new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(plot$1, s, this$9)
+    return new $c_Ldoodle_syntax_LayoutSyntax$$anon$1(plot$1, s, this$8)
   }))));
   return plot$2
 });
@@ -46052,6 +47882,11 @@ function $f_jl_Byte__hashCode__I($thiz) {
 function $f_jl_Byte__toString__T($thiz) {
   return ("" + $thiz)
 }
+function $f_jl_Byte__compareTo__O__I($thiz, o) {
+  var that = $as_jl_Byte(o);
+  var this$1 = $n(that);
+  return (($thiz - this$1) | 0)
+}
 function $as_jl_Byte(obj) {
   return (($isByte(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "java.lang.Byte"))
 }
@@ -46233,6 +48068,11 @@ function $f_jl_Short__hashCode__I($thiz) {
 }
 function $f_jl_Short__toString__T($thiz) {
   return ("" + $thiz)
+}
+function $f_jl_Short__compareTo__O__I($thiz, o) {
+  var that = $as_jl_Short(o);
+  var this$1 = $n(that);
+  return (($thiz - this$1) | 0)
 }
 function $as_jl_Short(obj) {
   return (($isShort(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "java.lang.Short"))
@@ -47216,6 +49056,18 @@ function $f_sc_IndexedSeqOps__headOption__s_Option($thiz) {
 }
 function $f_sc_IndexedSeqOps__last__O($thiz) {
   return $thiz.apply__I__O((((-1) + $thiz.length__I()) | 0))
+}
+function $is_sc_IndexedSeqOps(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.sc_IndexedSeqOps)))
+}
+function $as_sc_IndexedSeqOps(obj) {
+  return (($is_sc_IndexedSeqOps(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "scala.collection.IndexedSeqOps"))
+}
+function $isArrayOf_sc_IndexedSeqOps(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.sc_IndexedSeqOps)))
+}
+function $asArrayOf_sc_IndexedSeqOps(obj, depth) {
+  return (($isArrayOf_sc_IndexedSeqOps(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscala.collection.IndexedSeqOps;", depth))
 }
 function $f_sc_Iterable__toString__T($thiz) {
   var start = ($thiz.className__T() + "(");
@@ -48873,6 +50725,10 @@ $c_sci_MapKeyValueTupleHashIterator.prototype.copyToArray__O__I__I__I = (functio
 $c_sci_MapKeyValueTupleHashIterator.prototype.addString__scm_StringBuilder__T__T__T__scm_StringBuilder = (function(b, start, sep, end) {
   return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
 });
+$c_sci_MapKeyValueTupleHashIterator.prototype.toList__sci_List = (function() {
+  $m_sci_List$();
+  return $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this)
+});
 $c_sci_MapKeyValueTupleHashIterator.prototype.toArray__s_reflect_ClassTag__O = (function(evidence$2) {
   return $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O(this, evidence$2)
 });
@@ -48945,6 +50801,10 @@ $c_sci_MapKeyValueTupleIterator.prototype.copyToArray__O__I__I__I = (function(xs
 });
 $c_sci_MapKeyValueTupleIterator.prototype.addString__scm_StringBuilder__T__T__T__scm_StringBuilder = (function(b, start, sep, end) {
   return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
+});
+$c_sci_MapKeyValueTupleIterator.prototype.toList__sci_List = (function() {
+  $m_sci_List$();
+  return $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this)
 });
 $c_sci_MapKeyValueTupleIterator.prototype.toArray__s_reflect_ClassTag__O = (function(evidence$2) {
   return $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O(this, evidence$2)
@@ -49144,6 +51004,10 @@ $c_sci_NewVectorIterator.prototype.foldLeft__O__F2__O = (function(z, op) {
 });
 $c_sci_NewVectorIterator.prototype.addString__scm_StringBuilder__T__T__T__scm_StringBuilder = (function(b, start, sep, end) {
   return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
+});
+$c_sci_NewVectorIterator.prototype.toList__sci_List = (function() {
+  $m_sci_List$();
+  return $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this)
 });
 $c_sci_NewVectorIterator.prototype.toArray__s_reflect_ClassTag__O = (function(evidence$2) {
   return $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O(this, evidence$2)
@@ -49541,6 +51405,10 @@ $c_sci_SetHashIterator.prototype.copyToArray__O__I__I__I = (function(xs, start, 
 $c_sci_SetHashIterator.prototype.addString__scm_StringBuilder__T__T__T__scm_StringBuilder = (function(b, start, sep, end) {
   return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
 });
+$c_sci_SetHashIterator.prototype.toList__sci_List = (function() {
+  $m_sci_List$();
+  return $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this)
+});
 $c_sci_SetHashIterator.prototype.toArray__s_reflect_ClassTag__O = (function(evidence$2) {
   return $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O(this, evidence$2)
 });
@@ -49606,6 +51474,10 @@ $c_sci_SetIterator.prototype.copyToArray__O__I__I__I = (function(xs, start, len)
 });
 $c_sci_SetIterator.prototype.addString__scm_StringBuilder__T__T__T__scm_StringBuilder = (function(b, start, sep, end) {
   return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
+});
+$c_sci_SetIterator.prototype.toList__sci_List = (function() {
+  $m_sci_List$();
+  return $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this)
 });
 $c_sci_SetIterator.prototype.toArray__s_reflect_ClassTag__O = (function(evidence$2) {
   return $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O(this, evidence$2)
@@ -50928,6 +52800,111 @@ var $d_scm_ArrayBuffer$$anon$1 = new $TypeData().initClass({
 });
 $c_scm_ArrayBuffer$$anon$1.prototype.$classData = $d_scm_ArrayBuffer$$anon$1;
 /** @constructor */
+function $c_scm_ArrayDeque$() {
+  /*<skip>*/
+}
+$c_scm_ArrayDeque$.prototype = new $h_O();
+$c_scm_ArrayDeque$.prototype.constructor = $c_scm_ArrayDeque$;
+/** @constructor */
+function $h_scm_ArrayDeque$() {
+  /*<skip>*/
+}
+$h_scm_ArrayDeque$.prototype = $c_scm_ArrayDeque$.prototype;
+$c_scm_ArrayDeque$.prototype.apply__sci_Seq__O = (function(elems) {
+  return this.from__sc_IterableOnce__scm_ArrayDeque(elems)
+});
+$c_scm_ArrayDeque$.prototype.from__sc_IterableOnce__scm_ArrayDeque = (function(coll) {
+  var s = $n(coll).knownSize__I();
+  if ((s >= 0)) {
+    var array = this.alloc__I__AO(s);
+    if ($is_sc_Iterable(coll)) {
+      var x2 = $as_sc_Iterable(coll);
+      var actual = $n(x2).copyToArray__O__I__I__I(array, 0, 2147483647)
+    } else {
+      var actual = $n($n(coll).iterator__sc_Iterator()).copyToArray__O__I__I__I(array, 0, 2147483647)
+    };
+    if ((actual !== s)) {
+      throw $ct_jl_IllegalStateException__T__(new $c_jl_IllegalStateException(), ((("Copied " + actual) + " of ") + s))
+    };
+    return $ct_scm_ArrayDeque__AO__I__I__(new $c_scm_ArrayDeque(), array, 0, s)
+  } else {
+    var this$2 = $ct_scm_ArrayDeque__I__(new $c_scm_ArrayDeque(), 16);
+    return this$2.addAll__sc_IterableOnce__scm_ArrayDeque(coll)
+  }
+});
+$c_scm_ArrayDeque$.prototype.newBuilder__scm_Builder = (function() {
+  return new $c_scm_ArrayDeque$$anon$1()
+});
+$c_scm_ArrayDeque$.prototype.alloc__I__AO = (function(len) {
+  var requirement = (len >= 0);
+  if ((!requirement)) {
+    throw $ct_jl_IllegalArgumentException__T__(new $c_jl_IllegalArgumentException(), "requirement failed: Non-negative array size required")
+  };
+  var size = ((((-2147483648) >>> $uI(Math.clz32(len))) | 0) << 1);
+  var requirement$1 = (size >= 0);
+  if ((!requirement$1)) {
+    throw $ct_jl_IllegalArgumentException__T__(new $c_jl_IllegalArgumentException(), (("requirement failed: " + "ArrayDeque too big - cannot allocate ArrayDeque of length ") + len))
+  };
+  return new $ac_O(((size > 16) ? size : 16))
+});
+$c_scm_ArrayDeque$.prototype.fill__I__F0__O = (function(n, elem) {
+  return $f_sc_StrictOptimizedSeqFactory__fill__I__F0__sc_SeqOps(this, n, elem)
+});
+$c_scm_ArrayDeque$.prototype.empty__O = (function() {
+  return $ct_scm_ArrayDeque__I__(new $c_scm_ArrayDeque(), 16)
+});
+$c_scm_ArrayDeque$.prototype.from__sc_IterableOnce__O = (function(source) {
+  return this.from__sc_IterableOnce__scm_ArrayDeque(source)
+});
+var $d_scm_ArrayDeque$ = new $TypeData().initClass({
+  scm_ArrayDeque$: 0
+}, false, "scala.collection.mutable.ArrayDeque$", {
+  scm_ArrayDeque$: 1,
+  O: 1,
+  sc_StrictOptimizedSeqFactory: 1,
+  sc_SeqFactory: 1,
+  sc_IterableFactory: 1,
+  Ljava_io_Serializable: 1
+});
+$c_scm_ArrayDeque$.prototype.$classData = $d_scm_ArrayDeque$;
+var $n_scm_ArrayDeque$;
+function $m_scm_ArrayDeque$() {
+  if ((!$n_scm_ArrayDeque$)) {
+    $n_scm_ArrayDeque$ = new $c_scm_ArrayDeque$()
+  };
+  return $n_scm_ArrayDeque$
+}
+/** @constructor */
+function $c_scm_ArrayDeque$$anon$1() {
+  this.scm_GrowableBuilder__f_elems = null;
+  $ct_scm_GrowableBuilder__scm_Growable__(this, $ct_scm_ArrayDeque__I__(new $c_scm_ArrayDeque(), 16))
+}
+$c_scm_ArrayDeque$$anon$1.prototype = new $h_scm_GrowableBuilder();
+$c_scm_ArrayDeque$$anon$1.prototype.constructor = $c_scm_ArrayDeque$$anon$1;
+/** @constructor */
+function $h_scm_ArrayDeque$$anon$1() {
+  /*<skip>*/
+}
+$h_scm_ArrayDeque$$anon$1.prototype = $c_scm_ArrayDeque$$anon$1.prototype;
+$c_scm_ArrayDeque$$anon$1.prototype.sizeHint__I__V = (function(size) {
+  var this$1 = $n($as_scm_ArrayDeque(this.scm_GrowableBuilder__f_elems));
+  var idx = this$1.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+  if (((size > (((this$1.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx) | 0) & (((-1) + $n(this$1.scm_ArrayDeque__f_array).u.length) | 0))) && (size >= $n(this$1.scm_ArrayDeque__f_array).u.length))) {
+    this$1.scala$collection$mutable$ArrayDeque$$resize__I__V(size)
+  }
+});
+var $d_scm_ArrayDeque$$anon$1 = new $TypeData().initClass({
+  scm_ArrayDeque$$anon$1: 0
+}, false, "scala.collection.mutable.ArrayDeque$$anon$1", {
+  scm_ArrayDeque$$anon$1: 1,
+  scm_GrowableBuilder: 1,
+  O: 1,
+  scm_Builder: 1,
+  scm_Growable: 1,
+  scm_Clearable: 1
+});
+$c_scm_ArrayDeque$$anon$1.prototype.$classData = $d_scm_ArrayDeque$$anon$1;
+/** @constructor */
 function $c_scm_Buffer$() {
   this.sc_SeqFactory$Delegate__f_delegate = null;
   $ct_sc_SeqFactory$Delegate__sc_SeqFactory__(this, $m_sjs_js_WrappedArray$())
@@ -51244,6 +53221,52 @@ var $d_scm_MutationTracker$CheckedIterator = new $TypeData().initClass({
   sc_IterableOnceOps: 1
 });
 $c_scm_MutationTracker$CheckedIterator.prototype.$classData = $d_scm_MutationTracker$CheckedIterator;
+/** @constructor */
+function $c_scm_Queue$() {
+  /*<skip>*/
+}
+$c_scm_Queue$.prototype = new $h_O();
+$c_scm_Queue$.prototype.constructor = $c_scm_Queue$;
+/** @constructor */
+function $h_scm_Queue$() {
+  /*<skip>*/
+}
+$h_scm_Queue$.prototype = $c_scm_Queue$.prototype;
+$c_scm_Queue$.prototype.apply__sci_Seq__O = (function(elems) {
+  var this$1 = new $c_scm_Queue(16);
+  return $as_scm_Queue(this$1.addAll__sc_IterableOnce__scm_ArrayDeque(elems))
+});
+$c_scm_Queue$.prototype.newBuilder__scm_Builder = (function() {
+  return $ct_scm_GrowableBuilder__scm_Growable__(new $c_scm_GrowableBuilder(), new $c_scm_Queue(16))
+});
+$c_scm_Queue$.prototype.fill__I__F0__O = (function(n, elem) {
+  return $f_sc_StrictOptimizedSeqFactory__fill__I__F0__sc_SeqOps(this, n, elem)
+});
+$c_scm_Queue$.prototype.empty__O = (function() {
+  return new $c_scm_Queue(16)
+});
+$c_scm_Queue$.prototype.from__sc_IterableOnce__O = (function(source) {
+  var this$1 = new $c_scm_Queue(16);
+  return $as_scm_Queue(this$1.addAll__sc_IterableOnce__scm_ArrayDeque(source))
+});
+var $d_scm_Queue$ = new $TypeData().initClass({
+  scm_Queue$: 0
+}, false, "scala.collection.mutable.Queue$", {
+  scm_Queue$: 1,
+  O: 1,
+  sc_StrictOptimizedSeqFactory: 1,
+  sc_SeqFactory: 1,
+  sc_IterableFactory: 1,
+  Ljava_io_Serializable: 1
+});
+$c_scm_Queue$.prototype.$classData = $d_scm_Queue$;
+var $n_scm_Queue$;
+function $m_scm_Queue$() {
+  if ((!$n_scm_Queue$)) {
+    $n_scm_Queue$ = new $c_scm_Queue$()
+  };
+  return $n_scm_Queue$
+}
 function $p_scm_RedBlackTree$TreeIterator__setNullIfAfterEnd__V($thiz) {
   var this$1 = $n($thiz.scm_RedBlackTree$TreeIterator__f_end);
   if ((((!this$1.isEmpty__Z()) && ($thiz.scm_RedBlackTree$TreeIterator__f_nextNode !== null)) && ($n($thiz.scm_RedBlackTree$TreeIterator__f_ord).compare__O__O__I($n($thiz.scm_RedBlackTree$TreeIterator__f_nextNode).scm_RedBlackTree$Node__f_key, $n($thiz.scm_RedBlackTree$TreeIterator__f_end).get__O()) >= 0))) {
@@ -51624,6 +53647,15 @@ function $f_s_math_Ordering__lteq__O__O__Z($thiz, x, y) {
 }
 function $f_s_math_Ordering__equiv__O__O__Z($thiz, x, y) {
   return ($thiz.compare__O__O__I(x, y) === 0)
+}
+function $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z($thiz, other) {
+  if ((other instanceof $c_s_math_Ordering$Reverse)) {
+    var x2 = $as_s_math_Ordering$Reverse(other);
+    var x = $n(x2).s_math_Ordering$Reverse__f_outer;
+    return ((x !== null) && $n(x).equals__O__Z($thiz))
+  } else {
+    return false
+  }
 }
 function $is_s_math_Ordering(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.s_math_Ordering)))
@@ -55681,6 +57713,9 @@ $c_Lcats_instances_OrderingInstances$$anon$2.prototype.lteq__O__O__Z = (function
 $c_Lcats_instances_OrderingInstances$$anon$2.prototype.equiv__O__O__Z = (function(x, y) {
   return $f_s_math_Ordering__equiv__O__O__Z(this, x, y)
 });
+$c_Lcats_instances_OrderingInstances$$anon$2.prototype.isReverseOf__s_math_Ordering__Z = (function(other) {
+  return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
+});
 $c_Lcats_instances_OrderingInstances$$anon$2.prototype.compare__T2__T2__I = (function(x, y) {
   var z = $n(this.Lcats_instances_OrderingInstances$$anon$2__f_fa$1).compare__O__O__I($n(x).T2__f__1, $n(y).T2__f__1);
   return ((z === 0) ? $n(this.Lcats_instances_OrderingInstances$$anon$2__f_fb$1).compare__O__O__I($n(x).T2__f__2, $n(y).T2__f__2) : z)
@@ -56336,8 +58371,66 @@ function $isArrayOf_Lchartreuse_component_AnnotationType$Circle(obj, depth) {
 function $asArrayOf_Lchartreuse_component_AnnotationType$Circle(obj, depth) {
   return (($isArrayOf_Lchartreuse_component_AnnotationType$Circle(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lchartreuse.component.AnnotationType$Circle;", depth))
 }
+/** @constructor */
+function $c_Lchartreuse_component_AnnotationType$CircleWithText(radius, text) {
+  this.Lchartreuse_component_AnnotationType$CircleWithText__f_radius = 0.0;
+  this.Lchartreuse_component_AnnotationType$CircleWithText__f_text = null;
+  this.Lchartreuse_component_AnnotationType$CircleWithText__f_radius = radius;
+  this.Lchartreuse_component_AnnotationType$CircleWithText__f_text = text
+}
+$c_Lchartreuse_component_AnnotationType$CircleWithText.prototype = new $h_Lchartreuse_component_AnnotationType();
+$c_Lchartreuse_component_AnnotationType$CircleWithText.prototype.constructor = $c_Lchartreuse_component_AnnotationType$CircleWithText;
+/** @constructor */
+function $h_Lchartreuse_component_AnnotationType$CircleWithText() {
+  /*<skip>*/
+}
+$h_Lchartreuse_component_AnnotationType$CircleWithText.prototype = $c_Lchartreuse_component_AnnotationType$CircleWithText.prototype;
+$c_Lchartreuse_component_AnnotationType$CircleWithText.prototype.hashCode__I = (function() {
+  var acc = (-889275714);
+  var hash = acc;
+  var data = $f_T__hashCode__I("CircleWithText");
+  acc = $m_sr_Statics$().mix__I__I__I(hash, data);
+  var hash$1 = acc;
+  var dv = this.Lchartreuse_component_AnnotationType$CircleWithText__f_radius;
+  var data$1 = $m_sr_Statics$().doubleHash__D__I(dv);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$1, data$1);
+  var hash$2 = acc;
+  var x = this.Lchartreuse_component_AnnotationType$CircleWithText__f_text;
+  var data$2 = $m_sr_Statics$().anyHash__O__I(x);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$2, data$2);
+  var hash$3 = acc;
+  return $m_sr_Statics$().finalizeHash__I__I__I(hash$3, 2)
+});
+$c_Lchartreuse_component_AnnotationType$CircleWithText.prototype.equals__O__Z = (function(x$0) {
+  if ((this === x$0)) {
+    return true
+  } else if ((x$0 instanceof $c_Lchartreuse_component_AnnotationType$CircleWithText)) {
+    var x$0$2 = $as_Lchartreuse_component_AnnotationType$CircleWithText(x$0);
+    return ((this.Lchartreuse_component_AnnotationType$CircleWithText__f_radius === $n(x$0$2).Lchartreuse_component_AnnotationType$CircleWithText__f_radius) && (this.Lchartreuse_component_AnnotationType$CircleWithText__f_text === $n(x$0$2).Lchartreuse_component_AnnotationType$CircleWithText__f_text))
+  } else {
+    return false
+  }
+});
+$c_Lchartreuse_component_AnnotationType$CircleWithText.prototype.toString__T = (function() {
+  return $m_sr_ScalaRunTime$()._toString__s_Product__T(this)
+});
+$c_Lchartreuse_component_AnnotationType$CircleWithText.prototype.productArity__I = (function() {
+  return 2
+});
+$c_Lchartreuse_component_AnnotationType$CircleWithText.prototype.productPrefix__T = (function() {
+  return "CircleWithText"
+});
+$c_Lchartreuse_component_AnnotationType$CircleWithText.prototype.productElement__I__O = (function(n) {
+  if ((n === 0)) {
+    return this.Lchartreuse_component_AnnotationType$CircleWithText__f_radius
+  };
+  if ((n === 1)) {
+    return this.Lchartreuse_component_AnnotationType$CircleWithText__f_text
+  };
+  throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
+});
 function $as_Lchartreuse_component_AnnotationType$CircleWithText(obj) {
-  return ((false || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.component.AnnotationType$CircleWithText"))
+  return (((obj instanceof $c_Lchartreuse_component_AnnotationType$CircleWithText) || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.component.AnnotationType$CircleWithText"))
 }
 function $isArrayOf_Lchartreuse_component_AnnotationType$CircleWithText(obj, depth) {
   return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lchartreuse_component_AnnotationType$CircleWithText)))
@@ -56345,60 +58438,10 @@ function $isArrayOf_Lchartreuse_component_AnnotationType$CircleWithText(obj, dep
 function $asArrayOf_Lchartreuse_component_AnnotationType$CircleWithText(obj, depth) {
   return (($isArrayOf_Lchartreuse_component_AnnotationType$CircleWithText(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lchartreuse.component.AnnotationType$CircleWithText;", depth))
 }
-/** @constructor */
-function $c_Lchartreuse_component_AnnotationType$Text(text) {
-  this.Lchartreuse_component_AnnotationType$Text__f_text = null;
-  this.Lchartreuse_component_AnnotationType$Text__f_text = text
-}
-$c_Lchartreuse_component_AnnotationType$Text.prototype = new $h_Lchartreuse_component_AnnotationType();
-$c_Lchartreuse_component_AnnotationType$Text.prototype.constructor = $c_Lchartreuse_component_AnnotationType$Text;
-/** @constructor */
-function $h_Lchartreuse_component_AnnotationType$Text() {
-  /*<skip>*/
-}
-$h_Lchartreuse_component_AnnotationType$Text.prototype = $c_Lchartreuse_component_AnnotationType$Text.prototype;
-$c_Lchartreuse_component_AnnotationType$Text.prototype.hashCode__I = (function() {
-  var this$2 = $m_s_util_hashing_MurmurHash3$();
-  return this$2.productHash__s_Product__I__Z__I(this, (-889275714), false)
-});
-$c_Lchartreuse_component_AnnotationType$Text.prototype.equals__O__Z = (function(x$0) {
-  if ((this === x$0)) {
-    return true
-  } else if ((x$0 instanceof $c_Lchartreuse_component_AnnotationType$Text)) {
-    var x$0$2 = $as_Lchartreuse_component_AnnotationType$Text(x$0);
-    return (this.Lchartreuse_component_AnnotationType$Text__f_text === $n(x$0$2).Lchartreuse_component_AnnotationType$Text__f_text)
-  } else {
-    return false
-  }
-});
-$c_Lchartreuse_component_AnnotationType$Text.prototype.toString__T = (function() {
-  return $m_sr_ScalaRunTime$()._toString__s_Product__T(this)
-});
-$c_Lchartreuse_component_AnnotationType$Text.prototype.productArity__I = (function() {
-  return 1
-});
-$c_Lchartreuse_component_AnnotationType$Text.prototype.productPrefix__T = (function() {
-  return "Text"
-});
-$c_Lchartreuse_component_AnnotationType$Text.prototype.productElement__I__O = (function(n) {
-  if ((n === 0)) {
-    return this.Lchartreuse_component_AnnotationType$Text__f_text
-  };
-  throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
-});
-function $as_Lchartreuse_component_AnnotationType$Text(obj) {
-  return (((obj instanceof $c_Lchartreuse_component_AnnotationType$Text) || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.component.AnnotationType$Text"))
-}
-function $isArrayOf_Lchartreuse_component_AnnotationType$Text(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lchartreuse_component_AnnotationType$Text)))
-}
-function $asArrayOf_Lchartreuse_component_AnnotationType$Text(obj, depth) {
-  return (($isArrayOf_Lchartreuse_component_AnnotationType$Text(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lchartreuse.component.AnnotationType$Text;", depth))
-}
-var $d_Lchartreuse_component_AnnotationType$Text = new $TypeData().initClass({
-  Lchartreuse_component_AnnotationType$Text: 0
-}, false, "chartreuse.component.AnnotationType$Text", {
-  Lchartreuse_component_AnnotationType$Text: 1,
+var $d_Lchartreuse_component_AnnotationType$CircleWithText = new $TypeData().initClass({
+  Lchartreuse_component_AnnotationType$CircleWithText: 0
+}, false, "chartreuse.component.AnnotationType$CircleWithText", {
+  Lchartreuse_component_AnnotationType$CircleWithText: 1,
   Lchartreuse_component_AnnotationType: 1,
   O: 1,
   s_Equals: 1,
@@ -56406,7 +58449,16 @@ var $d_Lchartreuse_component_AnnotationType$Text = new $TypeData().initClass({
   Ljava_io_Serializable: 1,
   s_reflect_Enum: 1
 });
-$c_Lchartreuse_component_AnnotationType$Text.prototype.$classData = $d_Lchartreuse_component_AnnotationType$Text;
+$c_Lchartreuse_component_AnnotationType$CircleWithText.prototype.$classData = $d_Lchartreuse_component_AnnotationType$CircleWithText;
+function $as_Lchartreuse_component_AnnotationType$Text(obj) {
+  return ((false || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.component.AnnotationType$Text"))
+}
+function $isArrayOf_Lchartreuse_component_AnnotationType$Text(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lchartreuse_component_AnnotationType$Text)))
+}
+function $asArrayOf_Lchartreuse_component_AnnotationType$Text(obj, depth) {
+  return (($isArrayOf_Lchartreuse_component_AnnotationType$Text(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lchartreuse.component.AnnotationType$Text;", depth))
+}
 function $as_Lchartreuse_component_AnnotationType$TextWithBox(obj) {
   return ((false || (obj === null)) ? obj : $throwClassCastException(obj, "chartreuse.component.AnnotationType$TextWithBox"))
 }
@@ -56447,6 +58499,12 @@ function $f_jl_Double__hashCode__I($thiz) {
 function $f_jl_Double__toString__T($thiz) {
   return ("" + $thiz)
 }
+function $f_jl_Double__compareTo__O__I($thiz, o) {
+  var that = $as_jl_Double(o);
+  var $$x1 = $m_jl_Double$();
+  var this$1 = $n(that);
+  return $n($$x1).compare__D__D__I($thiz, this$1)
+}
 function $as_jl_Double(obj) {
   return ((((typeof obj) === "number") || (obj === null)) ? obj : $throwClassCastException(obj, "java.lang.Double"))
 }
@@ -56476,6 +58534,11 @@ function $f_jl_Float__hashCode__I($thiz) {
 function $f_jl_Float__toString__T($thiz) {
   return ("" + $thiz)
 }
+function $f_jl_Float__compareTo__O__I($thiz, o) {
+  var that = $as_jl_Float(o);
+  var this$1 = $n(that);
+  return $m_jl_Double$().compare__D__D__I($thiz, this$1)
+}
 function $as_jl_Float(obj) {
   return (($isFloat(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "java.lang.Float"))
 }
@@ -56504,6 +58567,11 @@ function $f_jl_Integer__hashCode__I($thiz) {
 }
 function $f_jl_Integer__toString__T($thiz) {
   return ("" + $thiz)
+}
+function $f_jl_Integer__compareTo__O__I($thiz, o) {
+  var that = $as_jl_Integer(o);
+  var this$1 = $n(that);
+  return (($thiz === this$1) ? 0 : (($thiz < this$1) ? (-1) : 1))
 }
 function $as_jl_Integer(obj) {
   return (($isInt(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "java.lang.Integer"))
@@ -56542,6 +58610,10 @@ function $f_jl_Long__hashCode__I($thiz) {
 }
 function $f_jl_Long__toString__T($thiz) {
   return $m_RTLong$().org$scalajs$linker$runtime$RuntimeLong$$toString__I__I__T($thiz.RTLong__f_lo, $thiz.RTLong__f_hi)
+}
+function $f_jl_Long__compareTo__O__I($thiz, o) {
+  var that = $as_jl_Long(o);
+  return $m_RTLong$().org$scalajs$linker$runtime$RuntimeLong$$compare__I__I__I__I__I($thiz.RTLong__f_lo, $thiz.RTLong__f_hi, $n(that).RTLong__f_lo, $n(that).RTLong__f_hi)
 }
 function $as_jl_Long(obj) {
   return (((obj instanceof $c_RTLong) || (obj === null)) ? obj : $throwClassCastException(obj, "java.lang.Long"))
@@ -56727,6 +58799,9 @@ function $f_T__trim__T($thiz) {
 }
 function $f_T__toString__T($thiz) {
   return $thiz
+}
+function $f_T__compareTo__O__I($thiz, o) {
+  return $f_T__compareTo__T__I($thiz, $as_T(o))
 }
 function $as_T(obj) {
   return ((((typeof obj) === "string") || (obj === null)) ? obj : $throwClassCastException(obj, "java.lang.String"))
@@ -57054,6 +59129,9 @@ $c_sc_AbstractIterable.prototype.toIndexedSeq__sci_IndexedSeq = (function() {
 $c_sc_AbstractIterable.prototype.toArray__s_reflect_ClassTag__O = (function(evidence$2) {
   return $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O(this, evidence$2)
 });
+$c_sc_AbstractIterable.prototype.reversed__sc_Iterable = (function() {
+  return $f_sc_IterableOnceOps__reversed__sc_Iterable(this)
+});
 $c_sc_AbstractIterable.prototype.knownSize__I = (function() {
   return (-1)
 });
@@ -57187,14 +59265,17 @@ var $d_sc_IndexedSeqView$IndexedSeqViewIterator = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_sc_IndexedSeqView$IndexedSeqViewIterator.prototype.$classData = $d_sc_IndexedSeqView$IndexedSeqViewIterator;
+function $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__($thiz, self) {
+  $thiz.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_self = self;
+  $thiz.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_scala$collection$IndexedSeqView$IndexedSeqViewReverseIterator$$remainder = $n(self).length__I();
+  $thiz.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_pos = (((-1) + $thiz.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_scala$collection$IndexedSeqView$IndexedSeqViewReverseIterator$$remainder) | 0);
+  return $thiz
+}
 /** @constructor */
-function $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(self) {
+function $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator() {
   this.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_self = null;
   this.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_scala$collection$IndexedSeqView$IndexedSeqViewReverseIterator$$remainder = 0;
-  this.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_pos = 0;
-  this.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_self = self;
-  this.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_scala$collection$IndexedSeqView$IndexedSeqViewReverseIterator$$remainder = $n(self).length__I();
-  this.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_pos = (((-1) + this.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_scala$collection$IndexedSeqView$IndexedSeqViewReverseIterator$$remainder) | 0)
+  this.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_pos = 0
 }
 $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator.prototype = new $h_sc_AbstractIterator();
 $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator.prototype.constructor = $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator;
@@ -58339,6 +60420,48 @@ var $d_s_concurrent_duration_Duration$$anon$3 = new $TypeData().initClass({
   jl_Comparable: 1
 });
 $c_s_concurrent_duration_Duration$$anon$3.prototype.$classData = $d_s_concurrent_duration_Duration$$anon$3;
+/** @constructor */
+function $c_s_math_Ordering$$anon$1(outer, f$1) {
+  this.s_math_Ordering$$anon$1__f_$outer = null;
+  this.s_math_Ordering$$anon$1__f_f$1 = null;
+  if ((outer === null)) {
+    $n(null)
+  } else {
+    this.s_math_Ordering$$anon$1__f_$outer = outer
+  };
+  this.s_math_Ordering$$anon$1__f_f$1 = f$1
+}
+$c_s_math_Ordering$$anon$1.prototype = new $h_O();
+$c_s_math_Ordering$$anon$1.prototype.constructor = $c_s_math_Ordering$$anon$1;
+/** @constructor */
+function $h_s_math_Ordering$$anon$1() {
+  /*<skip>*/
+}
+$h_s_math_Ordering$$anon$1.prototype = $c_s_math_Ordering$$anon$1.prototype;
+$c_s_math_Ordering$$anon$1.prototype.lteq__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__lteq__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$$anon$1.prototype.equiv__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__equiv__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$$anon$1.prototype.isReverseOf__s_math_Ordering__Z = (function(other) {
+  return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
+});
+$c_s_math_Ordering$$anon$1.prototype.compare__O__O__I = (function(x, y) {
+  return $n(this.s_math_Ordering$$anon$1__f_$outer).compare__O__O__I($n(this.s_math_Ordering$$anon$1__f_f$1).apply__O__O(x), $n(this.s_math_Ordering$$anon$1__f_f$1).apply__O__O(y))
+});
+var $d_s_math_Ordering$$anon$1 = new $TypeData().initClass({
+  s_math_Ordering$$anon$1: 0
+}, false, "scala.math.Ordering$$anon$1", {
+  s_math_Ordering$$anon$1: 1,
+  O: 1,
+  s_math_Ordering: 1,
+  ju_Comparator: 1,
+  s_math_PartialOrdering: 1,
+  s_math_Equiv: 1,
+  Ljava_io_Serializable: 1
+});
+$c_s_math_Ordering$$anon$1.prototype.$classData = $d_s_math_Ordering$$anon$1;
 function $f_s_math_Ordering$CachedReverse__isReverseOf__s_math_Ordering__Z($thiz, other) {
   return (other === $thiz.s_math_Ordering$Int$__f_scala$math$Ordering$CachedReverse$$_reverse)
 }
@@ -58354,6 +60477,10 @@ function $h_s_math_Ordering$Reverse() {
   /*<skip>*/
 }
 $h_s_math_Ordering$Reverse.prototype = $c_s_math_Ordering$Reverse.prototype;
+$c_s_math_Ordering$Reverse.prototype.isReverseOf__s_math_Ordering__Z = (function(other) {
+  var x$2 = this.s_math_Ordering$Reverse__f_outer;
+  return ((other === null) ? (x$2 === null) : $n(other).equals__O__Z(x$2))
+});
 $c_s_math_Ordering$Reverse.prototype.compare__O__O__I = (function(x, y) {
   return $n(this.s_math_Ordering$Reverse__f_outer).compare__O__O__I(y, x)
 });
@@ -58420,6 +60547,9 @@ $c_s_math_Ordering$Tuple2Ordering.prototype.lteq__O__O__Z = (function(x, y) {
 });
 $c_s_math_Ordering$Tuple2Ordering.prototype.equiv__O__O__Z = (function(x, y) {
   return $f_s_math_Ordering__equiv__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$Tuple2Ordering.prototype.isReverseOf__s_math_Ordering__Z = (function(other) {
+  return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
 });
 $c_s_math_Ordering$Tuple2Ordering.prototype.compare__T2__T2__I = (function(x, y) {
   var compare1 = $n(this.s_math_Ordering$Tuple2Ordering__f_ord1).compare__O__O__I($n(x).T2__f__1, $n(y).T2__f__1);
@@ -60354,6 +62484,33 @@ var $d_scm_ArrayBuilder$generic = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_scm_ArrayBuilder$generic.prototype.$classData = $d_scm_ArrayBuilder$generic;
+function $f_scm_ArrayDequeOps__copySliceToArray__I__O__I__I__O($thiz, srcStart, dest, destStart, maxItems) {
+  var until = ((1 + $m_jl_reflect_Array$().getLength__O__I(dest)) | 0);
+  if (((destStart < 0) || (destStart >= until))) {
+    throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), (((destStart + " is out of bounds (min 0, max ") + (((-1) + until) | 0)) + ")"))
+  };
+  var idx = $thiz.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+  var a = ((((($thiz.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx) | 0) & (((-1) + $n($thiz.scm_ArrayDeque__f_array).u.length) | 0)) - srcStart) | 0);
+  var b = (($m_jl_reflect_Array$().getLength__O__I(dest) - destStart) | 0);
+  var b$1 = ((a < b) ? a : b);
+  var toCopy = ((maxItems < b$1) ? maxItems : b$1);
+  if ((toCopy > 0)) {
+    var idx$1 = $thiz.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+    var until$1 = ((($thiz.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx$1) | 0) & (((-1) + $n($thiz.scm_ArrayDeque__f_array).u.length) | 0));
+    if (((srcStart < 0) || (srcStart >= until$1))) {
+      throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), (((srcStart + " is out of bounds (min 0, max ") + (((-1) + until$1) | 0)) + ")"))
+    };
+    var startIdx = ((($thiz.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start + srcStart) | 0) & (((-1) + $n($thiz.scm_ArrayDeque__f_array).u.length) | 0));
+    var b$2 = (($n($thiz.scm_ArrayDeque__f_array).u.length - startIdx) | 0);
+    var block1 = ((toCopy < b$2) ? toCopy : b$2);
+    $m_s_Array$().copy__O__I__O__I__I__V($thiz.scm_ArrayDeque__f_array, startIdx, dest, destStart, block1);
+    var block2 = ((toCopy - block1) | 0);
+    if ((block2 > 0)) {
+      $m_s_Array$().copy__O__I__O__I__I__V($thiz.scm_ArrayDeque__f_array, 0, dest, ((destStart + block1) | 0), block2)
+    }
+  };
+  return dest
+}
 /** @constructor */
 function $c_scm_CheckedIndexedSeqView$CheckedIterator(self, mutationCount) {
   this.sc_IndexedSeqView$IndexedSeqViewIterator__f_self = null;
@@ -60394,6 +62551,320 @@ var $d_scm_CheckedIndexedSeqView$CheckedIterator = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_scm_CheckedIndexedSeqView$CheckedIterator.prototype.$classData = $d_scm_CheckedIndexedSeqView$CheckedIterator;
+/** @constructor */
+function $c_scm_CheckedIndexedSeqView$CheckedReverseIterator(self, mutationCount) {
+  this.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_self = null;
+  this.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_scala$collection$IndexedSeqView$IndexedSeqViewReverseIterator$$remainder = 0;
+  this.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_pos = 0;
+  this.scm_CheckedIndexedSeqView$CheckedReverseIterator__f_mutationCount = null;
+  this.scm_CheckedIndexedSeqView$CheckedReverseIterator__f_expectedCount = 0;
+  this.scm_CheckedIndexedSeqView$CheckedReverseIterator__f_mutationCount = mutationCount;
+  $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(this, self);
+  var this$1 = $n(mutationCount);
+  this.scm_CheckedIndexedSeqView$CheckedReverseIterator__f_expectedCount = $uI(this$1.apply__O())
+}
+$c_scm_CheckedIndexedSeqView$CheckedReverseIterator.prototype = new $h_sc_IndexedSeqView$IndexedSeqViewReverseIterator();
+$c_scm_CheckedIndexedSeqView$CheckedReverseIterator.prototype.constructor = $c_scm_CheckedIndexedSeqView$CheckedReverseIterator;
+/** @constructor */
+function $h_scm_CheckedIndexedSeqView$CheckedReverseIterator() {
+  /*<skip>*/
+}
+$h_scm_CheckedIndexedSeqView$CheckedReverseIterator.prototype = $c_scm_CheckedIndexedSeqView$CheckedReverseIterator.prototype;
+$c_scm_CheckedIndexedSeqView$CheckedReverseIterator.prototype.hasNext__Z = (function() {
+  var this$2 = $m_scm_MutationTracker$();
+  var expectedCount = this.scm_CheckedIndexedSeqView$CheckedReverseIterator__f_expectedCount;
+  var this$1 = $n(this.scm_CheckedIndexedSeqView$CheckedReverseIterator__f_mutationCount);
+  var actualCount = $uI(this$1.apply__O());
+  this$2.checkMutations__I__I__T__V(expectedCount, actualCount, "mutation occurred during iteration");
+  return (this.sc_IndexedSeqView$IndexedSeqViewReverseIterator__f_scala$collection$IndexedSeqView$IndexedSeqViewReverseIterator$$remainder > 0)
+});
+var $d_scm_CheckedIndexedSeqView$CheckedReverseIterator = new $TypeData().initClass({
+  scm_CheckedIndexedSeqView$CheckedReverseIterator: 0
+}, false, "scala.collection.mutable.CheckedIndexedSeqView$CheckedReverseIterator", {
+  scm_CheckedIndexedSeqView$CheckedReverseIterator: 1,
+  sc_IndexedSeqView$IndexedSeqViewReverseIterator: 1,
+  sc_AbstractIterator: 1,
+  O: 1,
+  sc_Iterator: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOnceOps: 1,
+  Ljava_io_Serializable: 1
+});
+$c_scm_CheckedIndexedSeqView$CheckedReverseIterator.prototype.$classData = $d_scm_CheckedIndexedSeqView$CheckedReverseIterator;
+/** @constructor */
+function $c_s_math_Ordering$Boolean$() {
+  /*<skip>*/
+}
+$c_s_math_Ordering$Boolean$.prototype = new $h_O();
+$c_s_math_Ordering$Boolean$.prototype.constructor = $c_s_math_Ordering$Boolean$;
+/** @constructor */
+function $h_s_math_Ordering$Boolean$() {
+  /*<skip>*/
+}
+$h_s_math_Ordering$Boolean$.prototype = $c_s_math_Ordering$Boolean$.prototype;
+$c_s_math_Ordering$Boolean$.prototype.lteq__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__lteq__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$Boolean$.prototype.equiv__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__equiv__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$Boolean$.prototype.isReverseOf__s_math_Ordering__Z = (function(other) {
+  return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
+});
+$c_s_math_Ordering$Boolean$.prototype.compare__O__O__I = (function(x, y) {
+  var x$1 = $uZ(x);
+  var y$1 = $uZ(y);
+  return ((x$1 === y$1) ? 0 : (x$1 ? 1 : (-1)))
+});
+var $d_s_math_Ordering$Boolean$ = new $TypeData().initClass({
+  s_math_Ordering$Boolean$: 0
+}, false, "scala.math.Ordering$Boolean$", {
+  s_math_Ordering$Boolean$: 1,
+  O: 1,
+  s_math_Ordering$BooleanOrdering: 1,
+  s_math_Ordering: 1,
+  ju_Comparator: 1,
+  s_math_PartialOrdering: 1,
+  s_math_Equiv: 1,
+  Ljava_io_Serializable: 1
+});
+$c_s_math_Ordering$Boolean$.prototype.$classData = $d_s_math_Ordering$Boolean$;
+var $n_s_math_Ordering$Boolean$;
+function $m_s_math_Ordering$Boolean$() {
+  if ((!$n_s_math_Ordering$Boolean$)) {
+    $n_s_math_Ordering$Boolean$ = new $c_s_math_Ordering$Boolean$()
+  };
+  return $n_s_math_Ordering$Boolean$
+}
+/** @constructor */
+function $c_s_math_Ordering$Byte$() {
+  /*<skip>*/
+}
+$c_s_math_Ordering$Byte$.prototype = new $h_O();
+$c_s_math_Ordering$Byte$.prototype.constructor = $c_s_math_Ordering$Byte$;
+/** @constructor */
+function $h_s_math_Ordering$Byte$() {
+  /*<skip>*/
+}
+$h_s_math_Ordering$Byte$.prototype = $c_s_math_Ordering$Byte$.prototype;
+$c_s_math_Ordering$Byte$.prototype.lteq__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__lteq__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$Byte$.prototype.equiv__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__equiv__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$Byte$.prototype.isReverseOf__s_math_Ordering__Z = (function(other) {
+  return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
+});
+$c_s_math_Ordering$Byte$.prototype.compare__O__O__I = (function(x, y) {
+  var x$1 = $uB(x);
+  var y$1 = $uB(y);
+  return ((x$1 - y$1) | 0)
+});
+var $d_s_math_Ordering$Byte$ = new $TypeData().initClass({
+  s_math_Ordering$Byte$: 0
+}, false, "scala.math.Ordering$Byte$", {
+  s_math_Ordering$Byte$: 1,
+  O: 1,
+  s_math_Ordering$ByteOrdering: 1,
+  s_math_Ordering: 1,
+  ju_Comparator: 1,
+  s_math_PartialOrdering: 1,
+  s_math_Equiv: 1,
+  Ljava_io_Serializable: 1
+});
+$c_s_math_Ordering$Byte$.prototype.$classData = $d_s_math_Ordering$Byte$;
+var $n_s_math_Ordering$Byte$;
+function $m_s_math_Ordering$Byte$() {
+  if ((!$n_s_math_Ordering$Byte$)) {
+    $n_s_math_Ordering$Byte$ = new $c_s_math_Ordering$Byte$()
+  };
+  return $n_s_math_Ordering$Byte$
+}
+/** @constructor */
+function $c_s_math_Ordering$Char$() {
+  /*<skip>*/
+}
+$c_s_math_Ordering$Char$.prototype = new $h_O();
+$c_s_math_Ordering$Char$.prototype.constructor = $c_s_math_Ordering$Char$;
+/** @constructor */
+function $h_s_math_Ordering$Char$() {
+  /*<skip>*/
+}
+$h_s_math_Ordering$Char$.prototype = $c_s_math_Ordering$Char$.prototype;
+$c_s_math_Ordering$Char$.prototype.lteq__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__lteq__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$Char$.prototype.equiv__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__equiv__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$Char$.prototype.isReverseOf__s_math_Ordering__Z = (function(other) {
+  return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
+});
+$c_s_math_Ordering$Char$.prototype.compare__O__O__I = (function(x, y) {
+  var x$1 = $uC(x);
+  var y$1 = $uC(y);
+  return ((x$1 - y$1) | 0)
+});
+var $d_s_math_Ordering$Char$ = new $TypeData().initClass({
+  s_math_Ordering$Char$: 0
+}, false, "scala.math.Ordering$Char$", {
+  s_math_Ordering$Char$: 1,
+  O: 1,
+  s_math_Ordering$CharOrdering: 1,
+  s_math_Ordering: 1,
+  ju_Comparator: 1,
+  s_math_PartialOrdering: 1,
+  s_math_Equiv: 1,
+  Ljava_io_Serializable: 1
+});
+$c_s_math_Ordering$Char$.prototype.$classData = $d_s_math_Ordering$Char$;
+var $n_s_math_Ordering$Char$;
+function $m_s_math_Ordering$Char$() {
+  if ((!$n_s_math_Ordering$Char$)) {
+    $n_s_math_Ordering$Char$ = new $c_s_math_Ordering$Char$()
+  };
+  return $n_s_math_Ordering$Char$
+}
+/** @constructor */
+function $c_s_math_Ordering$Long$() {
+  /*<skip>*/
+}
+$c_s_math_Ordering$Long$.prototype = new $h_O();
+$c_s_math_Ordering$Long$.prototype.constructor = $c_s_math_Ordering$Long$;
+/** @constructor */
+function $h_s_math_Ordering$Long$() {
+  /*<skip>*/
+}
+$h_s_math_Ordering$Long$.prototype = $c_s_math_Ordering$Long$.prototype;
+$c_s_math_Ordering$Long$.prototype.lteq__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__lteq__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$Long$.prototype.equiv__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__equiv__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$Long$.prototype.isReverseOf__s_math_Ordering__Z = (function(other) {
+  return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
+});
+$c_s_math_Ordering$Long$.prototype.compare__O__O__I = (function(x, y) {
+  var t = $uJ(x);
+  var lo = t.RTLong__f_lo;
+  var hi = t.RTLong__f_hi;
+  var t$1 = $uJ(y);
+  var lo$1 = t$1.RTLong__f_lo;
+  var hi$1 = t$1.RTLong__f_hi;
+  return $m_RTLong$().org$scalajs$linker$runtime$RuntimeLong$$compare__I__I__I__I__I(lo, hi, lo$1, hi$1)
+});
+var $d_s_math_Ordering$Long$ = new $TypeData().initClass({
+  s_math_Ordering$Long$: 0
+}, false, "scala.math.Ordering$Long$", {
+  s_math_Ordering$Long$: 1,
+  O: 1,
+  s_math_Ordering$LongOrdering: 1,
+  s_math_Ordering: 1,
+  ju_Comparator: 1,
+  s_math_PartialOrdering: 1,
+  s_math_Equiv: 1,
+  Ljava_io_Serializable: 1
+});
+$c_s_math_Ordering$Long$.prototype.$classData = $d_s_math_Ordering$Long$;
+var $n_s_math_Ordering$Long$;
+function $m_s_math_Ordering$Long$() {
+  if ((!$n_s_math_Ordering$Long$)) {
+    $n_s_math_Ordering$Long$ = new $c_s_math_Ordering$Long$()
+  };
+  return $n_s_math_Ordering$Long$
+}
+/** @constructor */
+function $c_s_math_Ordering$Short$() {
+  /*<skip>*/
+}
+$c_s_math_Ordering$Short$.prototype = new $h_O();
+$c_s_math_Ordering$Short$.prototype.constructor = $c_s_math_Ordering$Short$;
+/** @constructor */
+function $h_s_math_Ordering$Short$() {
+  /*<skip>*/
+}
+$h_s_math_Ordering$Short$.prototype = $c_s_math_Ordering$Short$.prototype;
+$c_s_math_Ordering$Short$.prototype.lteq__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__lteq__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$Short$.prototype.equiv__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__equiv__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$Short$.prototype.isReverseOf__s_math_Ordering__Z = (function(other) {
+  return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
+});
+$c_s_math_Ordering$Short$.prototype.compare__O__O__I = (function(x, y) {
+  var x$1 = $uS(x);
+  var y$1 = $uS(y);
+  return ((x$1 - y$1) | 0)
+});
+var $d_s_math_Ordering$Short$ = new $TypeData().initClass({
+  s_math_Ordering$Short$: 0
+}, false, "scala.math.Ordering$Short$", {
+  s_math_Ordering$Short$: 1,
+  O: 1,
+  s_math_Ordering$ShortOrdering: 1,
+  s_math_Ordering: 1,
+  ju_Comparator: 1,
+  s_math_PartialOrdering: 1,
+  s_math_Equiv: 1,
+  Ljava_io_Serializable: 1
+});
+$c_s_math_Ordering$Short$.prototype.$classData = $d_s_math_Ordering$Short$;
+var $n_s_math_Ordering$Short$;
+function $m_s_math_Ordering$Short$() {
+  if ((!$n_s_math_Ordering$Short$)) {
+    $n_s_math_Ordering$Short$ = new $c_s_math_Ordering$Short$()
+  };
+  return $n_s_math_Ordering$Short$
+}
+/** @constructor */
+function $c_s_math_Ordering$String$() {
+  /*<skip>*/
+}
+$c_s_math_Ordering$String$.prototype = new $h_O();
+$c_s_math_Ordering$String$.prototype.constructor = $c_s_math_Ordering$String$;
+/** @constructor */
+function $h_s_math_Ordering$String$() {
+  /*<skip>*/
+}
+$h_s_math_Ordering$String$.prototype = $c_s_math_Ordering$String$.prototype;
+$c_s_math_Ordering$String$.prototype.lteq__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__lteq__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$String$.prototype.equiv__O__O__Z = (function(x, y) {
+  return $f_s_math_Ordering__equiv__O__O__Z(this, x, y)
+});
+$c_s_math_Ordering$String$.prototype.isReverseOf__s_math_Ordering__Z = (function(other) {
+  return $f_s_math_Ordering__isReverseOf__s_math_Ordering__Z(this, other)
+});
+$c_s_math_Ordering$String$.prototype.compare__O__O__I = (function(x, y) {
+  var x$1 = $as_T(x);
+  var y$1 = $as_T(y);
+  return $f_T__compareTo__T__I($n(x$1), y$1)
+});
+var $d_s_math_Ordering$String$ = new $TypeData().initClass({
+  s_math_Ordering$String$: 0
+}, false, "scala.math.Ordering$String$", {
+  s_math_Ordering$String$: 1,
+  O: 1,
+  s_math_Ordering$StringOrdering: 1,
+  s_math_Ordering: 1,
+  ju_Comparator: 1,
+  s_math_PartialOrdering: 1,
+  s_math_Equiv: 1,
+  Ljava_io_Serializable: 1
+});
+$c_s_math_Ordering$String$.prototype.$classData = $d_s_math_Ordering$String$;
+var $n_s_math_Ordering$String$;
+function $m_s_math_Ordering$String$() {
+  if ((!$n_s_math_Ordering$String$)) {
+    $n_s_math_Ordering$String$ = new $c_s_math_Ordering$String$()
+  };
+  return $n_s_math_Ordering$String$
+}
 /** @constructor */
 function $c_s_reflect_AnyValManifest() {
   this.s_reflect_AnyValManifest__f_toString = null;
@@ -62856,6 +65327,10 @@ function $h_s_math_BigDecimal() {
   /*<skip>*/
 }
 $h_s_math_BigDecimal.prototype = $c_s_math_BigDecimal.prototype;
+$c_s_math_BigDecimal.prototype.compareTo__O__I = (function(that) {
+  var that$1 = $as_s_math_BigDecimal(that);
+  return $n(this.s_math_BigDecimal__f_bigDecimal).compareTo__Ljava_math_BigDecimal__I($n(that$1).s_math_BigDecimal__f_bigDecimal)
+});
 $c_s_math_BigDecimal.prototype.hashCode__I = (function() {
   if ((this.s_math_BigDecimal__f_computedHashCode === 1565550863)) {
     $p_s_math_BigDecimal__computeHashCode__V(this)
@@ -63091,6 +65566,9 @@ function $h_s_math_BigInt() {
   /*<skip>*/
 }
 $h_s_math_BigInt.prototype = $c_s_math_BigInt.prototype;
+$c_s_math_BigInt.prototype.compareTo__O__I = (function(that) {
+  return this.compare__s_math_BigInt__I($as_s_math_BigInt(that))
+});
 $c_s_math_BigInt.prototype.bigInteger__Ljava_math_BigInteger = (function() {
   var read = this.s_math_BigInt__f__bigInteger;
   if ((read !== null)) {
@@ -63413,6 +65891,9 @@ function $h_s_math_Ordering$Int$() {
   /*<skip>*/
 }
 $h_s_math_Ordering$Int$.prototype = $c_s_math_Ordering$Int$.prototype;
+$c_s_math_Ordering$Int$.prototype.isReverseOf__s_math_Ordering__Z = (function(other) {
+  return $f_s_math_Ordering$CachedReverse__isReverseOf__s_math_Ordering__Z(this, other)
+});
 $c_s_math_Ordering$Int$.prototype.lteq__O__O__Z = (function(x, y) {
   return $f_s_math_Ordering__lteq__O__O__Z(this, x, y)
 });
@@ -65321,6 +67802,301 @@ function $isArrayOf_sc_Seq(obj, depth) {
 function $asArrayOf_sc_Seq(obj, depth) {
   return (($isArrayOf_sc_Seq(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscala.collection.Seq;", depth))
 }
+function $p_sc_SeqView$Sorted___sorted$lzycompute__sc_Seq($thiz) {
+  if ((!$thiz.sc_SeqView$Sorted__f_bitmap$0)) {
+    var len = $thiz.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$len;
+    if ((len === 0)) {
+      var res = $m_s_package$().s_package$__f_Nil
+    } else if ((len === 1)) {
+      $n($m_s_package$().s_package$__f_List);
+      var array = [$n($thiz.sc_SeqView$Sorted__f_underlying).head__O()];
+      var elems = $ct_sjsr_WrappedVarArgs__sjs_js_Array__(new $c_sjsr_WrappedVarArgs(), array);
+      var res = $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems)
+    } else {
+      var arr = new $ac_O(len);
+      var this$5 = $n($thiz.sc_SeqView$Sorted__f_underlying);
+      this$5.copyToArray__O__I__I__I(arr, 0, 2147483647);
+      var comparator = $thiz.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$ord;
+      $m_ju_Arrays$().sort__AO__ju_Comparator__V(arr, comparator);
+      var res = $m_sci_ArraySeq$().unsafeWrapArray__O__sci_ArraySeq(arr)
+    };
+    $thiz.sc_SeqView$Sorted__f_evaluated = true;
+    $thiz.sc_SeqView$Sorted__f_underlying = null;
+    $thiz.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$_sorted = res;
+    $thiz.sc_SeqView$Sorted__f_bitmap$0 = true
+  };
+  return $thiz.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$_sorted
+}
+function $ct_sc_SeqView$Sorted__sc_SeqOps__I__s_math_Ordering__($thiz, underlying, len, ord) {
+  $thiz.sc_SeqView$Sorted__f_underlying = underlying;
+  $thiz.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$len = len;
+  $thiz.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$ord = ord;
+  $thiz.sc_SeqView$Sorted__f_evaluated = false;
+  return $thiz
+}
+function $ct_sc_SeqView$Sorted__sc_SeqOps__s_math_Ordering__($thiz, underlying, ord) {
+  $ct_sc_SeqView$Sorted__sc_SeqOps__I__s_math_Ordering__($thiz, underlying, $n(underlying).length__I(), ord);
+  return $thiz
+}
+/** @constructor */
+function $c_sc_SeqView$Sorted() {
+  this.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$_sorted = null;
+  this.sc_SeqView$Sorted__f_underlying = null;
+  this.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$len = 0;
+  this.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$ord = null;
+  this.sc_SeqView$Sorted__f_evaluated = false;
+  this.sc_SeqView$Sorted__f_bitmap$0 = false
+}
+$c_sc_SeqView$Sorted.prototype = new $h_O();
+$c_sc_SeqView$Sorted.prototype.constructor = $c_sc_SeqView$Sorted;
+/** @constructor */
+function $h_sc_SeqView$Sorted() {
+  /*<skip>*/
+}
+$h_sc_SeqView$Sorted.prototype = $c_sc_SeqView$Sorted.prototype;
+$c_sc_SeqView$Sorted.prototype.iterableFactory__sc_IterableFactory = (function() {
+  return $m_sc_View$()
+});
+$c_sc_SeqView$Sorted.prototype.toString__T = (function() {
+  return $f_sc_View__toString__T(this)
+});
+$c_sc_SeqView$Sorted.prototype.className__T = (function() {
+  return "SeqView"
+});
+$c_sc_SeqView$Sorted.prototype.newSpecificBuilder__scm_Builder = (function() {
+  return $m_sc_View$().newBuilder__scm_Builder()
+});
+$c_sc_SeqView$Sorted.prototype.reverseIterator__sc_Iterator = (function() {
+  return new $c_sc_SeqView$Sorted$ReverseSorted(this).iterator__sc_Iterator()
+});
+$c_sc_SeqView$Sorted.prototype.indexWhere__F1__I__I = (function(p, from) {
+  var this$1 = $n(this.iterator__sc_Iterator());
+  return $f_sc_Iterator__indexWhere__F1__I__I(this$1, p, from)
+});
+$c_sc_SeqView$Sorted.prototype.lengthCompare__I__I = (function(len) {
+  return $f_sc_IterableOps__sizeCompare__I__I(this, len)
+});
+$c_sc_SeqView$Sorted.prototype.head__O = (function() {
+  return $n(this.iterator__sc_Iterator()).next__O()
+});
+$c_sc_SeqView$Sorted.prototype.tail__O = (function() {
+  return $f_sc_IterableOps__tail__O(this)
+});
+$c_sc_SeqView$Sorted.prototype.flatMap__F1__O = (function(f) {
+  return $f_sc_IterableOps__flatMap__F1__O(this, f)
+});
+$c_sc_SeqView$Sorted.prototype.exists__F1__Z = (function(p) {
+  return $f_sc_IterableOnceOps__exists__F1__Z(this, p)
+});
+$c_sc_SeqView$Sorted.prototype.foldLeft__O__F2__O = (function(z, op) {
+  return $f_sc_IterableOnceOps__foldLeft__O__F2__O(this, z, op)
+});
+$c_sc_SeqView$Sorted.prototype.copyToArray__O__I__I__I = (function(xs, start, len) {
+  return $f_sc_IterableOnceOps__copyToArray__O__I__I__I(this, xs, start, len)
+});
+$c_sc_SeqView$Sorted.prototype.addString__scm_StringBuilder__T__T__T__scm_StringBuilder = (function(b, start, sep, end) {
+  return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
+});
+$c_sc_SeqView$Sorted.prototype.toList__sci_List = (function() {
+  $m_sci_List$();
+  return $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this)
+});
+$c_sc_SeqView$Sorted.prototype.toArray__s_reflect_ClassTag__O = (function(evidence$2) {
+  return $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O(this, evidence$2)
+});
+$c_sc_SeqView$Sorted.prototype.scala$collection$SeqView$Sorted$$_sorted__sc_Seq = (function() {
+  return ((!this.sc_SeqView$Sorted__f_bitmap$0) ? $p_sc_SeqView$Sorted___sorted$lzycompute__sc_Seq(this) : this.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$_sorted)
+});
+$c_sc_SeqView$Sorted.prototype.scala$collection$SeqView$Sorted$$elems__sc_SeqOps = (function() {
+  var orig = this.sc_SeqView$Sorted__f_underlying;
+  return (this.sc_SeqView$Sorted__f_evaluated ? this.scala$collection$SeqView$Sorted$$_sorted__sc_Seq() : orig)
+});
+$c_sc_SeqView$Sorted.prototype.apply__I__O = (function(i) {
+  return $n(this.scala$collection$SeqView$Sorted$$_sorted__sc_Seq()).apply__I__O(i)
+});
+$c_sc_SeqView$Sorted.prototype.length__I = (function() {
+  return this.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$len
+});
+$c_sc_SeqView$Sorted.prototype.iterator__sc_Iterator = (function() {
+  var this$2 = $n($m_sc_Iterator$().sc_Iterator$__f_scala$collection$Iterator$$_empty);
+  var xs = new $c_sjsr_AnonFunction0((() => $n(this.scala$collection$SeqView$Sorted$$_sorted__sc_Seq()).iterator__sc_Iterator()));
+  return this$2.concat__F0__sc_Iterator(xs)
+});
+$c_sc_SeqView$Sorted.prototype.knownSize__I = (function() {
+  return this.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$len
+});
+$c_sc_SeqView$Sorted.prototype.isEmpty__Z = (function() {
+  return (this.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$len === 0)
+});
+$c_sc_SeqView$Sorted.prototype.sorted__s_math_Ordering__sc_SeqView = (function(ord1) {
+  var x$2 = this.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$ord;
+  if (((ord1 === null) ? (x$2 === null) : $n(ord1).equals__O__Z(x$2))) {
+    return this
+  } else {
+    return ($n(ord1).isReverseOf__s_math_Ordering__Z(this.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$ord) ? new $c_sc_SeqView$Sorted$ReverseSorted(this) : $ct_sc_SeqView$Sorted__sc_SeqOps__I__s_math_Ordering__(new $c_sc_SeqView$Sorted(), this.scala$collection$SeqView$Sorted$$elems__sc_SeqOps(), this.sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$len, ord1))
+  }
+});
+$c_sc_SeqView$Sorted.prototype.fromSpecific__sc_IterableOnce__O = (function(coll) {
+  var this$1 = $m_sc_View$();
+  return this$1.from__sc_IterableOnce__sc_View(coll)
+});
+$c_sc_SeqView$Sorted.prototype.drop__I__O = (function(n) {
+  return $ct_sc_SeqView$Drop__sc_SeqOps__I__(new $c_sc_SeqView$Drop(), this, n)
+});
+$c_sc_SeqView$Sorted.prototype.map__F1__O = (function(f) {
+  return $ct_sc_SeqView$Map__sc_SeqOps__F1__(new $c_sc_SeqView$Map(), this, f)
+});
+$c_sc_SeqView$Sorted.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return this.sorted__s_math_Ordering__sc_SeqView(ord)
+});
+var $d_sc_SeqView$Sorted = new $TypeData().initClass({
+  sc_SeqView$Sorted: 0
+}, false, "scala.collection.SeqView$Sorted", {
+  sc_SeqView$Sorted: 1,
+  O: 1,
+  sc_SeqView: 1,
+  sc_SeqOps: 1,
+  sc_IterableOps: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOnceOps: 1,
+  sc_View: 1,
+  sc_Iterable: 1,
+  sc_IterableFactoryDefaults: 1,
+  Ljava_io_Serializable: 1
+});
+$c_sc_SeqView$Sorted.prototype.$classData = $d_sc_SeqView$Sorted;
+function $p_sc_SeqView$Sorted$ReverseSorted___reversed$lzycompute__sc_SeqView$Reverse($thiz) {
+  if ((!$thiz.sc_SeqView$Sorted$ReverseSorted__f_bitmap$0)) {
+    $thiz.sc_SeqView$Sorted$ReverseSorted__f__reversed = $ct_sc_SeqView$Reverse__sc_SeqOps__(new $c_sc_SeqView$Reverse(), $n($thiz.sc_SeqView$Sorted$ReverseSorted__f_$outer).scala$collection$SeqView$Sorted$$_sorted__sc_Seq());
+    $thiz.sc_SeqView$Sorted$ReverseSorted__f_bitmap$0 = true
+  };
+  return $thiz.sc_SeqView$Sorted$ReverseSorted__f__reversed
+}
+function $p_sc_SeqView$Sorted$ReverseSorted___reversed__sc_SeqView$Reverse($thiz) {
+  return ((!$thiz.sc_SeqView$Sorted$ReverseSorted__f_bitmap$0) ? $p_sc_SeqView$Sorted$ReverseSorted___reversed$lzycompute__sc_SeqView$Reverse($thiz) : $thiz.sc_SeqView$Sorted$ReverseSorted__f__reversed)
+}
+/** @constructor */
+function $c_sc_SeqView$Sorted$ReverseSorted(outer) {
+  this.sc_SeqView$Sorted$ReverseSorted__f__reversed = null;
+  this.sc_SeqView$Sorted$ReverseSorted__f_bitmap$0 = false;
+  this.sc_SeqView$Sorted$ReverseSorted__f_$outer = null;
+  if ((outer === null)) {
+    $n(null)
+  } else {
+    this.sc_SeqView$Sorted$ReverseSorted__f_$outer = outer
+  }
+}
+$c_sc_SeqView$Sorted$ReverseSorted.prototype = new $h_O();
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.constructor = $c_sc_SeqView$Sorted$ReverseSorted;
+/** @constructor */
+function $h_sc_SeqView$Sorted$ReverseSorted() {
+  /*<skip>*/
+}
+$h_sc_SeqView$Sorted$ReverseSorted.prototype = $c_sc_SeqView$Sorted$ReverseSorted.prototype;
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.iterableFactory__sc_IterableFactory = (function() {
+  return $m_sc_View$()
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.toString__T = (function() {
+  return $f_sc_View__toString__T(this)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.className__T = (function() {
+  return "SeqView"
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.newSpecificBuilder__scm_Builder = (function() {
+  return $m_sc_View$().newBuilder__scm_Builder()
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.reverseIterator__sc_Iterator = (function() {
+  return $n(this.sc_SeqView$Sorted$ReverseSorted__f_$outer).iterator__sc_Iterator()
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.indexWhere__F1__I__I = (function(p, from) {
+  var this$1 = $n(this.iterator__sc_Iterator());
+  return $f_sc_Iterator__indexWhere__F1__I__I(this$1, p, from)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.lengthCompare__I__I = (function(len) {
+  return $f_sc_IterableOps__sizeCompare__I__I(this, len)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.head__O = (function() {
+  return $n(this.iterator__sc_Iterator()).next__O()
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.tail__O = (function() {
+  return $f_sc_IterableOps__tail__O(this)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.flatMap__F1__O = (function(f) {
+  return $f_sc_IterableOps__flatMap__F1__O(this, f)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.exists__F1__Z = (function(p) {
+  return $f_sc_IterableOnceOps__exists__F1__Z(this, p)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.foldLeft__O__F2__O = (function(z, op) {
+  return $f_sc_IterableOnceOps__foldLeft__O__F2__O(this, z, op)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.copyToArray__O__I__I__I = (function(xs, start, len) {
+  return $f_sc_IterableOnceOps__copyToArray__O__I__I__I(this, xs, start, len)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.addString__scm_StringBuilder__T__T__T__scm_StringBuilder = (function(b, start, sep, end) {
+  return $f_sc_IterableOnceOps__addString__scm_StringBuilder__T__T__T__scm_StringBuilder(this, b, start, sep, end)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.toList__sci_List = (function() {
+  $m_sci_List$();
+  return $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(this)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.toArray__s_reflect_ClassTag__O = (function(evidence$2) {
+  return $f_sc_IterableOnceOps__toArray__s_reflect_ClassTag__O(this, evidence$2)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.apply__I__O = (function(i) {
+  return $n($p_sc_SeqView$Sorted$ReverseSorted___reversed__sc_SeqView$Reverse(this)).apply__I__O(i)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.length__I = (function() {
+  return $n(this.sc_SeqView$Sorted$ReverseSorted__f_$outer).sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$len
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.iterator__sc_Iterator = (function() {
+  var this$2 = $n($m_sc_Iterator$().sc_Iterator$__f_scala$collection$Iterator$$_empty);
+  var xs = new $c_sjsr_AnonFunction0((() => $n($p_sc_SeqView$Sorted$ReverseSorted___reversed__sc_SeqView$Reverse(this)).iterator__sc_Iterator()));
+  return this$2.concat__F0__sc_Iterator(xs)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.knownSize__I = (function() {
+  return $n(this.sc_SeqView$Sorted$ReverseSorted__f_$outer).sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$len
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.isEmpty__Z = (function() {
+  return ($n(this.sc_SeqView$Sorted$ReverseSorted__f_$outer).sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$len === 0)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.sorted__s_math_Ordering__sc_SeqView = (function(ord1) {
+  var x$2 = $n(this.sc_SeqView$Sorted$ReverseSorted__f_$outer).sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$ord;
+  if (((ord1 === null) ? (x$2 === null) : $n(ord1).equals__O__Z(x$2))) {
+    return this.sc_SeqView$Sorted$ReverseSorted__f_$outer
+  } else {
+    return ($n(ord1).isReverseOf__s_math_Ordering__Z($n(this.sc_SeqView$Sorted$ReverseSorted__f_$outer).sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$ord) ? this : $ct_sc_SeqView$Sorted__sc_SeqOps__I__s_math_Ordering__(new $c_sc_SeqView$Sorted(), $n(this.sc_SeqView$Sorted$ReverseSorted__f_$outer).scala$collection$SeqView$Sorted$$elems__sc_SeqOps(), $n(this.sc_SeqView$Sorted$ReverseSorted__f_$outer).sc_SeqView$Sorted__f_scala$collection$SeqView$Sorted$$len, ord1))
+  }
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.fromSpecific__sc_IterableOnce__O = (function(coll) {
+  var this$1 = $m_sc_View$();
+  return this$1.from__sc_IterableOnce__sc_View(coll)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.drop__I__O = (function(n) {
+  return $ct_sc_SeqView$Drop__sc_SeqOps__I__(new $c_sc_SeqView$Drop(), this, n)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.map__F1__O = (function(f) {
+  return $ct_sc_SeqView$Map__sc_SeqOps__F1__(new $c_sc_SeqView$Map(), this, f)
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return this.sorted__s_math_Ordering__sc_SeqView(ord)
+});
+var $d_sc_SeqView$Sorted$ReverseSorted = new $TypeData().initClass({
+  sc_SeqView$Sorted$ReverseSorted: 0
+}, false, "scala.collection.SeqView$Sorted$ReverseSorted", {
+  sc_SeqView$Sorted$ReverseSorted: 1,
+  O: 1,
+  sc_SeqView: 1,
+  sc_SeqOps: 1,
+  sc_IterableOps: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOnceOps: 1,
+  sc_View: 1,
+  sc_Iterable: 1,
+  sc_IterableFactoryDefaults: 1,
+  Ljava_io_Serializable: 1
+});
+$c_sc_SeqView$Sorted$ReverseSorted.prototype.$classData = $d_sc_SeqView$Sorted$ReverseSorted;
 function $f_sc_StrictOptimizedSortedSetOps__map__F1__s_math_Ordering__sc_SortedSet($thiz, f, ev) {
   var b = $n($thiz.sortedIterableFactory__sc_SortedIterableFactory()).newBuilder__O__scm_Builder(ev);
   var it = $thiz.iterator__sc_Iterator();
@@ -65843,6 +68619,18 @@ $c_sr_RichLong.prototype.compare__O__I = (function(y) {
   var hi$3 = t$3.RTLong__f_hi;
   return $m_RTLong$().org$scalajs$linker$runtime$RuntimeLong$$compare__I__I__I__I__I(lo$2, hi$2, lo$3, hi$3)
 });
+$c_sr_RichLong.prototype.compareTo__O__I = (function(that) {
+  var t$1 = this.sr_RichLong__f_self;
+  var lo$1 = t$1.RTLong__f_lo;
+  var hi$1 = t$1.RTLong__f_hi;
+  var t$2 = $uJ(new $c_RTLong(lo$1, hi$1));
+  var lo$2 = t$2.RTLong__f_lo;
+  var hi$2 = t$2.RTLong__f_hi;
+  var t$3 = $uJ(that);
+  var lo$3 = t$3.RTLong__f_lo;
+  var hi$3 = t$3.RTLong__f_hi;
+  return $m_RTLong$().org$scalajs$linker$runtime$RuntimeLong$$compare__I__I__I__I__I(lo$2, hi$2, lo$3, hi$3)
+});
 $c_sr_RichLong.prototype.toString__T = (function() {
   return $f_s_Proxy__toString__T(this)
 });
@@ -65998,12 +68786,18 @@ $c_sc_AbstractSeq.prototype.hashCode__I = (function() {
 $c_sc_AbstractSeq.prototype.toString__T = (function() {
   return $f_sc_Iterable__toString__T(this)
 });
+$c_sc_AbstractSeq.prototype.reverseIterator__sc_Iterator = (function() {
+  return $n(this.reversed__sc_Iterable()).iterator__sc_Iterator()
+});
 $c_sc_AbstractSeq.prototype.isDefinedAt__I__Z = (function(idx) {
   return $f_sc_SeqOps__isDefinedAt__I__Z(this, idx)
 });
 $c_sc_AbstractSeq.prototype.indexWhere__F1__I__I = (function(p, from) {
   var this$1 = $n(this.iterator__sc_Iterator());
   return $f_sc_Iterator__indexWhere__F1__I__I(this$1, p, from)
+});
+$c_sc_AbstractSeq.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return $f_sc_SeqOps__sorted__s_math_Ordering__O(this, ord)
 });
 $c_sc_AbstractSeq.prototype.lengthCompare__I__I = (function(len) {
   return $f_sc_IterableOps__sizeCompare__I__I(this, len)
@@ -66046,6 +68840,9 @@ $c_sc_AbstractSeqView.prototype.drop__I__sc_SeqView = (function(n) {
 $c_sc_AbstractSeqView.prototype.stringPrefix__T = (function() {
   return "SeqView"
 });
+$c_sc_AbstractSeqView.prototype.reverseIterator__sc_Iterator = (function() {
+  return $n(this.reversed__sc_Iterable()).iterator__sc_Iterator()
+});
 $c_sc_AbstractSeqView.prototype.indexWhere__F1__I__I = (function(p, from) {
   var this$1 = $n(this.iterator__sc_Iterator());
   return $f_sc_Iterator__indexWhere__F1__I__I(this$1, p, from)
@@ -66055,6 +68852,9 @@ $c_sc_AbstractSeqView.prototype.lengthCompare__I__I = (function(len) {
 });
 $c_sc_AbstractSeqView.prototype.isEmpty__Z = (function() {
   return $f_sc_SeqOps__isEmpty__Z(this)
+});
+$c_sc_AbstractSeqView.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return $ct_sc_SeqView$Sorted__sc_SeqOps__s_math_Ordering__(new $c_sc_SeqView$Sorted(), this, ord)
 });
 $c_sc_AbstractSeqView.prototype.drop__I__O = (function(n) {
   return this.drop__I__sc_SeqView(n)
@@ -66418,6 +69218,9 @@ $c_sc_SeqView$Drop.prototype.map__F1__sc_SeqView = (function(f) {
 $c_sc_SeqView$Drop.prototype.stringPrefix__T = (function() {
   return "SeqView"
 });
+$c_sc_SeqView$Drop.prototype.reverseIterator__sc_Iterator = (function() {
+  return $n(this.reversed__sc_Iterable()).iterator__sc_Iterator()
+});
 $c_sc_SeqView$Drop.prototype.indexWhere__F1__I__I = (function(p, from) {
   var this$1 = $n(this.iterator__sc_Iterator());
   return $f_sc_Iterator__indexWhere__F1__I__I(this$1, p, from)
@@ -66438,6 +69241,9 @@ $c_sc_SeqView$Drop.prototype.apply__I__O = (function(i) {
 });
 $c_sc_SeqView$Drop.prototype.drop__I__sc_SeqView = (function(n) {
   return $ct_sc_SeqView$Drop__sc_SeqOps__I__(new $c_sc_SeqView$Drop(), this.sc_SeqView$Drop__f_underlying, ((this.sc_SeqView$Drop__f_n + n) | 0))
+});
+$c_sc_SeqView$Drop.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return $ct_sc_SeqView$Sorted__sc_SeqOps__s_math_Ordering__(new $c_sc_SeqView$Sorted(), this, ord)
 });
 $c_sc_SeqView$Drop.prototype.map__F1__O = (function(f) {
   return this.map__F1__sc_SeqView(f)
@@ -66542,6 +69348,9 @@ $c_sc_SeqView$Map.prototype.drop__I__sc_SeqView = (function(n) {
 $c_sc_SeqView$Map.prototype.stringPrefix__T = (function() {
   return "SeqView"
 });
+$c_sc_SeqView$Map.prototype.reverseIterator__sc_Iterator = (function() {
+  return $n(this.reversed__sc_Iterable()).iterator__sc_Iterator()
+});
 $c_sc_SeqView$Map.prototype.indexWhere__F1__I__I = (function(p, from) {
   var this$1 = $n(this.iterator__sc_Iterator());
   return $f_sc_Iterator__indexWhere__F1__I__I(this$1, p, from)
@@ -66557,6 +69366,9 @@ $c_sc_SeqView$Map.prototype.apply__I__O = (function(idx) {
 });
 $c_sc_SeqView$Map.prototype.length__I = (function() {
   return $n(this.sc_SeqView$Map__f_underlying).length__I()
+});
+$c_sc_SeqView$Map.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return $ct_sc_SeqView$Sorted__sc_SeqOps__s_math_Ordering__(new $c_sc_SeqView$Sorted(), this, ord)
 });
 $c_sc_SeqView$Map.prototype.drop__I__O = (function(n) {
   return this.drop__I__sc_SeqView(n)
@@ -66616,6 +69428,59 @@ $c_sc_SeqView$Prepended.prototype.apply__I__O = (function(idx) {
 $c_sc_SeqView$Prepended.prototype.length__I = (function() {
   return ((1 + $n(this.sc_SeqView$Prepended__f_underlying).length__I()) | 0)
 });
+$c_sc_SeqView$Prepended.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return $ct_sc_SeqView$Sorted__sc_SeqOps__s_math_Ordering__(new $c_sc_SeqView$Sorted(), this, ord)
+});
+function $ct_sc_SeqView$Reverse__sc_SeqOps__($thiz, underlying) {
+  $thiz.sc_SeqView$Reverse__f_underlying = underlying;
+  return $thiz
+}
+/** @constructor */
+function $c_sc_SeqView$Reverse() {
+  this.sc_SeqView$Reverse__f_underlying = null
+}
+$c_sc_SeqView$Reverse.prototype = new $h_sc_AbstractSeqView();
+$c_sc_SeqView$Reverse.prototype.constructor = $c_sc_SeqView$Reverse;
+/** @constructor */
+function $h_sc_SeqView$Reverse() {
+  /*<skip>*/
+}
+$h_sc_SeqView$Reverse.prototype = $c_sc_SeqView$Reverse.prototype;
+$c_sc_SeqView$Reverse.prototype.apply__I__O = (function(i) {
+  return $n(this.sc_SeqView$Reverse__f_underlying).apply__I__O((((((-1) + this.length__I()) | 0) - i) | 0))
+});
+$c_sc_SeqView$Reverse.prototype.length__I = (function() {
+  var this$1 = $n(this.sc_SeqView$Reverse__f_underlying);
+  return this$1.length__I()
+});
+$c_sc_SeqView$Reverse.prototype.iterator__sc_Iterator = (function() {
+  return $n(this.sc_SeqView$Reverse__f_underlying).reverseIterator__sc_Iterator()
+});
+$c_sc_SeqView$Reverse.prototype.knownSize__I = (function() {
+  return $n(this.sc_SeqView$Reverse__f_underlying).knownSize__I()
+});
+$c_sc_SeqView$Reverse.prototype.isEmpty__Z = (function() {
+  return $n(this.sc_SeqView$Reverse__f_underlying).isEmpty__Z()
+});
+var $d_sc_SeqView$Reverse = new $TypeData().initClass({
+  sc_SeqView$Reverse: 0
+}, false, "scala.collection.SeqView$Reverse", {
+  sc_SeqView$Reverse: 1,
+  sc_AbstractSeqView: 1,
+  sc_AbstractView: 1,
+  sc_AbstractIterable: 1,
+  O: 1,
+  sc_Iterable: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOps: 1,
+  sc_IterableOnceOps: 1,
+  sc_IterableFactoryDefaults: 1,
+  sc_View: 1,
+  Ljava_io_Serializable: 1,
+  sc_SeqView: 1,
+  sc_SeqOps: 1
+});
+$c_sc_SeqView$Reverse.prototype.$classData = $d_sc_SeqView$Reverse;
 function $f_sc_SortedSet__equals__O__Z($thiz, that) {
   if (($thiz === that)) {
     return true
@@ -66686,6 +69551,23 @@ function $f_scm_MapOps__update__O__O__V($thiz, key, value) {
   var this$1 = $n($as_scm_Growable($thiz));
   var elem = new $c_T2(key, value);
   this$1.addOne__O__scm_Growable(elem)
+}
+function $f_scm_MapOps__getOrElseUpdate__O__F0__O($thiz, key, op) {
+  var x1 = $thiz.get__O__s_Option(key);
+  if ((x1 instanceof $c_s_Some)) {
+    var x2 = $as_s_Some(x1);
+    var v = $n(x2).s_Some__f_value;
+    return v
+  } else {
+    var x = $m_s_None$();
+    if ((x === x1)) {
+      var d = $n(op).apply__O();
+      $thiz.update__O__O__V(key, d);
+      return d
+    } else {
+      throw new $c_s_MatchError(x1)
+    }
+  }
 }
 /** @constructor */
 function $c_Lcats_Invariant$() {
@@ -67168,6 +70050,9 @@ $h_sc_AbstractIndexedSeqView.prototype = $c_sc_AbstractIndexedSeqView.prototype;
 $c_sc_AbstractIndexedSeqView.prototype.iterator__sc_Iterator = (function() {
   return $ct_sc_IndexedSeqView$IndexedSeqViewIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewIterator(), this)
 });
+$c_sc_AbstractIndexedSeqView.prototype.reverseIterator__sc_Iterator = (function() {
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this)
+});
 $c_sc_AbstractIndexedSeqView.prototype.drop__I__sc_IndexedSeqView = (function(n) {
   return $ct_sc_IndexedSeqView$Drop__sc_IndexedSeqOps__I__(new $c_sc_IndexedSeqView$Drop(), this, n)
 });
@@ -67176,6 +70061,9 @@ $c_sc_AbstractIndexedSeqView.prototype.map__F1__sc_IndexedSeqView = (function(f)
 });
 $c_sc_AbstractIndexedSeqView.prototype.stringPrefix__T = (function() {
   return "IndexedSeqView"
+});
+$c_sc_AbstractIndexedSeqView.prototype.reversed__sc_Iterable = (function() {
+  return new $c_sc_IndexedSeqView$Reverse(this)
 });
 $c_sc_AbstractIndexedSeqView.prototype.head__O = (function() {
   return this.apply__I__O(0)
@@ -67435,6 +70323,9 @@ $h_sc_IndexedSeqView$Drop.prototype = $c_sc_IndexedSeqView$Drop.prototype;
 $c_sc_IndexedSeqView$Drop.prototype.iterator__sc_Iterator = (function() {
   return $ct_sc_IndexedSeqView$IndexedSeqViewIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewIterator(), this)
 });
+$c_sc_IndexedSeqView$Drop.prototype.reverseIterator__sc_Iterator = (function() {
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this)
+});
 $c_sc_IndexedSeqView$Drop.prototype.drop__I__sc_IndexedSeqView = (function(n) {
   return $ct_sc_IndexedSeqView$Drop__sc_IndexedSeqOps__I__(new $c_sc_IndexedSeqView$Drop(), this, n)
 });
@@ -67443,6 +70334,9 @@ $c_sc_IndexedSeqView$Drop.prototype.map__F1__sc_IndexedSeqView = (function(f) {
 });
 $c_sc_IndexedSeqView$Drop.prototype.stringPrefix__T = (function() {
   return "IndexedSeqView"
+});
+$c_sc_IndexedSeqView$Drop.prototype.reversed__sc_Iterable = (function() {
+  return new $c_sc_IndexedSeqView$Reverse(this)
 });
 $c_sc_IndexedSeqView$Drop.prototype.head__O = (function() {
   return this.apply__I__O(0)
@@ -67503,8 +70397,14 @@ $h_sc_IndexedSeqView$Id.prototype = $c_sc_IndexedSeqView$Id.prototype;
 $c_sc_IndexedSeqView$Id.prototype.iterator__sc_Iterator = (function() {
   return $ct_sc_IndexedSeqView$IndexedSeqViewIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewIterator(), this)
 });
+$c_sc_IndexedSeqView$Id.prototype.reverseIterator__sc_Iterator = (function() {
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this)
+});
 $c_sc_IndexedSeqView$Id.prototype.stringPrefix__T = (function() {
   return "IndexedSeqView"
+});
+$c_sc_IndexedSeqView$Id.prototype.reversed__sc_Iterable = (function() {
+  return new $c_sc_IndexedSeqView$Reverse(this)
 });
 $c_sc_IndexedSeqView$Id.prototype.head__O = (function() {
   return this.apply__I__O(0)
@@ -67571,6 +70471,9 @@ $h_sc_IndexedSeqView$Map.prototype = $c_sc_IndexedSeqView$Map.prototype;
 $c_sc_IndexedSeqView$Map.prototype.iterator__sc_Iterator = (function() {
   return $ct_sc_IndexedSeqView$IndexedSeqViewIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewIterator(), this)
 });
+$c_sc_IndexedSeqView$Map.prototype.reverseIterator__sc_Iterator = (function() {
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this)
+});
 $c_sc_IndexedSeqView$Map.prototype.drop__I__sc_IndexedSeqView = (function(n) {
   return $ct_sc_IndexedSeqView$Drop__sc_IndexedSeqOps__I__(new $c_sc_IndexedSeqView$Drop(), this, n)
 });
@@ -67579,6 +70482,9 @@ $c_sc_IndexedSeqView$Map.prototype.map__F1__sc_IndexedSeqView = (function(f) {
 });
 $c_sc_IndexedSeqView$Map.prototype.stringPrefix__T = (function() {
   return "IndexedSeqView"
+});
+$c_sc_IndexedSeqView$Map.prototype.reversed__sc_Iterable = (function() {
+  return new $c_sc_IndexedSeqView$Reverse(this)
 });
 $c_sc_IndexedSeqView$Map.prototype.head__O = (function() {
   return this.apply__I__O(0)
@@ -67642,6 +70548,9 @@ $h_sc_IndexedSeqView$Prepended.prototype = $c_sc_IndexedSeqView$Prepended.protot
 $c_sc_IndexedSeqView$Prepended.prototype.iterator__sc_Iterator = (function() {
   return $ct_sc_IndexedSeqView$IndexedSeqViewIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewIterator(), this)
 });
+$c_sc_IndexedSeqView$Prepended.prototype.reverseIterator__sc_Iterator = (function() {
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this)
+});
 $c_sc_IndexedSeqView$Prepended.prototype.drop__I__sc_IndexedSeqView = (function(n) {
   return $ct_sc_IndexedSeqView$Drop__sc_IndexedSeqOps__I__(new $c_sc_IndexedSeqView$Drop(), this, n)
 });
@@ -67690,6 +70599,74 @@ var $d_sc_IndexedSeqView$Prepended = new $TypeData().initClass({
 });
 $c_sc_IndexedSeqView$Prepended.prototype.$classData = $d_sc_IndexedSeqView$Prepended;
 /** @constructor */
+function $c_sc_IndexedSeqView$Reverse(underlying) {
+  this.sc_SeqView$Reverse__f_underlying = null;
+  $ct_sc_SeqView$Reverse__sc_SeqOps__(this, underlying)
+}
+$c_sc_IndexedSeqView$Reverse.prototype = new $h_sc_SeqView$Reverse();
+$c_sc_IndexedSeqView$Reverse.prototype.constructor = $c_sc_IndexedSeqView$Reverse;
+/** @constructor */
+function $h_sc_IndexedSeqView$Reverse() {
+  /*<skip>*/
+}
+$h_sc_IndexedSeqView$Reverse.prototype = $c_sc_IndexedSeqView$Reverse.prototype;
+$c_sc_IndexedSeqView$Reverse.prototype.iterator__sc_Iterator = (function() {
+  return $ct_sc_IndexedSeqView$IndexedSeqViewIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewIterator(), this)
+});
+$c_sc_IndexedSeqView$Reverse.prototype.reverseIterator__sc_Iterator = (function() {
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this)
+});
+$c_sc_IndexedSeqView$Reverse.prototype.stringPrefix__T = (function() {
+  return "IndexedSeqView"
+});
+$c_sc_IndexedSeqView$Reverse.prototype.reversed__sc_Iterable = (function() {
+  return new $c_sc_IndexedSeqView$Reverse(this)
+});
+$c_sc_IndexedSeqView$Reverse.prototype.head__O = (function() {
+  return this.apply__I__O(0)
+});
+$c_sc_IndexedSeqView$Reverse.prototype.lengthCompare__I__I = (function(len) {
+  var x = this.length__I();
+  return ((x === len) ? 0 : ((x < len) ? (-1) : 1))
+});
+$c_sc_IndexedSeqView$Reverse.prototype.knownSize__I = (function() {
+  return this.length__I()
+});
+$c_sc_IndexedSeqView$Reverse.prototype.map__F1__sc_SeqView = (function(f) {
+  return $ct_sc_IndexedSeqView$Map__sc_IndexedSeqOps__F1__(new $c_sc_IndexedSeqView$Map(), this, f)
+});
+$c_sc_IndexedSeqView$Reverse.prototype.map__F1__O = (function(f) {
+  return $ct_sc_IndexedSeqView$Map__sc_IndexedSeqOps__F1__(new $c_sc_IndexedSeqView$Map(), this, f)
+});
+$c_sc_IndexedSeqView$Reverse.prototype.drop__I__sc_SeqView = (function(n) {
+  return $ct_sc_IndexedSeqView$Drop__sc_IndexedSeqOps__I__(new $c_sc_IndexedSeqView$Drop(), this, n)
+});
+$c_sc_IndexedSeqView$Reverse.prototype.drop__I__O = (function(n) {
+  return $ct_sc_IndexedSeqView$Drop__sc_IndexedSeqOps__I__(new $c_sc_IndexedSeqView$Drop(), this, n)
+});
+var $d_sc_IndexedSeqView$Reverse = new $TypeData().initClass({
+  sc_IndexedSeqView$Reverse: 0
+}, false, "scala.collection.IndexedSeqView$Reverse", {
+  sc_IndexedSeqView$Reverse: 1,
+  sc_SeqView$Reverse: 1,
+  sc_AbstractSeqView: 1,
+  sc_AbstractView: 1,
+  sc_AbstractIterable: 1,
+  O: 1,
+  sc_Iterable: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOps: 1,
+  sc_IterableOnceOps: 1,
+  sc_IterableFactoryDefaults: 1,
+  sc_View: 1,
+  Ljava_io_Serializable: 1,
+  sc_SeqView: 1,
+  sc_SeqOps: 1,
+  sc_IndexedSeqView: 1,
+  sc_IndexedSeqOps: 1
+});
+$c_sc_IndexedSeqView$Reverse.prototype.$classData = $d_sc_IndexedSeqView$Reverse;
+/** @constructor */
 function $c_sci_AbstractSeq() {
   /*<skip>*/
 }
@@ -67726,6 +70703,9 @@ $c_scm_ArrayBufferView.prototype.className__T = (function() {
 });
 $c_scm_ArrayBufferView.prototype.iterator__sc_Iterator = (function() {
   return new $c_scm_CheckedIndexedSeqView$CheckedIterator(this, this.scm_ArrayBufferView__f_mutationCount)
+});
+$c_scm_ArrayBufferView.prototype.reverseIterator__sc_Iterator = (function() {
+  return new $c_scm_CheckedIndexedSeqView$CheckedReverseIterator(this, this.scm_ArrayBufferView__f_mutationCount)
 });
 $c_scm_ArrayBufferView.prototype.drop__I__sc_IndexedSeqView = (function(n) {
   return new $c_scm_CheckedIndexedSeqView$Drop(this, n, this.scm_ArrayBufferView__f_mutationCount)
@@ -68009,6 +70989,9 @@ $c_Lcats_kernel_instances_StaticMethods$WrappedIndexedSeq.prototype.flatMap__F1_
 $c_Lcats_kernel_instances_StaticMethods$WrappedIndexedSeq.prototype.zip__sc_IterableOnce__O = (function(that) {
   return $f_sc_IterableOps__zip__sc_IterableOnce__O(this, that)
 });
+$c_Lcats_kernel_instances_StaticMethods$WrappedIndexedSeq.prototype.newSpecificBuilder__scm_Builder = (function() {
+  return $m_sci_IndexedSeq$().newBuilder__scm_Builder()
+});
 $c_Lcats_kernel_instances_StaticMethods$WrappedIndexedSeq.prototype.className__T = (function() {
   return "IndexedSeq"
 });
@@ -68022,6 +71005,9 @@ $c_Lcats_kernel_instances_StaticMethods$WrappedIndexedSeq.prototype.indexWhere__
   var this$1 = $n(this.iterator__sc_Iterator());
   return $f_sc_Iterator__indexWhere__F1__I__I(this$1, p, from)
 });
+$c_Lcats_kernel_instances_StaticMethods$WrappedIndexedSeq.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return $f_sc_SeqOps__sorted__s_math_Ordering__O(this, ord)
+});
 $c_Lcats_kernel_instances_StaticMethods$WrappedIndexedSeq.prototype.isEmpty__Z = (function() {
   return $f_sc_SeqOps__isEmpty__Z(this)
 });
@@ -68033,6 +71019,10 @@ $c_Lcats_kernel_instances_StaticMethods$WrappedIndexedSeq.prototype.hashCode__I 
 });
 $c_Lcats_kernel_instances_StaticMethods$WrappedIndexedSeq.prototype.toString__T = (function() {
   return $f_sc_Iterable__toString__T(this)
+});
+$c_Lcats_kernel_instances_StaticMethods$WrappedIndexedSeq.prototype.reverseIterator__sc_Iterator = (function() {
+  var this$1 = new $c_sc_IndexedSeqView$Id(this);
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this$1)
 });
 $c_Lcats_kernel_instances_StaticMethods$WrappedIndexedSeq.prototype.prepended__O__O = (function(elem) {
   return $f_sc_IndexedSeqOps__prepended__O__O(this, elem)
@@ -68710,6 +71700,9 @@ $h_scm_CheckedIndexedSeqView$Drop.prototype = $c_scm_CheckedIndexedSeqView$Drop.
 $c_scm_CheckedIndexedSeqView$Drop.prototype.iterator__sc_Iterator = (function() {
   return new $c_scm_CheckedIndexedSeqView$CheckedIterator(this, this.scm_CheckedIndexedSeqView$Drop__f_mutationCount)
 });
+$c_scm_CheckedIndexedSeqView$Drop.prototype.reverseIterator__sc_Iterator = (function() {
+  return new $c_scm_CheckedIndexedSeqView$CheckedReverseIterator(this, this.scm_CheckedIndexedSeqView$Drop__f_mutationCount)
+});
 $c_scm_CheckedIndexedSeqView$Drop.prototype.drop__I__sc_IndexedSeqView = (function(n) {
   return new $c_scm_CheckedIndexedSeqView$Drop(this, n, this.scm_CheckedIndexedSeqView$Drop__f_mutationCount)
 });
@@ -68771,6 +71764,9 @@ function $h_scm_CheckedIndexedSeqView$Map() {
 $h_scm_CheckedIndexedSeqView$Map.prototype = $c_scm_CheckedIndexedSeqView$Map.prototype;
 $c_scm_CheckedIndexedSeqView$Map.prototype.iterator__sc_Iterator = (function() {
   return new $c_scm_CheckedIndexedSeqView$CheckedIterator(this, this.scm_CheckedIndexedSeqView$Map__f_mutationCount)
+});
+$c_scm_CheckedIndexedSeqView$Map.prototype.reverseIterator__sc_Iterator = (function() {
+  return new $c_scm_CheckedIndexedSeqView$CheckedReverseIterator(this, this.scm_CheckedIndexedSeqView$Map__f_mutationCount)
 });
 $c_scm_CheckedIndexedSeqView$Map.prototype.drop__I__sc_IndexedSeqView = (function(n) {
   return new $c_scm_CheckedIndexedSeqView$Drop(this, n, this.scm_CheckedIndexedSeqView$Map__f_mutationCount)
@@ -70453,6 +73449,13 @@ $c_sci_WrappedString.prototype.iterator__sc_Iterator = (function() {
   var this$1 = new $c_sc_StringView(this.sci_WrappedString__f_scala$collection$immutable$WrappedString$$self);
   return $ct_sc_IndexedSeqView$IndexedSeqViewIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewIterator(), this$1)
 });
+$c_sci_WrappedString.prototype.reverseIterator__sc_Iterator = (function() {
+  var this$1 = new $c_sc_StringView(this.sci_WrappedString__f_scala$collection$immutable$WrappedString$$self);
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this$1)
+});
+$c_sci_WrappedString.prototype.reversed__sc_Iterable = (function() {
+  return new $c_sc_IndexedSeqView$Reverse(this)
+});
 $c_sci_WrappedString.prototype.prepended__O__O = (function(elem) {
   return $f_sc_IndexedSeqOps__prepended__O__O(this, elem)
 });
@@ -70480,6 +73483,9 @@ $c_sci_WrappedString.prototype.lengthCompare__I__I = (function(len) {
 $c_sci_WrappedString.prototype.knownSize__I = (function() {
   var this$1 = $n(this.sci_WrappedString__f_scala$collection$immutable$WrappedString$$self);
   return this$1.length
+});
+$c_sci_WrappedString.prototype.newSpecificBuilder__scm_Builder = (function() {
+  return $m_sci_WrappedString$().newBuilder__scm_Builder()
 });
 $c_sci_WrappedString.prototype.length__I = (function() {
   var this$1 = $n(this.sci_WrappedString__f_scala$collection$immutable$WrappedString$$self);
@@ -70600,6 +73606,9 @@ function $h_sjsr_WrappedVarArgs() {
   /*<skip>*/
 }
 $h_sjsr_WrappedVarArgs.prototype = $c_sjsr_WrappedVarArgs.prototype;
+$c_sjsr_WrappedVarArgs.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return $f_sc_SeqOps__sorted__s_math_Ordering__O(this, ord)
+});
 $c_sjsr_WrappedVarArgs.prototype.prepended__O__O = (function(elem) {
   return $f_sc_StrictOptimizedSeqOps__prepended__O__O(this, elem)
 });
@@ -70630,6 +73639,10 @@ $c_sjsr_WrappedVarArgs.prototype.applyPreferredMaxLength__I = (function() {
 $c_sjsr_WrappedVarArgs.prototype.iterator__sc_Iterator = (function() {
   var this$1 = new $c_sc_IndexedSeqView$Id(this);
   return $ct_sc_IndexedSeqView$IndexedSeqViewIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewIterator(), this$1)
+});
+$c_sjsr_WrappedVarArgs.prototype.reverseIterator__sc_Iterator = (function() {
+  var this$1 = new $c_sc_IndexedSeqView$Id(this);
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this$1)
 });
 $c_sjsr_WrappedVarArgs.prototype.drop__I__O = (function(n) {
   return $f_sc_IndexedSeqOps__drop__I__O(this, n)
@@ -71118,6 +74131,17 @@ $c_sci_HashMap.prototype.hashCode__I = (function() {
 $c_sci_HashMap.prototype.className__T = (function() {
   return "HashMap"
 });
+$c_sci_HashMap.prototype.filterImpl__F1__Z__sci_HashMap = (function(pred, isFlipped) {
+  var newRootNode = $n(this.sci_HashMap__f_rootNode).filterImpl__F1__Z__sci_BitmapIndexedMapNode(pred, isFlipped);
+  if ((newRootNode === this.sci_HashMap__f_rootNode)) {
+    return this
+  } else if (($n(newRootNode).sci_BitmapIndexedMapNode__f_size === 0)) {
+    var this$1 = $m_sci_HashMap$();
+    return this$1.sci_HashMap$__f_EmptyMap
+  } else {
+    return new $c_sci_HashMap(newRootNode)
+  }
+});
 $c_sci_HashMap.prototype.drop__I__O = (function(n) {
   return $as_sci_HashMap($f_sc_IterableOps__drop__I__O(this, n))
 });
@@ -71356,6 +74380,9 @@ function $h_scm_AbstractMap() {
 $h_scm_AbstractMap.prototype = $c_scm_AbstractMap.prototype;
 $c_scm_AbstractMap.prototype.update__O__O__V = (function(key, value) {
   $f_scm_MapOps__update__O__O__V(this, key, value)
+});
+$c_scm_AbstractMap.prototype.getOrElseUpdate__O__F0__O = (function(key, op) {
+  return $f_scm_MapOps__getOrElseUpdate__O__F0__O(this, key, op)
 });
 $c_scm_AbstractMap.prototype.sizeHint__I__V = (function(size) {
   /*<skip>*/
@@ -72839,6 +75866,13 @@ $c_sci_ArraySeq.prototype.sameElements__sc_IterableOnce__Z = (function(o) {
 $c_sci_ArraySeq.prototype.stringPrefix__T = (function() {
   return "IndexedSeq"
 });
+$c_sci_ArraySeq.prototype.reverseIterator__sc_Iterator = (function() {
+  var this$1 = new $c_sc_IndexedSeqView$Id(this);
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this$1)
+});
+$c_sci_ArraySeq.prototype.reversed__sc_Iterable = (function() {
+  return new $c_sc_IndexedSeqView$Reverse(this)
+});
 $c_sci_ArraySeq.prototype.head__O = (function() {
   return this.apply__I__O(0)
 });
@@ -72942,10 +75976,40 @@ $c_sci_ArraySeq.prototype.copyToArray__O__I__I__I = (function(xs, start, len) {
 $c_sci_ArraySeq.prototype.applyPreferredMaxLength__I = (function() {
   return 2147483647
 });
+$c_sci_ArraySeq.prototype.sorted__s_math_Ordering__sci_ArraySeq = (function(ord) {
+  var xs = this.unsafeArray__O();
+  if (($m_jl_reflect_Array$().getLength__O__I(xs) <= 1)) {
+    return this
+  } else {
+    var this$4 = $m_s_Array$();
+    var original = this.unsafeArray__O();
+    var newLength = this.length__I();
+    $m_s_reflect_ManifestFactory$ObjectManifest$();
+    var this$5 = $n(original);
+    if ($d_O.getClassOf().isAssignableFrom__jl_Class__Z($n($objectGetClass(this$5)).getComponentType__jl_Class())) {
+      if ($d_O.getClassOf().isPrimitive__Z()) {
+        var $$x1 = this$4.copyOf__O__I__O(original, newLength)
+      } else {
+        var original$1 = $asArrayOf_O(original, 1);
+        var $$x1 = $m_ju_Arrays$().copyOf__AO__I__jl_Class__AO(original$1, newLength, $d_O.getArrayOf().getClassOf())
+      }
+    } else {
+      var dest = new $ac_O(newLength);
+      $m_s_Array$().copy__O__I__O__I__I__V(original, 0, dest, 0, $m_jl_reflect_Array$().getLength__O__I(original));
+      var $$x1 = dest
+    };
+    var a = $asArrayOf_O($$x1, 1);
+    $m_ju_Arrays$().sort__AO__ju_Comparator__V(a, ord);
+    return new $c_sci_ArraySeq$ofRef(a)
+  }
+});
 $c_sci_ArraySeq.prototype.fromSpecific__sc_IterableOnce__O = (function(coll) {
   var this$1 = $m_sci_ArraySeq$();
   var evidence$5 = this.elemTag__s_reflect_ClassTag();
   return this$1.from__sc_IterableOnce__s_reflect_ClassTag__sci_ArraySeq(coll, evidence$5)
+});
+$c_sci_ArraySeq.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return this.sorted__s_math_Ordering__sci_ArraySeq(ord)
 });
 $c_sci_ArraySeq.prototype.tail__O = (function() {
   return this.tail__sci_ArraySeq()
@@ -72989,6 +76053,9 @@ function $h_sci_Vector() {
   /*<skip>*/
 }
 $h_sci_Vector.prototype = $c_sci_Vector.prototype;
+$c_sci_Vector.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return $f_sc_SeqOps__sorted__s_math_Ordering__O(this, ord)
+});
 $c_sci_Vector.prototype.flatMap__F1__O = (function(f) {
   return $f_sc_StrictOptimizedIterableOps__flatMap__F1__O(this, f)
 });
@@ -73009,6 +76076,13 @@ $c_sci_Vector.prototype.sameElements__sc_IterableOnce__Z = (function(o) {
 });
 $c_sci_Vector.prototype.stringPrefix__T = (function() {
   return "IndexedSeq"
+});
+$c_sci_Vector.prototype.reverseIterator__sc_Iterator = (function() {
+  var this$1 = new $c_sc_IndexedSeqView$Id(this);
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this$1)
+});
+$c_sci_Vector.prototype.reversed__sc_Iterable = (function() {
+  return new $c_sc_IndexedSeqView$Reverse(this)
 });
 $c_sci_Vector.prototype.headOption__s_Option = (function() {
   return $f_sc_IndexedSeqOps__headOption__s_Option(this)
@@ -73174,6 +76248,13 @@ $c_scm_ArraySeq.prototype.flatMap__F1__O = (function(f) {
 $c_scm_ArraySeq.prototype.stringPrefix__T = (function() {
   return "IndexedSeq"
 });
+$c_scm_ArraySeq.prototype.reverseIterator__sc_Iterator = (function() {
+  var this$1 = new $c_sc_IndexedSeqView$Id(this);
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this$1)
+});
+$c_scm_ArraySeq.prototype.reversed__sc_Iterable = (function() {
+  return new $c_sc_IndexedSeqView$Reverse(this)
+});
 $c_scm_ArraySeq.prototype.drop__I__O = (function(n) {
   return $f_sc_IndexedSeqOps__drop__I__O(this, n)
 });
@@ -73238,6 +76319,15 @@ $c_scm_ArraySeq.prototype.equals__O__Z = (function(other) {
     }
   };
   return $f_sc_Seq__equals__O__Z(this, other)
+});
+$c_scm_ArraySeq.prototype.sorted__s_math_Ordering__scm_ArraySeq = (function(ord) {
+  var $$x2 = $m_scm_ArraySeq$();
+  var $$x1 = $m_sc_ArrayOps$();
+  var xs = this.array__O();
+  return $n($$x2).make__O__scm_ArraySeq($n($$x1).sorted$extension__O__s_math_Ordering__O(xs, ord))
+});
+$c_scm_ArraySeq.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return this.sorted__s_math_Ordering__scm_ArraySeq(ord)
 });
 $c_scm_ArraySeq.prototype.fromSpecific__sc_IterableOnce__O = (function(coll) {
   return this.fromSpecific__sc_IterableOnce__scm_ArraySeq(coll)
@@ -73686,6 +76776,20 @@ $c_sci_ArraySeq$ofBoolean.prototype.equals__O__Z = (function(that) {
     return $f_sc_Seq__equals__O__Z(this, that)
   }
 });
+$c_sci_ArraySeq$ofBoolean.prototype.sorted__s_math_Ordering__sci_ArraySeq = (function(ord) {
+  if ((this.length__I() <= 1)) {
+    return this
+  } else if ((ord === $m_s_math_Ordering$Boolean$())) {
+    var this$1 = $n(this.sci_ArraySeq$ofBoolean__f_unsafeArray);
+    var a = $n(this$1).clone__O();
+    var this$2 = $m_s_util_Sorting$();
+    var evidence$3 = $m_s_math_Ordering$Boolean$();
+    this$2.stableSort__O__I__I__s_math_Ordering__V(a, 0, $n(a).u.length, evidence$3);
+    return new $c_sci_ArraySeq$ofBoolean(a)
+  } else {
+    return $c_sci_ArraySeq.prototype.sorted__s_math_Ordering__sci_ArraySeq.call(this, ord)
+  }
+});
 $c_sci_ArraySeq$ofBoolean.prototype.iterator__sc_Iterator = (function() {
   return new $c_sc_ArrayOps$ArrayIterator$mcZ$sp(this.sci_ArraySeq$ofBoolean__f_unsafeArray)
 });
@@ -73709,6 +76813,9 @@ $c_sci_ArraySeq$ofBoolean.prototype.apply$mcZI$sp__I__Z = (function(i) {
 });
 $c_sci_ArraySeq$ofBoolean.prototype.prepended__O__O = (function(elem) {
   return this.prepended__O__sci_ArraySeq(elem)
+});
+$c_sci_ArraySeq$ofBoolean.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return this.sorted__s_math_Ordering__sci_ArraySeq(ord)
 });
 $c_sci_ArraySeq$ofBoolean.prototype.apply__O__O = (function(v1) {
   var i = $uI(v1);
@@ -73798,6 +76905,18 @@ $c_sci_ArraySeq$ofByte.prototype.equals__O__Z = (function(that) {
     return $f_sc_Seq__equals__O__Z(this, that)
   }
 });
+$c_sci_ArraySeq$ofByte.prototype.sorted__s_math_Ordering__sci_ArraySeq = (function(ord) {
+  if ((this.length__I() <= 1)) {
+    return this
+  } else if ((ord === $m_s_math_Ordering$Byte$())) {
+    var this$1 = $n(this.sci_ArraySeq$ofByte__f_unsafeArray);
+    var a = $n(this$1).clone__O();
+    $m_ju_Arrays$().sort__AB__V(a);
+    return new $c_sci_ArraySeq$ofByte(a)
+  } else {
+    return $c_sci_ArraySeq.prototype.sorted__s_math_Ordering__sci_ArraySeq.call(this, ord)
+  }
+});
 $c_sci_ArraySeq$ofByte.prototype.iterator__sc_Iterator = (function() {
   return new $c_sc_ArrayOps$ArrayIterator$mcB$sp(this.sci_ArraySeq$ofByte__f_unsafeArray)
 });
@@ -73818,6 +76937,9 @@ $c_sci_ArraySeq$ofByte.prototype.prepended__O__sci_ArraySeq = (function(elem) {
 });
 $c_sci_ArraySeq$ofByte.prototype.prepended__O__O = (function(elem) {
   return this.prepended__O__sci_ArraySeq(elem)
+});
+$c_sci_ArraySeq$ofByte.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return this.sorted__s_math_Ordering__sci_ArraySeq(ord)
 });
 $c_sci_ArraySeq$ofByte.prototype.apply__O__O = (function(v1) {
   return this.apply__I__B($uI(v1))
@@ -73906,6 +77028,18 @@ $c_sci_ArraySeq$ofChar.prototype.equals__O__Z = (function(that) {
     return $f_sc_Seq__equals__O__Z(this, that)
   }
 });
+$c_sci_ArraySeq$ofChar.prototype.sorted__s_math_Ordering__sci_ArraySeq = (function(ord) {
+  if ((this.length__I() <= 1)) {
+    return this
+  } else if ((ord === $m_s_math_Ordering$Char$())) {
+    var this$1 = $n(this.sci_ArraySeq$ofChar__f_unsafeArray);
+    var a = $n(this$1).clone__O();
+    $m_ju_Arrays$().sort__AC__V(a);
+    return new $c_sci_ArraySeq$ofChar(a)
+  } else {
+    return $c_sci_ArraySeq.prototype.sorted__s_math_Ordering__sci_ArraySeq.call(this, ord)
+  }
+});
 $c_sci_ArraySeq$ofChar.prototype.iterator__sc_Iterator = (function() {
   return new $c_sc_ArrayOps$ArrayIterator$mcC$sp(this.sci_ArraySeq$ofChar__f_unsafeArray)
 });
@@ -73929,6 +77063,9 @@ $c_sci_ArraySeq$ofChar.prototype.addString__scm_StringBuilder__T__T__T__scm_Stri
 });
 $c_sci_ArraySeq$ofChar.prototype.prepended__O__O = (function(elem) {
   return this.prepended__O__sci_ArraySeq(elem)
+});
+$c_sci_ArraySeq$ofChar.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return this.sorted__s_math_Ordering__sci_ArraySeq(ord)
 });
 $c_sci_ArraySeq$ofChar.prototype.apply__O__O = (function(v1) {
   return $bC(this.apply__I__C($uI(v1)))
@@ -74232,6 +77369,18 @@ $c_sci_ArraySeq$ofInt.prototype.equals__O__Z = (function(that) {
     return $f_sc_Seq__equals__O__Z(this, that)
   }
 });
+$c_sci_ArraySeq$ofInt.prototype.sorted__s_math_Ordering__sci_ArraySeq = (function(ord) {
+  if ((this.length__I() <= 1)) {
+    return this
+  } else if ((ord === $m_s_math_Ordering$Int$())) {
+    var this$1 = $n(this.sci_ArraySeq$ofInt__f_unsafeArray);
+    var a = $n(this$1).clone__O();
+    $m_ju_Arrays$().sort__AI__V(a);
+    return new $c_sci_ArraySeq$ofInt(a)
+  } else {
+    return $c_sci_ArraySeq.prototype.sorted__s_math_Ordering__sci_ArraySeq.call(this, ord)
+  }
+});
 $c_sci_ArraySeq$ofInt.prototype.iterator__sc_Iterator = (function() {
   return new $c_sc_ArrayOps$ArrayIterator$mcI$sp(this.sci_ArraySeq$ofInt__f_unsafeArray)
 });
@@ -74255,6 +77404,9 @@ $c_sci_ArraySeq$ofInt.prototype.apply$mcII$sp__I__I = (function(i) {
 });
 $c_sci_ArraySeq$ofInt.prototype.prepended__O__O = (function(elem) {
   return this.prepended__O__sci_ArraySeq(elem)
+});
+$c_sci_ArraySeq$ofInt.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return this.sorted__s_math_Ordering__sci_ArraySeq(ord)
 });
 $c_sci_ArraySeq$ofInt.prototype.apply__O__O = (function(v1) {
   var i = $uI(v1);
@@ -74341,6 +77493,18 @@ $c_sci_ArraySeq$ofLong.prototype.equals__O__Z = (function(that) {
     return $f_sc_Seq__equals__O__Z(this, that)
   }
 });
+$c_sci_ArraySeq$ofLong.prototype.sorted__s_math_Ordering__sci_ArraySeq = (function(ord) {
+  if ((this.length__I() <= 1)) {
+    return this
+  } else if ((ord === $m_s_math_Ordering$Long$())) {
+    var this$1 = $n(this.sci_ArraySeq$ofLong__f_unsafeArray);
+    var a = $n(this$1).clone__O();
+    $m_ju_Arrays$().sort__AJ__V(a);
+    return new $c_sci_ArraySeq$ofLong(a)
+  } else {
+    return $c_sci_ArraySeq.prototype.sorted__s_math_Ordering__sci_ArraySeq.call(this, ord)
+  }
+});
 $c_sci_ArraySeq$ofLong.prototype.iterator__sc_Iterator = (function() {
   return new $c_sc_ArrayOps$ArrayIterator$mcJ$sp(this.sci_ArraySeq$ofLong__f_unsafeArray)
 });
@@ -74366,6 +77530,9 @@ $c_sci_ArraySeq$ofLong.prototype.apply$mcJI$sp__I__J = (function(i) {
 });
 $c_sci_ArraySeq$ofLong.prototype.prepended__O__O = (function(elem) {
   return this.prepended__O__sci_ArraySeq(elem)
+});
+$c_sci_ArraySeq$ofLong.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return this.sorted__s_math_Ordering__sci_ArraySeq(ord)
 });
 $c_sci_ArraySeq$ofLong.prototype.apply__O__O = (function(v1) {
   var i = $uI(v1);
@@ -74458,8 +77625,24 @@ $c_sci_ArraySeq$ofRef.prototype.equals__O__Z = (function(that) {
     return $f_sc_Seq__equals__O__Z(this, that)
   }
 });
+$c_sci_ArraySeq$ofRef.prototype.sorted__s_math_Ordering__sci_ArraySeq$ofRef = (function(ord) {
+  if (($n(this.sci_ArraySeq$ofRef__f_unsafeArray).u.length <= 1)) {
+    return this
+  } else {
+    var this$1 = $n(this.sci_ArraySeq$ofRef__f_unsafeArray);
+    var a = $n(this$1).clone__O();
+    $m_ju_Arrays$().sort__AO__ju_Comparator__V(a, ord);
+    return new $c_sci_ArraySeq$ofRef(a)
+  }
+});
 $c_sci_ArraySeq$ofRef.prototype.iterator__sc_Iterator = (function() {
   return $ct_sc_ArrayOps$ArrayIterator__O__(new $c_sc_ArrayOps$ArrayIterator(), this.sci_ArraySeq$ofRef__f_unsafeArray)
+});
+$c_sci_ArraySeq$ofRef.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return this.sorted__s_math_Ordering__sci_ArraySeq$ofRef(ord)
+});
+$c_sci_ArraySeq$ofRef.prototype.sorted__s_math_Ordering__sci_ArraySeq = (function(ord) {
+  return this.sorted__s_math_Ordering__sci_ArraySeq$ofRef(ord)
 });
 $c_sci_ArraySeq$ofRef.prototype.apply__O__O = (function(v1) {
   return this.apply__I__O($uI(v1))
@@ -74542,6 +77725,18 @@ $c_sci_ArraySeq$ofShort.prototype.equals__O__Z = (function(that) {
     return $f_sc_Seq__equals__O__Z(this, that)
   }
 });
+$c_sci_ArraySeq$ofShort.prototype.sorted__s_math_Ordering__sci_ArraySeq = (function(ord) {
+  if ((this.length__I() <= 1)) {
+    return this
+  } else if ((ord === $m_s_math_Ordering$Short$())) {
+    var this$1 = $n(this.sci_ArraySeq$ofShort__f_unsafeArray);
+    var a = $n(this$1).clone__O();
+    $m_ju_Arrays$().sort__AS__V(a);
+    return new $c_sci_ArraySeq$ofShort(a)
+  } else {
+    return $c_sci_ArraySeq.prototype.sorted__s_math_Ordering__sci_ArraySeq.call(this, ord)
+  }
+});
 $c_sci_ArraySeq$ofShort.prototype.iterator__sc_Iterator = (function() {
   return new $c_sc_ArrayOps$ArrayIterator$mcS$sp(this.sci_ArraySeq$ofShort__f_unsafeArray)
 });
@@ -74562,6 +77757,9 @@ $c_sci_ArraySeq$ofShort.prototype.prepended__O__sci_ArraySeq = (function(elem) {
 });
 $c_sci_ArraySeq$ofShort.prototype.prepended__O__O = (function(elem) {
   return this.prepended__O__sci_ArraySeq(elem)
+});
+$c_sci_ArraySeq$ofShort.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return this.sorted__s_math_Ordering__sci_ArraySeq(ord)
 });
 $c_sci_ArraySeq$ofShort.prototype.apply__O__O = (function(v1) {
   return this.apply__I__S($uI(v1))
@@ -74814,6 +78012,9 @@ function $h_sci_List() {
   /*<skip>*/
 }
 $h_sci_List.prototype = $c_sci_List.prototype;
+$c_sci_List.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return $f_sc_SeqOps__sorted__s_math_Ordering__O(this, ord)
+});
 $c_sci_List.prototype.iterator__sc_Iterator = (function() {
   return new $c_sc_StrictOptimizedLinearSeqOps$$anon$1(this)
 });
@@ -75080,6 +78281,9 @@ function $h_sci_Queue() {
   /*<skip>*/
 }
 $h_sci_Queue.prototype = $c_sci_Queue.prototype;
+$c_sci_Queue.prototype.sorted__s_math_Ordering__O = (function(ord) {
+  return $f_sc_SeqOps__sorted__s_math_Ordering__O(this, ord)
+});
 $c_sci_Queue.prototype.map__F1__O = (function(f) {
   return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
 });
@@ -76501,6 +79705,30 @@ $c_scm_HashMap.prototype.getOrElse__O__F0__O = (function(key, default$1) {
     var x1 = $n(this.scm_HashMap__f_scala$collection$mutable$HashMap$$table).get((hash & (((-1) + $n(this.scm_HashMap__f_scala$collection$mutable$HashMap$$table).u.length) | 0)));
     var nd = ((x1 === null) ? null : $n(x1).findNode__O__I__scm_HashMap$Node(key, hash));
     return ((nd === null) ? $n(default$1).apply__O() : $n(nd).scm_HashMap$Node__f__value)
+  }
+});
+$c_scm_HashMap.prototype.getOrElseUpdate__O__F0__O = (function(key, defaultValue) {
+  var x = $objectGetClass(this);
+  if ((!(x === $d_scm_HashMap.getClassOf()))) {
+    return $f_scm_MapOps__getOrElseUpdate__O__F0__O(this, key, defaultValue)
+  } else {
+    var originalHash = $m_sr_Statics$().anyHash__O__I(key);
+    var hash = (originalHash ^ ((originalHash >>> 16) | 0));
+    var idx = (hash & (((-1) + $n(this.scm_HashMap__f_scala$collection$mutable$HashMap$$table).u.length) | 0));
+    var x1 = $n(this.scm_HashMap__f_scala$collection$mutable$HashMap$$table).get(idx);
+    var nd = ((x1 === null) ? null : $n(x1).findNode__O__I__scm_HashMap$Node(key, hash));
+    if ((nd !== null)) {
+      return $n(nd).scm_HashMap$Node__f__value
+    } else {
+      var table0 = this.scm_HashMap__f_scala$collection$mutable$HashMap$$table;
+      var default$1 = $n(defaultValue).apply__O();
+      if ((((1 + this.scm_HashMap__f_contentSize) | 0) >= this.scm_HashMap__f_threshold)) {
+        $p_scm_HashMap__growTable__I__V(this, ($n(this.scm_HashMap__f_scala$collection$mutable$HashMap$$table).u.length << 1))
+      };
+      var newIdx = ((table0 === this.scm_HashMap__f_scala$collection$mutable$HashMap$$table) ? idx : (hash & (((-1) + $n(this.scm_HashMap__f_scala$collection$mutable$HashMap$$table).u.length) | 0)));
+      $p_scm_HashMap__put0__O__O__Z__I__I__s_Some(this, key, default$1, false, hash, newIdx);
+      return default$1
+    }
   }
 });
 $c_scm_HashMap.prototype.update__O__O__V = (function(key, value) {
@@ -80202,6 +83430,13 @@ $c_scm_StringBuilder.prototype.iterator__sc_Iterator = (function() {
   var this$1 = new $c_sc_IndexedSeqView$Id(this);
   return $ct_sc_IndexedSeqView$IndexedSeqViewIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewIterator(), this$1)
 });
+$c_scm_StringBuilder.prototype.reverseIterator__sc_Iterator = (function() {
+  var this$1 = new $c_sc_IndexedSeqView$Id(this);
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this$1)
+});
+$c_scm_StringBuilder.prototype.reversed__sc_Iterable = (function() {
+  return new $c_sc_IndexedSeqView$Reverse(this)
+});
 $c_scm_StringBuilder.prototype.drop__I__O = (function(n) {
   return $f_sc_IndexedSeqOps__drop__I__O(this, n)
 });
@@ -80220,6 +83455,9 @@ $c_scm_StringBuilder.prototype.sizeHint__I__V = (function(size) {
 });
 $c_scm_StringBuilder.prototype.addAll__sc_IterableOnce__scm_Growable = (function(xs) {
   return $f_scm_Growable__addAll__sc_IterableOnce__scm_Growable(this, xs)
+});
+$c_scm_StringBuilder.prototype.newSpecificBuilder__scm_Builder = (function() {
+  return $ct_scm_GrowableBuilder__scm_Growable__(new $c_scm_GrowableBuilder(), $ct_scm_StringBuilder__(new $c_scm_StringBuilder()))
 });
 $c_scm_StringBuilder.prototype.length__I = (function() {
   return $n(this.scm_StringBuilder__f_underlying).length__I()
@@ -81083,6 +84321,12 @@ $c_scm_ArrayBuffer.prototype.flatMap__F1__O = (function(f) {
 $c_scm_ArrayBuffer.prototype.iterator__sc_Iterator = (function() {
   return $n(this.view__scm_ArrayBufferView()).iterator__sc_Iterator()
 });
+$c_scm_ArrayBuffer.prototype.reverseIterator__sc_Iterator = (function() {
+  return $n(this.view__scm_ArrayBufferView()).reverseIterator__sc_Iterator()
+});
+$c_scm_ArrayBuffer.prototype.reversed__sc_Iterable = (function() {
+  return new $c_sc_IndexedSeqView$Reverse(this)
+});
 $c_scm_ArrayBuffer.prototype.drop__I__O = (function(n) {
   return $f_sc_IndexedSeqOps__drop__I__O(this, n)
 });
@@ -81422,6 +84666,13 @@ $c_sjs_js_WrappedArray.prototype.iterator__sc_Iterator = (function() {
   var this$1 = new $c_sc_IndexedSeqView$Id(this);
   return $ct_sc_IndexedSeqView$IndexedSeqViewIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewIterator(), this$1)
 });
+$c_sjs_js_WrappedArray.prototype.reverseIterator__sc_Iterator = (function() {
+  var this$1 = new $c_sc_IndexedSeqView$Id(this);
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this$1)
+});
+$c_sjs_js_WrappedArray.prototype.reversed__sc_Iterable = (function() {
+  return new $c_sc_IndexedSeqView$Reverse(this)
+});
 $c_sjs_js_WrappedArray.prototype.drop__I__O = (function(n) {
   return $f_sc_IndexedSeqOps__drop__I__O(this, n)
 });
@@ -81515,6 +84766,240 @@ var $d_sjs_js_WrappedArray = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_sjs_js_WrappedArray.prototype.$classData = $d_sjs_js_WrappedArray;
+function $p_scm_ArrayDeque__reset__AO__I__I__V($thiz, array, start, end) {
+  var assertion = (($n(array).u.length & (((-1) + $n(array).u.length) | 0)) === 0);
+  if ((!assertion)) {
+    throw new $c_jl_AssertionError("assertion failed: Array.length must be power of 2")
+  };
+  var until = $n(array).u.length;
+  if (((start < 0) || (start >= until))) {
+    throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), (((start + " is out of bounds (min 0, max ") + (((-1) + until) | 0)) + ")"))
+  };
+  var until$1 = $n(array).u.length;
+  if (((end < 0) || (end >= until$1))) {
+    throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), (((end + " is out of bounds (min 0, max ") + (((-1) + until$1) | 0)) + ")"))
+  };
+  $thiz.scm_ArrayDeque__f_array = array;
+  $thiz.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start = start;
+  $thiz.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end = end
+}
+function $ct_scm_ArrayDeque__AO__I__I__($thiz, array, start, end) {
+  $thiz.scm_ArrayDeque__f_array = array;
+  $thiz.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start = start;
+  $thiz.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end = end;
+  $p_scm_ArrayDeque__reset__AO__I__I__V($thiz, $thiz.scm_ArrayDeque__f_array, $thiz.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start, $thiz.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end);
+  return $thiz
+}
+function $ct_scm_ArrayDeque__I__($thiz, initialSize) {
+  $ct_scm_ArrayDeque__AO__I__I__($thiz, $m_scm_ArrayDeque$().alloc__I__AO(initialSize), 0, 0);
+  return $thiz
+}
+/** @constructor */
+function $c_scm_ArrayDeque() {
+  this.scm_ArrayDeque__f_array = null;
+  this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start = 0;
+  this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end = 0
+}
+$c_scm_ArrayDeque.prototype = new $h_scm_AbstractBuffer();
+$c_scm_ArrayDeque.prototype.constructor = $c_scm_ArrayDeque;
+/** @constructor */
+function $h_scm_ArrayDeque() {
+  /*<skip>*/
+}
+$h_scm_ArrayDeque.prototype = $c_scm_ArrayDeque.prototype;
+$c_scm_ArrayDeque.prototype.map__F1__O = (function(f) {
+  return $f_sc_StrictOptimizedIterableOps__map__F1__O(this, f)
+});
+$c_scm_ArrayDeque.prototype.flatMap__F1__O = (function(f) {
+  return $f_sc_StrictOptimizedIterableOps__flatMap__F1__O(this, f)
+});
+$c_scm_ArrayDeque.prototype.iterator__sc_Iterator = (function() {
+  var this$1 = new $c_sc_IndexedSeqView$Id(this);
+  return $ct_sc_IndexedSeqView$IndexedSeqViewIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewIterator(), this$1)
+});
+$c_scm_ArrayDeque.prototype.reverseIterator__sc_Iterator = (function() {
+  var this$1 = new $c_sc_IndexedSeqView$Id(this);
+  return $ct_sc_IndexedSeqView$IndexedSeqViewReverseIterator__sc_IndexedSeqView__(new $c_sc_IndexedSeqView$IndexedSeqViewReverseIterator(), this$1)
+});
+$c_scm_ArrayDeque.prototype.reversed__sc_Iterable = (function() {
+  return new $c_sc_IndexedSeqView$Reverse(this)
+});
+$c_scm_ArrayDeque.prototype.drop__I__O = (function(n) {
+  return $f_sc_IndexedSeqOps__drop__I__O(this, n)
+});
+$c_scm_ArrayDeque.prototype.head__O = (function() {
+  return this.apply__I__O(0)
+});
+$c_scm_ArrayDeque.prototype.lengthCompare__I__I = (function(len) {
+  var idx = this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+  var x = (((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0));
+  return ((x === len) ? 0 : ((x < len) ? (-1) : 1))
+});
+$c_scm_ArrayDeque.prototype.knownSize__I = (function() {
+  var idx = this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+  return (((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0))
+});
+$c_scm_ArrayDeque.prototype.apply__I__O = (function(idx) {
+  var idx$1 = this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+  var until = (((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx$1) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0));
+  if (((idx < 0) || (idx >= until))) {
+    throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), (((idx + " is out of bounds (min 0, max ") + (((-1) + until) | 0)) + ")"))
+  };
+  return $n(this.scm_ArrayDeque__f_array).get((((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start + idx) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0)))
+});
+$c_scm_ArrayDeque.prototype.addOne__O__scm_ArrayDeque = (function(elem) {
+  var idx = this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+  var hint = ((1 + (((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0))) | 0);
+  var idx$1 = this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+  if (((hint > (((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx$1) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0))) && (hint >= $n(this.scm_ArrayDeque__f_array).u.length))) {
+    this.scala$collection$mutable$ArrayDeque$$resize__I__V(hint)
+  };
+  $n(this.scm_ArrayDeque__f_array).set(this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end, elem);
+  this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end = (((1 + this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0));
+  return this
+});
+$c_scm_ArrayDeque.prototype.addAll__sc_IterableOnce__scm_ArrayDeque = (function(elems) {
+  var x1 = $n(elems).knownSize__I();
+  if ((x1 > 0)) {
+    var idx = this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+    var hint = ((x1 + (((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0))) | 0);
+    var idx$1 = this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+    if (((hint > (((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx$1) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0))) && (hint >= $n(this.scm_ArrayDeque__f_array).u.length))) {
+      this.scala$collection$mutable$ArrayDeque$$resize__I__V(hint)
+    };
+    var this$1 = $n($n(elems).iterator__sc_Iterator());
+    while (this$1.hasNext__Z()) {
+      var arg1 = this$1.next__O();
+      $n(this.scm_ArrayDeque__f_array).set(this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end, arg1);
+      this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end = (((1 + this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0))
+    }
+  } else {
+    var this$2 = $n($n(elems).iterator__sc_Iterator());
+    while (this$2.hasNext__Z()) {
+      var arg1$1 = this$2.next__O();
+      this.addOne__O__scm_ArrayDeque(arg1$1)
+    }
+  };
+  return this
+});
+$c_scm_ArrayDeque.prototype.removeHead__Z__O = (function(resizeInternalRepr) {
+  if (this.isEmpty__Z()) {
+    throw $ct_ju_NoSuchElementException__T__(new $c_ju_NoSuchElementException(), "empty collection")
+  } else {
+    var elem = $n(this.scm_ArrayDeque__f_array).get(this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start);
+    $n(this.scm_ArrayDeque__f_array).set(this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start, null);
+    this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start = (((1 + this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0));
+    if (resizeInternalRepr) {
+      var idx = this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+      this.scala$collection$mutable$ArrayDeque$$resize__I__V((((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0)))
+    };
+    return elem
+  }
+});
+$c_scm_ArrayDeque.prototype.length__I = (function() {
+  var idx = this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+  return (((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0))
+});
+$c_scm_ArrayDeque.prototype.isEmpty__Z = (function() {
+  return (this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start === this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end)
+});
+$c_scm_ArrayDeque.prototype.iterableFactory__sc_SeqFactory = (function() {
+  return $m_scm_ArrayDeque$()
+});
+$c_scm_ArrayDeque.prototype.copyToArray__O__I__I__I = (function(dest, destStart, len) {
+  var idx = this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+  var srcLen = (((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0));
+  var destLen = $m_jl_reflect_Array$().getLength__O__I(dest);
+  var x = ((len < srcLen) ? len : srcLen);
+  var y = ((destLen - destStart) | 0);
+  var x$1 = ((x < y) ? x : y);
+  var copied = ((x$1 > 0) ? x$1 : 0);
+  if ((copied > 0)) {
+    $f_scm_ArrayDequeOps__copySliceToArray__I__O__I__I__O(this, 0, dest, destStart, len)
+  };
+  return copied
+});
+$c_scm_ArrayDeque.prototype.toArray__s_reflect_ClassTag__O = (function(evidence$1) {
+  var $$x1 = $n(evidence$1);
+  var idx = this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+  var dest = $n($$x1).newArray__I__O((((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0)));
+  var idx$1 = this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+  var maxItems = (((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx$1) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0));
+  return $f_scm_ArrayDequeOps__copySliceToArray__I__O__I__I__O(this, 0, dest, 0, maxItems)
+});
+$c_scm_ArrayDeque.prototype.scala$collection$mutable$ArrayDeque$$resize__I__V = (function(len) {
+  if (((len >= $n(this.scm_ArrayDeque__f_array).u.length) || (($n(this.scm_ArrayDeque__f_array).u.length > 16) && ((($n(this.scm_ArrayDeque__f_array).u.length - len) | 0) > len)))) {
+    var idx = this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start;
+    var n = (((this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end - idx) | 0) & (((-1) + $n(this.scm_ArrayDeque__f_array).u.length) | 0));
+    var dest = $m_scm_ArrayDeque$().alloc__I__AO(len);
+    var array2 = $asArrayOf_O($f_scm_ArrayDequeOps__copySliceToArray__I__O__I__I__O(this, 0, dest, 0, n), 1);
+    $p_scm_ArrayDeque__reset__AO__I__I__V(this, array2, 0, n)
+  }
+});
+$c_scm_ArrayDeque.prototype.stringPrefix__T = (function() {
+  return "ArrayDeque"
+});
+$c_scm_ArrayDeque.prototype.iterableFactory__sc_IterableFactory = (function() {
+  return this.iterableFactory__sc_SeqFactory()
+});
+$c_scm_ArrayDeque.prototype.addAll__sc_IterableOnce__scm_Growable = (function(xs) {
+  return this.addAll__sc_IterableOnce__scm_ArrayDeque(xs)
+});
+$c_scm_ArrayDeque.prototype.addOne__O__scm_Growable = (function(elem) {
+  return this.addOne__O__scm_ArrayDeque(elem)
+});
+$c_scm_ArrayDeque.prototype.apply__O__O = (function(v1) {
+  return this.apply__I__O($uI(v1))
+});
+function $as_scm_ArrayDeque(obj) {
+  return (((obj instanceof $c_scm_ArrayDeque) || (obj === null)) ? obj : $throwClassCastException(obj, "scala.collection.mutable.ArrayDeque"))
+}
+function $isArrayOf_scm_ArrayDeque(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.scm_ArrayDeque)))
+}
+function $asArrayOf_scm_ArrayDeque(obj, depth) {
+  return (($isArrayOf_scm_ArrayDeque(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscala.collection.mutable.ArrayDeque;", depth))
+}
+var $d_scm_ArrayDeque = new $TypeData().initClass({
+  scm_ArrayDeque: 0
+}, false, "scala.collection.mutable.ArrayDeque", {
+  scm_ArrayDeque: 1,
+  scm_AbstractBuffer: 1,
+  scm_AbstractSeq: 1,
+  sc_AbstractSeq: 1,
+  sc_AbstractIterable: 1,
+  O: 1,
+  sc_Iterable: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOps: 1,
+  sc_IterableOnceOps: 1,
+  sc_IterableFactoryDefaults: 1,
+  sc_Seq: 1,
+  s_PartialFunction: 1,
+  F1: 1,
+  sc_SeqOps: 1,
+  s_Equals: 1,
+  scm_Seq: 1,
+  scm_Iterable: 1,
+  scm_SeqOps: 1,
+  scm_Cloneable: 1,
+  jl_Cloneable: 1,
+  scm_Buffer: 1,
+  scm_Growable: 1,
+  scm_Clearable: 1,
+  scm_Shrinkable: 1,
+  scm_IndexedBuffer: 1,
+  scm_IndexedSeq: 1,
+  sc_IndexedSeq: 1,
+  sc_IndexedSeqOps: 1,
+  scm_IndexedSeqOps: 1,
+  sc_StrictOptimizedSeqOps: 1,
+  sc_StrictOptimizedIterableOps: 1,
+  scm_ArrayDequeOps: 1,
+  scg_DefaultSerializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_scm_ArrayDeque.prototype.$classData = $d_scm_ArrayDeque;
 function $ct_scm_BitSet__AJ__($thiz, elems) {
   $thiz.scm_BitSet__f_elems = elems;
   return $thiz
@@ -81837,6 +85322,80 @@ var $d_scm_BitSet = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_scm_BitSet.prototype.$classData = $d_scm_BitSet;
+/** @constructor */
+function $c_scm_Queue(initialSize) {
+  this.scm_ArrayDeque__f_array = null;
+  this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$start = 0;
+  this.scm_ArrayDeque__f_scala$collection$mutable$ArrayDeque$$end = 0;
+  var array = $m_scm_ArrayDeque$().alloc__I__AO(initialSize);
+  $ct_scm_ArrayDeque__AO__I__I__(this, array, 0, 0)
+}
+$c_scm_Queue.prototype = new $h_scm_ArrayDeque();
+$c_scm_Queue.prototype.constructor = $c_scm_Queue;
+/** @constructor */
+function $h_scm_Queue() {
+  /*<skip>*/
+}
+$h_scm_Queue.prototype = $c_scm_Queue.prototype;
+$c_scm_Queue.prototype.iterableFactory__sc_SeqFactory = (function() {
+  return $m_scm_Queue$()
+});
+$c_scm_Queue.prototype.stringPrefix__T = (function() {
+  return "Queue"
+});
+$c_scm_Queue.prototype.iterableFactory__sc_IterableFactory = (function() {
+  return $m_scm_Queue$()
+});
+function $as_scm_Queue(obj) {
+  return (((obj instanceof $c_scm_Queue) || (obj === null)) ? obj : $throwClassCastException(obj, "scala.collection.mutable.Queue"))
+}
+function $isArrayOf_scm_Queue(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.scm_Queue)))
+}
+function $asArrayOf_scm_Queue(obj, depth) {
+  return (($isArrayOf_scm_Queue(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lscala.collection.mutable.Queue;", depth))
+}
+var $d_scm_Queue = new $TypeData().initClass({
+  scm_Queue: 0
+}, false, "scala.collection.mutable.Queue", {
+  scm_Queue: 1,
+  scm_ArrayDeque: 1,
+  scm_AbstractBuffer: 1,
+  scm_AbstractSeq: 1,
+  sc_AbstractSeq: 1,
+  sc_AbstractIterable: 1,
+  O: 1,
+  sc_Iterable: 1,
+  sc_IterableOnce: 1,
+  sc_IterableOps: 1,
+  sc_IterableOnceOps: 1,
+  sc_IterableFactoryDefaults: 1,
+  sc_Seq: 1,
+  s_PartialFunction: 1,
+  F1: 1,
+  sc_SeqOps: 1,
+  s_Equals: 1,
+  scm_Seq: 1,
+  scm_Iterable: 1,
+  scm_SeqOps: 1,
+  scm_Cloneable: 1,
+  jl_Cloneable: 1,
+  scm_Buffer: 1,
+  scm_Growable: 1,
+  scm_Clearable: 1,
+  scm_Shrinkable: 1,
+  scm_IndexedBuffer: 1,
+  scm_IndexedSeq: 1,
+  sc_IndexedSeq: 1,
+  sc_IndexedSeqOps: 1,
+  scm_IndexedSeqOps: 1,
+  sc_StrictOptimizedSeqOps: 1,
+  sc_StrictOptimizedIterableOps: 1,
+  scm_ArrayDequeOps: 1,
+  scg_DefaultSerializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_scm_Queue.prototype.$classData = $d_scm_Queue;
 function $ct_Lcats_instances_AllInstancesBinCompat__($thiz) {
   $f_Lcats_kernel_instances_IntInstances__$init$__V($thiz);
   $m_Lcats_Show$();
@@ -82728,8 +86287,8 @@ $d_J.zero = $L0;
 var $t_Lchartreuse_MajorTickLayout$__NoTicks = null;
 var $t_Lchartreuse_MinorTickLayout$__NoTicks = null;
 QuickStartExample = $m_Lchartreuse_examples_QuickStartExample$();
+TemperatureAnomaly = $m_Lchartreuse_examples_TemperatureAnomaly$();
 BahamasPopulation = $m_Lchartreuse_examples_BahamasPopulation$();
-ScatterPlotExample = $m_Lchartreuse_examples_ScatterPlotExample$();
 ChartreuseExamples = $m_Lchartreuse_examples_Examples$();
 Annotations = $m_Lchartreuse_examples_Annotations$();
 PlotExample = $m_Lchartreuse_examples_PlotExample$();

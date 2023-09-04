@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Laika 0.19.0" />
+    <title>Layouts</title>
+    
+    
+    <meta name="description" content="docs" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Source+Sans+Pro:300,400,600"
+        rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Pro:400" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../creative-scala.css" />
+    <script src="../solution.js"></script>
+    <script src="../toc.js"></script>
+    <script src="../main.js"></script>
+    <script> /* for avoiding page load transitions */</script>
+</head>
+
+<body>
+    <nav id="topbar"><p><a href="index.html">←</a></p>
+<p><a href="../../">Chartreuse</a></p>
+<p><a href="annotations.html">→</a></p></nav>
+    <nav id="sidebar">
+        <ul class="nav-list">
+          <li class="level1 nav-leaf"><a href="../">Chartreuse</a></li>
+          <li class="level1 nav-leaf"><a href="../quick-start.html">Quick Start</a></li>
+          <li class="level1 nav-leaf"><a href="../concepts.html">Core Concepts</a></li>
+          <li class="level1 nav-node"><a href="index.html">Creating Visualizations</a></li>
+          <li class="level2 active nav-leaf"><a href="#">Layouts</a></li>
+          <li class="level2 nav-leaf"><a href="annotations.html">Annotations</a></li>
+          <li class="level2 nav-leaf"><a href="themes.html">Theming Plots</a></li>
+          <li class="level1 nav-leaf"><a href="../examples.html">Examples</a></li>
+          <li class="level1 nav-leaf"><a href="../development.html">Development</a></li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        <main class="content">
+            <h1 id="layouts" class="title">Layouts</h1>
+            <p>A <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/Layout.html">Layout</a> determines how data is mapped to graphical output.
+            For example, a <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/layout/Scatter.html">Scatter</a> represents each data point as a small graphical mark known as a <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/layout/Glyph.html">Glyph</a>, and is used to create <a href="https://en.wikipedia.org/wiki/Scatter_plot">scatter plots</a> and <a href="https://en.wikipedia.org/wiki/Bubble_chart">bubble plots</a>.</p>
+            
+            <h2 id="line" class="section">Line</h2>
+            <p>The <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/layout/Line.html">Line</a> layout draws a straight line between each data point. The data is drawn in the order it is received, so you should probably ensure the data is sorted before it is drawn.</p>
+            
+            <h2 id="curve" class="section">Curve</h2>
+            <p>The <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/layout/Curve.html">Curve</a> layout interpolates a smooth curve that passes through each data point. Like <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/layout/Line.html">Line</a>, the data is drawn in the order it is received, so you should probably ensure the data is sorted before it is drawn.</p>
+            <p>The curve is produced using the <a href="https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Catmull%E2%80%93Rom_spline">Catmul-Rom method</a>, which is controlled by a <code>tension</code> parameter that determines how closely the interpolated curve follows the data.</p>
+            
+            <h2 id="scatter" class="section">Scatter</h2>
+            <p>The <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/layout/Scatter.html">Scatter</a> layout draws each data point as a small graphical mark known as a <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/layout/Glyph.html">Glyph</a>.</p>
+            <p>The <a class="api" href="https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/chartreuse/layout/Glyph.html">Glyph</a> accepts a <code>Double</code> value, which is interpreted as the size of the data point being drawn. This allows the <code>Glyph</code> to vary in relation to the size, for example by creating a larger output when this value is larger. This <code>Double</code> value is in turn determined by the <code>toSize</code> parameter of <code>Scatter</code>, which can be changed in the usual way using the <code>withToSize</code> builder method. The default <code>toSize</code> ignores it&#39;s input and returns <code>5.0</code>.</p>
+            <div class="flex flex-row justify-between">
+                <a class="pageNavigation" href="index.html">←Creating Visualizations</a> <a class="pageNavigation" href="annotations.html">Annotations→</a>
+            </div>
+        </main>
+        <footer>Creative Scala is copyright Noel Welsh</footer>
+    </div>
+
+    </div>
+</body>
+
+</html>
