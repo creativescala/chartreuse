@@ -50,11 +50,19 @@ final case class Annotation(
           .strokeWidth(strokeWidth)
           .strokeColor(strokeColor)
           .at(mappedPointOfInterest)
-          .on(adjustPosition(text(content), mappedPointOfInterest))
+          .on(
+            adjustPosition(
+              text(content).fillColor(Color.black),
+              mappedPointOfInterest
+            )
+          )
       case AnnotationType.Text(content) =>
-        adjustPosition(text(content), mappedPointOfInterest)
+        adjustPosition(
+          text(content).fillColor(Color.black),
+          mappedPointOfInterest
+        )
       case AnnotationType.TextWithBox(content) =>
-        val boxContent = text(content)
+        val boxContent = text(content).fillColor(Color.black)
         val box = boxContent.boundingBox.flatMap(bb =>
           roundedRectangle(
             bb.width + textMargin * 2,
