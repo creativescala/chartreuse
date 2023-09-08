@@ -149,50 +149,65 @@ final case class Plot[-Alg <: Algebra](
       annotations
         .foldLeft(empty)((acc, annotation) => acc.on(annotation.draw(scale)))
 
-    // TODO: take fill from style
-    // This is a bit of a hack to fill in the text (by default, text on SVG is not filled)
-    // It should be taken from the theme
-    val plotTitle = text(this.plotTitle)
-      .fillColor(Color.black)
-      .scale(2, 2)
-    val xTitle = text(this.xTitle)
-      .fillColor(Color.black)
-    val yTitle = text(this.yTitle)
-      .fillColor(Color.black)
-      .rotate(Angle(1.5708))
-
-    yTitle
-      .beside(
-        allLayers
+    val plot = allLayers
+      .on(
+        xAxis
+          .build(xMajorTicksSequence, xMinorTicksSequence, yTicksBounds)
           .on(
-            xAxis
-              .build(xMajorTicksSequence, xMinorTicksSequence, yTicksBounds)
-              .on(
-                yAxis
-                  .build(yMajorTicksSequence, yMinorTicksSequence, xTicksBounds)
+            yAxis
+              .build(
+                yMajorTicksSequence,
+                yMinorTicksSequence,
+                xTicksBounds
               )
           )
-          .on(PlotBox(xTicksBounds, yTicksBounds).build)
-          .on(
-            if grid then
-              Grid(
-                xTicksBounds,
-                yTicksBounds,
-                xMajorTicksSequence,
-                yMajorTicksSequence
-              ).build
-            else empty
-          )
-          .under(
-            if legend then
-              Legend(layers, theme).build(xTicksBounds.max, yTicksBounds.max)
-            else empty
-          )
-          .under(allAnnotations)
-          .margin(5)
-          .below(plotTitle)
-          .above(xTitle)
       )
+      .on(PlotBox(xTicksBounds, yTicksBounds).build)
+      .on(
+        if grid then
+          Grid(
+            xTicksBounds,
+            yTicksBounds,
+            xMajorTicksSequence,
+            yMajorTicksSequence
+          ).build
+        else empty
+      )
+      .under(
+        if legend then
+          Legend(layers, theme).build(xTicksBounds.max, yTicksBounds.max)
+        else empty
+      )
+      .under(allAnnotations)
+
+    val plotTitles = plot.boundingBox.flatMap(bb =>
+      val titleMargin = 15
+
+      // TODO: take fill from style
+      // This is a bit of a hack to fill in the text (by default, text on SVG is not filled)
+      // It should be taken from the theme
+      text(this.plotTitle)
+        .fillColor(Color.black)
+        .scale(1.5, 1.5)
+        .originAt(Landmark.percent(0, -100))
+        .at(bb.left + bb.width / 2, bb.top + titleMargin)
+        .on(
+          text(this.xTitle)
+            .fillColor(Color.black)
+            .originAt(Landmark.percent(0, 100))
+            .at(bb.left + bb.width / 2, bb.bottom - titleMargin)
+        )
+        .on(
+          text(this.yTitle)
+            .fillColor(Color.black)
+            .rotate(Angle(1.5708))
+            .originAt(Landmark.percent(100, 0))
+            .at(bb.left - titleMargin, bb.bottom + bb.height / 2)
+        )
+    )
+
+    plot
+      .on(plotTitles)
   }
 }
 
