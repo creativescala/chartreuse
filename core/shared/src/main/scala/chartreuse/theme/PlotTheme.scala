@@ -20,7 +20,13 @@ import cats.Applicative
 import cats.Comonad
 import cats.Id
 import cats.data.NonEmptySeq
+import cats.syntax.all.*
+import doodle.algebra.Picture
+import doodle.algebra.Style
+import doodle.algebra.Text
 import doodle.core.Color
+import doodle.core.font.Font
+import doodle.syntax.all.*
 
 /** Generic container for the theme of a [[chartreuse.Plot]]. Contains one or
   * more [[chartreuse.theme.LayoutTheme]]. Each layer in the plot will take a
@@ -30,10 +36,98 @@ import doodle.core.Color
 // There are more elements that could be themed, such as font family, size, and
 // so on. Expand this as needed.
 final case class PlotTheme[F[_]: Applicative](
+    textStrokeColor: F[Option[Color]],
+    textFillColor: F[Option[Color]],
+    headingFont: F[Font],
+    normalFont: F[Font],
     layerThemes: NonEmptySeq[LayoutTheme[F]]
 ) {
+
+  /** Builder method to set the fillColor for text of this [[PlotTheme]]. */
+  def withTextFillColor(fillColor: F[Option[Color]]): PlotTheme[F] =
+    this.copy(textFillColor = fillColor)
+
+  /** Convenience builder method to set the fillColor for text of this
+    * [[PlotTheme]]. This will call the `pure` method on `F` to construct an
+    * instance of `F[Option[Color]]`. For a [[chartreuse.Themeable]] value this
+    * will be `Default` value, not an `Override`, which is probably not what you
+    * want. Use the other overloaded `withFillColor` method instead.
+    */
+  def withTextFillColor(fillColor: Color): PlotTheme[F] =
+    this.copy(textFillColor = fillColor.some.pure[F])
+
+  /** Convenience builder method to set the fillColor for text of this
+    * [[PlotTheme]] to `None`. This will call the `pure` method on `F` to
+    * construct an instance of `F[Option[Color]]`. For a
+    * [[chartreuse.Themeable]] value this will be `Default` value, not an
+    * `Override`, which is probably not what you want. Use the `withFillColor`
+    * method instead.
+    */
+  def withTextNoFill: PlotTheme[F] =
+    this.copy(textFillColor = none.pure[F])
+
+  /** Builder method to set the strokeColor for text of this [[PlotTheme]]. */
+  def withTextStrokeColor(strokeColor: Color): PlotTheme[F] =
+    this.copy(textStrokeColor = strokeColor.some.pure[F])
+
+  /** Convenience builder method to set the strokeColor for text of this
+    * [[PlotTheme]]. This will call the `pure` method on `F` to construct an
+    * instance of `F[Option[Color]]`. For a [[chartreuse.Themeable]] value this
+    * will be `Default` value, not an `Override`, which is probably not what you
+    * want. Use the other overloaded `withStrokeColor` method instead.
+    */
+  def withTextStrokeColor(strokeColor: F[Option[Color]]): PlotTheme[F] =
+    this.copy(textStrokeColor = strokeColor)
+
+  /** Convenience builder method to set the strokeColor for text of this
+    * [[PlotTheme]] to `None`. This will call the `pure` method on `F` to
+    * construct an instance of `F[Option[Color]]`. For a
+    * [[chartreuse.Themeable]] value this will be `Default` value, not an
+    * `Override`, which is probably not what you want. Use the `withStrokeColor`
+    * method instead.
+    */
+  def withTextNoStroke: PlotTheme[F] =
+    this.copy(textStrokeColor = none.pure[F])
+
+  /** Builder method to set the font for normal text of this [[PlotTheme]]. */
+  def withNormalFont(font: F[Font]): PlotTheme[F] =
+    this.copy(normalFont = font)
+
+  /** Builder method to set the font for heading text of this [[PlotTheme]]. */
+  def withHeadingFont(font: F[Font]): PlotTheme[F] =
+    this.copy(headingFont = font)
+
+  /** Construct text styled using the values from this [[PlotTheme]] for normal
+    * text.
+    */
+  def normalText(string: String)(using
+      Comonad[F]
+  ): Picture[Style & Text, Unit] = {
+    val t1 = text(string).font(normalFont.extract)
+    val t2 = textStrokeColor.extract.fold(t1.noStroke)(c => t1.strokeColor(c))
+    val t3 = textStrokeColor.extract.fold(t2.noFill)(c => t1.fillColor(c))
+
+    t3
+  }
+
+  /** Construct text styled using the values from this [[PlotTheme]] for heading
+    * text.
+    */
+  def headingText(string: String)(using
+      Comonad[F]
+  ): Picture[Style & Text, Unit] = {
+    val t1 = text(string).font(headingFont.extract)
+    val t2 = textStrokeColor.extract.fold(t1.noStroke)(c => t1.strokeColor(c))
+    val t3 = textStrokeColor.extract.fold(t2.noFill)(c => t1.fillColor(c))
+
+    t3
+  }
+
   def addLayerTheme(theme: LayoutTheme[F]): PlotTheme[F] =
     this.copy(layerThemes = layerThemes :+ theme)
+
+  def withLayerThemes(themes: NonEmptySeq[LayoutTheme[F]]): PlotTheme[F] =
+    this.copy(layerThemes = themes)
 
   /** Produces an [[scala.collection.Iterator]] through the layer themes. This
     * iterator never terminates; it *always* produces a value. The values are
@@ -62,7 +156,13 @@ object PlotTheme {
     * [[LayoutTheme]].
     */
   def apply[F[_]: Applicative](layerTheme: LayoutTheme[F]): PlotTheme[F] =
-    PlotTheme(NonEmptySeq.of(layerTheme))
+    PlotTheme(
+      textStrokeColor = Color.black.some.pure[F],
+      textFillColor = Color.black.some.pure[F],
+      headingFont = Font.defaultSansSerif.size(18).pure[F],
+      normalFont = Font.defaultSansSerif.size(12).pure[F],
+      layerThemes = NonEmptySeq.of(layerTheme)
+    )
 
   /** Convert a six-character hex string, which does not start with #, to a
     * `Color`.
@@ -78,7 +178,11 @@ object PlotTheme {
   /** Convert a sequence of colors to a [[PlotTheme]]. */
   def fromColors(colors: NonEmptySeq[Color]): PlotTheme[Id] =
     PlotTheme[Id](
-      colors.map(c =>
+      textStrokeColor = Color.black.some.pure[Id],
+      textFillColor = Color.black.some.pure[Id],
+      headingFont = Font.defaultSansSerif.size(18).pure[Id],
+      normalFont = Font.defaultSansSerif.size(12).pure[Id],
+      layerThemes = colors.map(c =>
         LayoutTheme.default[Id].withFillColor(c).withStrokeColor(c)
       )
     )

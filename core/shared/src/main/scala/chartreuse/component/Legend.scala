@@ -38,8 +38,8 @@ final case class Legend[-Alg <: Algebra](
         .foldLeft(empty[Alg & PlotAlg])((content, layerAndTheme) => {
           // This code is not ideal, because we're recreating the themed value here,
           // which is created by the layer when it draws.
-          val (layer, theme) = layerAndTheme
-          val themed = theme.theme(layer.layout.themeable)
+          val (layer, layerTheme) = layerAndTheme
+          val themed = layerTheme.theme(layer.layout.themeable)
 
           // TODO: take text fill from style
           content.above(
@@ -50,7 +50,7 @@ final case class Legend[-Alg <: Algebra](
                   .getOrElse(Color.white)
               )
               .margin(0, legendMargin, 0, 0)
-              .beside(text(layer.label).fillColor(Color.black))
+              .beside(theme.normalText(layer.label))
               .originAt(Landmark.topLeft)
           )
         })
