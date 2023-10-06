@@ -186,21 +186,20 @@ final case class Plot[-Alg <: Algebra](
       // TODO: take fill from style
       // This is a bit of a hack to fill in the text (by default, text on SVG is not filled)
       // It should be taken from the theme
-      text(this.plotTitle)
-        .fillColor(Color.black)
-        .scale(1.5, 1.5)
+      theme
+        .headingText(this.plotTitle)
         .originAt(Landmark.percent(0, -100))
         .at(bb.left + bb.width / 2, bb.top + titleMargin)
         .on(
-          text(this.xTitle)
-            .fillColor(Color.black)
+          theme
+            .normalText(this.xTitle)
             .originAt(Landmark.percent(0, 100))
             .at(bb.left + bb.width / 2, bb.bottom - titleMargin)
         )
         .on(
-          text(this.yTitle)
-            .fillColor(Color.black)
-            .rotate(Angle(1.5708))
+          theme
+            .normalText(this.yTitle)
+            .rotate(90.degrees)
             .originAt(Landmark.percent(100, 0))
             .at(bb.left - titleMargin, bb.bottom + bb.height / 2)
         )
