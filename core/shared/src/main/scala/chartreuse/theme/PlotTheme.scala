@@ -105,7 +105,7 @@ final case class PlotTheme[F[_]: Applicative](
   ): Picture[Style & Text, Unit] = {
     val t1 = text(string).font(normalFont.extract)
     val t2 = textStrokeColor.extract.fold(t1.noStroke)(c => t1.strokeColor(c))
-    val t3 = textStrokeColor.extract.fold(t2.noFill)(c => t1.fillColor(c))
+    val t3 = textFillColor.extract.fold(t2.noFill)(c => t1.fillColor(c))
 
     t3
   }
@@ -118,7 +118,7 @@ final case class PlotTheme[F[_]: Applicative](
   ): Picture[Style & Text, Unit] = {
     val t1 = text(string).font(headingFont.extract)
     val t2 = textStrokeColor.extract.fold(t1.noStroke)(c => t1.strokeColor(c))
-    val t3 = textStrokeColor.extract.fold(t2.noFill)(c => t1.fillColor(c))
+    val t3 = textFillColor.extract.fold(t2.noFill)(c => t1.fillColor(c))
 
     t3
   }
