@@ -6,7 +6,7 @@ import org.portablescala.sbtplatformdeps.PlatformDepsPlugin.autoImport._
 object Dependencies {
   // Library Versions
   val catsVersion = "2.10.0"
-  val catsEffectVersion = "3.5.1"
+  val catsEffectVersion = "3.5.2"
   val fs2Version = "3.6.1"
 
   val doodleVersion = "0.20.0"
