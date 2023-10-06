@@ -55,7 +55,9 @@ object TemperatureAnomaly {
       .sortBy(_.label)
 
   val plot = Plot(layers.toList)
-    .withPlotTitle("Global Average Temperature Anomaly (2022-2013 Highlighted)")
+    .withPlotTitle(
+      "Global Average Temperature Anomaly (2022-2013 Highlighted)"
+    )
     .withYTitle("°C anomaly from 1961-1990")
     .withXTitle("Month")
     .withLegend(false)
