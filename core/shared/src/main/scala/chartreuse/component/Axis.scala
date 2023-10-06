@@ -39,7 +39,8 @@ final case class Axis[-Alg <: Algebra](
     createTick: (ScreenCoordinate, Int, Double) => OpenPath,
     createTickLabels: (
         TicksSequence,
-        Double
+        Double,
+        PlotTheme[Id]
     ) => Picture[Alg & PlotAlg, Unit],
     toDouble: Point => Double,
     toPoint: Double => Point,
@@ -70,7 +71,7 @@ final case class Axis[-Alg <: Algebra](
         withTicks(
           minorTicksSequence,
           createTick,
-          (_, _) => empty,
+          (_, _, _) => empty,
           tickSize / 2,
           oppositeTicksBounds.min
         )
@@ -198,7 +199,8 @@ final case class Axis[-Alg <: Algebra](
       createTick: (ScreenCoordinate, Int, Double) => OpenPath,
       createTickLabels: (
           TicksSequence,
-          Double
+          Double,
+          PlotTheme[Id]
       ) => Picture[Alg & PlotAlg, Unit],
       tickSize: Int,
       anchorPoint: Double
@@ -209,7 +211,7 @@ final case class Axis[-Alg <: Algebra](
         plot
           .on(createTick(screenCoordinate, tickSize, anchorPoint).path)
       )
-      .on(createTickLabels(ticksSequence, anchorPoint))
+      .on(createTickLabels(ticksSequence, anchorPoint, theme))
   }
 }
 
@@ -267,9 +269,10 @@ object Axis {
 
   def createXTickLabels[Alg <: Algebra](using numberFormat: NumberFormat): (
       TicksSequence,
-      Double
+      Double,
+      PlotTheme[Id]
   ) => Picture[Alg & PlotAlg, Unit] =
-    (ticksSequence, anchorPoint) =>
+    (ticksSequence, anchorPoint, theme) =>
       val labels = ticksSequence.map((_, data) => text(data.x.toString))
 
       val labelsSequence = labels.map(_.boundingBox).sequence
@@ -287,9 +290,8 @@ object Axis {
         ticksSequence.foldLeft(empty[Alg & PlotAlg]) { (labels, ticks) =>
           val (screenCoordinate, dataCoordinate) = ticks
           labels.on(
-            // TODO: take fill from style
-            text(numberFormat.format(dataCoordinate.x))
-              .fillColor(Color.black)
+            theme
+              .normalText(numberFormat.format(dataCoordinate.x))
               .rotate(Angle(if doLabelsOverlap then 0.523599 else 0))
               .originAt(
                 if doLabelsOverlap then Landmark.topRight
@@ -302,15 +304,15 @@ object Axis {
 
   def createYTickLabels[Alg <: Algebra](using numberFormat: NumberFormat): (
       TicksSequence,
-      Double
+      Double,
+      PlotTheme[Id]
   ) => Picture[Alg & PlotAlg, Unit] =
-    (ticksSequence, anchorPoint) =>
+    (ticksSequence, anchorPoint, theme) =>
       ticksSequence.foldLeft(empty[Alg & PlotAlg]) { (labels, ticks) =>
         val (screenCoordinate, dataCoordinate) = ticks
         labels.on(
-          // TODO: take fill from style
-          text(numberFormat.format(dataCoordinate.y))
-            .fillColor(Color.black)
+          theme
+            .normalText(numberFormat.format(dataCoordinate.y))
             .originAt(Landmark.percent(100, 0))
             .at(anchorPoint - textMargin, screenCoordinate.y)
         )
