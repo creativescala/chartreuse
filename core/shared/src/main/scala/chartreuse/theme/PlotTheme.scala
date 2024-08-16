@@ -136,8 +136,8 @@ final case class PlotTheme[F[_]: Applicative](
     */
   def layerThemesIterator(using comonad: Comonad[F]): Iterator[LayoutTheme[F]] =
     new Iterator[LayoutTheme[F]] {
-      private var elements = layerThemes.toSeq.toArray
-      private var idx = 0
+      var elements = layerThemes.toSeq.toArray
+      var idx = 0
 
       def hasNext(): Boolean = true
 
