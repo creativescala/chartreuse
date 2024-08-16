@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 import scala.sys.process._
+import laika.ast.Path
 import laika.config.LaikaKeys
-import laika.rewrite.link.LinkConfig
-import laika.rewrite.link.ApiLinks
-import laika.theme.Theme
+import laika.config.LinkConfig
+import laika.config.ApiLinks
 
-val scala3 = "3.3.0"
+val scala3 = "3.3.3"
 
 ThisBuild / organization := "org.creativescala"
 ThisBuild / organizationName := "Creative Scala"
@@ -41,14 +41,16 @@ Global / onChangedBuildSource := ReloadOnSourceChanges
 
 // Run this (build) to do everything involved in building the project
 commands += Command.command("build") { state =>
-  "dependencyUpdates" ::
-    "clean" ::
+  "clean" ::
     "compile" ::
     "test" ::
     "scalafixAll" ::
     "scalafmtAll" ::
     "headerCreateAll" ::
-    "docs/tlSite" ::
+    "githubWorkflowGenerate" ::
+    "docs / tlSite" ::
+    "dependencyUpdates" ::
+    "reload plugins; dependencyUpdates; reload return" ::
     state
 }
 
@@ -68,11 +70,6 @@ lazy val core = crossProject(JSPlatform, JVMPlatform)
   .in(file("core"))
   .settings(
     commonSettings,
-    libraryDependencies ++= Seq(
-      Dependencies.catsCore.value,
-      Dependencies.catsEffect.value,
-      Dependencies.catsFree.value
-    ),
     moduleName := "chartreuse-core"
   )
 
@@ -83,30 +80,29 @@ lazy val docs = project
     mdocIn := sourceDirectory.value / "pages",
     mdocOut := target.value / "pages",
     laikaConfig := laikaConfig.value.withConfigValue(
-      LinkConfig(apiLinks =
-        Seq(
+      LinkConfig.empty
+        .addApiLinks(
           ApiLinks(baseUri =
             "https://javadoc.io/doc/org.creativescala/chartreuse-docs_3/latest/"
           )
         )
-      )
     ),
     Laika / sourceDirectories := Seq(
       mdocOut.value,
-      sourceDirectory.value / "templates",
-      sourceDirectory.value / "js",
       (examples / Compile / fastOptJS / artifactPath).value
         .getParentFile() / s"${(examples / moduleName).value}-fastopt"
     ),
     laikaExtensions ++= Seq(
-      laika.markdown.github.GitHubFlavor,
-      laika.parse.code.SyntaxHighlighting,
-      CreativeScalaDirectives
+      laika.format.Markdown.GitHubFlavor,
+      laika.config.SyntaxHighlighting
     ),
     laikaSite / target := target.value / "chartreuse",
     laikaIncludeEPUB := false,
     laikaIncludePDF := false,
-    laikaTheme := Theme.empty,
+    laikaTheme := CreativeScalaTheme(
+      Seq(Path.Root / "main.js"),
+      Seq.empty
+    ).build,
     css := {
       val src = sourceDirectory.value / "css"
       val dest1 = mdocOut.value
