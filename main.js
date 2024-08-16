@@ -3242,13 +3242,13 @@ $c_Lchartreuse_examples_Annotations$.prototype.drawWithPositioningAndArrow__T__V
   var picture = $n($n($x_1).addAnnotation__Lchartreuse_component_Annotation__Lchartreuse_Plot(new $c_Lchartreuse_component_Annotation(pointOfInterest$1, annotationType$1, annotationPosition$1, true, fillColor$1, strokeColor$1, strokeWidth$1))).draw__I__I__Lchartreuse_theme_PlotTheme__Ldoodle_algebra_Picture(640, 480, $m_Lchartreuse_theme_PlotTheme$().Lchartreuse_theme_PlotTheme$__f_fiveThirtyEight);
   new $c_Ldoodle_syntax_AbstractRendererSyntax$RendererPictureOps(this$2, picture).drawWithFrame__O__Ldoodle_effect_Renderer__Lcats_effect_unsafe_IORuntime__V($n($m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_Frame).apply__T__Ldoodle_svg_effect_Frame(id), $m_Ldoodle_svg_package$().Ldoodle_svg_package$__f_svgRenderer, $m_Lcats_effect_unsafe_IORuntime$().global__Lcats_effect_unsafe_IORuntime());
 });
-$c_Lchartreuse_examples_Annotations$.prototype.drawWithPositioning = (function(arg) {
-  var prep0 = $as_T(arg);
-  this.drawWithPositioning__T__V(prep0);
-});
 $c_Lchartreuse_examples_Annotations$.prototype.drawDefault = (function(arg) {
   var prep0 = $as_T(arg);
   this.drawDefault__T__V(prep0);
+});
+$c_Lchartreuse_examples_Annotations$.prototype.drawWithPositioning = (function(arg) {
+  var prep0 = $as_T(arg);
+  this.drawWithPositioning__T__V(prep0);
 });
 $c_Lchartreuse_examples_Annotations$.prototype.drawWithPositioningAndArrow = (function(arg) {
   var prep0 = $as_T(arg);
