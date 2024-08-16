@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import scala.sys.process._
+import scala.sys.process.*
 import laika.ast.Path
 import laika.config.LaikaKeys
 import laika.config.LinkConfig
