@@ -46,7 +46,7 @@ html,
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: Source Sans Pro, sans-serif;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
@@ -558,6 +558,14 @@ video {
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
+.contents {
+  display: contents;
+}
+
 .flex-row {
   flex-direction: row;
 }
@@ -569,7 +577,7 @@ video {
 body {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  font-family: Crimson Pro, serif;
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 1.125rem;
   line-height: 1.75rem;
   --tw-text-opacity: 1;
@@ -582,14 +590,19 @@ body {
   }
 }
 
+/* Topbar (mobile) navigation */
+
 nav#topbar {
   display: flex;
   width: 100%;
   align-content: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   --tw-bg-opacity: 1;
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
-  padding: 0.5rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   font-size: 1.25rem;
   line-height: 1.75rem;
   --tw-text-opacity: 1;
@@ -602,10 +615,17 @@ nav#topbar {
   }
 }
 
+nav#topbar details summary {
+  --tw-text-opacity: 1;
+  color: rgb(249 168 212 / var(--tw-text-opacity));
+}
+
 nav#topbar p {
   margin: 0px;
   padding: 0px;
 }
+
+/* Sidebar (desktop) navigation */
 
 nav#sidebar {
   display: none;
@@ -622,6 +642,12 @@ nav#sidebar {
   }
 }
 
+nav#sidebar ul.nav-list > li:first-child {
+  text-transform: uppercase;
+}
+
+/* General navigation styling */
+
 .nav-list details summary {
   --tw-text-opacity: 1;
   color: rgb(249 168 212 / var(--tw-text-opacity));
@@ -629,10 +655,6 @@ nav#sidebar {
 
 ul.nav-list:first-child {
   margin-top: 0px;
-}
-
-ul.nav-list > li:first-child {
-  text-transform: uppercase;
 }
 
 .level1 {
@@ -643,7 +665,6 @@ ul.nav-list > li:first-child {
 .level1.nav-node h5, .level1.nav-header h5 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  text-transform: uppercase;
   --tw-text-opacity: 1;
   color: rgb(249 168 212 / var(--tw-text-opacity));
 }
@@ -792,10 +813,15 @@ pre {
   background-color: rgb(191 219 254 / var(--tw-bg-opacity));
 }
 
+.content div.warn {
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 230 138 / var(--tw-bg-opacity));
+}
+
 details summary {
   cursor: pointer;
   --tw-text-opacity: 1;
-  color: rgb(157 23 77 / var(--tw-text-opacity));
+  color: rgb(133 77 14 / var(--tw-text-opacity));
 }
 
 details summary > * {
@@ -891,7 +917,7 @@ footer {
   border-color: rgb(203 213 225 / var(--tw-border-opacity));
   padding-top: 1rem;
   text-align: center;
-  font-family: Source Sans Pro, sans-serif;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 0.875rem;
   line-height: 1.25rem;
   --tw-text-opacity: 1;
