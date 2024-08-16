@@ -278,7 +278,7 @@ object Axis {
       val labelsSequence = labels.map(_.boundingBox).sequence
       labelsSequence.flatMap(boundingBoxes =>
         var doLabelsOverlap = false
-        for (i <- 1 until boundingBoxes.size) {
+        for i <- 1 until boundingBoxes.size do {
           val (prevTick, _) = ticksSequence(i - 1)
           val (currTick, _) = ticksSequence(i)
           val prevBBWidth = boundingBoxes(i - 1).width

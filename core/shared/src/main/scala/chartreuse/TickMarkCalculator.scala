@@ -39,12 +39,11 @@ object TickMarkCalculator {
     *
     * The algorithm doesn't necessarily maintain any of the bounds. It may leave
     * the output bound the same as the input bound if it aligns with the output
-    * `tickSize`,
-    * i.e. if it is a multiple of `tickSize`. If the output bound is not a
-    * multiple of the `tickSize`, it will be adjusted to the nearest `tickSize`
-    * multiple. For example, `calculateTickScale(0.0, 10.0, 3)` outputs
-    * `Ticks(0.0, 15.0, 7.5)` and `calculateTickScale(-0.5, 10.0, 3)` outputs
-    * `Ticks(-7.5, 15.0, 7.5)`.
+    * `tickSize`, i.e. if it is a multiple of `tickSize`. If the output bound is
+    * not a multiple of the `tickSize`, it will be adjusted to the nearest
+    * `tickSize` multiple. For example, `calculateTickScale(0.0, 10.0, 3)`
+    * outputs `Ticks(0.0, 15.0, 7.5)` and `calculateTickScale(-0.5, 10.0, 3)`
+    * outputs `Ticks(-7.5, 15.0, 7.5)`.
     *
     * The method maintains the following invariants:
     *   1. `tickCount` should be greater than or equal to 2. This ensures that
