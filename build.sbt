@@ -36,6 +36,7 @@ ThisBuild / developers ++= List(
 ThisBuild / scalaVersion := scala3
 ThisBuild / semanticdbEnabled := true
 ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
+ThisBuild / tlSonatypeUseLegacyHost := true
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
