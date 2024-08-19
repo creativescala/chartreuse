@@ -139,7 +139,7 @@ final case class Plot[-Alg <: Algebra](
     val yTicksBounds = yAxis.getTicksBounds(yMajorTicksSequence)
 
     val allLayers: Picture[Alg & PlotAlg, Unit] =
-      layers
+      layers.iterator
         .zip(theme.layerThemesIterator)
         .map((layer, theme) => layer.draw(width, height, scale, theme))
         .foldLeft(empty)(_ on _)
