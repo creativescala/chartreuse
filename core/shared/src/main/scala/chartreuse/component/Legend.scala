@@ -17,6 +17,7 @@
 package chartreuse.component
 
 import cats.Id
+import cats.data.NonEmptySeq
 import chartreuse.Layer
 import chartreuse.Plot.PlotAlg
 import chartreuse.theme.PlotTheme
@@ -25,7 +26,7 @@ import doodle.core.*
 import doodle.syntax.all.*
 
 final case class Legend[-Alg <: Algebra](
-    layers: Seq[Layer[?, Alg]],
+    layers: NonEmptySeq[Layer[?, Alg]],
     theme: PlotTheme[Id]
 ) {
   def build(x: Double, y: Double): Picture[Alg & PlotAlg, Unit] = {
@@ -33,7 +34,7 @@ final case class Legend[-Alg <: Algebra](
     val legendMargin = 6
 
     val legendContent =
-      (layers
+      (layers.iterator
         .zip(theme.layerThemesIterator))
         .foldLeft(empty[Alg & PlotAlg])((content, layerAndTheme) => {
           // This code is not ideal, because we're recreating the themed value here,

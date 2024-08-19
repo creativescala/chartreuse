@@ -16,6 +16,7 @@
 
 package chartreuse.examples
 
+import cats.data.NonEmptySeq
 import cats.effect.unsafe.implicits.global
 import chartreuse.*
 import chartreuse.layout.*
@@ -36,30 +37,33 @@ object TemperatureAnomaly {
     data.groupBy(_.year).filter((year, _) => year < 2023)
 
   val layers =
-    dataByYear
-      .map((year, records) =>
-        Line
-          .default[Record]
-          .forThemeable(themeable =>
-            // Highlight the most recent years by themeing them. Other years become grey
-            if year < 2013 then
-              themeable.withStrokeColor(Themeable.Override(Some(Color.grey)))
-            else themeable
-          )
-          .toLayer(records.sortBy(_.month))(record =>
-            Point(record.month, record.anomaly)
-          )
-          .withLabel(year.toString)
-      )
-      .toList
-      .sortBy(_.label)
+    NonEmptySeq.fromSeqUnsafe(
+      dataByYear
+        .map((year, records) =>
+          Line
+            .default[Record]
+            .forThemeable(themeable =>
+              // Highlight the most recent years by themeing them. Other years become grey
+              if year < 2013 then
+                themeable.withStrokeColor(Themeable.Override(Some(Color.grey)))
+              else themeable
+            )
+            .toLayer(records.sortBy(_.month))(record =>
+              Point(record.month, record.anomaly)
+            )
+            .withLabel(year.toString)
+        )
+        .toSeq
+        .sortBy(_.label)
+    )
 
-  val plot = Plot(layers.toList)
+  val plot = Plot(layers)
     .withPlotTitle(
       "Global Average Temperature Anomaly (2022-2013 Highlighted)"
     )
     .withYTitle("°C anomaly from 1961-1990")
     .withXTitle("Month")
+    .withXTicks(MajorTickLayout.Manual(Seq(1,2,3,4,5,6,7,8,9,10,11,12)))
     .withLegend(false)
 
   @JSExport

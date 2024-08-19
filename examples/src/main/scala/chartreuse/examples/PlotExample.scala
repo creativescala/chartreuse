@@ -16,6 +16,7 @@
 
 package chartreuse.examples
 
+import cats.data.NonEmptySeq
 import cats.effect.unsafe.implicits.global
 import chartreuse.*
 import chartreuse.layout.Scatter
@@ -41,7 +42,7 @@ object PlotExample {
   }
 
   val plot: Plot[Basic] = Plot(
-    List.fill(5)(randomLayer),
+    NonEmptySeq.fromSeqUnsafe(List.fill(5)(randomLayer)),
     grid = true
   )
 

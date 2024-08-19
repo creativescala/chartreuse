@@ -17,6 +17,7 @@
 package chartreuse
 
 import cats.Id
+import cats.data.NonEmptySeq
 import chartreuse.component.Axis.*
 import chartreuse.component.*
 import chartreuse.theme.PlotTheme
@@ -30,7 +31,7 @@ import Plot.PlotAlg
   * grid.
   */
 final case class Plot[-Alg <: Algebra](
-    layers: List[Layer[?, Alg]],
+    layers: NonEmptySeq[Layer[?, Alg]],
     plotTitle: String = "Plot Title",
     xTitle: String = "X data",
     yTitle: String = "Y data",
@@ -43,7 +44,7 @@ final case class Plot[-Alg <: Algebra](
     annotations: List[Annotation] = List.empty[Annotation]
 ) {
   def addLayer[Alg2 <: Algebra](layer: Layer[?, Alg2]): Plot[Alg & Alg2] = {
-    copy(layers = layer :: layers)
+    copy(layers = layer +: layers)
   }
 
   def addAnnotation(annotation: Annotation): Plot[Alg] = {
@@ -89,9 +90,7 @@ final case class Plot[-Alg <: Algebra](
       height: Int,
       theme: PlotTheme[Id] = PlotTheme.default
   ): Picture[Alg & PlotAlg, Unit] = {
-    val dataBoundingBox = layers.foldLeft(BoundingBox.empty) { (bb, layer) =>
-      bb.on(layer.boundingBox)
-    }
+    val dataBoundingBox = layers.map(_.boundingBox).reduceLeft(_.on(_))
 
     val dataMinX = dataBoundingBox.left
     val dataMaxX = dataBoundingBox.right
@@ -216,5 +215,5 @@ object Plot {
 
   /** Utility constructor to create a `Plot` from a single layer. */
   def apply[Alg <: Algebra](layer: Layer[?, Alg]): Plot[Alg] =
-    Plot(layers = List(layer))
+    Plot(layers = NonEmptySeq.one(layer))
 }

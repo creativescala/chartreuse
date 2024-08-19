@@ -27,7 +27,24 @@ enum Data[+A] {
   case FromTraverse[F[_], A](data: F[A], traverse: Traverse[F]) extends Data[A]
 
   def boundingBox(toPoint: A => Point): BoundingBox =
-    foldLeft(BoundingBox.empty)((bb, a) => bb.enclose(toPoint(a)))
+    this match {
+      case FromIterable(data) =>
+        if data.isEmpty then BoundingBox.empty
+        else {
+          val pt = toPoint(data.head)
+          val bb = BoundingBox(pt.x, pt.y, pt.x, pt.y)
+          data.tail.foldLeft(bb) { (bb, a) => bb.enclose(toPoint(a)) }
+        }
+      case FromTraverse(data, traverse) =>
+        traverse.reduceLeftToOption(data) { (a: A) =>
+          val pt = toPoint(a)
+          BoundingBox(pt.x, pt.y, pt.x, pt.y)
+        }((bb, a) => bb.enclose(toPoint(a))) match {
+          case Some(value) => value
+          case None => BoundingBox.empty
+        }
+
+    }
 
   def foldLeft[B](z: B)(f: (B, A) => B): B =
     this match {

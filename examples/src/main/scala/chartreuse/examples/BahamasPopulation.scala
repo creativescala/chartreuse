@@ -16,6 +16,7 @@
 
 package chartreuse.examples
 
+import cats.data.NonEmptySeq
 import cats.effect.unsafe.implicits.global
 import chartreuse.*
 import chartreuse.layout.*
@@ -303,7 +304,7 @@ object BahamasPopulation {
 
   val plot =
     Plot(
-      List(
+      NonEmptySeq.of(
         line.toLayer(population).withLabel("Line"),
         curve.toLayer(population).withLabel("Curve")
       )
