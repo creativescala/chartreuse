@@ -41,7 +41,7 @@ enum Data[+A] {
           BoundingBox(pt.x, pt.y, pt.x, pt.y)
         }((bb, a) => bb.enclose(toPoint(a))) match {
           case Some(value) => value
-          case None => BoundingBox.empty
+          case None        => BoundingBox.empty
         }
 
     }
