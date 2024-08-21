@@ -10,7 +10,7 @@ Chartreuse is a [Scala][scala] library for creating visualizations like the one 
 To use Chartreuse in your project, add the following to your `build.sbt`:
 
 ```scala
-libraryDependencies += "org.creativescala" %% "chartreuse" % "@VERSION@"
+libraryDependencies += "org.creativescala" %% "chartreuse-core" % "@VERSION@"
 ```
 
 
